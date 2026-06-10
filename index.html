@@ -8,7 +8,7 @@
 <style>
 	  :root{
 	    --font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
-	    --font-body:16px; --font-caption:13px; --font-control:15px; --font-map-label:13px;
+	    --font-body:16px; --font-caption:14px; --font-control:15px; --font-map-label:13px;
 	    --font-title:31px; --font-section:20px; --touch-target:40px; --radius:8px;
 	    --bg:#e8edf2; --surface:#ffffff; --surface-muted:#f4f7f9; --surface-strong:#e7edf3;
 	    --surface-panel:#ffffff; --surface-subtle:#f8fafc; --line:#d7dee6;
@@ -23,7 +23,7 @@
 	  body{margin:0;font-family:var(--font-family);font-size:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 	  button,select{font:inherit;border-radius:var(--radius)}
 	  :focus-visible{outline:none;box-shadow:var(--focus-ring)}
-	  .site-head{padding:16px clamp(16px,3vw,34px) 14px;background:var(--surface-panel);color:var(--text-strong);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(16,24,40,.03)}
+	  .site-head{padding:15px clamp(16px,3vw,34px) 13px;background:var(--surface-panel);color:var(--text-strong);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(16,24,40,.03)}
 	  .headline{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:18px;align-items:end;max-width:1500px;margin:0 auto}
 	  .eyebrow{margin:0 0 2px;font-size:var(--font-caption);font-weight:800;color:var(--accent-strong);letter-spacing:0;text-transform:uppercase}
 	  header h1{margin:0;font-size:var(--font-title);line-height:1.18;letter-spacing:0;font-weight:850;word-break:keep-all}
@@ -82,9 +82,9 @@
 	  .detail-meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
 	  .kv{font-size:14px;margin:0;line-height:1.48;padding:8px;background:var(--surface-subtle);border:1px solid var(--line);border-radius:8px;overflow-wrap:anywhere}
 	  .kv b{color:var(--text-muted);font-weight:800;display:block;min-width:0;margin-bottom:2px}
-	  .evidence-block{font-size:14px;color:#304052;margin-top:12px;padding:12px;background:#fffdf8;border:1px solid #ead8b5;border-radius:8px;line-height:1.6;overflow-wrap:anywhere}
+	  .evidence-block{font-size:15px;color:#304052;margin-top:12px;padding:12px;background:#fffdf8;border:1px solid #ead8b5;border-radius:8px;line-height:1.6;overflow-wrap:anywhere}
 	  .source-list{font-size:14px;color:#304052;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);line-height:1.65;overflow-wrap:anywhere}
-	  .detail .notes{font-size:14px;color:#304052;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.65}
+	  .detail .notes{font-size:15px;color:#304052;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.65}
 	  .detail a{color:var(--accent);overflow-wrap:anywhere}
 	  .offmap{padding:16px;border-top:1px solid var(--line)}
 	  .offmap h3{margin:0 0 10px;font-size:17px;color:var(--text-strong)}
