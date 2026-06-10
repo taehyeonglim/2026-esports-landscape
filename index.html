@@ -6,90 +6,114 @@
 <title>전국 학교 e스포츠 지형도 — Scholastic Esports Landscape</title>
 <link rel="icon" href="data:,">
 <style>
-  :root{
-    --bg:#f4f6f9; --panel:#ffffff; --ink:#11202e; --sub:#5a6b7b; --line:#d9e1ea;
-    --sea:#0369a1; --sea-soft:#e0f0f9; --land:#eef2f6; --land-edge:#b9c6d3;
-    --c-edu:#2563eb; --c-club:#16a34a; --c-voc:#ea580c; --c-univ:#9333ea;
-    --c-infra:#dc2626; --c-gov:#0891b2; --c-assoc:#ca8a04; --c-media:#94a3b8;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
-       background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-  header{padding:18px 24px 14px;background:linear-gradient(180deg,#0b2436,#123347);color:#fff}
-  header h1{margin:0;font-size:20px;letter-spacing:-.3px}
-  header .sub{margin-top:4px;font-size:12.5px;color:#b7cadb;max-width:980px}
-  header .region-title{font-weight:400;color:#9fb6c9;font-size:14px}
-  .overview{margin-top:10px;font-size:12px;color:#d6e6f1}
-  .regionnav{margin-top:12px;display:grid;gap:8px}
-  .regionbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(54px,1fr));gap:5px;max-width:1040px}
-  .regionbtn{appearance:none;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#d6e6f1;border-radius:8px;padding:5px 7px;font-size:11.5px;line-height:1.2;cursor:pointer}
-  .regionbtn:hover{background:rgba(255,255,255,.12);color:#fff}
-  .regionbtn.on{background:#fff;color:#10283a;border-color:#fff;font-weight:700}
-  .region-select{display:none;width:100%;border:1px solid rgba(255,255,255,.25);background:#fff;color:#10283a;border-radius:8px;padding:8px 10px;font-size:14px}
-  @media(max-width:720px){.regionbar{display:none}.region-select{display:block}}
-  .gapbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .gapchip{font-size:11.5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
-           color:#ffd9c7;padding:4px 9px;border-radius:999px}
-  .gapchip b{color:#fff}
-  .wrap{display:grid;grid-template-columns:minmax(520px,1.5fr) minmax(320px,1fr);gap:14px;padding:14px 18px 28px;align-items:start}
-  @media(max-width:920px){.wrap{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 2px rgba(16,32,46,.04)}
-  .mapcard{padding:10px}
-  .maphd{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 8px}
-  .maphd .t{font-size:13px;font-weight:600;color:var(--sub)}
-  svg{width:100%;height:auto;display:block;background:var(--sea-soft);border-radius:8px}
-  .gu{fill:var(--land);stroke:var(--land-edge);stroke-width:.8}
-  .gu.hot{fill:#fbe9d8}
-  .gulabel{font-size:9px;fill:#7c8aa0;pointer-events:none;text-anchor:middle}
-  .mk{cursor:pointer;stroke-width:1.6;transition:r .1s}
-  .mk:hover{stroke:#11202e}
-  .mk.hub{stroke:#11202e;stroke-width:2.4}
-  .mk.dim{opacity:.12;pointer-events:none}
-  .spoke{stroke:#dc2626;stroke-width:.7;opacity:.22;pointer-events:none}
-  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;padding:10px 8px 4px;font-size:11.5px;color:var(--sub)}
-  .legend .it{display:flex;align-items:center;gap:5px}
-  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;border:1.6px solid #11202e}
-  .note{font-size:11px;color:var(--sub);padding:6px 8px 2px}
-  /* right panel */
-  .filters{padding:12px 14px}
-  .filters h3{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--sub)}
-  .fgroup{margin-bottom:10px}
-  .fgroup .lab{font-size:11px;color:var(--sub);margin-bottom:4px}
-  .chips{display:flex;flex-wrap:wrap;gap:5px}
-  .chip{font-size:11.5px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;user-select:none}
-  .chip.on{background:#11202e;color:#fff;border-color:#11202e}
-  .chip.off{opacity:.45;text-decoration:line-through}
-  .count{font-size:11px;color:var(--sub);margin-left:6px}
-  .detail{padding:14px;border-top:1px solid var(--line);min-height:120px}
-  .detail .ph{color:var(--sub);font-size:12.5px}
-  .detail h2{margin:0 0 2px;font-size:16px}
-  .detail .cat{display:inline-block;font-size:11px;color:#fff;padding:2px 8px;border-radius:6px;margin-bottom:8px}
-  .kv{font-size:12.5px;margin:3px 0}
-  .kv b{color:var(--sub);font-weight:600;display:inline-block;min-width:64px}
-  .detail .notes{font-size:12px;color:#33414e;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
-  .detail a{color:var(--sea);word-break:break-all}
-  .offmap{padding:12px 14px;border-top:1px solid var(--line)}
-  .offmap h3{margin:0 0 6px;font-size:12px;color:var(--sub)}
-  .offmap h4{margin:9px 0 4px;font-size:11.5px;color:#33414e}
-  .offmap .scope{font-size:10.5px;color:var(--sub);margin-left:4px}
-  .offmap .row{font-size:12px;padding:5px 0;border-bottom:1px dotted var(--line);cursor:pointer}
-  .offmap .row:hover{color:var(--sea)}
-  footer{padding:8px 24px 40px;color:var(--sub);font-size:11.5px;max-width:1100px}
-  .typo{margin:0 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .typo h3{margin:0 0 10px;font-size:13px}
-  .axis{margin-bottom:12px}
-  .axis .an{font-size:12.5px;font-weight:600}
-  .axis .av{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0}
-  .pill{font-size:11px;background:#eef2f6;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:#33414e}
-  .axis .ar{font-size:11.5px;color:var(--sub)}
-  .theme-pill{font-size:10.5px;padding:1px 6px;border-radius:4px;margin-left:4px}
-  .t3{background:#dbeafe;color:#1e40af}.t5{background:#fee2e2;color:#991b1b}.t4{background:#e2e8f0;color:#475569}
+	  :root{
+	    --font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",sans-serif;
+	    --font-body:16px; --font-caption:13px; --font-control:14px; --font-map-label:13px;
+	    --font-title:30px; --font-section:18px; --touch-target:40px; --radius:8px;
+	    --bg:#eef3f7; --surface:#ffffff; --surface-muted:#f5f8fb; --surface-strong:#e7eef5;
+	    --ink:#14212b; --sub:#536575; --muted:#738493; --line:#cfd9e3;
+	    --sea:#0b7895; --sea-soft:#dceef4; --land:#f7fafc; --land-edge:#aebdca;
+	    --focus-ring:0 0 0 3px rgba(11,120,149,.24); --shadow-soft:0 10px 24px rgba(20,33,43,.08);
+	    --c-edu:#2463c4; --c-club:#1f8f55; --c-voc:#c95e22; --c-univ:#7a4fb0;
+	    --c-infra:#c33d3d; --c-gov:#177f93; --c-assoc:#a87514; --c-media:#7a8794;
+	  }
+	  *{box-sizing:border-box}
+	  body{margin:0;font-family:var(--font-family);font-size:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+	  button,select{font:inherit}
+	  :focus-visible{outline:none;box-shadow:var(--focus-ring)}
+	  header{padding:22px clamp(16px,3vw,34px) 16px;background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+	  header h1{margin:0;font-size:var(--font-title);line-height:1.2;letter-spacing:0;font-weight:800;word-break:keep-all}
+	  header .sub{margin-top:8px;font-size:15px;color:var(--sub);max-width:960px;line-height:1.55;word-break:keep-all}
+	  header .region-title{font-weight:600;color:var(--sea);font-size:22px;white-space:nowrap}
+	  .overview{margin-top:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:900px;color:var(--sub)}
+	  .metric{display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-height:var(--touch-target);padding:8px 10px;background:var(--surface-muted);border:1px solid var(--line);border-radius:var(--radius);font-size:14px}
+	  .metric b{font-size:18px;color:var(--ink)}
+	  .regionnav{margin-top:14px;display:grid;gap:10px}
+	  .regionbar{display:grid;grid-template-columns:repeat(17,minmax(0,1fr));gap:6px;max-width:1180px}
+	  .regionbtn{appearance:none;min-height:var(--touch-target);border:1px solid var(--line);background:var(--surface-muted);color:var(--ink);border-radius:var(--radius);padding:8px 10px;font-size:var(--font-caption);line-height:1.25;cursor:pointer}
+	  .regionbtn:hover{background:var(--surface-strong);border-color:#9eb0bf}
+	  .regionbtn.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:800}
+	  .region-select{display:none;width:100%;min-height:44px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:var(--radius);padding:9px 12px;font-size:var(--font-control)}
+	  @media(max-width:900px){.regionbar{display:none}.region-select{display:block}}
+	  .gapbar{display:flex;flex-wrap:nowrap;gap:8px;margin-top:12px;max-width:1180px;overflow-x:auto;padding-bottom:4px}
+	  .gapchip{font-size:var(--font-caption);background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:6px 10px;border-radius:999px;white-space:nowrap}
+	  .gapchip b{color:var(--ink)}
+	  .wrap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(360px,.9fr);gap:18px;max-width:1500px;margin:0 auto;padding:18px clamp(16px,3vw,34px) 28px;align-items:start}
+	  @media(max-width:960px){.wrap{grid-template-columns:1fr}}
+	  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-soft)}
+	  .mapcard{padding:14px}
+	  .maphd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:2px 2px 12px;flex-wrap:wrap}
+	  .maphd .t{font-size:14px;font-weight:700;color:var(--sub)}
+	  .map-key{color:var(--muted);font-weight:600}
+	  svg{width:100%;height:auto;display:block;background:var(--sea-soft);border-radius:var(--radius);border:1px solid #c7dce7}
+	  .gu{fill:var(--land);stroke:var(--land-edge);stroke-width:.9}
+	  .gu.hot{fill:#fff1df}
+	  .gulabel{font-size:var(--font-map-label);font-weight:800;fill:#465968;stroke:#fff;stroke-width:3px;paint-order:stroke;pointer-events:none;text-anchor:middle}
+	  .mk{cursor:pointer;stroke-width:1.8;transition:r .1s,opacity .1s}
+	  .mk:hover{stroke:var(--ink)}
+	  .mk.hub{stroke:var(--ink);stroke-width:2.6}
+	  .mk.dim{opacity:.16;pointer-events:none}
+	  .spoke{stroke:var(--c-infra);stroke-width:.8;opacity:.24;pointer-events:none}
+	  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 4px 4px;font-size:var(--font-caption);color:var(--sub)}
+	  .legend .it{display:flex;align-items:center;gap:6px;min-height:24px}
+	  .dot{width:12px;height:12px;border-radius:50%;display:inline-block;border:1.8px solid var(--ink)}
+	  .note{font-size:var(--font-caption);color:var(--sub);padding:10px 4px 2px;line-height:1.55}
+	  .filters{padding:16px}
+	  .filters h3{margin:0 0 12px;font-size:var(--font-caption);text-transform:uppercase;letter-spacing:.5px;color:var(--sub)}
+	  .fgroup{margin-bottom:14px}
+	  .fgroup .lab{font-size:var(--font-caption);font-weight:700;color:var(--sub);margin-bottom:6px}
+	  .chips{display:flex;flex-wrap:wrap;gap:7px}
+	  .chip{display:inline-flex;align-items:center;min-height:34px;font-size:var(--font-caption);padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;cursor:pointer;user-select:none}
+	  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+	  .chip.off{opacity:.55;text-decoration:line-through}
+	  .count{font-size:var(--font-caption);color:var(--sub);margin-left:6px;text-transform:none;letter-spacing:0}
+	  .detail{padding:18px;border-top:1px solid var(--line);min-height:150px}
+	  .detail .ph{color:var(--sub);font-size:15px;line-height:1.6}
+	  .detail h2{margin:0 0 8px;font-size:22px;line-height:1.3;word-break:keep-all}
+	  .detail .cat{display:inline-block;font-size:var(--font-caption);font-weight:800;color:#fff;padding:4px 9px;border-radius:6px;margin-bottom:10px}
+	  .kv{font-size:14px;margin:6px 0;line-height:1.55}
+	  .kv b{color:var(--sub);font-weight:800;display:inline-block;min-width:76px}
+	  .detail .notes{font-size:14px;color:#33414e;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);line-height:1.65}
+	  .detail a{color:var(--sea);overflow-wrap:anywhere}
+	  .offmap{padding:16px;border-top:1px solid var(--line)}
+	  .offmap h3{margin:0 0 10px;font-size:16px;color:var(--ink)}
+	  .offmap h4{margin:14px 0 6px;font-size:14px;color:#33414e}
+	  .offmap .scope{display:block;font-size:var(--font-caption);font-weight:400;color:var(--sub);margin-top:2px}
+	  .offmap .row{font-size:14px;line-height:1.5;padding:8px 0;border-bottom:1px dotted var(--line);cursor:pointer;overflow-wrap:anywhere}
+	  .offmap .row:hover{color:var(--sea)}
+	  footer{padding:10px clamp(16px,3vw,34px) 42px;color:var(--sub);font-size:var(--font-caption);max-width:1180px;line-height:1.6}
+	  .typo{margin:0 auto 20px;max-width:1500px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px clamp(16px,2vw,22px)}
+	  .typo h3{margin:0 0 14px;font-size:var(--font-section);line-height:1.35;word-break:keep-all}
+	  .axis{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+	  .axis:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+	  .axis .an{font-size:15px;font-weight:800}
+	  .axis .av{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
+	  .pill{font-size:var(--font-caption);background:var(--surface-muted);border:1px solid var(--line);border-radius:6px;padding:4px 8px;color:#33414e}
+	  .axis .ar{font-size:14px;color:var(--sub);line-height:1.6}
+	  .theme-pill{font-size:var(--font-caption);padding:3px 7px;border-radius:5px;margin-left:5px;font-weight:700}
+	  .t3{background:#dbeafe;color:#1e40af}.t5{background:#fee2e2;color:#991b1b}.t4{background:#e2e8f0;color:#475569}
+	  @media(max-width:600px){
+	    :root{--font-body:15px;--font-title:25px;--font-map-label:20px}
+	    header{padding:16px 14px 12px}
+	    header .sub{font-size:14px;line-height:1.45}
+	    header .region-title{display:block;font-size:16px;margin-top:2px}
+	    .overview{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
+	    .metric{min-height:36px;padding:6px 8px;font-size:13px}
+	    .metric b{font-size:16px}
+	    .regionnav{margin-top:10px}
+	    .gapbar{margin-top:10px}
+	    .wrap{padding:12px 10px 22px;gap:12px}
+	    .mapcard,.filters,.detail,.offmap{padding:12px}
+	    .maphd{gap:6px;padding-bottom:8px}
+	    .detail h2{font-size:20px}
+	    footer{padding:8px 14px 34px}
+	  }
 </style>
 </head>
 <body>
 <header>
   <h1>전국 학교 e스포츠 지형도 <span class="region-title" id="region-title"></span></h1>
-  <div class="sub">인식연구1(향유 예비교사 6주제) 중 <b style="color:#cfe3f2">주제3(조건부·선택형 운영)</b>·<b style="color:#cfe3f2">주제5(도입 장벽: 전문성·인프라·사회적 설득)</b>을 해석 렌즈로, 전국 17개 시·도의 학교 e스포츠 생태계를 공개·1차 자료와 음성 증거로 매핑한 연구 인프라. 모든 항목에 출처 표기. 마커는 행정구역 중심 기반 대략 위치.</div>
+	  <div class="sub">전국 17개 시·도 학교 e스포츠 생태계를 공개·1차 자료와 음성 증거로 매핑한 연구 지도입니다. 모든 항목은 출처를 남기고, 마커는 행정구역 중심 기반의 근사 위치로 표시합니다.</div>
   <div class="overview" id="national-overview"></div>
   <div class="regionnav">
     <select class="region-select" id="region-select" aria-label="지역 선택"></select>
@@ -100,8 +124,8 @@
 
 <div class="wrap">
   <div class="card mapcard">
-    <div class="maphd"><span class="t"><span id="map-region-name"></span> · <span id="district-count"></span>개 행정구역 · <span id="pincount"></span>개 지점</span>
-      <span class="t" style="font-size:11px">● 빨강=인프라 허브 / 점선 테두리=신뢰도 보통</span></div>
+	    <div class="maphd"><span class="t"><span id="map-region-name"></span> · <span id="district-count"></span>개 행정구역 · <span id="pincount"></span>개 지점</span>
+	      <span class="t map-key">● 빨강=인프라 허브 / 점선 테두리=신뢰도 보통</span></div>
     <svg id="map" viewBox="0 0 860 680" role="img" aria-label="학교 e스포츠 지역 지도"></svg>
     <div class="legend" id="legend"></div>
     <div class="note">※ 위경도는 행정구역 중심 좌표(southkorea-maps kostat 2018) 기반의 대략 위치이며, 정밀 주소는 항목 패널을 참조하세요. 같은 행정구역의 여러 항목은 겹침 방지를 위해 분산 배치했습니다.</div>
@@ -9730,14 +9754,26 @@
     select.value=activeRegion.id;
     select.addEventListener('change',event=>changeRegion(event.target.value));
   }
-  function updateRegionCopy(){
-    document.title=activeRegion.name+' 학교 e스포츠 지형도 — Scholastic Esports Landscape';
-    document.getElementById('region-title').textContent='— '+activeRegion.name;
-    document.getElementById('national-overview').textContent=regions.length+'개 시·도 · 전체 항목 '+allEntries.length+'건 · 현재 지역 '+regionEntries.length+'건 · 음성/부분 증거 '+negativeEvidence.length+'건';
-    document.getElementById('map-region-name').textContent=activeRegion.name;
-    document.getElementById('district-count').textContent=geo.features.length;
-    svg.setAttribute('aria-label',activeRegion.name+' 학교 e스포츠 지도');
-  }
+	  function updateRegionCopy(){
+	    document.title=activeRegion.name+' 학교 e스포츠 지형도 — Scholastic Esports Landscape';
+	    document.getElementById('region-title').textContent='— '+activeRegion.name;
+	    const overview=document.getElementById('national-overview');
+	    clearNode(overview);
+	    [
+	      ['시·도',regions.length],
+	      ['전체 항목',allEntries.length],
+	      ['현재 지역',regionEntries.length],
+	      ['음성/부분 증거',negativeEvidence.length]
+	    ].forEach(([label,value])=>{
+	      const metric=makeEl('span','metric');
+	      metric.appendChild(makeEl('span','',label));
+	      metric.appendChild(makeEl('b','',value));
+	      overview.appendChild(metric);
+	    });
+	    document.getElementById('map-region-name').textContent=activeRegion.name;
+	    document.getElementById('district-count').textContent=geo.features.length;
+	    svg.setAttribute('aria-label',activeRegion.name+' 학교 e스포츠 지도');
+	  }
 
   // ---- projection ----
   let minX=180,minY=90,maxX=-180,maxY=-90;
