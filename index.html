@@ -21,7 +21,7 @@
 	  }
 	  *{box-sizing:border-box}
 	  body{margin:0;font-family:var(--font-family);font-size:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-	  button,select{font:inherit;border-radius:var(--radius)}
+	  button,input,select{font:inherit;border-radius:var(--radius)}
 	  :focus-visible{outline:none;box-shadow:var(--focus-ring)}
 	  .site-head{padding:15px clamp(16px,3vw,34px) 13px;background:var(--surface-panel);color:var(--text-strong);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(16,24,40,.03)}
 	  .headline{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:18px;align-items:end;max-width:1500px;margin:0 auto}
@@ -52,10 +52,11 @@
 	  .gu{fill:var(--land);stroke:var(--land-edge);stroke-width:.9}
 	  .gu.hot{fill:#fff2df}
 	  .gulabel{font-size:var(--font-map-label);font-weight:850;fill:#3f4e60;stroke:#fff;stroke-width:3px;paint-order:stroke;pointer-events:none;text-anchor:middle}
-	  .mk{cursor:pointer;stroke-width:1.8;transition:r .1s,opacity .1s}
+	  .mk{cursor:pointer;stroke-width:1.8;transition:r .1s,opacity .1s,stroke-width .1s}
 	  .mk:hover{stroke:var(--text-strong)}
 	  .mk.hub{stroke:var(--text-strong);stroke-width:2.6}
 	  .mk.dim{opacity:.16;pointer-events:none}
+	  .mk.selected-marker{stroke:var(--accent-strong);stroke-width:4}
 	  .spoke{stroke:var(--c-infra);stroke-width:.8;opacity:.24;pointer-events:none}
 	  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 4px 4px;font-size:var(--font-caption);color:var(--text-muted)}
 	  .legend .it{display:flex;align-items:center;gap:6px;min-height:24px}
@@ -63,6 +64,24 @@
 	  .note{font-size:var(--font-caption);color:var(--text-muted);padding:10px 4px 2px;line-height:1.55}
 	  .inspector-panel{display:block}
 	  .inspector-card{overflow:hidden}
+	  .browser-panel{padding:16px;background:#fff;border-bottom:1px solid var(--line)}
+	  .browser-toolbar{display:grid;grid-template-columns:minmax(0,1fr) 148px auto;gap:8px;align-items:end}
+	  .browser-field{display:grid;gap:5px;min-width:0}
+	  .browser-label{font-size:var(--font-caption);font-weight:800;color:var(--text-muted)}
+	  .browser-input,.sort-select{width:100%;min-height:40px;border:1px solid var(--line);background:#fff;color:var(--text-strong);padding:8px 10px}
+	  .clear-browser{appearance:none;min-height:40px;border:1px solid var(--line);background:var(--surface-muted);color:var(--text-strong);padding:8px 10px;cursor:pointer}
+	  .clear-browser:hover{background:var(--surface-strong);border-color:#9caabd}
+	  .result-count{margin:12px 0 8px;font-size:15px;font-weight:750;color:var(--text-muted)}
+	  .result-list{display:grid;gap:7px;max-height:388px;overflow:auto;padding-right:2px}
+	  .result-row{appearance:none;display:grid;width:100%;gap:5px;text-align:left;border:1px solid var(--line);background:#fff;color:var(--text-strong);border-radius:8px;padding:10px 11px;cursor:pointer}
+	  .result-row:hover,.result-row.selected{border-color:var(--accent);background:#f0fdfa}
+	  .result-row.selected{box-shadow:inset 3px 0 0 var(--accent)}
+	  .result-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+	  .result-title{font-size:15px;font-weight:850;line-height:1.38;word-break:keep-all;overflow-wrap:anywhere}
+	  .result-meta{font-size:14px;color:var(--text-muted);line-height:1.45;overflow-wrap:anywhere}
+	  .scope-badge{display:inline-flex;align-items:center;min-height:24px;white-space:nowrap;border-radius:6px;border:1px solid var(--line);background:var(--surface-subtle);padding:2px 7px;font-size:13px;font-weight:800;color:#304052}
+	  .empty-state{padding:18px 12px;border:1px dashed var(--line);border-radius:8px;background:var(--surface-subtle);color:var(--text-muted);font-size:15px;line-height:1.55}
+	  .filtered-notice{margin:0 0 12px;padding:10px 11px;border:1px solid #f4c894;background:#fff8ed;color:#7c3b10;border-radius:8px;font-size:14px;line-height:1.5}
 	  .filters{padding:16px;background:var(--surface-subtle)}
 	  .filters h3{margin:0 0 12px;font-size:var(--font-caption);text-transform:uppercase;letter-spacing:0;color:var(--text-muted)}
 	  .fgroup{margin-bottom:14px}
@@ -126,11 +145,15 @@
 	    .gapchip{padding:4px 8px}
 	    .site-shell{padding:10px 10px 20px;gap:12px}
 	    .mapcard,.filters,.detail,.offmap{padding:12px}
+	    .browser-panel{padding:12px}
+	    .browser-toolbar{grid-template-columns:1fr;gap:8px}
+	    .result-list{max-height:330px}
 	    .maphd{gap:6px;padding-bottom:8px}
 	    .inspector-card{display:flex;flex-direction:column}
 	    .detail{order:1}
-	    .filters{order:2}
-	    .offmap{order:3}
+	    .browser-panel{order:2}
+	    .filters{order:3}
+	    .offmap{order:4}
 	    .detail h2{font-size:20px}
 	    .detail-meta-grid{grid-template-columns:1fr}
 	    footer{padding:8px 14px 34px}
@@ -165,11 +188,36 @@
 
   <aside class="inspector-panel" aria-label="필터와 상세 정보">
     <div class="card inspector-card">
+      <section class="browser-panel" aria-label="항목 브라우저">
+        <div class="browser-toolbar">
+          <label class="browser-field" for="entry-search">
+            <span class="browser-label">항목 검색</span>
+            <input class="browser-input" id="entry-search" type="search" autocomplete="off" placeholder="이름, 기관, 주소, 종목, 출처 검색">
+          </label>
+          <label class="browser-field" for="sort-select">
+            <span class="browser-label">정렬</span>
+            <select class="sort-select" id="sort-select">
+              <option value="default">기본순</option>
+              <option value="name">이름순</option>
+              <option value="category">유형순</option>
+              <option value="school_level">학교급순</option>
+              <option value="year">연도순</option>
+              <option value="confidence">신뢰도순</option>
+              <option value="scope">범위순</option>
+            </select>
+          </label>
+          <button class="clear-browser" id="clear-browser-filters" type="button">초기화</button>
+        </div>
+        <div class="result-count" id="result-count"></div>
+        <div class="result-list" id="result-list" role="list"></div>
+        <template id="data-browser-hooks"><button class="result-row selected-marker" data-entry-id="" data-scope-key="" type="button"></button><div class="empty-state"></div></template>
+      </section>
       <div class="filters">
         <h3>필터 <span class="count" id="shown"></span></h3>
         <div class="fgroup"><div class="lab">유형(category)</div><div class="chips" id="f-cat"></div></div>
         <div class="fgroup"><div class="lab">학교급</div><div class="chips" id="f-lvl"></div></div>
         <div class="fgroup"><div class="lab">주제 연결</div><div class="chips" id="f-theme"></div></div>
+        <div class="fgroup"><div class="lab">범위</div><div class="chips" id="f-scope"></div></div>
       </div>
       <div class="detail" id="detail">
         <div class="detail-summary ph">
@@ -9720,8 +9768,11 @@
   const dataGaps=D.data_gaps||[];
   const typologyAxes=D.typology_axes||[];
   const regionEntries=allEntries.filter(e=>e.region_id===activeRegion.id);
-  const entries=regionEntries.filter(e=>e.scope==='regional');
-  const offMapEntries=regionEntries.filter(e=>e.scope!=='regional'||e.lat==null||e.lng==null);
+  function hasCoordinates(e){return e.lat!=null&&e.lng!=null;}
+  function isMapEntry(e){return e.scope==='regional'&&hasCoordinates(e);}
+  const regionalEntries=regionEntries.filter(e=>e.scope==='regional');
+  const entries=regionEntries.filter(isMapEntry);
+  const offMapEntries=regionEntries.filter(e=>!isMapEntry(e));
 
   const CAT={
     "교육청대회·사업":"--c-edu","학교동아리·팀":"--c-club","특성화고학과·과정":"--c-voc",
@@ -9858,7 +9909,8 @@
     activeRegionName:activeRegion.name,
     totalEntryCount:allEntries.length,
     regionEntryCount:regionEntries.length,
-    regionalEntryCount:entries.length,
+    regionalEntryCount:regionalEntries.length,
+    mapEntryCount:entries.length,
     offMapCount:offMapEntries.length,
     negativeEvidenceCount:negativeEvidence.length,
     dataGapCount:dataGaps.length,
@@ -9876,72 +9928,250 @@
     markerCount:entries.filter(e=>e.lat!=null).length
   };
   const markerEls=[];
-  function draw(){
+
+  // ---- filters and browser ----
+  const SCHOOL_LEVELS=["초","중","고","대","복합","무관"];
+  const SCOPE_GROUPS=[
+    {key:'map',label:'지도 지점'},
+    {key:'regional-offmap',label:'지역·좌표 없음'},
+    {key:'nationwide',label:'전국 사업'},
+    {key:'adjacent',label:'인접 지역'},
+    {key:'unknown',label:'위치 미상'}
+  ];
+  const entryOrder=new Map(regionEntries.map((e,index)=>[e.id,index]));
+  const F={cat:new Set(),lvl:new Set(),theme:new Set(),scope:new Set()};
+  const cats=[...new Set(regionEntries.map(e=>e.category))];
+  const hasNoTheme=regionEntries.some(e=>(e.theme_link||[]).length===0);
+  const themeSeed=[3,5,4,0,...regionEntries.flatMap(e=>e.theme_link||[])];
+  const themes=[...new Set(themeSeed)].filter(t=>t!==0||hasNoTheme);
+  cats.forEach(c=>{F.cat.add(c);});
+  SCHOOL_LEVELS.forEach(l=>{F.lvl.add(l);});
+  themes.forEach(t=>{F.theme.add(t);});
+  SCOPE_GROUPS.forEach(s=>{F.scope.add(s.key);});
+  const browserState={query:'',sortKey:'default',selectedEntryId:''};
+  const searchInput=document.getElementById('entry-search');
+  const sortSelect=document.getElementById('sort-select');
+  const resultList=document.getElementById('result-list');
+  const resultCount=document.getElementById('result-count');
+  const clearBrowserButton=document.getElementById('clear-browser-filters');
+  function scopeKey(e){
+    if(isMapEntry(e))return 'map';
+    if(e.scope==='nationwide'||e.scope==='adjacent'||e.scope==='unknown')return e.scope;
+    return 'regional-offmap';
+  }
+  function scopeLabel(e){
+    return SCOPE_GROUPS.find(group=>group.key===scopeKey(e))?.label||'지역 항목';
+  }
+  function normalizeText(value){return String(value??'').toLocaleLowerCase('ko-KR');}
+  function entrySearchText(e){
+    return [
+      e.name,e.operator,e.district,e.address,e.category,e.subtype,e.school_level,e.year,
+      (e.games||[]).join(' '),e.notes,e.source,e.confidence,scopeLabel(e)
+    ].map(normalizeText).join(' ');
+  }
+  function themePasses(e){
+    const th=e.theme_link||[];
+    if(th.length===0)return F.theme.has(0);
+    return th.some(t=>F.theme.has(t));
+  }
+  function entryPassFilters(e){
+    if(!F.cat.has(e.category))return false;
+    if(!F.lvl.has(e.school_level))return false;
+    if(!F.scope.has(scopeKey(e)))return false;
+    if(!themePasses(e))return false;
+    const query=normalizeText(browserState.query).trim();
+    if(query&&!entrySearchText(e).includes(query))return false;
+    return true;
+  }
+  function passFilter(e){return entryPassFilters(e);}
+  function compareText(a,b){return String(a||'').localeCompare(String(b||''),'ko-KR');}
+  function compareDefault(a,b){return (entryOrder.get(a.id)||0)-(entryOrder.get(b.id)||0);}
+  function sortedEntries(list){
+    const out=[...list];
+    out.sort((a,b)=>{
+      if(browserState.sortKey==='name')return compareText(a.name,b.name)||compareDefault(a,b);
+      if(browserState.sortKey==='category')return compareText(a.category,b.category)||compareText(a.name,b.name)||compareDefault(a,b);
+      if(browserState.sortKey==='school_level')return SCHOOL_LEVELS.indexOf(a.school_level)-SCHOOL_LEVELS.indexOf(b.school_level)||compareText(a.name,b.name)||compareDefault(a,b);
+      if(browserState.sortKey==='year')return String(b.year||'').localeCompare(String(a.year||''))||compareText(a.name,b.name)||compareDefault(a,b);
+      if(browserState.sortKey==='confidence')return compareText(a.confidence==='high'?'0':'1',b.confidence==='high'?'0':'1')||compareText(a.name,b.name)||compareDefault(a,b);
+      if(browserState.sortKey==='scope')return compareText(scopeLabel(a),scopeLabel(b))||compareText(a.name,b.name)||compareDefault(a,b);
+      return compareDefault(a,b);
+    });
+    return out;
+  }
+  function visibleEntries(){return sortedEntries(regionEntries.filter(entryPassFilters));}
+  function selectedEntry(){return regionEntries.find(e=>e.id===browserState.selectedEntryId)||null;}
+  function updateChip(ch,set,v){
+    const on=set.has(v);
+    ch.classList.toggle('on',on);
+    ch.classList.toggle('off',!on);
+    ch.setAttribute('aria-pressed',on?'true':'false');
+  }
+  function chipCount(id,v){
+    if(id==='f-cat')return regionEntries.filter(e=>e.category===v).length;
+    if(id==='f-lvl')return regionEntries.filter(e=>e.school_level===v).length;
+    if(id==='f-scope')return regionEntries.filter(e=>scopeKey(e)===v).length;
+    if(v===0)return regionEntries.filter(e=>(e.theme_link||[]).length===0).length;
+    return regionEntries.filter(e=>(e.theme_link||[]).includes(v)).length;
+  }
+  function mkChips(id,vals,set,labelFn){
+    const box=document.getElementById(id);
+    vals.forEach(v=>{
+      const ch=document.createElement('button');ch.type='button';ch.className='chip on';
+      ch.dataset.value=String(v);
+      ch.dataset.group=id;
+      if(id==='f-scope'){ch.setAttribute('data-scope-key',String(v));}
+      ch.setAttribute('aria-pressed','true');
+      appendText(ch,(labelFn?labelFn(v):v)+' ');
+      const count=makeEl('span','',chipCount(id,v));
+      count.style.opacity='.6';
+      ch.appendChild(count);
+      if(id==='f-cat'){ch.style.borderColor=color(v);}
+      ch.addEventListener('click',()=>{
+        if(set.has(v)){set.delete(v);}else{set.add(v);}
+        updateChip(ch,set,v);
+        renderBrowser();
+      });
+      box.appendChild(ch);
+    });
+  }
+  mkChips('f-cat',cats,F.cat);
+  mkChips('f-lvl',SCHOOL_LEVELS,F.lvl);
+  mkChips('f-theme',themes,F.theme,t=>t===0?'주제 없음':(t===4?'주제4(중독·통제)':('주제'+t)));
+  mkChips('f-scope',SCOPE_GROUPS.map(group=>group.key),F.scope,key=>SCOPE_GROUPS.find(group=>group.key===key)?.label||key);
+
+  function syncAllChips(){
+    document.querySelectorAll('.chip[data-group]').forEach(ch=>{
+      const group=ch.dataset.group;
+      const raw=ch.dataset.value;
+      const value=group==='f-theme'?Number(raw):raw;
+      const set=group==='f-cat'?F.cat:group==='f-lvl'?F.lvl:group==='f-scope'?F.scope:F.theme;
+      updateChip(ch,set,value);
+    });
+  }
+  function clearBrowserFilters(){
+    F.cat=new Set(cats);
+    F.lvl=new Set(SCHOOL_LEVELS);
+    F.theme=new Set(themes);
+    F.scope=new Set(SCOPE_GROUPS.map(group=>group.key));
+    browserState.query='';
+    browserState.sortKey='default';
+    searchInput.value='';
+    sortSelect.value='default';
+    syncAllChips();
+    renderBrowser();
+  }
+  clearBrowserButton.addEventListener('click',clearBrowserFilters);
+  searchInput.addEventListener('input',event=>{
+    browserState.query=event.target.value;
+    renderBrowser();
+  });
+  sortSelect.addEventListener('change',event=>{
+    browserState.sortKey=event.target.value;
+    renderBrowser();
+  });
+
+  function draw(visibleMapEntries){
     markerEls.forEach(m=>{m.remove();});markerEls.length=0;
-    // spokes
-    if(hub&&hub.lat){
-      entries.filter(e=>e.lat&&e.district===hub.district&&e!==hub).forEach(e=>{
+    const visibleMapIds=new Set(visibleMapEntries.map(e=>e.id));
+    if(hub&&hub.lat&&visibleMapIds.has(hub.id)){
+      entries.filter(e=>e.lat&&e.district===hub.district&&e!==hub&&visibleMapIds.has(e.id)).forEach(e=>{
         const l=el('line',{x1:px(hub.lng),y1:py(hub.lat),x2:px(e.lng),y2:py(e.lat),class:'spoke'});svg.appendChild(l);markerEls.push(l);
       });
     }
     entries.forEach(e=>{
-      if(e.lat==null)return;
-      const on=passFilter(e);
+      const on=visibleMapIds.has(e.id);
       const isHub=(e.name.indexOf('BRENA')>=0)||(e.category==='경기장·인프라');
+      const selected=e.id===browserState.selectedEntryId;
       const c=el('circle',{cx:px(e.lng).toFixed(1),cy:py(e.lat).toFixed(1),r:isHub?8:6,
         fill:color(e.category),'fill-opacity':e.confidence==='high'?0.92:0.55,
         stroke:color(e.category),'stroke-dasharray':e.confidence==='high'?'':'2.5 2',
-        class:'mk'+(isHub?' hub':'')+(on?'':' dim')});
-      c.addEventListener('click',()=>select(e));
+        'data-entry-id':e.id,
+        class:'mk'+(isHub?' hub':'')+(on?'':' dim')+(selected?' selected-marker':'')});
+      c.addEventListener('click',()=>selectEntry(e,true));
       c.addEventListener('mouseenter',()=>c.setAttribute('r',isHub?10:8));
       c.addEventListener('mouseleave',()=>c.setAttribute('r',isHub?8:6));
       svg.appendChild(c);markerEls.push(c);
     });
-    document.getElementById('pincount').textContent=entries.filter(e=>e.lat!=null).length;
-    const sh=entries.filter(e=>e.lat!=null&&passFilter(e)).length;
-    document.getElementById('shown').textContent='('+sh+' 표시 / '+entries.filter(e=>e.lat!=null).length+')';
+    document.getElementById('pincount').textContent=entries.length;
   }
 
-  // ---- filters ----
-  const SCHOOL_LEVELS=["초","중","고","대","복합","무관"];
-  const F={cat:new Set(),lvl:new Set(),theme:new Set()};
-  const cats=[...new Set(entries.map(e=>e.category))];
-  const themes=[3,5,4];
-  cats.forEach(c=>{F.cat.add(c);});SCHOOL_LEVELS.forEach(l=>{F.lvl.add(l);});themes.forEach(t=>{F.theme.add(t);});
-  function passFilter(e){
-    if(!F.cat.has(e.category))return false;
-    if(!F.lvl.has(e.school_level))return false;
-    const th=e.theme_link||[];
-    if(th.length===0){if(!F.theme.has(0))return true;}
-    if(!th.some(t=>F.theme.has(t)))return false;
-    return true;
+  function renderResultList(list){
+    clearNode(resultList);
+    if(list.length===0){
+      resultList.appendChild(makeEl('div','empty-state','조건에 맞는 항목이 없습니다. 검색어를 줄이거나 필터를 초기화하세요.'));
+      return;
+    }
+    list.forEach(e=>{
+      const row=document.createElement('button');
+      row.type='button';
+      row.className='result-row'+(e.id===browserState.selectedEntryId?' selected':'');
+      row.setAttribute('data-entry-id',e.id);
+      row.setAttribute('data-entry-name',e.name);
+      row.setAttribute('data-scope-key',scopeKey(e));
+      row.setAttribute('aria-selected',e.id===browserState.selectedEntryId?'true':'false');
+      row.setAttribute('aria-pressed',e.id===browserState.selectedEntryId?'true':'false');
+      row.setAttribute('role','listitem');
+      const top=makeEl('span','result-top');
+      top.appendChild(makeEl('span','result-title result-name',e.name));
+      top.appendChild(makeEl('span','scope-badge',scopeLabel(e)));
+      row.appendChild(top);
+      const meta=[
+        e.category,
+        e.school_level,
+        e.district||e.address||e.coord_note||'위치 미상',
+        (e.games&&e.games.length)?e.games.join(', '):''
+      ].filter(Boolean).join(' · ');
+      row.appendChild(makeEl('span','result-meta',meta));
+      row.addEventListener('click',()=>selectEntry(e,true));
+      resultList.appendChild(row);
+    });
   }
-	  function mkChips(id,vals,set,labelFn){
-	    const box=document.getElementById(id);
-	    vals.forEach(v=>{
-	      const cnt=entries.filter(e=>id==='f-cat'?e.category===v:id==='f-lvl'?e.school_level===v:(e.theme_link||[]).includes(v)).length;
-	      const ch=document.createElement('button');ch.type='button';ch.className='chip on';
-	      ch.dataset.value=String(v);
-	      ch.setAttribute('aria-pressed','true');
-	      appendText(ch,(labelFn?labelFn(v):v)+' ');
-	      const count=makeEl('span','',cnt);
-	      count.style.opacity='.6';
-	      ch.appendChild(count);
-	      if(id==='f-cat'){ch.style.borderColor=color(v);}
-	      ch.addEventListener('click',()=>{
-	        if(set.has(v)){
-	          set.delete(v);ch.classList.remove('on');ch.classList.add('off');ch.setAttribute('aria-pressed','false');
-	        }else{
-	          set.add(v);ch.classList.add('on');ch.classList.remove('off');ch.setAttribute('aria-pressed','true');
-	        }
-	        draw();
-	      });
-	      box.appendChild(ch);
-	    });
-	  }
-  mkChips('f-cat',cats,F.cat);
-  mkChips('f-lvl',SCHOOL_LEVELS,F.lvl);
-  mkChips('f-theme',themes,F.theme,t=>t===4?'주제4(중독·통제)':('주제'+t));
+
+  function entryState(e){
+    return {
+      id:e.id,
+      name:e.name,
+      scope:e.scope||'',
+      category:e.category||'',
+      lat:typeof e.lat==='number'?e.lat:null,
+      lng:typeof e.lng==='number'?e.lng:null,
+      source:e.source||''
+    };
+  }
+  function publishDataBrowserState(list,mapList){
+    window.__dataBrowserState={
+      activeRegionId:activeRegion.id,
+      activeRegionName:activeRegion.name,
+      query:browserState.query,
+      sortKey:browserState.sortKey,
+      selectedEntryId:browserState.selectedEntryId,
+      totalEntries:regionEntries.length,
+      mapEntryCount:entries.length,
+      visibleEntries:list.map(entryState),
+      visibleMapEntries:mapList.map(entryState),
+      filters:{
+        category:[...F.cat],
+        schoolLevel:[...F.lvl],
+        theme:[...F.theme],
+        scope:[...F.scope]
+      }
+    };
+  }
+
+  function renderBrowser(){
+    const list=visibleEntries();
+    const mapList=list.filter(isMapEntry);
+    renderResultList(list);
+    draw(mapList);
+    const offVisible=list.length-mapList.length;
+    resultCount.textContent=list.length+'개 결과 · 지도 '+mapList.length+'개 · 지도 외 '+offVisible+'개';
+    document.getElementById('shown').textContent='('+list.length+' 결과 / 지도 '+mapList.length+' / 전체 '+regionEntries.length+')';
+    const selected=selectedEntry();
+    if(selected){renderDetail(selected,!list.some(e=>e.id===selected.id));}
+    else{renderDetailSummary();}
+    publishDataBrowserState(list,mapList);
+  }
 
 	  // ---- detail ----
 	  function appendKv(parent,label,value){
@@ -9959,12 +10189,16 @@
 	      parent.appendChild(makeEl('span','theme-pill t'+t,'주제'+t));
 	    });
 	  }
-	  function select(e){
+	  function renderDetail(e,filteredOut){
 	    const d=document.getElementById('detail');
 	    const games=(e.games&&e.games.length)?e.games.join(', '):'—';
-	    const scopeLabel=OFFMAP_GROUPS.find(g=>g.key===offMapGroupKey(e))?.label||'지역 지도 항목';
+	    const scopeText=isMapEntry(e)?'지역 지도 항목':(OFFMAP_GROUPS.find(g=>g.key===offMapGroupKey(e))?.label||'지역 항목');
 	    const loc=locationText(e);
 	    clearNode(d);
+	    if(filteredOut){
+	      const notice=makeEl('div','filtered-notice','현재 검색·필터 조건에서는 숨겨진 선택 항목입니다. 조건을 초기화하면 목록에서 다시 볼 수 있습니다.');
+	      d.appendChild(notice);
+	    }
 	    const summary=makeEl('div','detail-summary');
 	    summary.appendChild(makeEl('h2','',e.name));
 	    const meta=document.createElement('div');
@@ -9976,7 +10210,7 @@
 	    const schoolYear=(e.school_level||'—')+'　연도 '+(e.year||'—');
 	    appendKv(grid,'학교급',schoolYear);
 	    appendKv(grid,'종목',games);
-	    appendKv(grid,'범위',scopeLabel);
+	    appendKv(grid,'범위',scopeText);
 	    appendKv(grid,'위치',loc);
 	    appendKv(grid,'신뢰도',(e.confidence||'—')+(e.loc_approx?' · 위치 근사':''));
 	    d.appendChild(grid);
@@ -9991,8 +10225,13 @@
 	    appendText(sourceBlock,' ');
 	    appendSource(sourceBlock,e.source||'');
     d.appendChild(sourceBlock);
-    d.scrollIntoView({behavior:'smooth',block:'nearest'});
   }
+  function selectEntry(e,shouldScroll){
+    browserState.selectedEntryId=e.id;
+    renderBrowser();
+    if(shouldScroll){document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'nearest'});}
+  }
+  function select(e){selectEntry(e,true);}
 
   // ---- off-map list ----
   const OFFMAP_GROUPS=[
@@ -10130,7 +10369,7 @@
 
   document.getElementById('srcnote').textContent=(activeRegion.coord_source||'지역 경계 GeoJSON')+' · 항목별 출처는 각 패널 참조.';
 
-  draw();
+  renderBrowser();
 })();
 </script>
 </body>
