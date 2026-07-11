@@ -1,0 +1,49 @@
+{
+  "schema_version": "release-approvals.v1",
+  "usability": {
+    "status": "pending",
+    "required_evidence": {
+      "ac01_fixture": "tests/fixtures/ac01-tasks.v1.json",
+      "participant_count": 5,
+      "required_passes": 4,
+      "max_seconds": 30,
+      "max_activations": 3,
+      "approver_roles": ["ux_reviewer", "repository_owner"]
+    },
+    "participants": null,
+    "passed_count": null,
+    "approvers": null,
+    "approved_at": null
+  },
+  "design": {
+    "status": "pending",
+    "required_evidence": {
+      "reviewers_required": 2,
+      "rubric": {
+        "R1": "5/5",
+        "R2": "5/5",
+        "R3": "5/5",
+        "R4": "5/5",
+        "R5": "5/5"
+      }
+    },
+    "approvers": null,
+    "approved_at": null
+  },
+  "browser": {
+    "status": "pending",
+    "required_evidence": {
+      "browser_matrix": "approved"
+    },
+    "approvers": null,
+    "approved_at": null
+  },
+  "repository": {
+    "status": "approved",
+    "required_evidence": {
+      "role": "repository_owner"
+    },
+    "approver": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
+    "approved_at": "2026-07-11T22:46:12.373777Z"
+  }
+}

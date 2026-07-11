@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://esports-landscape.example/schemas/command-receipt-v1.schema.json",
+  "title": "PII-free command receipt",
+  "description": "A receipt records the parent revision only; it MUST NOT contain a containing commit SHA.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command_id",
+    "parent_git_sha",
+    "output_revision",
+    "sqlite_file_sha256",
+    "policy_hash",
+    "correction_epoch",
+    "stop_epoch",
+    "schema_sha256",
+    "migration_sha256",
+    "changed_file_sha256"
+  ],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$"
+    },
+    "parent_git_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "output_revision": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"
+    },
+    "sqlite_file_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "correction_epoch": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0},
+        {"type": "string", "minLength": 1, "maxLength": 128}
+      ]
+    },
+    "stop_epoch": {
+      "oneOf": [
+        {"type": "integer", "minimum": 0},
+        {"type": "string", "minLength": 1, "maxLength": 128}
+      ]
+    },
+    "schema_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "migration_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "changed_file_sha256": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "propertyNames": {
+        "pattern": "^(?!.*(?:^|/)\\.git(?:/|$))(?!.*(?:^|/)\\.\\.(?:/|$))(?!control/receipts/commands/)[A-Za-z0-9][A-Za-z0-9._-]*(?:/[A-Za-z0-9][A-Za-z0-9._-]*)*$"
+      }
+    }
+  }
+}

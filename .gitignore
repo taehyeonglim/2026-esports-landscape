@@ -1,0 +1,13 @@
+node_modules/
+test-results/
+playwright-report/
+dist/
+artifacts/
+.gjc/
+__pycache__/
+*.py[cod]
+.DS_Store
+.dist-build.lock
+.dist-stage-*/
+.dist-backup-*/
+.publication-nonces/

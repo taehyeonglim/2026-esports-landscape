@@ -1,0 +1,33 @@
+{
+  "verify_at": "2026-01-15T12:00:00Z",
+  "cases": [
+    {
+      "name": "storage_gb_hour_headroom",
+      "override": {"shared_storage": {"remaining_hours": 99}},
+      "reason_code": "SHARED_STORAGE_HEADROOM"
+    },
+    {
+      "name": "storage_instantaneous_gb_cap",
+      "override": {"shared_storage": {"current_stored_gb": 11}},
+      "reason_code": "SHARED_STORAGE_CURRENT_EXCEEDED"
+    },
+    {
+      "name": "repo_total",
+      "override": {"repo": {"control_total_mb": 501}},
+      "reason_code": "CONTROL_REPO_TOTAL_LIMIT"
+    },
+    {
+      "name": "complete_cache_inventory_total",
+      "override": {"cache": {"inventory": [
+        {"key": "current-v4", "mb": 105, "role": "current", "observed_at": "2026-01-15T12:00:00Z"},
+        {"key": "previous-v4", "mb": 100, "role": "previous", "observed_at": "2026-01-15T12:00:00Z"}
+      ]}},
+      "reason_code": "CACHE_TWO_KEY_LIMIT"
+    },
+    {
+      "name": "billing_signature",
+      "override": {"billing_evidence": {"signature": "0000000000000000000000000000000000000000000000000000000000000000", "trusted_evidence": true}},
+      "reason_code": "BILLING_EVIDENCE_UNVERIFIED"
+    }
+  ]
+}

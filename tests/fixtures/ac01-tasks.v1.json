@@ -1,0 +1,54 @@
+{
+  "fixture_version": "ac01-tasks.v1",
+  "human_approval": {
+    "status": "pending",
+    "note": "자동 계약 증거와 사람 5인 사용성 승인은 별도입니다."
+  },
+  "tasks": [
+    {
+      "id": "U1",
+      "target_name": "부산광역시교육청 e스포츠 챌린지 대회 (SW·AI교육거점센터)",
+      "region": "busan",
+      "type": "event",
+      "entry_id": "busan-001",
+      "expected_source_url_sha256": "be3e18c76d42d7cb731cdb42ee5e1456aee5fb72420994328b59003f8c7edad8",
+      "expected_source_url": "https://school.busanedu.net/common/nttFileDownload.do?fileKey=eec2298c5a7f2cb0646d6b54eabba136"
+    },
+    {
+      "id": "U2",
+      "target_name": "서울특별시 학교 이스포츠 클럽 강사 지원 참여 거점",
+      "region": "seoul",
+      "type": "school",
+      "entry_id": "visible-regional-seoul-school-club-instructor",
+      "expected_source_url_sha256": "4ae1f260c2dc20f6f5ce7b43bb72c392b2d565e855e083779b6248f3f8339f8e",
+      "expected_source_url": "https://school.e-sports.or.kr/"
+    },
+    {
+      "id": "U3",
+      "target_name": "경기콘텐츠진흥원·경기e스포츠협회 e스포츠 사업 거점",
+      "region": "gyeonggi",
+      "type": "facility",
+      "entry_id": "visible-regional-gyeonggi-regional-game-agency",
+      "expected_source_url_sha256": "5f1bdeb196ebc8d013ae6b7e0c566e8e3fea2e587ec798da325f3b96ba022992",
+      "expected_source_url": "https://www.gcon.or.kr/gcon/main/contents.do?menuNo=200032"
+    },
+    {
+      "id": "U4",
+      "target_name": "2022 세종 특수교육 e페스티벌 e스포츠대회 초등 대표 선발",
+      "region": "sejong",
+      "type": "event",
+      "entry_id": "elementary-sejong-2022-special-efestival",
+      "expected_source_url_sha256": "edc766782c1b1738f78b81bbe137b037e746e5034bbeeca612c8dc74f207c33a",
+      "expected_source_url": "https://www.sje.go.kr/special/na/ntt/selectNttInfo.do?mi=50641&nttSn=3005270"
+    },
+    {
+      "id": "U5",
+      "target_name": "부산컴퓨터과학고등학교 e스포츠게임과(e스포츠 계열)",
+      "region": "busan",
+      "type": "school",
+      "entry_id": "busan-013",
+      "expected_source_url_sha256": "05289d0cacec5231f1f6c01a2f95518005bf82c07b9e971e622c529bad62d741",
+      "expected_source_url": "https://school.busanedu.net/pcs-h/cm/cntnts/cntntsView.do?mi=1046698&cntntsId=15558"
+    }
+  ]
+}

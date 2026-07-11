@@ -1,0 +1,35 @@
+# Required predicates are policy-owned so a caller cannot omit a publication gate.
+# Authority scopes are public control identifiers, never candidate text or PII.
+[unknown]
+allowed = false
+
+[[kind]]
+name = "school"
+required_predicates = ["official_status"]
+authority_scope_suffixes = ["school"]
+
+[[kind]]
+name = "region"
+required_predicates = ["official_status"]
+# Regions are authorized only by a national or regional scope ending in :region.
+authority_scope_suffixes = ["region"]
+
+[[kind]]
+name = "organization"
+required_predicates = ["official_status"]
+authority_scope_suffixes = ["organization"]
+
+[[kind]]
+name = "venue"
+required_predicates = ["official_status"]
+authority_scope_suffixes = ["venue"]
+
+[[kind]]
+name = "program"
+required_predicates = ["official_status"]
+authority_scope_suffixes = ["program"]
+
+[[kind]]
+name = "university"
+required_predicates = ["official_status"]
+authority_scope_suffixes = ["university"]

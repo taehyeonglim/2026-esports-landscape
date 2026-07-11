@@ -1,0 +1,93 @@
+# A corroborating publisher must differ on both control and origin axes.
+[unknown]
+allowed = false
+
+[[publisher]]
+id = "moe"
+control_cluster = "moe-national-control"
+origin_cluster = "moe-public-origin"
+
+[[publisher]]
+id = "seoul"
+control_cluster = "seoul-education-control"
+origin_cluster = "seoul-public-origin"
+
+[[publisher]]
+id = "busan"
+control_cluster = "busan-education-control"
+origin_cluster = "busan-public-origin"
+
+[[publisher]]
+id = "daegu"
+control_cluster = "daegu-education-control"
+origin_cluster = "daegu-public-origin"
+
+[[publisher]]
+id = "incheon"
+control_cluster = "incheon-education-control"
+origin_cluster = "incheon-public-origin"
+
+[[publisher]]
+id = "gwangju"
+control_cluster = "gwangju-education-control"
+origin_cluster = "gwangju-public-origin"
+
+[[publisher]]
+id = "daejeon"
+control_cluster = "daejeon-education-control"
+origin_cluster = "daejeon-public-origin"
+
+[[publisher]]
+id = "ulsan"
+control_cluster = "ulsan-education-control"
+origin_cluster = "ulsan-public-origin"
+
+[[publisher]]
+id = "sejong"
+control_cluster = "sejong-education-control"
+origin_cluster = "sejong-public-origin"
+
+[[publisher]]
+id = "gyeonggi"
+control_cluster = "gyeonggi-education-control"
+origin_cluster = "gyeonggi-public-origin"
+
+[[publisher]]
+id = "gangwon"
+control_cluster = "gangwon-education-control"
+origin_cluster = "gangwon-public-origin"
+
+[[publisher]]
+id = "chungbuk"
+control_cluster = "chungbuk-education-control"
+origin_cluster = "chungbuk-public-origin"
+
+[[publisher]]
+id = "chungnam"
+control_cluster = "chungnam-education-control"
+origin_cluster = "chungnam-public-origin"
+
+[[publisher]]
+id = "jeonbuk"
+control_cluster = "jeonbuk-education-control"
+origin_cluster = "jeonbuk-public-origin"
+
+[[publisher]]
+id = "jeonnam"
+control_cluster = "jeonnam-education-control"
+origin_cluster = "jeonnam-public-origin"
+
+[[publisher]]
+id = "gyeongbuk"
+control_cluster = "gyeongbuk-education-control"
+origin_cluster = "gyeongbuk-public-origin"
+
+[[publisher]]
+id = "gyeongnam"
+control_cluster = "gyeongnam-education-control"
+origin_cluster = "gyeongnam-public-origin"
+
+[[publisher]]
+id = "jeju"
+control_cluster = "jeju-education-control"
+origin_cluster = "jeju-public-origin"

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="전국 학교 e스포츠 인덱스의 자료 계보, 방법, 한계와 공개자료 수집 범위를 설명합니다.">
+  <title>연구 방법과 데이터 한계 | 전국 학교 e스포츠 인덱스</title>
+  <link rel="stylesheet" href="../styles/research.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">Scholastic Esports Landscape</p>
+      <h1>연구 방법과 데이터 한계</h1>
+      <p class="lede">전국 학교 e스포츠 인덱스의 자료 계보와 해석 범위를 별도 페이지에서 확인합니다.</p>
+      <a class="back-link" href="../index.html">← 인덱스로 돌아가기</a>
+    </div>
+  </header>
+  <main class="research-shell">
+    <p id="research-load-error" class="research-load-error" role="alert" hidden>연구 데이터를 표시할 수 없습니다. 데이터를 다시 확인해 주세요.</p>
+    <section class="notice" aria-labelledby="notice-title">
+      <h2 id="notice-title">해석의 전제</h2>
+      <p><strong>공개자료에서 확인된 항목은 실제 e스포츠 생태계의 규모·활성도·제도 성숙도를 대표하지 않습니다.</strong> 이 인덱스는 공개자료에서 확인한 사례를 기록하며, 확인하지 못한 활동은 부재의 증명이 아닙니다.</p>
+    </section>
+    <section class="overview" aria-labelledby="overview-title">
+      <h2 id="overview-title">데이터 기준</h2>
+      <dl id="dataset-facts" class="fact-grid" aria-live="polite"></dl>
+    </section>
+    <section class="grid-section" aria-label="자료 구조와 범위">
+      <article class="panel"><h2>유형화 축</h2><ul id="typology-axes" class="stack"></ul></article>
+      <article class="panel"><h2>카테고리별 공개자료</h2><p class="section-note">막대 길이는 해당 카테고리 건수를 최다 카테고리 건수로 나눈 상대 비율이며, 숫자가 실제 공개자료 건수입니다.</p><ul id="coverage-by-category" class="bar-list"></ul></article>
+    </section>
+    <section class="panel" aria-labelledby="methods-title">
+      <h2 id="methods-title">방법·좌표 출처·라이선스</h2>
+      <div class="method-grid">
+        <div><h3>수집과 판정</h3><p>항목은 공개된 기관·교육청·지자체 자료와 보조 공개자료를 대조해 기록합니다. 이 페이지는 공개자료에서 확인된 항목과 확인하지 못한 기록을 구분해 보여 주며, 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
+        <div><h3>좌표와 지도</h3><p id="coordinate-source">좌표 출처를 불러오는 중입니다.</p></div>
+        <div><h3>경계 라이선스</h3><p id="boundary-license">경계 라이선스를 불러오는 중입니다.</p></div>
+        <div><h3>기준일</h3><p>각 항목의 접근일(date_accessed)과 상태 확인일(status_checked_at)을 함께 기록합니다. 날짜가 없는 상태 주장은 현재성 확인이 끝나지 않았음을 뜻합니다.</p></div>
+      </div>
+    </section>
+    <section class="grid-section" aria-label="미확인·부분 증거와 데이터 공백">
+      <article class="panel"><h2>미확인·부분 증거</h2><p class="section-note">특정 공개 검색에서 직접 근거를 찾지 못한 기록입니다. 실제 활동의 부재를 뜻하지 않습니다.</p><ul id="negative-evidence" class="record-list"></ul></article>
+      <article class="panel"><h2>데이터 공백과 다음 확인</h2><p class="section-note">확정하지 못한 주장과 재검증 경로를 명시합니다.</p><ul id="data-gaps" class="record-list"></ul></article>
+    </section>
+    <section class="panel" aria-labelledby="notes-title"><h2 id="notes-title">데이터셋 메모</h2><ul id="site-notes" class="notes-list"></ul></section>
+    <section class="panel provenance" aria-labelledby="provenance-title"><h2 id="provenance-title">데이터 계보와 원문 참조</h2><p>이 페이지는 배포 데이터의 구조와 한계를 읽기 쉽게 보여 줍니다. 원문 데이터와 공개 입력 기록은 아래에서 별도로 확인할 수 있습니다.</p><ul><li><a href="../data/site.v3.json">v3 canonical data</a></li><li><a href="../data/resource-coverage.v3.json">resource coverage</a></li><li><a href="../input-provenance.json">입력 provenance</a></li></ul></section>
+  </main>
+  <script type="module" src="../src/research.js"></script>
+</body>
+</html>

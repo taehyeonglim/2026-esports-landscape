@@ -1,0 +1,156 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Rebuild and deploy this full commit SHA (use a previously known-good commit to roll back)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      release_id: ${{ steps.manifest.outputs.release_id }}
+    steps:
+      - name: Validate requested source commit
+        id: source
+        env:
+          SOURCE_REF: ${{ inputs.source_ref || github.sha }}
+        run: |
+          case "$SOURCE_REF" in
+            [0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]) ;;
+            *) exit 1 ;;
+          esac
+          printf 'ref=%s\n' "$SOURCE_REF" >> "$GITHUB_OUTPUT"
+      - name: Check out requested source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ steps.source.outputs.ref }}
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browser matrix
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Run the complete release verification gate
+        run: npm run verify:release
+      - name: Verify and summarize release manifest
+        id: manifest
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFile, readFile } from 'node:fs/promises';
+
+          const manifest = JSON.parse(await readFile('dist/release-manifest.json', 'utf8'));
+          if (!/^[a-f0-9]{64}$/.test(manifest.release_id ?? '')) {
+            throw new Error('dist/release-manifest.json must contain a full 64-character release_id.');
+          }
+          if (manifest.release_sha256 !== manifest.release_id || !Array.isArray(manifest.assets) || manifest.assets.length === 0) {
+            throw new Error('Release manifest is incomplete or inconsistent.');
+          }
+          console.log(`release_id=${manifest.release_id}`);
+          console.log(`assets=${manifest.assets.length}`);
+          await appendFile(process.env.GITHUB_OUTPUT, `release_id=${manifest.release_id}\n`);
+          NODE
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - name: Upload complete Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          name: github-pages
+          path: dist
+          retention-days: 1
+
+  human-gate:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Validate requested source commit
+        id: source
+        env:
+          SOURCE_REF: ${{ inputs.source_ref || github.sha }}
+        run: |
+          case "$SOURCE_REF" in
+            [0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]) ;;
+            *) exit 1 ;;
+          esac
+          printf 'ref=%s\n' "$SOURCE_REF" >> "$GITHUB_OUTPUT"
+      - name: Check out requested source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ steps.source.outputs.ref }}
+      - name: Require recorded human approvals
+        run: |
+          node --input-type=module <<'NODE'
+          import { readFile } from 'node:fs/promises';
+
+          const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
+          const resourceMap = await readJson('data/resource-map.v1.json');
+          const ac01 = await readJson('tests/fixtures/ac01-tasks.v1.json');
+          const approvals = await readJson('tests/fixtures/release-approvals.v1.json');
+          const fail = message => { throw new Error(`Human approval gate: ${message}`); };
+          const approved = (item, label) => {
+            if (item?.status !== 'approved' || typeof item.approved_at !== 'string' || !item.approved_at) {
+              fail(`${label} must be approved with approved_at.`);
+            }
+          };
+
+          if (resourceMap.status !== 'approved' || typeof resourceMap.approved_by !== 'string' || !resourceMap.approved_by || typeof resourceMap.approved_at !== 'string' || !resourceMap.approved_at) {
+            fail('data/resource-map.v1.json requires status=approved, approved_by, and approved_at.');
+          }
+          if (ac01.human_approval?.status !== 'approved' || typeof ac01.human_approval?.approved_at !== 'string' || !ac01.human_approval.approved_at) fail('AC01 human approval is not approved.');
+
+          approved(approvals.usability, 'Usability approval');
+          const participants = approvals.usability.participants;
+          const usabilityApprovers = approvals.usability.approvers;
+          if (!Array.isArray(participants) || participants.length !== 5 || participants.filter(({ passed, seconds, activations, wrong_completion }) => passed === true && seconds <= 30 && activations <= 3 && wrong_completion === false).length < 4 || approvals.usability.passed_count < 4) {
+            fail('Usability requires at least four of five participants to pass within 30 seconds and three activations with no wrong completion.');
+          }
+          if (!Array.isArray(usabilityApprovers) || !['ux_reviewer', 'repository_owner'].every(role => usabilityApprovers.some(approver => approver?.role === role && approver?.name))) {
+            fail('Usability requires UX reviewer and repository owner joint approval.');
+          }
+
+          approved(approvals.design, 'Design approval');
+          if (!Array.isArray(approvals.design.approvers) || approvals.design.approvers.length < 2 || !approvals.design.approvers.every(({ rubric }) => ['R1', 'R2', 'R3', 'R4', 'R5'].every(key => rubric?.[key] === '5/5'))) {
+            fail('Design requires two reviewers with R1–R5 all recorded at 5/5.');
+          }
+
+          approved(approvals.browser, 'Browser-matrix approval');
+          if (!Array.isArray(approvals.browser.approvers) || approvals.browser.approvers.length === 0) fail('Browser-matrix approver is missing.');
+
+          approved(approvals.repository, 'Repository-owner approval');
+          if (typeof approvals.repository.approver !== 'string' || !approvals.repository.approver || approvals.repository.approver !== resourceMap.approved_by) {
+            fail('Repository approval must name the resource-map approved_by owner.');
+          }
+          NODE
+
+  deploy:
+    needs: [build, human-gate]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy single atomic Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e

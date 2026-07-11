@@ -1,0 +1,9 @@
+# Unknown source SLOs are never fresh by default.
+[unknown]
+allowed = false
+
+[tier]
+realtime = "1h"
+priority = "6h"
+standard = "24h"
+archive = "72h"

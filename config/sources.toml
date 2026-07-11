@@ -1,0 +1,273 @@
+# Official public education authorities only; no individual-level data belongs here.
+
+[unknown]
+allowed = false
+[[source]]
+id = "moe"
+name = "Ministry of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Ministry of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.moe.go.kr/"
+publisher_id = "moe"
+control_cluster = "moe-national-control"
+origin_cluster = "moe-public-origin"
+authority_scopes = ["national:program", "national:organization"]
+
+[[source]]
+id = "seoul"
+name = "Seoul Metropolitan Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Seoul Metropolitan Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.sen.go.kr/"
+publisher_id = "seoul"
+control_cluster = "seoul-education-control"
+origin_cluster = "seoul-public-origin"
+authority_scopes = ["seoul:school", "seoul:program"]
+
+[[source]]
+id = "busan"
+name = "Busan Metropolitan City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Busan Metropolitan City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.pen.go.kr/"
+publisher_id = "busan"
+control_cluster = "busan-education-control"
+origin_cluster = "busan-public-origin"
+authority_scopes = ["busan:school", "busan:program"]
+
+[[source]]
+id = "daegu"
+name = "Daegu Metropolitan Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Daegu Metropolitan Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.dge.go.kr/"
+publisher_id = "daegu"
+control_cluster = "daegu-education-control"
+origin_cluster = "daegu-public-origin"
+authority_scopes = ["daegu:school", "daegu:program"]
+
+[[source]]
+id = "incheon"
+name = "Incheon Metropolitan City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Incheon Metropolitan City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.ice.go.kr/"
+publisher_id = "incheon"
+control_cluster = "incheon-education-control"
+origin_cluster = "incheon-public-origin"
+authority_scopes = ["incheon:school", "incheon:program"]
+
+[[source]]
+id = "gwangju"
+name = "Gwangju Metropolitan City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Gwangju Metropolitan City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.gen.go.kr/"
+publisher_id = "gwangju"
+control_cluster = "gwangju-education-control"
+origin_cluster = "gwangju-public-origin"
+authority_scopes = ["gwangju:school", "gwangju:program"]
+
+[[source]]
+id = "daejeon"
+name = "Daejeon Metropolitan City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Daejeon Metropolitan City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.dje.go.kr/"
+publisher_id = "daejeon"
+control_cluster = "daejeon-education-control"
+origin_cluster = "daejeon-public-origin"
+authority_scopes = ["daejeon:school", "daejeon:program"]
+
+[[source]]
+id = "ulsan"
+name = "Ulsan Metropolitan City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Ulsan Metropolitan City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.use.go.kr/"
+publisher_id = "ulsan"
+control_cluster = "ulsan-education-control"
+origin_cluster = "ulsan-public-origin"
+authority_scopes = ["ulsan:school", "ulsan:program"]
+
+[[source]]
+id = "sejong"
+name = "Sejong Special Self-Governing City Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Sejong Special Self-Governing City Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.sje.go.kr/"
+publisher_id = "sejong"
+control_cluster = "sejong-education-control"
+origin_cluster = "sejong-public-origin"
+authority_scopes = ["sejong:school", "sejong:program"]
+
+[[source]]
+id = "gyeonggi"
+name = "Gyeonggi Provincial Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Gyeonggi Provincial Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.goe.go.kr/"
+publisher_id = "gyeonggi"
+control_cluster = "gyeonggi-education-control"
+origin_cluster = "gyeonggi-public-origin"
+authority_scopes = ["gyeonggi:school", "gyeonggi:program"]
+
+[[source]]
+id = "gangwon"
+name = "Gangwon State Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Gangwon State Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.gwe.go.kr/"
+publisher_id = "gangwon"
+control_cluster = "gangwon-education-control"
+origin_cluster = "gangwon-public-origin"
+authority_scopes = ["gangwon:school", "gangwon:program"]
+
+[[source]]
+id = "chungbuk"
+name = "Chungcheongbuk-do Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Chungcheongbuk-do Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.cbe.go.kr/"
+publisher_id = "chungbuk"
+control_cluster = "chungbuk-education-control"
+origin_cluster = "chungbuk-public-origin"
+authority_scopes = ["chungbuk:school", "chungbuk:program"]
+
+[[source]]
+id = "chungnam"
+name = "Chungcheongnam-do Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Chungcheongnam-do Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.cne.go.kr/"
+publisher_id = "chungnam"
+control_cluster = "chungnam-education-control"
+origin_cluster = "chungnam-public-origin"
+authority_scopes = ["chungnam:school", "chungnam:program"]
+
+[[source]]
+id = "jeonbuk"
+name = "Jeonbuk State Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Jeonbuk State Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.jbe.go.kr/"
+publisher_id = "jeonbuk"
+control_cluster = "jeonbuk-education-control"
+origin_cluster = "jeonbuk-public-origin"
+authority_scopes = ["jeonbuk:school", "jeonbuk:program"]
+
+[[source]]
+id = "jeonnam"
+name = "Jeollanam-do Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Jeollanam-do Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.jne.go.kr/"
+publisher_id = "jeonnam"
+control_cluster = "jeonnam-education-control"
+origin_cluster = "jeonnam-public-origin"
+authority_scopes = ["jeonnam:school", "jeonnam:program"]
+
+[[source]]
+id = "gyeongbuk"
+name = "Gyeongsangbuk-do Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Gyeongsangbuk-do Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.gbe.go.kr/"
+publisher_id = "gyeongbuk"
+control_cluster = "gyeongbuk-education-control"
+origin_cluster = "gyeongbuk-public-origin"
+authority_scopes = ["gyeongbuk:school", "gyeongbuk:program"]
+
+[[source]]
+id = "gyeongnam"
+name = "Gyeongsangnam-do Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Gyeongsangnam-do Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.gne.go.kr/"
+publisher_id = "gyeongnam"
+control_cluster = "gyeongnam-education-control"
+origin_cluster = "gyeongnam-public-origin"
+authority_scopes = ["gyeongnam:school", "gyeongnam:program"]
+
+[[source]]
+id = "jeju"
+name = "Jeju Special Self-Governing Province Office of Education"
+tier = "core"
+adapter = "official_website"
+access_basis = "official_public_website"
+owner = "Jeju Special Self-Governing Province Office of Education"
+slo_tier = "standard"
+active = true
+endpoint = "https://www.jje.go.kr/"
+publisher_id = "jeju"
+control_cluster = "jeju-education-control"
+origin_cluster = "jeju-public-origin"
+authority_scopes = ["jeju:school", "jeju:program"]

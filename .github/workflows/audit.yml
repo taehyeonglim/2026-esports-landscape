@@ -1,0 +1,85 @@
+name: Privacy-safe audit
+
+on:
+  workflow_dispatch:
+    inputs:
+      database_path:
+        description: Repository-relative private SQLite checkpoint to audit
+        required: true
+        type: string
+      quality_gate_status:
+        description: "Required external quality decision: pass"
+        required: true
+        type: string
+      pii_gate_status:
+        description: "Required external PII decision: clear"
+        required: true
+        type: string
+      budget_input_path:
+        description: Repository-relative PII-free signed budget evidence JSON
+        required: true
+        type: string
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: esports-data-control-plane
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    environment: audit
+    outputs:
+      alert: ${{ steps.result.outputs.alert }}
+      reason: ${{ steps.result.outputs.reason }}
+    env:
+      PYTHONPATH: src
+      DATABASE_PATH: ${{ inputs.database_path || vars.AUDIT_DATABASE_PATH }}
+      QUALITY_GATE_STATUS: ${{ inputs.quality_gate_status || vars.QUALITY_GATE_STATUS }}
+      PII_GATE_STATUS: ${{ inputs.pii_gate_status || vars.PII_GATE_STATUS }}
+      BUDGET_INPUT_PATH: ${{ inputs.budget_input_path || vars.AUDIT_BUDGET_INPUT_PATH }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d
+        with:
+          python-version: "3.11"
+      - name: Install locked dependencies
+        run: python -m pip install --require-hashes --no-deps -r requirements.lock
+      - name: Run fail-closed audit gates
+        id: result
+        env:
+          BUDGET_EVIDENCE_KEY: ${{ secrets.BUDGET_EVIDENCE_KEY }}
+        run: |
+          set -euo pipefail
+          trap 'printf "alert=true\nreason=audit-failed\n" >> "$GITHUB_OUTPUT"' ERR
+          case "$QUALITY_GATE_STATUS" in pass) ;; *) exit 1 ;; esac
+          case "$PII_GATE_STATUS" in clear) ;; *) exit 1 ;; esac
+          case "$DATABASE_PATH" in ''|/*|*'..'*) exit 1 ;; esac
+          test -f "$DATABASE_PATH"
+          case "$BUDGET_INPUT_PATH" in ''|/*|*'..'*) exit 1 ;; esac
+          test -f "$BUDGET_INPUT_PATH"
+          python scripts/budget_projection.py "$BUDGET_INPUT_PATH" --billing-evidence-key "$BUDGET_EVIDENCE_KEY" --verify-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          python -m esports_data.cli audit --database "$DATABASE_PATH"
+          printf 'alert=false\nreason=ok\n' >> "$GITHUB_OUTPUT"
+  alert:
+    needs: audit
+    if: always() && needs.audit.outputs.alert == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Create opaque alert issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REASON: ${{ needs.audit.outputs.reason }}
+        run: |
+          set -euo pipefail
+          case "$REASON" in audit-failed) ;; *) exit 1 ;; esac
+          gh issue create --title "Audit alert: $REASON" --body "Automated audit requires review. Reason code: $REASON"

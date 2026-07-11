@@ -1,0 +1,84 @@
+{
+  "account": "octo-org",
+  "repository": "octo-org/control-plane",
+  "jobs": [
+    {
+      "name": "collect",
+      "kind": "collect",
+      "runs": 939,
+      "setup_p95": 0,
+      "batch_p95": 1
+    },
+    {
+      "name": "report",
+      "kind": "report",
+      "runs": 70,
+      "setup_p95": 0,
+      "batch_p95": 1
+    }
+  ],
+  "account_minutes": {
+    "limit": 2000,
+    "other_mtd": 300,
+    "other_confirmed_forecast": 0
+  },
+  "shared_storage": {
+    "limit_gb_hours": 100,
+    "accrued_gb_hours": 1,
+    "other_confirmed_remaining_gb_hours": 1,
+    "current_stored_gb": 1,
+    "current_stored_limit_gb": 10,
+    "remaining_hours": 1
+  },
+  "cache": {
+    "repo_allowance_mb": 200,
+    "inventory": [
+      {
+        "key": "current-v4",
+        "bytes": 50000000,
+        "role": "current",
+        "observed_at": "2026-01-15T12:00:00Z"
+      },
+      {
+        "key": "previous-v4",
+        "mb": 50,
+        "role": "previous",
+        "observed_at": "2026-01-15T12:00:00Z"
+      }
+    ]
+  },
+  "repo": {
+    "control_total_mb": 500,
+    "control_growth_mb": 50,
+    "projection_growth_mb": 100
+  },
+  "billing_control": {
+    "hard_budget_usd": 0,
+    "stop_usage": true
+  },
+  "billing_evidence": {
+    "account": "octo-org",
+    "repository": "octo-org/control-plane",
+    "issued_at": "2026-01-01T00:00:00Z",
+    "expires_at": "2026-02-01T00:00:00Z",
+    "cycle": {
+      "id": "2026-01",
+      "start": "2026-01-01",
+      "end": "2026-01-31",
+      "timezone": "UTC"
+    },
+    "source_digest": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "attestation_digest": "502c3c23b1e91a71c9504e0fb5f35b3633c8db460f15be7e79ace973659d4039",
+    "signature": "6954c3b92e04804a603cde97e5aaac1a5609f95624006b585e0e8121fbb6b3a4",
+    "measurements_digest": "e7f99c6027e18bcf0d4d9ec94e9e911055cd0a852cbe2ebcacbc2afe70e91919"
+  },
+  "oracle": {
+    "status": "PASS",
+    "minute": [
+      1009,
+      47,
+      1056,
+      1700
+    ]
+  }
+}

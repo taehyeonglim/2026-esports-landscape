@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://esports-data.example/schemas/current-v1.schema.json",
+  "title": "Atomic current snapshot pointer v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["snapshot_id", "manifest_sha256", "schema_hash", "policy_hash", "revision", "epoch"],
+  "properties": {
+    "snapshot_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "schema_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "policy_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "revision": {"type": "string", "minLength": 1, "maxLength": 256},
+    "epoch": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "string", "minLength": 1, "maxLength": 128}]}
+  }
+}

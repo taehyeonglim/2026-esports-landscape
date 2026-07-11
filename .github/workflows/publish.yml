@@ -1,0 +1,235 @@
+name: Immutable publication
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: Protected environment name configured by repository administrators
+        required: true
+        type: choice
+        options: [staging, production]
+      candidate_ref:
+        description: Public sanitized projection candidate branch ref
+        required: true
+        type: string
+      request_path:
+        required: true
+        type: string
+      authorization_path:
+        required: true
+        type: string
+      quality_report_path:
+        required: true
+        type: string
+      budget_report_path:
+        required: true
+        type: string
+      receipt_path:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: esports-data-control-plane
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_environment }}
+    env:
+      CANDIDATE_REF: ${{ inputs.candidate_ref }}
+      REQUEST_PATH: ${{ inputs.request_path }}
+      AUTHORIZATION_PATH: ${{ inputs.authorization_path }}
+      QUALITY_REPORT_PATH: ${{ inputs.quality_report_path }}
+      BUDGET_REPORT_PATH: ${{ inputs.budget_report_path }}
+      RECEIPT_PATH: ${{ inputs.receipt_path }}
+      PUBLICATION_OUTPUT_DIR: ${{ vars.PUBLICATION_OUTPUT_DIR }}
+      PUBLICATION_TARGET_REF: ${{ vars.PUBLICATION_TARGET_REF }}
+      PUBLICATION_READBACK_ORIGIN: ${{ vars.PUBLICATION_READBACK_ORIGIN }}
+      PUBLICATION_ENVIRONMENT: ${{ inputs.target_environment }}
+      PUBLICATION_WORKFLOW_SHA: ${{ github.workflow_sha }}
+      WORKFLOW_REF: ${{ github.workflow_ref }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d
+        with:
+          python-version: "3.11"
+      - name: Copy trusted publisher and install locked dependencies
+        run: |
+          set -euo pipefail
+          TRUSTED_ROOT="$RUNNER_TEMP/trusted-publisher"
+          mkdir -p "$TRUSTED_ROOT"
+          cp -a src schemas requirements.lock "$TRUSTED_ROOT/"
+          python -m pip install --require-hashes --no-deps -r "$TRUSTED_ROOT/requirements.lock"
+          printf 'TRUSTED_ROOT=%s\nPYTHONPATH=%s/src\n' "$TRUSTED_ROOT" "$TRUSTED_ROOT" >> "$GITHUB_ENV"
+      - name: Recover candidate artifacts without executing candidate code
+        run: |
+          set -euo pipefail
+          case "$CANDIDATE_REF" in refs/heads/*) ;; *) exit 1 ;; esac
+          case "$PUBLICATION_TARGET_REF" in refs/heads/*) ;; *) exit 1 ;; esac
+          for value in "$PUBLICATION_OUTPUT_DIR" "$PUBLICATION_READBACK_ORIGIN"; do test -n "$value"; done
+          for path in "$REQUEST_PATH" "$AUTHORIZATION_PATH" "$QUALITY_REPORT_PATH" "$BUDGET_REPORT_PATH" "$RECEIPT_PATH"; do
+            case "$path" in ''|/*|*'..'*|*'//'*) exit 1 ;; esac
+          done
+          git rev-parse --verify "$CANDIDATE_REF^{commit}" >/dev/null
+          git show "$CANDIDATE_REF:$REQUEST_PATH" > "$RUNNER_TEMP/request.json"
+          git show "$CANDIDATE_REF:$AUTHORIZATION_PATH" > "$RUNNER_TEMP/authorization.json"
+          git show "$CANDIDATE_REF:$QUALITY_REPORT_PATH" > "$RUNNER_TEMP/quality.json"
+          git show "$CANDIDATE_REF:$BUDGET_REPORT_PATH" > "$RUNNER_TEMP/budget.json"
+          git show "$CANDIDATE_REF:$RECEIPT_PATH" > "$RUNNER_TEMP/receipt.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import PurePosixPath
+          root = os.environ["RUNNER_TEMP"]
+          receipt = json.load(open(root + "/receipt.json", encoding="utf-8"))
+          files = receipt.get("changed_file_sha256")
+          if not isinstance(files, dict) or not files:
+              raise SystemExit(1)
+          database_digest = receipt.get("sqlite_file_sha256")
+          paths = []
+          for path, digest in files.items():
+              pure = PurePosixPath(path)
+              if not isinstance(path, str) or not path or any(ord(character) < 32 or ord(character) == 127 for character in path) or pure.is_absolute() or ".." in pure.parts or str(pure) != path or not isinstance(digest, str):
+                  raise SystemExit(1)
+              paths.append(path)
+          databases = [path for path in paths if files[path] == database_digest]
+          if len(databases) != 1:
+              raise SystemExit(1)
+          with open(root + "/staged-paths", "w", encoding="utf-8") as output:
+              output.write("\n".join(paths) + "\n")
+          with open(root + "/database-receipt-path", "w", encoding="utf-8") as output:
+              output.write(databases[0])
+          PY
+          while IFS= read -r path; do
+            mkdir -p "$RUNNER_TEMP/staged/$(dirname "$path")"
+            git show "$CANDIDATE_REF:$path" > "$RUNNER_TEMP/staged/$path"
+          done < "$RUNNER_TEMP/staged-paths"
+      - name: Validate authorization and stage immutable snapshot
+        env:
+          PUBLICATION_AUTHORIZATION_KEY: ${{ secrets.PUBLICATION_AUTHORIZATION_KEY }}
+        run: |
+          set -euo pipefail
+          git fetch origin "$PUBLICATION_TARGET_REF"
+          git checkout --detach "origin/${PUBLICATION_TARGET_REF#refs/heads/}"
+          PUBLICATION_TARGET_SHA="$(git rev-parse HEAD)"
+          export PUBLICATION_TARGET_SHA
+          printf 'PUBLICATION_TARGET_SHA=%s\n' "$PUBLICATION_TARGET_SHA" >> "$GITHUB_ENV"
+          TARGET_WORKTREE="$GITHUB_WORKSPACE"
+          cd "$TRUSTED_ROOT"
+          DATABASE_RECEIPT_PATH="$(<"$RUNNER_TEMP/database-receipt-path")"
+          set -- python -m esports_data.cli publish --stage-only --input "$RUNNER_TEMP/request.json" --authorization "$RUNNER_TEMP/authorization.json" --quality-report "$RUNNER_TEMP/quality.json" --budget-report "$RUNNER_TEMP/budget.json" --receipt "$RUNNER_TEMP/receipt.json" --database "$RUNNER_TEMP/staged/$DATABASE_RECEIPT_PATH" --output-dir "$TARGET_WORKTREE/$PUBLICATION_OUTPUT_DIR" --result-file "$RUNNER_TEMP/publish-result.json" --repository "$GITHUB_REPOSITORY" --workflow-ref "$WORKFLOW_REF" --target-ref "$PUBLICATION_TARGET_REF"
+          while IFS= read -r path; do set -- "$@" --staged-file "$path=$RUNNER_TEMP/staged/$path"; done < "$RUNNER_TEMP/staged-paths"
+          "$@"
+          SNAPSHOT_ID="$(python -c 'import json, os; print(json.load(open(os.environ["RUNNER_TEMP"] + "/publish-result.json"))["snapshot_id"])')"
+          git -C "$TARGET_WORKTREE" config user.name "github-actions[bot]"
+          git -C "$TARGET_WORKTREE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$TARGET_WORKTREE" add "$PUBLICATION_OUTPUT_DIR/snapshots/$SNAPSHOT_ID" "$PUBLICATION_OUTPUT_DIR/.publication-nonces"
+          if ! git -C "$TARGET_WORKTREE" diff --cached --quiet; then git -C "$TARGET_WORKTREE" commit -m "Publish immutable snapshot $SNAPSHOT_ID"; fi
+      - name: Push immutable snapshot
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          case "$(git log -1 --format=%s)" in
+            "Publish immutable snapshot "*)
+              git remote set-url origin "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+              git push origin HEAD:"$PUBLICATION_TARGET_REF"
+              ;;
+            *) exit 0 ;;
+          esac
+      - name: HTTPS read-back then publish current pointer last
+        run: |
+          set -euo pipefail
+          python -I - <<'PY'
+          import hashlib, http.client, ipaddress, json, os, socket, ssl
+          from urllib.parse import urlsplit
+          result = json.load(open(os.environ["RUNNER_TEMP"] + "/publish-result.json"))
+          origin = urlsplit(os.environ["PUBLICATION_READBACK_ORIGIN"])
+          if origin.scheme != "https" or not origin.hostname or origin.username or origin.password or origin.port not in (None, 443) or origin.query or origin.fragment:
+              raise SystemExit(1)
+          owner, repo = os.environ["GITHUB_REPOSITORY"].lower().split("/", 1)
+          expected_host = owner + ".github.io"
+          expected_path = "" if repo == expected_host else "/" + repo
+          if origin.hostname.lower() != expected_host or origin.path.rstrip("/") != expected_path:
+              raise SystemExit(1)
+          host = origin.hostname.lower()
+          peers = []
+          for family, _, _, _, address in socket.getaddrinfo(host, 443, type=socket.SOCK_STREAM):
+              if ipaddress.ip_address(address[0]).is_global:
+                  peers.append((family, address))
+          if not peers:
+              raise SystemExit(1)
+          def get(path):
+              family, address = peers[0]
+              raw = socket.socket(family, socket.SOCK_STREAM)
+              raw.settimeout(30)
+              try:
+                  raw.connect(address)
+                  tls = ssl.create_default_context().wrap_socket(raw, server_hostname=host)
+                  tls.sendall(("GET " + path + " HTTP/1.1\r\nHost: " + host + "\r\nConnection: close\r\n\r\n").encode("ascii"))
+                  response = http.client.HTTPResponse(tls)
+                  response.begin()
+                  if response.status != 200:
+                      raise SystemExit(1)
+                  return response.read()
+              finally:
+                  raw.close()
+          prefix = origin.path.rstrip("/") + "/snapshots/" + result["snapshot_id"] + "/"
+          manifest = json.loads(get(prefix + "manifest.json"))
+          snapshot = get(prefix + "snapshot.json")
+          body = {"snapshot_id": manifest.get("snapshot_id"), "files": manifest.get("files")}
+          digest = hashlib.sha256(json.dumps(body, ensure_ascii=True, allow_nan=False, separators=(",", ":"), sort_keys=True).encode()).hexdigest()
+          if manifest.get("manifest_sha256") != result["manifest_sha256"] or digest != result["manifest_sha256"] or manifest.get("files", {}).get("snapshot.json") != hashlib.sha256(snapshot).hexdigest():
+              raise SystemExit(1)
+          current_path = os.path.join(os.environ["PUBLICATION_OUTPUT_DIR"], "current.json")
+          if os.path.exists(current_path):
+              current = json.load(open(current_path, encoding="utf-8"))
+              current_id = current.get("snapshot_id") if isinstance(current, dict) else None
+          else:
+              current_id = None
+          if current_id not in {result["prior_pointer"], result["snapshot_id"]}:
+              raise SystemExit(1)
+          if current_id != result["snapshot_id"]:
+              temporary = current_path + ".tmp"
+              with open(temporary, "w", encoding="utf-8") as output:
+                  json.dump(result["current_pointer"], output, ensure_ascii=True, allow_nan=False, separators=(",", ":"), sort_keys=True)
+                  output.flush()
+                  os.fsync(output.fileno())
+              os.replace(temporary, current_path)
+              descriptor = os.open(os.path.dirname(current_path), os.O_RDONLY)
+              try:
+                  os.fsync(descriptor)
+              finally:
+                  os.close(descriptor)
+          authorization = json.load(open(os.environ["RUNNER_TEMP"] + "/authorization.json", encoding="utf-8"))
+          journal_path = os.path.join(
+              os.environ["PUBLICATION_OUTPUT_DIR"],
+              ".publication-nonces",
+              hashlib.sha256(authorization["nonce"].encode()).hexdigest() + ".json",
+          )
+          journal = json.load(open(journal_path, encoding="utf-8"))
+          if journal.get("result") != result or journal.get("state") not in {"staged", "completed"}:
+              raise SystemExit(1)
+          journal["state"] = "completed"
+          temporary = journal_path + ".tmp"
+          with open(temporary, "w", encoding="utf-8") as output:
+              json.dump(journal, output, ensure_ascii=True, allow_nan=False, separators=(",", ":"), sort_keys=True)
+              output.flush()
+              os.fsync(output.fileno())
+          os.replace(temporary, journal_path)
+          PY
+          git add "$PUBLICATION_OUTPUT_DIR/current.json" "$PUBLICATION_OUTPUT_DIR/.publication-nonces"
+          if ! git diff --cached --quiet; then git commit -m "Advance current projection pointer"; fi
+      - name: Push current pointer
+        env:
+          PUSH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git remote set-url origin "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin HEAD:"$PUBLICATION_TARGET_REF"

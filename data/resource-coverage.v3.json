@@ -1,0 +1,1157 @@
+{
+  "schema_version": 1,
+  "total_entries": 230,
+  "covered_entries": 230,
+  "entries": [
+    {
+      "id": "busan-001",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-002",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-003",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-004",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "busan-005",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "busan-006",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-007",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-008",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-009",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-010",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-011",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-012",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-013",
+      "category": "특성화고학과·과정",
+      "resource_type": "school"
+    },
+    {
+      "id": "busan-014",
+      "category": "특성화고학과·과정",
+      "resource_type": "school"
+    },
+    {
+      "id": "busan-015",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "busan-016",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "busan-017",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-018",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-019",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-020",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-021",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-022",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-023",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "busan-024",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-025",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "busan-026",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "elementary-busan-2025-sangdang-esports",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "elementary-sejong-2022-special-efestival",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "elementary-incheon-2025-special-efestival",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "elementary-ulsan-2025-special-efestival",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "elementary-chungbuk-2022-cheongju-seongsin-efestival",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "elementary-jeonnam-2026-disabled-student-sports-esports",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "elementary-jeju-2025-jejunam-esports-room",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "national-completion-seoul-esports-stadium",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-completion-seoul-policy-ges",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-seoul-association",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-completion-gyeonggi-gcon-esports",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-incheon-esports-challenge",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-daejeon-dream-arena",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-completion-gwangju-gicon-esports",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-daegu-esports-association",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-completion-gangwon-lck-msi-wonju",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-chungbuk-esports-association",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-completion-chungnam-governor-cup",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-jeonbuk-esports-ordinance",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-jeonnam-esports-2025",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-completion-gyeongbuk-university-esports",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-gyeongnam-arena",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-completion-jeju-challenge-2025",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-sejong-fn-center",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-completion-ulsan-uipa-esports",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-completion-ulsan-commercial-high",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "national-audit-seoul-ges-2024-culture",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-incheon-major-plan-2026-esports",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-gyeonggi-fc-mobile-team-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-audit-gangwon-hongcheon-festival-2025",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-daegu-keg-2024-representative",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-daejeon-msi-2026-host",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-gwangju-esports-arena-official",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-audit-ulsan-technical-high-esports",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "national-audit-sejong-bangok-youth-esports-club",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "national-audit-chungbuk-jecheon-arena-2026",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-audit-chungnam-permanent-arena-2026",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-audit-jeonbuk-keg-2026-selection",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-jeonnam-cntu-esports-department",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-gyeongbuk-national-training-center-2024",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "national-audit-gyeongnam-middle-high-tournament-2025",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "national-audit-jeju-esports-association",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "national-audit-jeonbuk-gunsan-amateur-esports-2026",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "national-audit-gyeongbuk-2026-keg-disabled-finals",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-seoul-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-seoul-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-seoul-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-seoul-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-seoul-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-seoul-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-seoul-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-seoul-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-seoul-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-seoul-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daegu-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daegu-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daegu-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daegu-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-daegu-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-daegu-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-daegu-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daegu-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-daegu-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-daegu-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-incheon-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-incheon-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-incheon-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-incheon-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-incheon-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-incheon-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-incheon-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-incheon-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-incheon-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-incheon-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gwangju-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gwangju-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gwangju-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gwangju-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gwangju-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gwangju-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gwangju-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gwangju-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gwangju-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-gwangju-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daejeon-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daejeon-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daejeon-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daejeon-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-daejeon-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-daejeon-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-daejeon-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-daejeon-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-daejeon-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-daejeon-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-ulsan-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-ulsan-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-ulsan-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-ulsan-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-ulsan-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-ulsan-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-ulsan-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-ulsan-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-ulsan-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-ulsan-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-sejong-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-sejong-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-sejong-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-sejong-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-sejong-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-sejong-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-sejong-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-sejong-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-sejong-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-sejong-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeonggi-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeonggi-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeonggi-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeonggi-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeonggi-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeonggi-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeonggi-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeonggi-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeonggi-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-gyeonggi-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gangwon-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gangwon-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gangwon-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gangwon-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gangwon-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gangwon-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gangwon-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gangwon-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gangwon-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-gangwon-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungbuk-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungbuk-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungbuk-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungbuk-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-chungbuk-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-chungbuk-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-chungbuk-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungbuk-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-chungbuk-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-chungbuk-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungnam-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungnam-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungnam-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungnam-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-chungnam-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-chungnam-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-chungnam-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-chungnam-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-chungnam-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-chungnam-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonbuk-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonbuk-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonbuk-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonbuk-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeonbuk-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeonbuk-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeonbuk-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonbuk-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeonbuk-local-esports-event",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeonbuk-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonnam-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonnam-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonnam-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonnam-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeonnam-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeonnam-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeonnam-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeonnam-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeonnam-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-jeonnam-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-local-esports-event",
+      "category": "지자체정책·조례",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeongbuk-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongnam-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongnam-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongnam-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongnam-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeongnam-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-gyeongnam-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeongnam-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-gyeongnam-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-gyeongnam-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-gyeongnam-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeju-disabled-efestival-prelim",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeju-keg-regional-qualifier",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeju-school-sports-festival-selection",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeju-school-club-instructor",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeju-school-league-open-circuit",
+      "category": "학교동아리·팀",
+      "resource_type": "school"
+    },
+    {
+      "id": "visible-regional-jeju-youth-esports-festival",
+      "category": "언론보도",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeju-kel-regional-team",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "visible-regional-jeju-university-league-anchor",
+      "category": "대학학과·전공·동아리",
+      "resource_type": "other"
+    },
+    {
+      "id": "visible-regional-jeju-regional-game-agency",
+      "category": "경기장·인프라",
+      "resource_type": "facility"
+    },
+    {
+      "id": "visible-regional-jeju-efestival-esports-program",
+      "category": "교육청대회·사업",
+      "resource_type": "event"
+    }
+  ]
+}

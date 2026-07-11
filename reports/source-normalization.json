@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "raw_source_tokens": 550,
+  "mapped_source_tokens": 550,
+  "omitted_source_tokens": 0,
+  "summary": {
+    "entries": 230,
+    "sources": 230,
+    "crosswalk_rows": 230,
+    "mapped_entries": 230,
+    "omitted_entries": 0
+  }
+}

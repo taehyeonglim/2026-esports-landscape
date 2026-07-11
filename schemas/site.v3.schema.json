@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://2026-esports-landscape.github.io/schemas/site.v3.schema.json",
+  "title": "Esports landscape site data v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "meta",
+    "regions",
+    "entries",
+    "negative_evidence",
+    "data_gaps",
+    "site_notes",
+    "typology_axes",
+    "coverage_by_category",
+    "resource_types",
+    "resource_map",
+    "sources",
+    "raw_source_crosswalk"
+  ],
+  "properties": {
+    "schema_version": { "const": 3 },
+    "meta": { "type": "object", "minProperties": 4 },
+    "regions": { "type": "array", "minItems": 17, "maxItems": 17, "items": { "type": "object", "required": ["id", "name", "short_name", "type", "geojson_ref", "coord_source", "boundary_source", "boundary_license", "map_hotspots"] } },
+    "entries": { "type": "array", "minItems": 230, "maxItems": 230, "items": { "$ref": "#/$defs/entry" } },
+    "negative_evidence": { "type": "array" },
+    "data_gaps": { "type": "array" },
+    "site_notes": { "type": "array" },
+    "typology_axes": { "type": "array" },
+    "coverage_by_category": { "type": "array" },
+    "resource_types": { "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["school", "event", "facility", "other"] } },
+    "resource_map": { "type": "object", "additionalProperties": false, "required": ["schema_version", "status", "owner_roles", "approved_by", "approved_at", "input", "sha256"], "properties": { "schema_version": { "const": 1 }, "status": { "enum": ["mechanically_derived_pending_owner_approval", "approved"] }, "owner_roles": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }, "approved_by": { "type": ["string", "null"] }, "approved_at": { "type": ["string", "null"] }, "input": { "const": "data/resource-map.v1.json" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" } } },
+    "sources": { "type": "array", "minItems": 230, "maxItems": 230, "items": { "$ref": "#/$defs/source" } },
+    "raw_source_crosswalk": { "type": "array", "minItems": 230, "maxItems": 230, "items": { "$ref": "#/$defs/crosswalk" } }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["id", "region_id", "category", "resource_type", "source", "source_ids", "operational_status", "public_note", "status_provenance", "status_checked_at", "off_map"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "region_id": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "minLength": 1 },
+        "resource_type": { "enum": ["school", "event", "facility", "other"] },
+        "source": { "type": "string" },
+        "source_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "operational_status": { "enum": ["needs_review", "current", "ended"] },
+        "public_note": { "type": "string", "minLength": 1 },
+        "status_provenance": { "type": ["string", "null"] },
+        "status_checked_at": { "type": ["string", "null"] },
+        "off_map": { "type": "boolean" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "entry_id", "raw", "urls", "kind", "verification_status", "checked_at"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "entry_id": { "type": "string", "minLength": 1 },
+        "raw": { "type": "string" },
+        "urls": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^https?://" } },
+        "kind": { "const": "raw_source" },
+        "verification_status": { "enum": ["needs_review", "verified", "rejected"] },
+        "checked_at": { "type": ["string", "null"] }
+      }
+    },
+    "crosswalk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry_id", "raw_source", "source_ids", "tokens"],
+      "properties": {
+        "entry_id": { "type": "string", "minLength": 1 },
+        "raw_source": { "type": "string" },
+        "source_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "tokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["position", "kind", "raw_token", "disposition", "source_id"],
+            "properties": {
+              "position": { "type": "integer", "minimum": 0 },
+              "kind": { "enum": ["text", "url"] },
+              "raw_token": { "type": "string", "minLength": 1 },
+              "disposition": { "const": "mapped" },
+              "source_id": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
