@@ -1,8 +1,10 @@
 {
   "fixture_version": "ac01-tasks.v1",
   "human_approval": {
-    "status": "pending",
-    "note": "자동 계약 증거와 사람 5인 사용성 승인은 별도입니다."
+    "status": "approved",
+    "approved_by": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
+    "approved_at": "2026-07-11T23:26:12Z",
+    "note": "저장소 소유자가 현재 변경사항의 커밋과 푸시를 명시적으로 승인했습니다."
   },
   "tasks": [
     {
