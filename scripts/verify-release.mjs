@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { access, cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { access, cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -89,6 +89,7 @@ try {
   report.passed = Object.entries(report)
     .filter(([key]) => !['schemaVersion', 'kind', 'measuredAt', 'assetCount', 'releaseId', 'passed'].includes(key))
     .every(([, value]) => value === true);
+  await mkdir(join(root, 'artifacts'), { recursive: true });
   await writeFile(join(root, 'artifacts/build-release-verification.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
   if (!report.passed) process.exitCode = 1;
