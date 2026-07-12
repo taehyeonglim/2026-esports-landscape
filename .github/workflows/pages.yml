@@ -9,6 +9,15 @@ on:
         description: Rebuild and deploy this full commit SHA (use a previously known-good commit to roll back)
         required: true
         type: string
+      owner_deploy_override:
+        description: Allow the repository owner to deploy after automated verification without claiming pending study approvals
+        required: false
+        default: false
+        type: boolean
+      owner_deploy_reason:
+        description: Auditable reason for the repository-owner deployment override
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -97,15 +106,41 @@ jobs:
         with:
           ref: ${{ steps.source.outputs.ref }}
       - name: Require recorded human approvals
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          ACTOR: ${{ github.actor }}
+          REPOSITORY_OWNER: ${{ github.repository_owner }}
+          OWNER_DEPLOY_OVERRIDE: ${{ inputs.owner_deploy_override || false }}
+          OWNER_DEPLOY_REASON: ${{ inputs.owner_deploy_reason || '' }}
+          SOURCE_REF: ${{ steps.source.outputs.ref }}
         run: |
           node --input-type=module <<'NODE'
-          import { readFile } from 'node:fs/promises';
+          import { appendFile, readFile } from 'node:fs/promises';
 
           const readJson = async path => JSON.parse(await readFile(path, 'utf8'));
           const resourceMap = await readJson('data/resource-map.v1.json');
           const ac01 = await readJson('tests/fixtures/ac01-tasks.v1.json');
           const approvals = await readJson('tests/fixtures/release-approvals.v1.json');
           const fail = message => { throw new Error(`Human approval gate: ${message}`); };
+          const eventName = process.env.EVENT_NAME;
+          const actor = process.env.ACTOR;
+          const repositoryOwner = process.env.REPOSITORY_OWNER;
+          const ownerOverride = process.env.OWNER_DEPLOY_OVERRIDE === 'true';
+          const ownerReason = process.env.OWNER_DEPLOY_REASON?.trim() ?? '';
+
+          if (ownerOverride) {
+            if (eventName !== 'workflow_dispatch') fail('Repository-owner override is accepted only for workflow_dispatch.');
+            if (!actor || !repositoryOwner || actor.toLowerCase() !== repositoryOwner.toLowerCase()) {
+              fail('Repository-owner override actor must match github.repository_owner.');
+            }
+            if (ownerReason.length < 20) fail('Repository-owner override requires an auditable reason of at least 20 characters.');
+            await appendFile(
+              process.env.GITHUB_STEP_SUMMARY,
+              `## Repository-owner deployment override\n\n- Actor: ${actor}\n- Reason: ${ownerReason}\n- Source: ${process.env.SOURCE_REF}\n`,
+            );
+            console.log(`Repository-owner deployment override accepted for ${actor}.`);
+            process.exit(0);
+          }
           const approved = (item, label) => {
             if (item?.status !== 'approved' || typeof item.approved_at !== 'string' || !item.approved_at) {
               fail(`${label} must be approved with approved_at.`);
