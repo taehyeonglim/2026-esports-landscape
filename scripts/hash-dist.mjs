@@ -16,6 +16,8 @@ const mimeTypes = Object.freeze({
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
+  '.txt': 'text/plain; charset=utf-8',
+  '.woff2': 'font/woff2',
 });
 async function files(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

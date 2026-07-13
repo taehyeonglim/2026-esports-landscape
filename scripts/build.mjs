@@ -79,7 +79,7 @@ const provenanceOnlyContracts = [
 const publicFiles = [
   'index.html',
   ...(await sourceFiles(join(ROOT, 'src'), 'src')).filter(path => path.endsWith('.js')),
-  ...(await sourceFiles(join(ROOT, 'styles'), 'styles')).filter(path => path.endsWith('.css')),
+  ...(await sourceFiles(join(ROOT, 'styles'), 'styles')).filter(path => /\.(?:css|woff2|txt)$/.test(path)),
   ...(await sourceFiles(join(ROOT, 'research'), 'research')).filter(path => path.endsWith('.html')),
   ...publicDataContracts,
   ...regionFiles.map(name => `geo/regions/${name}`),
