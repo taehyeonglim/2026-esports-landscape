@@ -55,6 +55,7 @@ body {
 
 /* 통계 리본 — 방송 스코어보드 (JS가 채우기 전까지 hidden) */
 .stat-ribbon { display: flex; flex-wrap: wrap; gap: .6rem 2.2rem; margin: 0 0 1.6rem; }
+.stat-ribbon[hidden] { display: none; }
 .stat-ribbon .stat { display: inline-flex; align-items: baseline; gap: .5rem; }
 .stat-ribbon .stat-value { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--gold); }
 .stat-ribbon .stat-label { font-family: var(--font-display); font-weight: 600; font-size: .85rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
