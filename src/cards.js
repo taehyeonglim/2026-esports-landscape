@@ -22,7 +22,7 @@ export function createEntryCard(entry, { selected = false } = {}) {
   title.textContent = text(entry.name);
   const meta = document.createElement("span");
   meta.className = "card-line";
-  meta.textContent = [entry.region_name, TYPE_LABELS[entry.resource_type], entry.category].join(" · ");
+  meta.textContent = [entry.region_name, TYPE_LABELS[entry.resource_type], entry.category, entry.year].filter(Boolean).join(" · ");
   const facts = document.createElement("span");
   facts.className = "card-line";
   const checked = entry.status_checked_at;

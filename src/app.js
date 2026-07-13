@@ -6,13 +6,15 @@ import { projectGeoJson } from "./projection.js";
 import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SORT_LABELS, SOURCE_LABELS, TYPE_LABELS, renderCards } from "./cards.js";
 import { renderDetail } from "./detail.js";
 import { renderStatRibbon } from "./stat-ribbon.js";
+import { matrixModel, renderMatrix } from "./matrix.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
 const elements = Object.freeze({
-  region: byId("region-select"), search: byId("entry-search"), category: byId("category-filter"),
+  region: byId("region-select"), search: byId("entry-search"),
   schoolLevel: byId("school-level-filter"), status: byId("status-filter"), scope: byId("scope-filter"), sort: byId("sort-filter"), reset: byId("reset-filters"),
   cards: byId("result-list"), count: byId("result-count"), detail: byId("detail-panel"), detailContent: byId("detail-content"),
+  matrix: byId("compare-matrix"), typeFilter: byId("type-filter"), categoryActions: document.querySelector(".category-actions"),
   back: byId("detail-back"), map: byId("region-map"), mapGeometry: byId("region-map-geometry"), mapStatus: byId("map-status"), live: byId("live-status"),
   statRibbon: byId("stat-ribbon"),
 });
@@ -29,6 +31,7 @@ let searchTimer = null;
 
 
 function populateStaticSelects() {
+  populateSelect(elements.typeFilter, Object.entries(TYPE_LABELS).map(([value, label]) => ({ value, label })));
   populateSelect(elements.scope, Object.entries(SCOPE_LABELS).map(([value, label]) => ({ value, label })));
   populateSelect(elements.sort, Object.entries(SORT_LABELS).map(([value, label]) => ({ value, label })));
 }
@@ -276,29 +279,20 @@ async function loadMap(regionId, requestId = ++mapRequestId) {
 }
 
 function render() {
-  const readyToBrowse = Boolean(state.region && state.type);
-  const filtered = readyToBrowse ? filterEntries(entries, state) : [];
+  const filtered = filterEntries(entries, state);
   elements.region.value = state.region || "";
   elements.search.value = state.query;
-  elements.category.value = state.category[0] || "";
+  elements.typeFilter.value = state.type || "";
   elements.schoolLevel.value = state.schoolLevel[0] || "";
   elements.status.value = state.status[0] || "";
   elements.scope.value = state.scope[0] || "";
   elements.sort.value = state.sort || "";
-  document.querySelectorAll("[data-type]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.type === state.type)));
-  if (readyToBrowse) {
-    renderCards(elements.cards, filtered, state.entry);
-    elements.count.textContent = `${filtered.length}개 항목`;
-    elements.live.textContent = `검색 결과 ${filtered.length}개`;
-  } else {
-    elements.cards.replaceChildren();
-    const prompt = document.createElement("p");
-    prompt.className = "empty-state";
-    prompt.textContent = "지역과 학교·대회·시설 유형을 선택하면 확인된 사례가 표시됩니다.";
-    elements.cards.append(prompt);
-    elements.count.textContent = "지역과 유형을 선택해 주세요";
-    elements.live.textContent = "지역과 탐색 유형 선택이 필요합니다.";
-  }
+  elements.categoryActions.querySelectorAll("[data-category-chip]").forEach((chip) => {
+    chip.setAttribute("aria-pressed", String(chip.dataset.categoryChip === (state.category[0] || "")));
+  });
+  renderCards(elements.cards, filtered, state.entry);
+  elements.count.textContent = `${filtered.length}개 항목`;
+  elements.live.textContent = `검색 결과 ${filtered.length}개`;
   const entry = entryById.get(state.entry);
   elements.detail.hidden = !entry;
   if (entry) renderDetail(elements.detailContent, entry, sourcesByEntry.get(entry.id) || []);
@@ -319,7 +313,13 @@ function bindEvents() {
       dispatch(actions.setQuery(query), "replace");
     }, 150);
   });
-  elements.category.addEventListener("change", (event) => dispatch(actions.setFilter("category", event.target.value ? [event.target.value] : []), "replace"));
+  elements.typeFilter.addEventListener("change", (event) => dispatch(actions.setType(event.target.value || null), "replace"));
+  elements.categoryActions.addEventListener("click", (event) => {
+    const chip = event.target.closest("[data-category-chip]");
+    if (!chip) return;
+    const value = chip.dataset.categoryChip;
+    dispatch(actions.setFilter("category", state.category[0] === value ? [] : [value]));
+  });
   elements.schoolLevel.addEventListener("change", (event) => dispatch(actions.setFilter("schoolLevel", event.target.value ? [event.target.value] : []), "replace"));
   elements.status.addEventListener("change", (event) => dispatch(actions.setFilter("status", event.target.value ? [event.target.value] : []), "replace"));
   elements.scope.addEventListener("change", (event) => dispatch(actions.setFilter("scope", event.target.value ? [event.target.value] : []), "replace"));
@@ -328,9 +328,6 @@ function bindEvents() {
     clearTimeout(searchTimer);
     searchTimer = null;
     dispatch(actions.resetFilters(), "replace");
-  });
-  document.querySelector(".type-actions").addEventListener("click", (event) => {
-    const button = event.target.closest("[data-type]"); if (button) dispatch(actions.setType(state.type === button.dataset.type ? null : button.dataset.type));
   });
   elements.cards.addEventListener("click", (event) => { const card = event.target.closest("[data-entry-id]"); if (card) openEntry(card.dataset.entryId); });
   elements.back.addEventListener("click", () => {
@@ -368,8 +365,24 @@ async function start() {
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
     if (elements.statRibbon) renderStatRibbon(elements.statRibbon, data);
+    const model = matrixModel(data.entries, data.regions);
+    elements.categoryActions.replaceChildren(...model.categories.map((category) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.dataset.categoryChip = category;
+      chip.setAttribute("aria-pressed", "false");
+      chip.textContent = category;
+      return chip;
+    }));
+    renderMatrix(elements.matrix, model, ({ regionId = null, category = null }) => {
+      dispatch(actions.hydrate({ region: regionId, category: category ? [category] : [] }));
+      scheduleMap(state.region);
+      const heading = byId("results-heading");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      heading?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      heading?.focus({ preventScroll: true });
+    });
     populateSelect(elements.region, data.regions.map((region) => ({ value: region.id, label: region.name })));
-    populateSelect(elements.category, optionValues("category").map((value) => ({ value, label: value })));
     populateSelect(elements.schoolLevel, optionValues("schoolLevel").map((value) => ({ value, label: value })));
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
     state = decodeUrl(location.search, { allowed: allowed(), entries });

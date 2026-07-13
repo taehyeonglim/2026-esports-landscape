@@ -11,7 +11,7 @@ if (
   fixture.tasks?.length !== expectedTaskIds.length
   || new Set(taskIds).size !== expectedTaskIds.length
   || expectedTaskIds.some((id) => !taskIds.includes(id))
-  || fixture.tasks.some((task) => !task.target_name || !task.region || !["school", "event", "facility"].includes(task.type) || !task.entry_id || !/^https:\/\//.test(task.expected_source_url) || !/^[a-f0-9]{64}$/.test(task.expected_source_url_sha256))
+  || fixture.tasks.some((task) => !task.target_name || !task.region || typeof task.category !== "string" || task.category.trim() === "" || !task.entry_id || !/^https:\/\//.test(task.expected_source_url) || !/^[a-f0-9]{64}$/.test(task.expected_source_url_sha256))
 ) {
   throw new Error("AC01 fixture must contain the exact complete U1-U5 contract.");
 }
@@ -21,8 +21,7 @@ for (const task of fixture.tasks) {
 
 async function openTask(page, task) {
   await page.goto("/index.html");
-  await page.locator("#region-select").selectOption(task.region);
-  await page.locator(`[data-type="${task.type}"]`).click();
+  await page.locator(`#compare-matrix td button[data-region="${task.region}"][data-category="${task.category}"]`).click();
   const card = page.locator(`[data-entry-id="${task.entry_id}"]`);
   await expect(card).toBeVisible();
   await card.click();
@@ -36,7 +35,7 @@ function seriousOrCritical(violations) {
 
 test.describe("AC01 browser activation contract", () => {
   for (const task of fixture.tasks) {
-    test(`${task.id}: cold root region, type, and card open the verified detail`, async ({ page }) => {
+    test(`${task.id}: cold root matrix cell and card open the verified detail`, async ({ page }) => {
       const started = Date.now();
       await openTask(page, task);
       await expect(page.locator("#detail-heading")).toHaveText(task.target_name);
@@ -50,23 +49,58 @@ test.describe("AC01 browser activation contract", () => {
     });
   }
 });
-test("고급 필터는 접힌 상태로 시작하며 범위·정렬·검색을 replaceState로 반영한다", async ({ page }) => {
+
+test("콜드 홈은 230건 전체와 17개 시·도 매트릭스를 보여준다", async ({ page }) => {
+  await page.goto("/index.html");
+  await expect(page.locator("#result-count")).toHaveText("230개 항목");
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(230);
+  const matrix = page.locator("#compare-matrix table");
+  await expect(matrix.locator("tbody tr")).toHaveCount(17);
+  await expect(matrix.locator("tfoot td").last()).toHaveText("230");
+  await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
+});
+
+test("매트릭스 열 헤더는 전 지역 카테고리 필터로, 행 헤더는 지역 필터로 이동한다", async ({ page }) => {
+  await page.goto("/index.html");
+  await page.locator('#compare-matrix thead button[data-category="지자체정책·조례"]').click();
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(23);
+  await expect(page.locator("#results-heading")).toBeFocused();
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ category: "지자체정책·조례" });
+  await page.locator('#compare-matrix tbody th button[data-region="busan"]').click();
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(27);
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ region: "busan" });
+});
+
+test("유형 '기타' 66건이 고급 필터로 도달 가능하다", async ({ page }) => {
+  await page.goto("/index.html");
+  await page.locator(".advanced-filters summary").click();
+  await page.locator("#type-filter").selectOption("other");
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(66);
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ type: "other" });
+});
+
+test("고급 필터는 접힌 상태로 시작하며 유형·범위·정렬·검색을 replaceState로 반영한다", async ({ page }) => {
   await page.goto("/index.html");
   const advanced = page.locator(".advanced-filters");
   await expect(advanced).not.toHaveAttribute("open", "");
+  await expect(page.locator("#type-filter option")).toHaveText(["전체", "학교", "대회", "시설", "기타"]);
   await expect(page.locator("#scope-filter option")).toHaveText(["전체", "지역", "전국", "인접 지역", "범위 미확인"]);
   await expect(page.locator("#sort-filter option")).toHaveText(["기본순", "이름 오름차순", "이름 내림차순", "연도 오름차순", "연도 내림차순"]);
 
   await page.locator("#region-select").selectOption("busan");
-  await page.locator('[data-type="event"]').click();
+  await page.locator('[data-category-chip="교육청대회·사업"]').click();
+  await expect(page.locator('[data-category-chip="교육청대회·사업"]')).toHaveAttribute("aria-pressed", "true");
   const historyLength = await page.evaluate(() => history.length);
   await advanced.locator("summary").click();
   await page.locator("#scope-filter").selectOption("regional");
   await page.locator("#sort-filter").selectOption("name-asc");
   await page.locator("#entry-search").fill("zz-not-found");
   await expect(page.locator("#result-list .empty-state")).toBeVisible();
-  await expect.poll(() => page.evaluate(() => ({ search: location.search, length: history.length }))).toEqual({
-    search: "?region=busan&type=event&q=zz-not-found&scope=regional&sort=name-asc",
+  await expect.poll(() => page.evaluate(() => ({ params: Object.fromEntries(new URLSearchParams(location.search)), length: history.length }))).toEqual({
+    params: { region: "busan", category: "교육청대회·사업", q: "zz-not-found", scope: "regional", sort: "name-asc" },
     length: historyLength,
   });
 
@@ -122,7 +156,6 @@ test("a pending then failed map request never blocks card activation", async ({ 
   await page.goto("/index.html");
   await page.locator("#region-select").selectOption("busan");
   await requested;
-  await page.locator('[data-type="event"]').click();
   const card = page.locator('[data-entry-id="busan-001"]');
   await expect(card).toBeVisible();
   await card.click();
@@ -141,6 +174,7 @@ test("malformed 229-entry public data fails closed", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator(".data-error")).toContainText("무결성 검증에 실패");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(0);
+  await expect(page.locator("#compare-matrix table")).toHaveCount(0);
   await expect(page.locator("#result-count")).toHaveText("데이터를 표시할 수 없습니다.");
 });
 
@@ -171,8 +205,6 @@ test("current status without complete verification metadata fails closed", async
 test("desktop and narrow layouts keep browse before map without horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/index.html");
-  await page.locator("#region-select").selectOption("busan");
-  await page.locator('[data-type="event"]').click();
   await expect(page.locator(".entry-card").first()).toBeVisible();
   const desktop = await page.evaluate(async () => {
     await document.fonts.ready;
@@ -182,10 +214,12 @@ test("desktop and narrow layouts keep browse before map without horizontal overf
     const search = document.querySelector("#entry-search");
     const cards = document.querySelector("#result-list");
     const map = document.querySelector(".map-panel");
+    const matrix = document.querySelector(".matrix-panel");
     const browse = rect(".browse-panel");
     const mapRect = map.getBoundingClientRect();
     const domOrdered = Boolean(
-      heading.compareDocumentPosition(search) & Node.DOCUMENT_POSITION_FOLLOWING
+      matrix.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING
+      && heading.compareDocumentPosition(search) & Node.DOCUMENT_POSITION_FOLLOWING
       && search.compareDocumentPosition(cards) & Node.DOCUMENT_POSITION_FOLLOWING
       && cards.compareDocumentPosition(map) & Node.DOCUMENT_POSITION_FOLLOWING
     );
@@ -202,18 +236,26 @@ test("desktop and narrow layouts keep browse before map without horizontal overf
       await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       const browse = document.querySelector(".browse-panel").getBoundingClientRect();
       const map = document.querySelector(".map-panel").getBoundingClientRect();
+      const scroller = document.querySelector(".matrix-scroll");
       const controls = [...document.querySelectorAll("button,input,select")]
         .filter((element) => element.getClientRects().length > 0 && !element.hidden);
-      return { overflow: document.documentElement.scrollWidth - window.innerWidth, browseBeforeMap: browse.top <= map.top, controlCount: controls.length, minControl: Math.min(...controls.map((element) => element.getBoundingClientRect().height)) };
+      return {
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        browseBeforeMap: browse.top <= map.top,
+        controlCount: controls.length,
+        minControl: Math.min(...controls.map((element) => element.getBoundingClientRect().height)),
+        matrixScrolls: scroller.scrollWidth >= scroller.clientWidth,
+      };
     });
     expect(layout.overflow).toBeLessThanOrEqual(0);
     expect(layout.controlCount).toBeGreaterThan(0);
     expect(layout.browseBeforeMap).toBe(true);
     expect(layout.minControl).toBeGreaterThanOrEqual(44);
+    expect(layout.matrixScrolls).toBe(true);
   }
 });
 
-test("reduced motion removes all transition and animation timing and avoids smooth scrolling", async ({ page }) => {
+test("reduced motion removes all timing and matrix cell selection never smooth-scrolls", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     window.__smoothScrollCalls = 0;
@@ -224,9 +266,9 @@ test("reduced motion removes all transition and animation timing and avoids smoo
     };
   });
   await page.goto("/index.html");
-  await page.locator("#region-select").selectOption("busan");
-  await page.locator('[data-type="event"]').click();
+  await page.locator('#compare-matrix td button[data-region="busan"][data-category="교육청대회·사업"]').click();
   await expect(page.locator(".entry-card").first()).toBeVisible();
+  await expect(page.locator("#results-heading")).toBeFocused();
   const motion = await page.evaluate(() => {
     const timed = [...document.querySelectorAll("*")].filter((element) => {
       const style = getComputedStyle(element);
@@ -238,10 +280,10 @@ test("reduced motion removes all transition and animation timing and avoids smoo
   expect(motion).toEqual({ timed: 0, scroll: "auto", smoothCalls: 0 });
 });
 
-test("root, results, detail, and research have no serious or critical axe violations", async ({ page }) => {
+test("root, matrix, results, detail, and research have no serious or critical axe violations", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator('#region-select option[value="busan"]')).toHaveCount(1);
-  for (const selector of ["body", "#result-list"]) {
+  for (const selector of ["body", "#compare-matrix", "#result-list"]) {
     const results = await new AxeBuilder({ page }).include(selector).analyze();
     expect(seriousOrCritical(results.violations)).toEqual([]);
   }

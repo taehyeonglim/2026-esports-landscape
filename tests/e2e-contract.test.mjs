@@ -40,7 +40,9 @@ test("public DOM keeps cards before a noninteractive map and exposes accessibili
   const mapAt = html.indexOf('id="region-map"');
   assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
   for (const selector of ["region-select", "entry-search", "detail-panel", "detail-back", "map-status", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
-  assert.match(html, /data-type/);
+  assert.match(html, /id="compare-matrix"/);
+  assert.match(html, /class="category-actions"/);
+  assert.match(html, /id="type-filter"/);
   assert.match(html, /aria-live=/);
   const map = html.match(/<svg\s+id="region-map"[^>]*>[\s\S]*?<\/svg>/)?.[0];
   assert.ok(map, "map subtree must exist");
