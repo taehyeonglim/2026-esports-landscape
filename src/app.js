@@ -5,6 +5,7 @@ import { RegionLoader } from "./region-loader.js";
 import { projectGeoJson } from "./projection.js";
 import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SORT_LABELS, SOURCE_LABELS, TYPE_LABELS, renderCards } from "./cards.js";
 import { renderDetail } from "./detail.js";
+import { renderStatRibbon } from "./stat-ribbon.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
@@ -13,6 +14,7 @@ const elements = Object.freeze({
   schoolLevel: byId("school-level-filter"), status: byId("status-filter"), scope: byId("scope-filter"), sort: byId("sort-filter"), reset: byId("reset-filters"),
   cards: byId("result-list"), count: byId("result-count"), detail: byId("detail-panel"), detailContent: byId("detail-content"),
   back: byId("detail-back"), map: byId("region-map"), mapGeometry: byId("region-map-geometry"), mapStatus: byId("map-status"), live: byId("live-status"),
+  statRibbon: byId("stat-ribbon"),
 });
 let state = createAppState();
 let data;
@@ -365,6 +367,7 @@ async function start() {
     });
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
+    if (elements.statRibbon) renderStatRibbon(elements.statRibbon, data);
     populateSelect(elements.region, data.regions.map((region) => ({ value: region.id, label: region.name })));
     populateSelect(elements.category, optionValues("category").map((value) => ({ value, label: value })));
     populateSelect(elements.schoolLevel, optionValues("schoolLevel").map((value) => ({ value, label: value })));
