@@ -63,7 +63,7 @@ body {
 .starter-controls label { font-weight: 700; }
 .starter-controls select { grid-column: 1; }
 .type-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
-.type-actions button { min-height: 44px; flex: 1 1 6rem; }
+.type-actions button { min-height: 44.5px; flex: 1 1 6rem; }
 .trust-note { max-width: 48rem; margin: 1.5rem 0 0; color: var(--muted); }
 
 /* ── 레이아웃 셸과 패널 ─────────────────────────────────── */
@@ -101,7 +101,7 @@ body {
 /* ── 입력 컨트롤 ────────────────────────────────────────── */
 input, select, button { font: inherit; }
 input, select {
-  width: 100%; height: max(44px, 2.75em); min-height: 44px;
+  width: 100%; height: max(44.5px, 2.75em); min-height: 44.5px;
   border: 1px solid var(--line-strong); border-radius: 2px;
   padding: .65rem; background: var(--bg-0); color: var(--ink);
 }
@@ -121,12 +121,12 @@ button[aria-pressed="true"]:hover { background-color: var(--gold-soft); }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 .advanced-filters { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: .75rem; }
-.advanced-filters summary { cursor: pointer; min-height: 44px; padding: .45rem 0; font-weight: 700; }
+.advanced-filters summary { cursor: pointer; min-height: 44.5px; padding: .45rem 0; font-weight: 700; }
 .search-row { display: grid; gap: .4rem; }
 .search-row label { font-weight: 700; }
 .filter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; }
 .filter-grid label { font-size: .9rem; font-weight: 700; }
-.filter-grid button { align-self: end; min-height: 44px; }
+.filter-grid button { align-self: end; min-height: 44.5px; }
 
 /* ── 결과 카드 ──────────────────────────────────────────── */
 .result-list { display: grid; gap: .7rem; }
@@ -138,7 +138,7 @@ button[aria-pressed="true"]:hover { background-color: var(--gold-soft); }
   border: 1px solid var(--line);
   border-left: 4px solid var(--line-strong);
   border-radius: 2px;
-  padding: 1rem; min-height: 44px;
+  padding: 1rem; min-height: 44.5px;
   transition: border-color var(--speed-fast) ease, background-color var(--speed-fast) ease, transform var(--speed-fast) ease;
 }
 .entry-card[data-status="current"] { border-left-color: var(--status-current); }
@@ -186,7 +186,7 @@ footer { max-width: 1180px; margin: auto; padding: 1rem 2rem 3rem; color: var(--
   .browse-panel, .detail-panel, .map-panel { width: 100%; }
   .map-panel { order: 3; }
   .filter-grid { grid-template-columns: 1fr; }
-  .type-actions button { min-height: 44px; }
+  .type-actions button { min-height: 44.5px; }
   .detail-facts { grid-template-columns: 1fr; }
   .stat-ribbon { gap: .5rem 1.4rem; }
   .stat-ribbon .stat-value { font-size: 1.5rem; }
