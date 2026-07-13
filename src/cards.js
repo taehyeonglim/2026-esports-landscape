@@ -15,6 +15,7 @@ export function createEntryCard(entry, { selected = false } = {}) {
   card.type = "button";
   card.className = "entry-card";
   card.dataset.entryId = entry.id;
+  card.dataset.status = entry.operational_status;
   if (selected) card.setAttribute("aria-current", "true");
 
   const title = document.createElement("strong");
