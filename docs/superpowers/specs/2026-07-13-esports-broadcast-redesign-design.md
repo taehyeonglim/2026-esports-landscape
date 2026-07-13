@@ -65,9 +65,9 @@
 ### 2.1 메인 인덱스 (`index.html` + `styles/main.css` 재작성)
 
 - **헤더**: 풀블리드 딥네이비 그라디언트 + 사선 스트라이프 텍스처. 아이브로우는 Rajdhani 골드 대문자, H1은 Pretendard Black 대형, 골드+블루 더블 라인, 헤더 하단 사선 컷.
-- **통계 리본**(신규 장식 요소 1개): 헤더에 `230 ENTRIES · 17 REGIONS · VERIFIED n` 방송 스코어보드 스타일 배지 줄. 숫자는 하드코딩하지 않고 `src/app.js`가 로드된 `site.v3.json`의 meta/entries에서 채운다. 데이터 로드 실패 시 리본은 비어 있거나 숨긴다(오류를 만들지 않는다).
+- **통계 리본**(신규 장식 요소 1개): 헤더에 `230 ENTRIES · 17 REGIONS · 230 SOURCES` 방송 스코어보드 스타일 배지 줄. 숫자는 하드코딩하지 않고 `src/app.js`가 로드된 `site.v3.json`의 entries/regions/sources 배열 길이에서 채운다. 데이터 로드 실패 시 리본은 숨긴 채 유지한다(오류를 만들지 않는다). *(수정 2026-07-13: 원안의 `VERIFIED n`은 현재 데이터 전수가 `needs_review`라 "VERIFIED 0"으로 표시되어 오해를 유발하므로 `SOURCES`로 교체.)*
 - **지역 선택 + 학교/대회/시설 버튼**: 방송 탭 스타일. 사선 컷 모서리, `aria-pressed=true` 시 골드 채움 + 네이비 글자.
-- **결과 카드**: `--bg-2` 표면 + 좌측 상태 바, 메타 라벨(지역·분류) Rajdhani 대문자, 호버 시 골드 테두리 + 상승, `aria-current=true` 시 골드 강조 유지.
+- **결과 카드**: `--bg-2` 표면 + 좌측 상태 바, 메타 라벨(지역·분류) Rajdhani 대문자, 호버 시 골드 테두리 + 상승, `aria-current=true` 시 골드 강조 유지. 상태 바 색은 엔트리의 실제 어휘인 `operational_status`(current=민트, ended=회색, needs_review=앰버)를 따르며, 이를 위해 `src/cards.js`의 `createEntryCard`에 `card.dataset.status = entry.operational_status` 1줄을 추가한다. *(수정 2026-07-13: 원안의 verified/provisional은 파이프라인 어휘로 공개 엔트리에 없는 필드이며, 카드 DOM에 상태 속성이 없어 CSS만으로 구분 불가.)*
 - **상세 패널**: 로워서드 스타일 제목 블록, 출처 링크는 `--blue`, dt/dd 라벨 그리드.
 - **지도 패널**: 다크 배경 위 경계선 블루 글로우 스트로크, 선택 지역 골드 하이라이트. (SVG 스트로크 색이 JS/CSS 어디서 정의되는지 구현 시 확인하고, JS 하드코딩이면 CSS 변수로 옮기는 최소 수정 허용.)
 - **푸터**: 다크 배경, 가는 라인, research 링크는 `--blue`.
@@ -102,7 +102,7 @@
 | Python 테스트 114개 | 회귀 확인용 1회 실행, 전부 통과 |
 | 비주얼 | 데스크톱/모바일 뷰포트 스크린샷으로 직접 확인 |
 
-- `src/app.js` 수정은 통계 리본 채우기 몇 줄로 한정한다.
+- JS 수정은 `src/app.js`의 통계 리본 연결 몇 줄, 통계 리본 전용 신규 모듈 `src/stat-ribbon.js`, `src/cards.js`의 dataset 1줄로 한정한다.
 - 기존 테스트 파일은 수정하지 않는다. 통계 리본 동작 검증이 필요하면 테스트를 추가만 한다.
 
 ## 범위 밖 (하지 않는 것)
