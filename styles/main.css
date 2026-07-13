@@ -99,7 +99,9 @@ body {
 .results-heading h2, .map-heading h2 { font-size: 1.15rem; margin: 0; }
 .results-heading p, .map-heading p { color: var(--muted); margin: .2rem 0; }
 
-/* ── 입력 컨트롤 ────────────────────────────────────────── */
+/* ── 입력 컨트롤 ──────────────────────────────────────────
+   44.5px 플로어: browser.e2e가 모든 button/input/select 높이 >= 44 를 측정하는데,
+   웹폰트 메트릭의 서브픽셀 스냅이 정확히 44px를 간헐적으로 밑돌게 만든다. 44px로 되돌리지 말 것. */
 input, select, button { font: inherit; }
 input, select {
   width: 100%; height: max(44.5px, 2.75em); min-height: 44.5px;

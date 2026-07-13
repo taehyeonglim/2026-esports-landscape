@@ -26,6 +26,7 @@ h1 { margin: 0; font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spac
 h2 { margin: 0 0 14px; font-size: 21px; }
 h3 { margin: 0 0 6px; font-size: 16px; }
 .lede { max-width: 720px; margin: 7px 0 14px; color: var(--muted); }
+/* 44px는 browser.e2e가 toHaveCSS로 정확히 고정한 계약값 — 44.5px로 "정리"하면 테스트가 깨진다. */
 .back-link {
   display: inline-flex; align-items: center; min-height: 44px; min-width: 44px;
   padding: 7px 12px; border: 1px solid var(--line-strong); background: var(--bg-2);
