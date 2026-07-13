@@ -1,0 +1,7 @@
+64a2b7110454edf0e5f555785273b5817d7e3a0a107a55acf8e4150e09a31557  PretendardStdVariable.woff2
+7597c31a957ae3d2e1ebc786238752d883c15ce2e6b5da617dc3453a9fd86335  Rajdhani-Bold.woff2
+35f7e628ec8e7dd3bf434e95ce28289803401f12d8605c56ca83db2b4b301d33  Rajdhani-SemiBold.woff2
+
+origins:
+- PretendardStdVariable.woff2: https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/woff2/PretendardStdVariable.woff2 (SIL OFL 1.1, LICENSE-pretendard.txt)
+- Rajdhani-SemiBold.woff2 / Rajdhani-Bold.woff2: Google Fonts css2 API latin subset, family=Rajdhani wght 600/700 (SIL OFL 1.1, LICENSE-rajdhani.txt)
