@@ -1,0 +1,50 @@
+/* Design tokens — league broadcast night theme. main.css/research.css 공용. */
+@font-face {
+  font-family: "Pretendard Std Variable";
+  src: url("fonts/PretendardStdVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("fonts/Rajdhani-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rajdhani";
+  src: url("fonts/Rajdhani-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --bg-0: #0a1220;
+  --bg-1: #0e1a2e;
+  --bg-2: #14243c;
+  --bg-3: #1c3050;
+  --line: #26415f;
+  --line-strong: #3a5c85;
+  --ink: #e8eef7;
+  --muted: #9fb2c8;
+  --gold: #e3b341;
+  --gold-soft: #f2cf7e;
+  --blue: #4da3ff;
+  --focus: #6cb8ff;
+  --status-current: #35d6a7;
+  --status-needs-review: #f0a35e;
+  --status-ended: #9fb2c8;
+  --danger: #ff9d8f;
+  --font-body: "Pretendard Std Variable", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-display: "Rajdhani", "Pretendard Std Variable", system-ui, sans-serif;
+  --cut: 12px;
+  --speed-fast: 150ms;
+  --speed-slow: 240ms;
+  --stripe: repeating-linear-gradient(-55deg, transparent 0 22px, rgba(77, 163, 255, 0.05) 22px 24px, transparent 24px 60px, rgba(227, 179, 65, 0.05) 60px 62px);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --speed-fast: 0ms; --speed-slow: 0ms; }
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
