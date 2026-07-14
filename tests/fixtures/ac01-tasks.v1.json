@@ -2,10 +2,10 @@
   "fixture_version": "ac01-tasks.v1",
   "revision": 2,
   "human_approval": {
-    "status": "pending",
-    "approved_by": null,
-    "approved_at": null,
-    "note": "벤치마킹 홈 동선(매트릭스 셀 → 카드 → 상세 → 출처)으로 재정의됨. 저장소 소유자의 검수·승인 대기."
+    "status": "approved",
+    "approved_by": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
+    "note": "저장소 소유자가 벤치마킹 홈 동선(매트릭스 셀 → 카드 → 상세 → 출처) revision 2를 검수하고 승인했습니다.",
+    "approved_at": "2026-07-14T00:34:50Z"
   },
   "tasks": [
     {
