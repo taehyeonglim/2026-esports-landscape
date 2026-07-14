@@ -19,9 +19,6 @@ on:
         description: Repository-relative PII-free signed budget evidence JSON
         required: true
         type: string
-  schedule:
-    - cron: "17 3 * * *"
-
 permissions:
   contents: read
 
