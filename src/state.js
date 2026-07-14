@@ -102,7 +102,7 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
     case ActionTypes.SET_MAP_LOAD_STATE:
       return { ...state, mapLoadState: normalizeMapLoadState(action.mapLoadState) };
     case ActionTypes.RESET_FILTERS:
-      return { ...state, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], sort: null, entry: null };
+      return { ...state, type: null, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], sort: null, entry: null };
     default:
       return state;
   }

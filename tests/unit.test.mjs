@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { createProjection, geometryPath, projectPosition } from "../src/projection.js";
 import { RegionLoader, regionGeoUrl, validateRegionGeoJson } from "../src/region-loader.js";
 import { filterEntries, matchesQuery, parseSearchTerms } from "../src/search.js";
-import { createAppState } from "../src/state.js";
+import { actions, appReducer, createAppState } from "../src/state.js";
 import { canonicalUrl, decodeUrl, encodeUrl } from "../src/url-codec.js";
 import { validateResearchData } from "../src/research.js";
 
@@ -21,6 +21,17 @@ test("state normalizes query and deduplicates multi-select filters", () => {
   const state = createAppState({ query: "  부산   e스포츠 ", category: ["시설", "시설", "정책"] });
   assert.equal(state.query, "부산 e스포츠");
   assert.deepEqual(state.category, ["시설", "정책"]);
+});
+
+test("reset filters clears the advanced type filter alongside search, filters, sort, and entry", () => {
+  const state = createAppState({ region: "busan", type: "other", query: "조례", category: ["지자체정책·조례"], sort: "name-asc", entry: "busan-001" });
+  const reset = appReducer(state, actions.resetFilters());
+  assert.equal(reset.type, null);
+  assert.equal(reset.region, "busan");
+  assert.equal(reset.query, "");
+  assert.deepEqual(reset.category, []);
+  assert.equal(reset.sort, null);
+  assert.equal(reset.entry, null);
 });
 
 test("URL codec keeps only allowed values and has canonical ordering", () => {
