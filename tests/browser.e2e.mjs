@@ -65,6 +65,19 @@ test("콜드 홈은 17개 시·도 지형도와 230건 중 첫 12건을 보여�
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
 });
 
+test("전용 브랜드 마크와 제작자 GitHub 링크가 실제 자산으로 노출된다", async ({ page }) => {
+  await page.goto("/index.html");
+  const logo = page.locator(".wordmark-mark img");
+  await expect(logo).toBeVisible();
+  await expect.poll(() => logo.evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
+  await expect(page.locator('link[rel="icon"][sizes="32x32"]')).toHaveAttribute("href", "assets/favicon-32.png");
+  const creator = page.locator(".footer-credit .creator-name");
+  await expect(creator).toHaveText("Taehyeong Lim");
+  await expect(creator).toHaveAttribute("href", "https://github.com/taehyeonglim");
+  await expect(creator).toHaveAttribute("rel", /\bme\b/);
+  await expect(page.locator(".creator-github")).toContainText("@taehyeonglim");
+});
+
 test("전국 지형도와 대표 사례가 데이터 탐색으로 이어진다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#editorial-insights .signal-card")).toHaveCount(4);

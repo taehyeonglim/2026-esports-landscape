@@ -6,6 +6,9 @@
   <meta name="description" content="17개 시·도 230개 공개 사례를 따라 전국 학교 e스포츠의 서로 다른 시작과 연결을 탐색하는 인터랙티브 지형도입니다.">
   <meta name="theme-color" content="#06111f">
   <title>학교 e스포츠 지형도 2026</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="preload" href="styles/fonts/Rajdhani-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="styles/fonts/Rajdhani-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles/tokens.css">
@@ -17,7 +20,7 @@
   <header class="site-header">
     <nav class="site-nav" aria-label="주요 메뉴">
       <a class="wordmark" href="./" aria-label="학교 e스포츠 지형도 홈">
-        <span class="wordmark-mark" aria-hidden="true">SE</span>
+        <span class="wordmark-mark" aria-hidden="true"><img src="assets/esports-landscape-mark.png" width="1024" height="1024" alt=""></span>
         <span>학교 e스포츠 지형도</span>
       </a>
       <div class="nav-links">
@@ -167,8 +170,13 @@
   </main>
 
   <footer>
-    <div><strong>학교 e스포츠 지형도 2026</strong><p>공개자료로 확인한 사례이며 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
-    <div class="footer-links"><a href="research/">연구 방법과 데이터 한계</a><a href="data/site.v3.json">공개 데이터 보기</a></div>
+    <div class="footer-identity"><strong>학교 e스포츠 지형도 2026</strong><p>공개자료로 확인한 사례이며 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
+    <div class="footer-credit">
+      <span>CREATED &amp; CURATED BY</span>
+      <a class="creator-name" href="https://github.com/taehyeonglim" target="_blank" rel="me noopener noreferrer">Taehyeong Lim</a>
+      <a class="creator-github" href="https://github.com/taehyeonglim" target="_blank" rel="me noopener noreferrer">@taehyeonglim · GitHub ↗</a>
+    </div>
+    <nav class="footer-links" aria-label="푸터 메뉴"><a href="research/">연구 방법과 데이터 한계</a><a href="data/site.v3.json">공개 데이터 보기</a></nav>
   </footer>
   <script type="module" src="src/app.js"></script>
 </body>

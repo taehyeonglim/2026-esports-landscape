@@ -25,6 +25,7 @@ async function releaseFiles(directory = root, prefix = "") {
 test("built release has base-aware app, data, GeoJSON, and research surfaces", async () => {
   for (const relativePath of [
     "index.html", "src/app.js", "src/research.js", "styles/main.css", "styles/research.css",
+    "assets/esports-landscape-mark.png", "assets/favicon-32.png", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png",
     "data/site.v3.json", "data/national-map.v1.json", "data/resource-coverage.v3.json", "geo/regions/busan.geojson", "research/index.html", "release-manifest.json",
   ]) await exists(relativePath);
   const [app, research] = await Promise.all([read("src/app.js"), read("src/research.js")]);
@@ -43,6 +44,10 @@ test("public DOM exposes the interactive national landscape before the card arch
   assert.match(html, /id="compare-matrix"/);
   for (const selector of ["national-map", "map-readout", "region-shortcuts", "region-lens", "signals", "cases", "editorial-insights", "featured-stories", "load-more"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /assets\/school-esports-landscape\.webp/);
+  assert.match(html, /assets\/esports-landscape-mark\.png/);
+  assert.match(html, /rel="icon"[^>]+assets\/favicon-32\.png/);
+  assert.match(html, /href="https:\/\/github\.com\/taehyeonglim"/);
+  assert.match(html, />Taehyeong Lim<\/a>/);
   assert.match(html, /class="category-actions"/);
   assert.match(html, /id="type-filter"/);
   assert.match(html, /aria-live=/);
@@ -60,6 +65,7 @@ test("release graph resolves local links, all 17 GeoJSON regions, and checked ma
     read("index.html"), read("research/index.html"), read("src/research.js"), read("data/site.v3.json"), read("release-manifest.json"),
   ]);
   assert.match(research, /href="\.\.\/index\.html"/);
+  assert.match(research, /rel="icon"[^>]+\.\.\/assets\/favicon-32\.png/);
   assert.match(research, /src="\.\.\/src\/research\.js"/);
   assert.match(research, /id="research-load-error"[^>]*role="alert"/);
   assert.match(research, /<(?:ul)[^>]*id="(?:typology-axes|negative-evidence|data-gaps|site-notes)"/);
