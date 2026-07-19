@@ -65,6 +65,7 @@ if (basePath !== '/2026-esports-landscape/') throw new Error('package.json must 
 const regionFiles = (await readdir(join(ROOT, 'geo/regions'))).filter(name => name.endsWith('.geojson')).sort();
 if (regionFiles.length !== 17) throw new Error('Validated staging requires exactly 17 region GeoJSON files.');
 const publicDataContracts = [
+  'data/national-map.v1.json',
   'data/site.v3.json',
   'data/resource-coverage.v3.json',
   'data/sources.v3.json',

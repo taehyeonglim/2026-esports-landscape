@@ -6,11 +6,12 @@
     "githubPagesBase": "/2026-esports-landscape/"
   },
   "scripts": {
+    "map:build": "node scripts/build-national-map.mjs",
     "extract": "node scripts/extract-data.mjs",
     "validate": "node scripts/validate-data.mjs",
     "build": "node scripts/build.mjs",
     "test": "npm run test:unit",
-    "test:unit": "node --test tests/unit.test.mjs tests/stat-ribbon.test.mjs tests/matrix.test.mjs tests/editorial.test.mjs",
+    "test:unit": "node --test tests/unit.test.mjs tests/stat-ribbon.test.mjs tests/matrix.test.mjs tests/editorial.test.mjs tests/landscape.test.mjs",
     "test:e2e": "node scripts/build.mjs && node --test tests/e2e-contract.test.mjs",
     "e2e": "npm run test:e2e",
     "test:browser": "npm run build && playwright test",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.61.1",
-    "ajv": "^8.17.1"
+    "ajv": "^8.17.1",
+    "mapshaper": "^0.7.45"
   }
 }

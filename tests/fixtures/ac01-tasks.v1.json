@@ -1,11 +1,11 @@
 {
   "fixture_version": "ac01-tasks.v1",
-  "revision": 2,
+  "revision": 3,
   "human_approval": {
-    "status": "approved",
-    "approved_by": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
-    "note": "저장소 소유자가 벤치마킹 홈 동선(매트릭스 셀 → 카드 → 상세 → 출처) revision 2를 검수하고 승인했습니다.",
-    "approved_at": "2026-07-14T00:34:50Z"
+    "status": "pending",
+    "approved_by": null,
+    "note": "인터랙티브 지형도 동선(전국 지도 → 지역 활동 유형 → 카드 → 상세 → 출처) revision 3의 저장소 소유자 검수를 기다립니다.",
+    "approved_at": null
   },
   "tasks": [
     {

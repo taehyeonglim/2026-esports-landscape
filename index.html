@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="교실 동아리에서 교육청 대회와 지역 정책까지, 전국 학교 e스포츠의 여러 시작점과 연결을 공개 근거로 살펴봅니다.">
-  <meta name="theme-color" content="#081221">
+  <meta name="description" content="17개 시·도 230개 공개 사례를 따라 전국 학교 e스포츠의 서로 다른 시작과 연결을 탐색하는 인터랙티브 지형도입니다.">
+  <meta name="theme-color" content="#06111f">
   <title>학교 e스포츠 지형도 2026</title>
   <link rel="preload" href="styles/fonts/Rajdhani-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="styles/fonts/Rajdhani-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/school-esports-landscape.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <a class="skip-link" href="#results-heading">사례 탐색으로 건너뛰기</a>
+  <a class="skip-link" href="#national-map-heading">전국 지형도로 건너뛰기</a>
 
   <header class="site-header">
     <nav class="site-nav" aria-label="주요 메뉴">
@@ -22,101 +21,103 @@
         <span>학교 e스포츠 지형도</span>
       </a>
       <div class="nav-links">
-        <a href="#signals">전국 흐름</a>
-        <a href="#paths">시작점</a>
-        <a href="#cases">대표 사례</a>
-        <a href="#explore">데이터 탐색</a>
+        <a href="#landscape">전국 지형도</a>
+        <a href="#cases">현장 기록</a>
+        <a href="#archive">데이터 탐색</a>
       </div>
     </nav>
 
     <div class="hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">SCHOLASTIC ESPORTS LANDSCAPE · 2026</p>
-        <h1>학교 e스포츠는<br><em>어디에서, 어떻게</em><br>시작되고 있을까?</h1>
-        <p class="hero-lede">교실의 작은 동아리부터 교육청 대회, 지역의 공간과 정책까지. 전국에서 공개자료로 확인된 움직임을 따라가며 서로 다른 시작과 연결을 발견합니다.</p>
+        <h1>전국의 학교<br>e스포츠는<br><em>하나의 지도가 아니다.</em></h1>
+        <p class="hero-lede">교실의 동아리, 교육청 대회, 지역의 공간과 정책. 17개 시·도에서 공개자료로 확인된 230개의 시작을 따라가 보세요.</p>
         <div class="hero-actions">
-          <a class="primary-action" href="#paths">나의 시작점 찾기</a>
-          <a class="text-action" href="#explore">전국 데이터 직접 보기 <span aria-hidden="true">↘</span></a>
+          <a class="primary-action" href="#landscape">전국 흐름 탐색하기 <span aria-hidden="true">↘</span></a>
+          <a class="text-action" href="#archive">사례 직접 찾기</a>
         </div>
         <p class="stat-ribbon" id="stat-ribbon" hidden></p>
       </div>
-      <figure class="hero-visual">
-        <img src="assets/school-esports-landscape.webp" width="1536" height="1024" alt="교실 동아리, 지역 대회 무대, 교육 공간과 지원 체계가 하나의 길로 이어지는 편집형 일러스트레이션">
-        <figcaption>하나의 정답보다, 서로 다른 시작이 연결되는 과정을 봅니다.</figcaption>
-      </figure>
+
+      <section class="hero-map" aria-labelledby="national-map-heading">
+        <div class="map-frame-heading">
+          <div>
+            <span>LIVE DATA ATLAS</span>
+            <h2 id="national-map-heading">전국 공개 사례 분포</h2>
+          </div>
+          <span class="map-coordinate" aria-hidden="true">KR / 17</span>
+        </div>
+        <div class="national-map-stage">
+          <svg id="national-map" role="group" aria-label="17개 시·도별 공개자료 확인 사례 지도"></svg>
+          <div class="map-orbit map-orbit-one" aria-hidden="true"></div>
+          <div class="map-orbit map-orbit-two" aria-hidden="true"></div>
+        </div>
+        <div class="map-readout" id="map-readout" aria-live="polite">
+          <span>LOADING LANDSCAPE</span><strong>지형도를 불러오고 있습니다</strong>
+        </div>
+        <div class="map-legend"><span><i></i> 확인 사례 적음</span><span><i></i> 확인 사례 많음</span></div>
+        <div class="region-shortcuts" id="region-shortcuts" aria-label="지역 바로 선택"></div>
+      </section>
     </div>
   </header>
 
-  <main class="page-shell">
-    <section class="editorial-section signals-section" id="signals" aria-labelledby="signals-heading">
+  <main>
+    <section class="region-lens-section" id="landscape" aria-label="선택 지역 탐색">
+      <div class="region-lens" id="region-lens"></div>
+    </section>
+
+    <section class="signals-section" id="signals" aria-labelledby="signals-heading">
       <div class="section-heading">
-        <p class="section-number">01 / LANDSCAPE</p>
+        <p class="section-number">01 / SIGNALS</p>
         <div>
-          <h2 id="signals-heading">지금, 전국에서 보이는 움직임</h2>
-          <p>완전한 규모 조사가 아니라 공개자료에 드러난 활동의 모양입니다. 숫자보다 어떤 방식의 시작이 확인되는지에 주목했습니다.</p>
+          <p class="section-kicker">숫자를 순위가 아닌 신호로 읽습니다</p>
+          <h2 id="signals-heading">전국에서 먼저<br>드러난 네 개의 장면</h2>
+          <p>공개자료에서 어떤 활동이 자주 기록됐는지를 보여 줍니다. 실제 운영 규모나 현재 상태를 뜻하지 않습니다.</p>
         </div>
       </div>
       <div class="signal-grid" id="editorial-insights" aria-live="polite"></div>
     </section>
 
-    <section class="editorial-section paths-section" id="paths" aria-labelledby="paths-heading">
-      <div class="section-heading section-heading-light">
-        <p class="section-number">02 / STARTING POINTS</p>
+    <section class="cases-section" id="cases" aria-labelledby="cases-heading">
+      <div class="section-heading section-heading-dark">
+        <p class="section-number">02 / FIELD NOTES</p>
         <div>
-          <h2 id="paths-heading">당신은 무엇을 시작하려 하나요?</h2>
-          <p>데이터 분류를 고르는 대신, 지금 가진 질문에서 출발해 관련 사례로 이동하세요.</p>
-        </div>
-      </div>
-      <div class="path-grid">
-        <button class="path-card" type="button" data-story-category="학교동아리·팀">
-          <span class="path-index">01</span><strong>학교 안에서<br>작게 시작하기</strong><span>동아리·팀 사례 보기</span>
-        </button>
-        <button class="path-card" type="button" data-story-category="교육청대회·사업">
-          <span class="path-index">02</span><strong>학생 대회를<br>설계하기</strong><span>교육청 대회·사업 보기</span>
-        </button>
-        <button class="path-card" type="button" data-story-category="지자체정책·조례">
-          <span class="path-index">03</span><strong>지역의 지원을<br>만들기</strong><span>정책·조례 사례 보기</span>
-        </button>
-        <button class="path-card" type="button" data-story-category="경기장·인프라">
-          <span class="path-index">04</span><strong>활동할 공간을<br>연결하기</strong><span>경기장·인프라 보기</span>
-        </button>
-        <button class="path-card" type="button" data-story-category="대학학과·전공·동아리">
-          <span class="path-index">05</span><strong>진로와 배움을<br>이어 보기</strong><span>대학·전공 사례 보기</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="editorial-section cases-section" id="cases" aria-labelledby="cases-heading">
-      <div class="section-heading">
-        <p class="section-number">03 / FIELD NOTES</p>
-        <div>
-          <h2 id="cases-heading">서로 다른 세 개의 시작</h2>
-          <p>대회, 교실, 지역 정책에서 출발한 사례를 골랐습니다. 사례를 열면 수집된 근거와 검토 상태를 함께 확인할 수 있습니다.</p>
+          <p class="section-kicker">서로 다른 출발점, 하나의 생태계</p>
+          <h2 id="cases-heading">현장에서 발견한<br>세 개의 시작</h2>
+          <p>대회, 교실, 지역 정책에서 출발한 사례입니다. 각 기록에서 수집 근거와 검토 상태까지 확인할 수 있습니다.</p>
         </div>
       </div>
       <div class="featured-grid" id="featured-stories"></div>
     </section>
 
-    <section class="matrix-panel" id="explore" aria-labelledby="matrix-heading">
-      <div class="data-lab-intro">
-        <p class="section-number">04 / DATA LAB</p>
-        <div>
-          <p class="data-kicker">이제, 직접 비교해 보세요</p>
-          <h2 id="matrix-heading">전국 데이터 탐색실</h2>
-          <p>17개 시·도에서 어떤 종류의 사례가 공개자료로 확인되는지 한눈에 보고, 원하는 셀에서 바로 세부 사례로 이동할 수 있습니다.</p>
-        </div>
-        <a href="research/">연구 방법과 한계 <span aria-hidden="true">↗</span></a>
+    <section class="story-break" aria-label="학교 e스포츠가 연결되는 풍경">
+      <img src="assets/school-esports-landscape.webp" width="1536" height="1024" loading="lazy" alt="교실 동아리, 지역 대회 무대, 교육 공간과 지원 체계가 하나의 길로 이어지는 편집형 일러스트레이션">
+      <div class="story-break-copy">
+        <p>FIELD NOTE / 2026</p>
+        <blockquote>“중요한 것은 어느 지역이 앞섰는지가 아니라,<br>서로 다른 시작이 어떻게 다음 장면으로 이어지는가입니다.”</blockquote>
       </div>
-      <p class="matrix-caveat"><strong>해석 안내</strong> 공개자료에서 확인한 사례 수이며, 지역의 실제 활동 규모나 순위를 나타내지 않습니다.</p>
-      <div class="matrix-scroll" id="compare-matrix"></div>
     </section>
 
-    <section class="explorer-section" aria-labelledby="results-heading">
+    <details class="matrix-panel" id="explore">
+      <summary>
+        <span class="section-number">03 / PRECISION TABLE</span>
+        <span><strong>17개 시·도 × 활동 유형 정밀 비교표</strong><small>지역과 유형의 교차점을 숫자로 직접 비교합니다.</small></span>
+        <span class="summary-action">비교표 열기 <i aria-hidden="true">＋</i></span>
+      </summary>
+      <div class="matrix-content">
+        <p class="matrix-caveat"><strong>해석 안내</strong> 공개자료에서 확인한 사례 수이며, 지역의 실제 활동 규모나 순위를 나타내지 않습니다.</p>
+        <div class="matrix-scroll" id="compare-matrix"></div>
+        <a class="method-link" href="research/">연구 방법과 데이터 한계 보기 ↗</a>
+      </div>
+    </details>
+
+    <section class="explorer-section" id="archive" aria-labelledby="results-heading">
       <div class="explorer-heading">
-        <p class="section-number">05 / OPEN ARCHIVE</p>
+        <p class="section-number">04 / OPEN ARCHIVE</p>
         <div>
-          <h2>조건으로 직접 찾아보기</h2>
-          <p>이름, 지역, 학교급과 활동 유형을 조합해 230개의 공개 사례를 더 세밀하게 탐색합니다.</p>
+          <p class="section-kicker">230개의 근거 있는 시작</p>
+          <h2>조건으로 직접<br>찾아보기</h2>
+          <p>이름, 지역, 학교급과 활동 유형을 조합해 필요한 선례를 찾고 원문 근거까지 이동하세요.</p>
         </div>
       </div>
 
@@ -145,6 +146,7 @@
           </details>
           <p id="live-status" class="sr-only" aria-live="polite"></p>
           <div id="result-list" class="result-list"></div>
+          <button id="load-more" class="load-more" type="button" hidden>사례 더 보기</button>
         </section>
 
         <section id="detail-panel" class="detail-panel" aria-labelledby="detail-heading" hidden>
@@ -153,7 +155,7 @@
         </section>
 
         <section class="map-panel" aria-labelledby="map-heading">
-          <div class="map-heading"><h2 id="map-heading">선택 지역</h2><p id="map-status" aria-live="polite">지역을 선택하면 경계를 불러옵니다.</p></div>
+          <div class="map-heading"><h2 id="map-heading">선택 지역 경계</h2><p id="map-status" aria-live="polite">지역을 선택하면 경계를 불러옵니다.</p></div>
           <svg id="region-map" viewBox="0 0 860 680" role="img" aria-label="선택한 지역의 행정 경계 참고 지도" aria-describedby="region-map-description">
             <desc id="region-map-description">선택한 지역의 행정 경계를 표시하는 비대화형 참고도입니다.</desc>
             <g id="region-map-geometry"></g>
@@ -165,7 +167,7 @@
   </main>
 
   <footer>
-    <div><strong>학교 e스포츠 지형도 2026</strong><p>확인된 사례는 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
+    <div><strong>학교 e스포츠 지형도 2026</strong><p>공개자료로 확인한 사례이며 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
     <div class="footer-links"><a href="research/">연구 방법과 데이터 한계</a><a href="data/site.v3.json">공개 데이터 보기</a></div>
   </footer>
   <script type="module" src="src/app.js"></script>
