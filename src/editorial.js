@@ -5,9 +5,9 @@ const FEATURED_IDS = Object.freeze([
 ]);
 
 const FEATURED_NOTES = Object.freeze({
-  "busan-001": "교육청이 거점 공간과 운영 인력을 연결해 학생 대회를 만든 사례",
-  "elementary-jeju-2025-jejunam-esports-room": "학교 안의 전용 공간을 수업과 활동의 출발점으로 삼은 사례",
-  "national-completion-jeonbuk-esports-ordinance": "지역 차원의 제도적 지원 근거를 마련한 사례",
+  "busan-001": "교육청 주관 학생 대회 및 거점 공간 운영 사례",
+  "elementary-jeju-2025-jejunam-esports-room": "학교 내 e스포츠실을 수업과 학생 활동에 활용한 사례",
+  "national-completion-jeonbuk-esports-ordinance": "지역 e스포츠 지원 근거를 규정한 조례",
 });
 
 function countBy(entries, key) {
@@ -27,26 +27,26 @@ export function editorialModel(site) {
     {
       count: typeCounts.get("event") ?? 0,
       label: "대회·행사",
-      title: "함께 모이는 장면이 가장 먼저 보입니다",
-      body: "교육청과 지역 단위의 대회·사업이 공개자료에서 가장 넓게 확인됩니다.",
+      title: "교육청·지역 대회 및 사업",
+      body: "대회·행사 유형으로 분류된 공개자료입니다.",
     },
     {
       count: typeCounts.get("school") ?? 0,
       label: "학교 기반",
-      title: "학교 안의 작은 시작도 이어지고 있습니다",
-      body: "동아리, 팀, 수업처럼 일상적인 학교 공간에서 시작된 기록을 모았습니다.",
+      title: "학교 동아리·팀·수업",
+      body: "학교 기반 유형으로 분류된 공개자료입니다.",
     },
     {
       count: typeCounts.get("facility") ?? 0,
       label: "공간·시설",
-      title: "활동을 지속할 장소가 만들어지고 있습니다",
-      body: "상설경기장부터 교육 거점까지, 프로그램을 담는 지역 공간이 확인됩니다.",
+      title: "경기장·교육 시설",
+      body: "공간·시설 유형으로 분류된 공개자료입니다.",
     },
     {
       count: typeCounts.get("other") ?? 0,
       label: "정책·진로·미디어",
-      title: "경기 밖의 생태계도 함께 자라고 있습니다",
-      body: "정책, 조례, 대학 전공과 언론 기록이 학교 e스포츠의 외연을 보여 줍니다.",
+      title: "정책·조례·진로·미디어",
+      body: "정책, 조례, 대학 전공, 언론 관련 공개자료입니다.",
     },
   ];
   const featured = FEATURED_IDS.map((id) => {

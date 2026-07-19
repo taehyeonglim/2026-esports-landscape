@@ -60,6 +60,19 @@ test("public DOM exposes the interactive national landscape before the card arch
   assert.match(app, /data\/national-map\.v1\.json/);
 });
 
+test("landing copy presents data directly without editorial metaphors", async () => {
+  const [html, editorial, landscape] = await Promise.all([
+    read("index.html"), read("src/editorial.js"), read("src/landscape.js"),
+  ]);
+  const landingCopy = `${html}\n${editorial}\n${landscape}`;
+  assert.doesNotMatch(landingCopy, /시작|흐름|장면|출발점|이어|놓인다|이동하세요|생태계|숫자가 현장/);
+  for (const statement of ["공개자료 230건", "공개자료 유형별 건수", "대표 사례", "원문 출처"]) {
+    assert.match(html, new RegExp(statement));
+  }
+  assert.match(editorial, /대회·행사 유형으로 분류된 공개자료입니다/);
+  assert.match(landscape, /17개 시·도 공개자료 현황/);
+});
+
 test("release graph resolves local links, all 17 GeoJSON regions, and checked manifest assets", async () => {
   const [index, research, researchScript, dataText, manifestText] = await Promise.all([
     read("index.html"), read("research/index.html"), read("src/research.js"), read("data/site.v3.json"), read("release-manifest.json"),

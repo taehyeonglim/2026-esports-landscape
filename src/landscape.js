@@ -89,7 +89,7 @@ export function renderMapReadout(container, region) {
   const eyebrow = document.createElement("span");
   eyebrow.textContent = region ? "SELECTED REGION" : "EXPLORE 17 REGIONS";
   const title = document.createElement("strong");
-  title.textContent = region ? region.name : "지역을 선택해 흐름을 확인하세요";
+  title.textContent = region ? region.name : "지역을 선택해 공개자료 건수를 확인하세요";
   const note = document.createElement("p");
   note.textContent = region
     ? `${region.total}건 · ${region.categoryTotals.slice(0, 2).map(({ category, count }) => `${category} ${count}`).join(" · ")}`
@@ -123,10 +123,10 @@ export function renderRegionLens(container, model, selectedRegion, { onCategory,
   const intro = document.createElement("div");
   intro.className = "region-lens-copy";
   appendText(intro, "p", "section-number", region ? `REGION / ${region.shortName}` : "NATIONAL / 17 REGIONS");
-  appendText(intro, "h2", "", region ? `${region.name}에서 확인된 시작` : "지역을 고르면, 숫자가 현장이 됩니다");
+  appendText(intro, "h2", "", region ? `${region.name} 공개자료 ${region.total}건` : "17개 시·도 공개자료 현황");
   appendText(intro, "p", "region-lens-lede", region
-    ? `공개자료에서 ${region.total}건을 확인했습니다. 많이 보인 활동 유형과 최근 사례부터 살펴보세요.`
-    : "지도에서 시·도를 선택하면 대회, 학교 활동, 정책과 공간이 그 지역에서 어떤 모양으로 나타나는지 바로 이어집니다.");
+    ? "활동 유형별 건수와 최근 사례를 표시합니다."
+    : "시·도를 선택하면 해당 지역의 활동 유형별 건수와 최근 사례를 표시합니다.");
   container.append(intro);
 
   const categories = document.createElement("div");
@@ -153,10 +153,10 @@ export function renderRegionLens(container, model, selectedRegion, { onCategory,
       button.type = "button";
       button.className = "region-featured-card region-ranking-card";
       button.dataset.regionId = topRegion.id;
-      appendText(button, "span", "region-featured-meta", "PUBLIC RECORD SIGNAL");
+      appendText(button, "span", "region-featured-meta", "PUBLIC RECORD COUNT");
       appendText(button, "strong", "", topRegion.name);
       appendText(button, "span", "region-ranking-count", `${topRegion.total}건`);
-      appendText(button, "span", "region-featured-link", "지역 흐름 펼치기 →");
+      appendText(button, "span", "region-featured-link", "지역 사례 보기 →");
       button.addEventListener("click", () => onRegion?.(topRegion.id));
       cards.append(button);
     }
