@@ -366,17 +366,26 @@ function resultsHeading({ scroll = true } = {}) {
 
 function openEntry(id) {
   lastEntryTriggerId = id;
-  if (state.entry !== id) dispatch(actions.setEntry(id));
+  clearTimeout(searchTimer);
+  searchTimer = null;
+  const pendingQuery = elements.search.value;
+  if (state.entry !== id || state.query !== pendingQuery) {
+    dispatch(actions.hydrate({ ...state, view: "browse", query: pendingQuery, entry: id }));
+  }
   requestAnimationFrame(() => byId("detail-heading")?.focus({ preventScroll: !mobileQuery.matches }));
+}
+
+function restoreEntryFocus(entryId) {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    const card = entryId ? document.querySelector(`[data-entry-id="${CSS.escape(entryId)}"]`) : null;
+    (card || byId("results-heading"))?.focus({ preventScroll: true });
+  }));
 }
 
 function closeDetail() {
   const closingEntryId = state.entry || lastEntryTriggerId;
   dispatch(actions.setEntry(null), "replace");
-  requestAnimationFrame(() => {
-    const card = closingEntryId ? document.querySelector(`[data-entry-id="${CSS.escape(closingEntryId)}"]`) : null;
-    (card || byId("results-heading"))?.focus();
-  });
+  restoreEntryFocus(closingEntryId);
 }
 
 function moveToResults({ regionId = null, category = null } = {}) {
@@ -539,10 +548,7 @@ function bindEvents() {
     if (state.entry && state.entry !== previousEntry) {
       requestAnimationFrame(() => byId("detail-heading")?.focus());
     } else if (previousEntry && !state.entry) {
-      requestAnimationFrame(() => {
-        const card = document.querySelector(`[data-entry-id="${CSS.escape(previousEntry)}"]`);
-        (card || byId("results-heading"))?.focus();
-      });
+      restoreEntryFocus(previousEntry);
     }
   });
 }
@@ -558,7 +564,9 @@ async function initializeNationalMap() {
     elements.nationalMap.addEventListener("focusout", (event) => {
       if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     });
-    render();
+    updateNationalMap(elements.nationalMap, state.region);
+    renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
+    renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
   } catch (error) {
     console.error("National landscape map unavailable:", error);
     elements.nationalMap.hidden = true;
