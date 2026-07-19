@@ -25,7 +25,7 @@ const generatedPaths = [
   'migrations/v2-to-v3.json',
   'reports/source-normalization.json',
 ];
-const originalTopLevel = ['regions', 'negative_evidence', 'data_gaps', 'site_notes', 'typology_axes', 'coverage_by_category'];
+const originalTopLevel = ['regions', 'negative_evidence', 'data_gaps', 'site_notes', 'typology_axes'];
 const originalEntryFields = ['name', 'category', 'subtype', 'operator', 'school_level', 'district', 'address', 'lat', 'lng', 'year', 'games', 'source', 'theme_link', 'confidence', 'subtype_note', 'notes', 'loc_approx', 'id', 'region_id', 'scope', 'evidence_ids', 'coord_method', 'coord_note'];
 
 async function generatedFiles(root) {
@@ -90,10 +90,11 @@ try {
   equalGraph(firstGraph, await byteGraph(second), 'Independent extraction byte graph');
   equalGraph(firstGraph, await byteGraph(ROOT), 'Tracked generated output');
 
-  const [v2, v3, geoV2, coverage, resourceMap, sourcesFile, crosswalkFile, migration, report, schemaText, copiedSchemaText] = await Promise.all([
+  const [v2, v3, geoV2, additions, coverage, resourceMap, sourcesFile, crosswalkFile, migration, report, schemaText, copiedSchemaText] = await Promise.all([
     readJson(join(ROOT, 'baseline/v2/site.v2.json')),
     readJson(join(ROOT, 'data/site.v3.json')),
     readJson(join(ROOT, 'baseline/v2/region-geo.v2.json')),
+    readJson(join(ROOT, 'data/additions.v1.json')),
     readJson(join(ROOT, 'data/resource-coverage.v3.json')),
     readJson(join(ROOT, 'data/resource-map.v1.json')),
     readJson(join(ROOT, 'data/sources.v3.json')),
@@ -105,59 +106,65 @@ try {
   ]);
   if (schemaText !== copiedSchemaText) fail('Published schema copy differs from the tracked schema contract.');
   const schema = JSON.parse(schemaText);
+  const totalEntries = 230 + additions.entries.length;
   const validateSchema = new Ajv2020({ allErrors: true, strict: true, strictRequired: false }).compile(schema);
   if (!validateSchema(v3)) fail(`Published v3 fails JSON Schema: ${JSON.stringify(validateSchema.errors)}`);
-  if (v3.schema_version !== 3 || v2.entries.length !== 230 || v3.entries.length !== 230 || v2.regions.length !== 17 || v3.regions.length !== 17) fail('Expected schema v3 with 230 entries and 17 regions.');
+  if (v3.schema_version !== 3 || v2.entries.length !== 230 || v3.entries.length !== totalEntries || v2.regions.length !== 17 || v3.regions.length !== 17) fail('Expected schema v3 to preserve the 230-entry baseline, publish all additions, and retain 17 regions.');
   for (const key of originalTopLevel) if (!(key in v3) || stableJson(v2[key]) !== stableJson(v3[key])) fail(`Original top-level collection changed: ${key}.`);
-  for (const key of Object.keys(v2.meta)) if (!(key in v3.meta) || stableJson(v2.meta[key]) !== stableJson(v3.meta[key])) fail(`Original metadata changed: ${key}.`);
+  for (const key of Object.keys(v2.meta)) if (key !== 'entry_count' && (!(key in v3.meta) || stableJson(v2.meta[key]) !== stableJson(v3.meta[key]))) fail(`Original metadata changed: ${key}.`);
+  if (v3.meta.entry_count !== totalEntries || v3.meta.additions?.count !== additions.entries.length) fail('Published metadata does not describe the additions layer.');
   const v2ById = mapBy(v2.entries, 'id', 'Baseline entries');
+  const additionById = mapBy(additions.entries, 'id', 'Addition entries');
   const v3Ids = v3.entries.map(entry => entry.id);
-  if (v3Ids.length !== 230 || new Set(v3Ids).size !== 230 || v3Ids.some(id => !v2ById.has(id))) fail('Entry IDs are not a unique v2/v3 bijection.');
+  if (v3Ids.length !== totalEntries || new Set(v3Ids).size !== totalEntries || v3Ids.some(id => !v2ById.has(id) && !additionById.has(id))) fail('Published entry IDs do not exactly preserve the baseline plus additions.');
   if (stableJson(v2.regions) !== stableJson(v3.regions)) fail('Region lineage does not preserve the authoritative baseline.');
   if (new Set(v3.resource_types).size !== 4 || resourceTypes.some(type => !v3.resource_types.includes(type))) fail('Resource type contract is incomplete.');
   if (resourceMap.schema_version !== 1 || !['mechanically_derived_pending_owner_approval', 'approved'].includes(resourceMap.status) || !resourceMap.owner_roles || stableJson(v3.resource_map.owner_roles) !== stableJson(resourceMap.owner_roles) || v3.resource_map.status !== resourceMap.status || v3.resource_map.approved_by !== resourceMap.approved_by || v3.resource_map.approved_at !== resourceMap.approved_at || v3.resource_map.sha256 !== hash(await readFile(join(ROOT, 'data/resource-map.v1.json'), 'utf8')) || resourceMap.status === 'approved' && (!resourceMap.approved_by || !resourceMap.approved_at) || resourceMap.status !== 'approved' && (resourceMap.approved_by !== null || resourceMap.approved_at !== null)) fail('Resource map approval provenance was not preserved.');
   const mapById = mapBy(resourceMap.entries, 'entry_id', 'Resource map');
-  if (resourceMap.entries.length !== 230 || mapById.size !== 230 || new Set(resourceMap.entries.map(row => row.resource_type)).size !== 4 || resourceMap.entries.some(row => !resourceTypes.includes(row.resource_type))) fail('Resource map must contain exactly 230 entries and four resource types.');
+  if (resourceMap.entries.length !== totalEntries || mapById.size !== totalEntries || new Set(resourceMap.entries.map(row => row.resource_type)).size !== 4 || resourceMap.entries.some(row => !resourceTypes.includes(row.resource_type))) fail('Resource map must cover every published entry and four resource types.');
   for (const entry of v2.entries) if (mapById.get(entry.id)?.category !== entry.category) fail(`Resource map baseline category mismatch: ${entry.id}.`);
-  if (coverage.total_entries !== 230 || coverage.covered_entries !== 230 || coverage.entries.length !== 230) fail('Resource coverage manifest is incomplete.');
+  if (coverage.total_entries !== totalEntries || coverage.covered_entries !== totalEntries || coverage.entries.length !== totalEntries) fail('Resource coverage manifest is incomplete.');
   const coverageById = mapBy(coverage.entries, 'id', 'Coverage');
   const sourceById = mapBy(v3.sources, 'id', 'Embedded sources');
   const sourceFileById = mapBy(sourcesFile.sources, 'id', 'Published sources');
   const crosswalkById = mapBy(v3.raw_source_crosswalk, 'entry_id', 'Embedded crosswalk');
   const crosswalkFileById = mapBy(crosswalkFile.crosswalk, 'entry_id', 'Published crosswalk');
   const migrationById = mapBy(migration.entries, 'entry_id', 'Migration');
-  if (sourcesFile.schema_version !== 1 || crosswalkFile.schema_version !== 1 || migration.schema_version !== 1 || migration.from_schema_version !== 2 || migration.to_schema_version !== 3 || v3.sources.length !== 230 || sourcesFile.sources.length !== 230 || v3.raw_source_crosswalk.length !== 230 || crosswalkFile.crosswalk.length !== 230 || migration.entries.length !== 230 || sourceById.size !== 230 || sourceFileById.size !== 230 || crosswalkById.size !== 230 || crosswalkFileById.size !== 230 || migrationById.size !== 230) fail('Source, crosswalk, or migration collection is incomplete.');
+  if (sourcesFile.schema_version !== 1 || crosswalkFile.schema_version !== 1 || migration.schema_version !== 1 || migration.from_schema_version !== 2 || migration.to_schema_version !== 3 || v3.sources.length !== totalEntries || sourcesFile.sources.length !== totalEntries || v3.raw_source_crosswalk.length !== totalEntries || crosswalkFile.crosswalk.length !== totalEntries || migration.entries.length !== 230 || sourceById.size !== totalEntries || sourceFileById.size !== totalEntries || crosswalkById.size !== totalEntries || crosswalkFileById.size !== totalEntries || migrationById.size !== 230) fail('Source, crosswalk, or migration collection is incomplete.');
   for (const entry of v3.entries) {
     const original = v2ById.get(entry.id);
-    for (const key of originalEntryFields) if (stableJson(entry[key]) !== stableJson(original[key])) fail(`Baseline value changed for ${entry.id}.${key}.`);
+    const sourceEntry = original ?? additionById.get(entry.id);
+    for (const key of originalEntryFields) if (stableJson(entry[key]) !== stableJson(sourceEntry[key])) fail(`Source value changed for ${entry.id}.${key}.`);
     const mapped = mapById.get(entry.id);
     if (!mapped || entry.category !== mapped.category || entry.resource_type !== mapped.resource_type || coverageById.get(entry.id)?.category !== entry.category || coverageById.get(entry.id)?.resource_type !== entry.resource_type) fail(`Resource-map-derived value changed for ${entry.id}.`);
     if (!resourceTypes.includes(entry.resource_type) || entry.source_ids?.length !== 1 || entry.source_ids[0] !== `source-${entry.id}`) fail(`Invalid resource/source reference for ${entry.id}.`);
     const source = sourceById.get(entry.source_ids[0]);
-    if (!source || stableJson(source) !== stableJson(sourceFileById.get(source.id)) || source.entry_id !== entry.id || source.raw !== (original.source ?? '') || typeof source.raw !== 'string' || !source.raw.trim() || stableJson(source.urls) !== stableJson(urls(source.raw)) || source.verification_status !== 'needs_review' || source.checked_at !== null) fail(`Invalid normalized source for ${entry.id}.`);
+    if (!source || stableJson(source) !== stableJson(sourceFileById.get(source.id)) || source.entry_id !== entry.id || source.raw !== (sourceEntry.source ?? '') || typeof source.raw !== 'string' || !source.raw.trim() || stableJson(source.urls) !== stableJson(urls(source.raw)) || source.verification_status !== 'needs_review' || source.checked_at !== null) fail(`Invalid normalized source for ${entry.id}.`);
     const crosswalk = crosswalkById.get(entry.id);
     const expectedTokens = sourceTokens(source.raw).map((token, index) => ({ position: index, kind: token.kind, raw_token: token.value, disposition: 'mapped', source_id: source.id }));
     if (expectedTokens.length === 0 || !crosswalk || stableJson(crosswalk) !== stableJson(crosswalkFileById.get(entry.id)) || crosswalk.raw_source !== source.raw || stableJson(crosswalk.source_ids) !== stableJson([source.id]) || stableJson(crosswalk.tokens) !== stableJson(expectedTokens)) fail(`Invalid source ownership/crosswalk for ${entry.id}.`);
     if (entry.off_map !== !(entry.scope === 'regional' && entry.lat != null && entry.lng != null) || !['needs_review', 'current', 'ended'].includes(entry.operational_status) || entry.public_note !== publicNote(entry.operational_status)) fail(`Unsafe derived value for ${entry.id}.`);
     if (entry.operational_status === 'needs_review' && (entry.status_provenance !== null || entry.status_checked_at !== null)) fail(`Unverified status must retain null provenance for ${entry.id}.`);
-    const changes = migrationById.get(entry.id)?.changes;
-    const expectedChanges = [
-      { op: 'add', path: '/resource_type', old: null, value: entry.resource_type },
-      { op: 'add', path: '/source_ids', old: null, value: entry.source_ids },
-      { op: 'add', path: '/operational_status', old: null, value: entry.operational_status },
-      { op: 'add', path: '/public_note', old: null, value: entry.public_note },
-      { op: 'add', path: '/status_provenance', old: null, value: entry.status_provenance },
-      { op: 'add', path: '/status_checked_at', old: null, value: entry.status_checked_at },
-      { op: 'add', path: '/review', old: null, value: entry.review },
-      { op: 'add', path: '/off_map', old: null, value: entry.off_map },
-    ];
-    if (stableJson(changes) !== stableJson(expectedChanges)) fail(`Migration manifest mismatch for ${entry.id}.`);
-    const once = applyMigration(original, changes);
-    const twice = applyMigration(once, changes, { idempotent: true });
-    if (stableJson(once) !== stableJson(entry) || stableJson(twice) !== stableJson(once)) fail(`Migration application is not exact and idempotent for ${entry.id}.`);
+    if (original) {
+      const changes = migrationById.get(entry.id)?.changes;
+      const expectedChanges = [
+        { op: 'add', path: '/resource_type', old: null, value: entry.resource_type },
+        { op: 'add', path: '/source_ids', old: null, value: entry.source_ids },
+        { op: 'add', path: '/operational_status', old: null, value: entry.operational_status },
+        { op: 'add', path: '/public_note', old: null, value: entry.public_note },
+        { op: 'add', path: '/status_provenance', old: null, value: entry.status_provenance },
+        { op: 'add', path: '/status_checked_at', old: null, value: entry.status_checked_at },
+        { op: 'add', path: '/review', old: null, value: entry.review },
+        { op: 'add', path: '/off_map', old: null, value: entry.off_map },
+      ];
+      if (stableJson(changes) !== stableJson(expectedChanges)) fail(`Migration manifest mismatch for ${entry.id}.`);
+      const once = applyMigration(original, changes);
+      const twice = applyMigration(once, changes, { idempotent: true });
+      if (stableJson(once) !== stableJson(entry) || stableJson(twice) !== stableJson(once)) fail(`Migration application is not exact and idempotent for ${entry.id}.`);
+    } else if (migrationById.has(entry.id)) fail(`Addition ${entry.id} must not be represented as a v2 migration.`);
   }
   const tokenCount = v3.raw_source_crosswalk.reduce((count, row) => count + row.tokens.length, 0);
-  if (report.schema_version !== 1 || report.raw_source_tokens !== tokenCount || report.mapped_source_tokens !== tokenCount || report.omitted_source_tokens !== 0 || stableJson(report.summary) !== stableJson({ entries: 230, sources: 230, crosswalk_rows: 230, mapped_entries: 230, omitted_entries: 0 })) fail('Source normalization token counts are incomplete.');
+  if (report.schema_version !== 1 || report.raw_source_tokens !== tokenCount || report.mapped_source_tokens !== tokenCount || report.omitted_source_tokens !== 0 || stableJson(report.summary) !== stableJson({ entries: totalEntries, sources: totalEntries, crosswalk_rows: totalEntries, mapped_entries: totalEntries, omitted_entries: 0 })) fail('Source normalization token counts are incomplete.');
   const expectedRegions = v2.regions.map(region => region.id).sort();
   const regionFiles = (await readdir(join(ROOT, 'geo/regions'))).filter(name => name.endsWith('.geojson')).sort();
   if (JSON.stringify(regionFiles) !== JSON.stringify(expectedRegions.map(id => `${id}.geojson`))) fail('Expected exactly 17 region GeoJSON files.');
@@ -165,7 +172,7 @@ try {
     const geo = await readJson(join(ROOT, 'geo/regions', `${id}.geojson`));
     if (geo.type !== 'FeatureCollection' || stableJson(geo) !== stableJson(geoV2[id])) fail(`GeoJSON baseline mismatch for ${id}.`);
   }
-  console.log('Data validation passed: deterministic 230-entry, 17-region graph with resource, source, migration, and schema contracts.');
+  console.log(`Data validation passed: deterministic ${totalEntries}-entry, 17-region graph with a preserved 230-entry baseline and additions layer.`);
 } finally {
   await Promise.all([rm(first, { recursive: true, force: true }), rm(second, { recursive: true, force: true })]);
 }

@@ -148,25 +148,25 @@ test("current-generation AbortError returns the loader to idle", async () => {
   assert.equal(aborted.getState().status, "idle");
 });
 
-test("v3 canonical public-data contract has a fixed ID digest and exact coverage", () => {
+test("v3 public-data contract preserves the baseline and has exact published coverage", () => {
   assert.equal(data.schema_version, 3);
-  assert.equal(data.meta.entry_count, 230);
+  assert.equal(data.meta.entry_count, 232);
   assert.equal(data.meta.region_count, 17);
   assert.equal(data.regions.length, 17);
-  assert.equal(data.entries.length, 230);
-  assert.equal(coverage.total_entries, 230);
-  assert.equal(coverage.covered_entries, 230);
-  assert.equal(coverage.entries.length, 230);
+  assert.equal(data.entries.length, 232);
+  assert.equal(coverage.total_entries, 232);
+  assert.equal(coverage.covered_entries, 232);
+  assert.equal(coverage.entries.length, 232);
 
   const entryIds = data.entries.map((entry) => entry.id);
-  assert.equal(new Set(entryIds).size, 230);
-  assert.equal(createHash("sha256").update([...entryIds].sort().join("\n")).digest("hex"), "cedfc252550b9d9404ed19a785fd2e71d33c77fb14fd20e799c0067746d993e0");
+  assert.equal(new Set(entryIds).size, 232);
+  assert.equal(createHash("sha256").update([...entryIds].sort().join("\n")).digest("hex"), "804ae55e9af9461fc40cf74d291613d88d62950448c277b13b2523d2cd9c68de");
 
   const sourceIds = new Set(data.sources.map((source) => source.id));
   assert.equal(sourceIds.size, data.sources.length, "source IDs must be unique");
   assert.ok(data.sources.every((source) => entryIds.includes(source.entry_id)), "each source must reference one entry");
   const coverageById = new Map(coverage.entries.map((item) => [item.id, item]));
-  assert.equal(coverageById.size, 230, "coverage IDs must be unique");
+  assert.equal(coverageById.size, 232, "coverage IDs must be unique");
   for (const entry of data.entries) {
     const covered = coverageById.get(entry.id);
     assert.deepEqual(
@@ -183,7 +183,7 @@ test("v3 canonical public-data contract has a fixed ID digest and exact coverage
   assert.doesNotThrow(() => validateResearchData(data));
 });
 
-test("resource, source, token, and migration contracts are exact 230-row bijections", () => {
+test("resource and source contracts cover 232 entries while migration preserves 230 baseline rows", () => {
   const entryIds = new Set(data.entries.map((entry) => entry.id));
   assert.ok(["mechanically_derived_pending_owner_approval", "approved"].includes(resourceMap.status));
   if (resourceMap.status === "approved") {
@@ -193,10 +193,10 @@ test("resource, source, token, and migration contracts are exact 230-row bijecti
     assert.equal(resourceMap.approved_by, null);
     assert.equal(resourceMap.approved_at, null);
   }
-  assert.equal(resourceMap.entries.length, 230);
-  assert.equal(new Set(resourceMap.entries.map((row) => row.entry_id)).size, 230);
-  assert.equal(sourcesDocument.sources.length, 230);
-  assert.equal(crosswalkDocument.crosswalk.length, 230);
+  assert.equal(resourceMap.entries.length, 232);
+  assert.equal(new Set(resourceMap.entries.map((row) => row.entry_id)).size, 232);
+  assert.equal(sourcesDocument.sources.length, 232);
+  assert.equal(crosswalkDocument.crosswalk.length, 232);
   assert.equal(migrationDocument.entries.length, 230);
   for (const row of crosswalkDocument.crosswalk) {
     assert.ok(entryIds.has(row.entry_id));

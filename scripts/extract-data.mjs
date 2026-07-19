@@ -42,20 +42,20 @@ function normalizedSource(entry) {
   return { id: `source-${entry.id}`, entry_id: entry.id, raw, urls, kind: 'raw_source', verification_status: 'needs_review', checked_at: null };
 }
 
-function resourceMapById(resourceMap, baselineEntries) {
+function resourceMapById(resourceMap, allEntries) {
   if (resourceMap.schema_version !== 1 || !RESOURCE_MAP_STATUSES.has(resourceMap.status) || !resourceMap.owner_roles || Array.isArray(resourceMap.owner_roles)) fail('Resource map approval metadata is invalid.');
   if (resourceMap.status === 'approved' && (typeof resourceMap.approved_by !== 'string' || !resourceMap.approved_by || typeof resourceMap.approved_at !== 'string' || !resourceMap.approved_at)) fail('Approved resource map requires approver and timestamp.');
   if (resourceMap.status !== 'approved' && (resourceMap.approved_by !== null || resourceMap.approved_at !== null)) fail('Pending resource map must not claim approval.');
-  if (!Array.isArray(resourceMap.entries) || resourceMap.entries.length !== 230) fail('Resource map must contain exactly 230 entries.');
+  if (!Array.isArray(resourceMap.entries) || resourceMap.entries.length !== allEntries.length) fail('Resource map must cover every published entry.');
   const byId = new Map();
   for (const row of resourceMap.entries) {
     if (!row || typeof row.entry_id !== 'string' || !row.entry_id || typeof row.category !== 'string' || !row.category || !RESOURCE_TYPES.includes(row.resource_type)) fail('Resource map contains an invalid entry.');
     if (byId.has(row.entry_id)) fail(`Resource map contains duplicate entry ID: ${row.entry_id}.`);
     byId.set(row.entry_id, row);
   }
-  if (byId.size !== 230 || new Set([...byId.values()].map(row => row.resource_type)).size !== 4) fail('Resource map must contain exactly four resource types.');
-  if (baselineEntries.length !== 230 || new Set(baselineEntries.map(entry => entry.id)).size !== 230) fail('Baseline must contain exactly 230 unique entries.');
-  for (const entry of baselineEntries) {
+  if (byId.size !== allEntries.length || new Set([...byId.values()].map(row => row.resource_type)).size !== 4) fail('Resource map must contain exactly four resource types.');
+  if (new Set(allEntries.map(entry => entry.id)).size !== allEntries.length) fail('Published entries must have unique IDs.');
+  for (const entry of allEntries) {
     const mapped = byId.get(entry.id);
     if (!mapped || mapped.category !== entry.category) fail(`Resource map does not match baseline ID/category: ${entry.id}.`);
   }
@@ -67,22 +67,26 @@ function fail(message) {
 }
 
 async function generate(output) {
-  const [siteText, geoText, resourceMapText, schemaText] = await Promise.all([
+  const [siteText, geoText, additionsText, resourceMapText, schemaText] = await Promise.all([
     readFile(join(ROOT, 'baseline/v2/site.v2.json'), 'utf8'),
     readFile(join(ROOT, 'baseline/v2/region-geo.v2.json'), 'utf8'),
+    readFile(join(ROOT, 'data/additions.v1.json'), 'utf8'),
     readFile(join(ROOT, 'data/resource-map.v1.json'), 'utf8'),
     readFile(join(ROOT, 'schemas/site.v3.schema.json'), 'utf8'),
   ]);
   const siteV2 = JSON.parse(siteText);
   const regionGeoV2 = JSON.parse(geoText);
+  const additions = JSON.parse(additionsText);
   const resourceMap = JSON.parse(resourceMapText);
   JSON.parse(schemaText);
   if (siteV2.entries?.length !== 230 || siteV2.regions?.length !== 17) fail('Expected the authoritative v2 input to contain 230 entries and 17 regions.');
-  const resourceById = resourceMapById(resourceMap, siteV2.entries);
+  if (additions.schema_version !== 1 || !Array.isArray(additions.entries)) fail('Additions file is invalid.');
+  const sourceEntries = [...siteV2.entries, ...additions.entries];
+  const resourceById = resourceMapById(resourceMap, sourceEntries);
   const regionIds = siteV2.regions.map(region => region.id);
   if (new Set(regionIds).size !== 17 || regionIds.some(id => !regionGeoV2[id] || regionGeoV2[id].type !== 'FeatureCollection')) fail('Authoritative region lineage is incomplete.');
 
-  const sources = siteV2.entries.map(normalizedSource);
+  const sources = sourceEntries.map(normalizedSource);
   const crosswalk = sources.map(source => ({
     entry_id: source.entry_id,
     raw_source: source.raw,
@@ -95,7 +99,7 @@ async function generate(output) {
       source_id: source.id,
     })),
   }));
-  const entries = siteV2.entries.map(entry => {
+  const entries = sourceEntries.map(entry => {
     const mapped = resourceById.get(entry.id);
     return {
       ...entry,
@@ -110,7 +114,7 @@ async function generate(output) {
       off_map: !(entry.scope === 'regional' && entry.lat != null && entry.lng != null),
     };
   });
-  const migrations = entries.map(entry => ({
+  const migrations = entries.slice(0, siteV2.entries.length).map(entry => ({
     entry_id: entry.id,
     changes: [
       { op: 'add', path: '/resource_type', old: null, value: entry.resource_type },
@@ -126,7 +130,8 @@ async function generate(output) {
   const v3 = {
     ...siteV2,
     schema_version: 3,
-    meta: { ...siteV2.meta, source_schema_version: siteV2.schema_version, extraction: { input: 'baseline/v2/site.v2.json', sha256: sha256(siteText) }, region_lineage: { input: 'baseline/v2/region-geo.v2.json', sha256: sha256(geoText) } },
+    meta: { ...siteV2.meta, entry_count: entries.length, source_schema_version: siteV2.schema_version, extraction: { input: 'baseline/v2/site.v2.json', sha256: sha256(siteText) }, additions: { input: 'data/additions.v1.json', count: additions.entries.length, sha256: sha256(additionsText) }, region_lineage: { input: 'baseline/v2/region-geo.v2.json', sha256: sha256(geoText) } },
+    coverage_by_category: [...entries.reduce((counts, entry) => counts.set(entry.category, (counts.get(entry.category) ?? 0) + 1), new Map())].map(([category, count]) => ({ category, count })).sort((left, right) => right.count - left.count || left.category.localeCompare(right.category, 'ko')),
     resource_types: RESOURCE_TYPES,
     resource_map: { schema_version: resourceMap.schema_version, status: resourceMap.status, owner_roles: resourceMap.owner_roles, approved_by: resourceMap.approved_by, approved_at: resourceMap.approved_at, input: 'data/resource-map.v1.json', sha256: sha256(resourceMapText) },
     entries,

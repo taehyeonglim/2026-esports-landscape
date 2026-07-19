@@ -2,7 +2,7 @@
 
 ## Scope and authority
 
-`baseline/v2/site.v2.json` is the externalized, read-only v2 baseline. It contains **230** `entries` and **17** `regions`; those counts are migration invariants. `data/site.v3.json` is the v3 working projection. Public releases are immutable snapshot bundles (`snapshots/<snapshot_id>/snapshot.json` plus `manifest.json`) selected only through `current.json`.
+`baseline/v2/site.v2.json` is the externalized, read-only v2 baseline. It contains **230** `entries` and **17** `regions`; those counts are migration invariants. Reviewed records created after that baseline live in `data/additions.v1.json`. `data/site.v3.json` is the generated v3 projection of the baseline plus those additions. Public releases are immutable snapshot bundles (`snapshots/<snapshot_id>/snapshot.json` plus `manifest.json`) selected only through `current.json`.
 
 The dashboard has already externalized its baseline. This contract does **not** authorize an `index.html` change or a UI reimplementation.
 
@@ -11,9 +11,9 @@ The dashboard has already externalized its baseline. This contract does **not** 
 | v2 | v3 | Rule |
 | --- | --- | --- |
 | `schema_version: 2` | `schema_version: 3` | Version changes only through the migration. |
-| `meta.entry_count`, `meta.region_count` | same values plus `meta.source_schema_version: 2` and extraction provenance | Must remain 230 and 17 for the baseline migration. |
+| `meta.entry_count`, `meta.region_count` | published entry total, 17 regions, `meta.source_schema_version: 2`, and extraction/addition provenance | The v2 migration remains exactly 230 rows; `meta.entry_count` equals the generated baseline-plus-additions total. |
 | `regions[]` | `regions[]` | Preserve region IDs and geographic/source metadata. |
-| `entries[]` | `entries[]` | Preserve legacy display fields and stable `id`; attach v3 lineage/evidence fields rather than overwrite source facts. |
+| `entries[]` | `entries[]` | Preserve all 230 legacy rows and stable IDs; append only reviewed `data/additions.v1.json` records, then attach v3 lineage/evidence fields. |
 | entry `evidence_ids` / source text | normalized evidence and source references | Every publishable claim must resolve to retained evidence and source IDs. |
 
 A public immutable snapshot adds its `snapshot_id`, `schema_hash`, `policy_hash`, `revision`, and `epoch`; its manifest hashes every published byte. The mutable `data/site.v3.json` is not itself a publication receipt.

@@ -68,7 +68,7 @@ test("landing copy presents data directly without editorial metaphors", async ()
   ]);
   const landingCopy = `${html}\n${editorial}\n${landscape}`;
   assert.doesNotMatch(landingCopy, /시작|흐름|장면|출발점|이어|놓인다|이동하세요|생태계|숫자가 현장/);
-  for (const statement of ["공개자료 230건", "공개자료 유형별 건수", "대표 사례", "원문 출처"]) {
+  for (const statement of ["공개자료 232건", "공개자료 유형별 건수", "대표 사례", "원문 출처"]) {
     assert.match(html, new RegExp(statement));
   }
   assert.match(editorial, /대회·행사 유형으로 분류된 공개자료입니다/);
