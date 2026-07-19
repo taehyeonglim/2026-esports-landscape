@@ -906,6 +906,16 @@
       "url_sha256": "be939d039a62b71751c496130aac13d2f32a47cc629dba89b362e8bb17af6176"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9zNmxsZDV0QmtaT21yYkd0N2hSNTljdlBJeE1TRldiZFFLRjc5eGdoZW5mbDFpSkZpRTRUdE5zWk45WUJxSXVZYzBDUmtpYVJSSl94VWFld3FJenhJMEU3OHdhRWpjWXB0eVFNOXZ0VUo?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "a2f35c5ac2eb4d1e7b5f891af206b2b8af325368aa7a9522780d691c06980e18"
+      ],
+      "url_sha256": "3d8019ec26d4d73ff6a3223a8adac289d6aa637fa9f25e9dfaa8b1a9ee36da95"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBWcmE2YkVwOWR0LS03QUZLRDdhaXgxZkhXdDZvNHlySHBLZnZ4QmQydGd0R3dnMWliNnZxbGh3ci1yQ2pVcFMzVEl0NjRPRmszY051ZXdmWEcyeDVnajBEMDFxWXdfMnlwV2tCMGp4M2tYMTBFSkE?oc=5",
       "decision": "needs_review",
       "entry_ids": [],

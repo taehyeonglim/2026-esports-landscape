@@ -101,6 +101,16 @@
       "url_sha256": "38cf50b95f53651170d5fcb66df54902c8bc83c3da140688a2b49fb6107d5e15"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9zNmxsZDV0QmtaT21yYkd0N2hSNTljdlBJeE1TRldiZFFLRjc5eGdoZW5mbDFpSkZpRTRUdE5zWk45WUJxSXVZYzBDUmtpYVJSSl94VWFld3FJenhJMEU3OHdhRWpjWXB0eVFNOXZ0VUo?oc=5",
+      "discovered_at": "2026-07-19",
+      "discovered_via": "news-school-esports",
+      "id": "candidate-3d8019ec26d4d73f",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "a2f35c5ac2eb4d1e7b5f891af206b2b8af325368aa7a9522780d691c06980e18",
+      "url_sha256": "3d8019ec26d4d73ff6a3223a8adac289d6aa637fa9f25e9dfaa8b1a9ee36da95"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OaVBiNXB1M1FxMnkwbEtJMGJXZWJBZWZ5YWJrNi0zNEdZU09Ca1dOR0JRalJkSEFLdy1zOWx6bERWOUprMFhiREY2WVRfTHZxd1MzOFdXM1lBOTQ2bEpwYXN1OFJsREk4?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
