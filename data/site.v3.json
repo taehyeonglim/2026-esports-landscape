@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "meta": {
-    "entry_count": 230,
+    "entry_count": 232,
     "region_count": 17,
     "coord_source": "southkorea-maps KOSTAT 2018 municipality centroid plus deterministic v1 jitter",
     "migration_note": "Migrated from Busan pilot v1 to national schema v2.",
@@ -9,6 +9,11 @@
     "extraction": {
       "input": "baseline/v2/site.v2.json",
       "sha256": "eb7eb965521857046fc2d2b79a785d926b9031baf24054f6ef39b540a27e441e"
+    },
+    "additions": {
+      "input": "data/additions.v1.json",
+      "count": 2,
+      "sha256": "aec47f1e31107a9cad6a915223fe4e5a7a611cf52dd8a4508fbd31e05e6de404"
     },
     "region_lineage": {
       "input": "baseline/v2/region-geo.v2.json",
@@ -10756,6 +10761,99 @@
         "reason": "Current/ended status has not been independently verified."
       },
       "off_map": false
+    },
+    {
+      "id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "name": "2026 광양시장배 청소년 e스포츠대회",
+      "category": "지자체정책·조례",
+      "subtype": "기초지자체 청소년 학교대항 e스포츠대회",
+      "operator": "광양시",
+      "school_level": "중·고",
+      "district": "광양시",
+      "address": "성황스포츠센터",
+      "lat": null,
+      "lng": null,
+      "year": "2026",
+      "games": [
+        "리그 오브 레전드",
+        "FC 온라인",
+        "발로란트",
+        "브롤스타즈"
+      ],
+      "source": "광양시 공식 보도자료 https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "theme_link": [
+        3,
+        5
+      ],
+      "confidence": "high",
+      "subtype_note": "",
+      "notes": "2026년 7월 18일 열린 제3회 광양시장배 청소년 e스포츠대회. 중·고등학생과 지역 청소년이 학교 대항 방식으로 참가했다.",
+      "loc_approx": true,
+      "region_id": "jeonnam",
+      "scope": "regional",
+      "evidence_ids": [
+        "ev-update-jeonnam-gwangyang-youth-esports-2026"
+      ],
+      "coord_method": "source_only_no_coordinates",
+      "coord_note": "공식 자료에서 장소는 확인했으나 좌표는 별도로 검증하지 않았다.",
+      "resource_type": "event",
+      "source_ids": [
+        "source-update-jeonnam-gwangyang-youth-esports-2026"
+      ],
+      "operational_status": "needs_review",
+      "public_note": "운영상태는 확인이 필요합니다. 이용 전 공개 자료를 확인해 주세요.",
+      "status_provenance": null,
+      "status_checked_at": null,
+      "review": {
+        "status": "needs_review",
+        "reason": "Current/ended status has not been independently verified."
+      },
+      "off_map": true
+    },
+    {
+      "id": "update-gyeonggi-ansan-esports-festival-2026",
+      "name": "2026 안산 e스포츠 페스티벌",
+      "category": "지자체정책·조례",
+      "subtype": "기초지자체 시민 참여형 e스포츠 행사",
+      "operator": "안산시",
+      "school_level": "무관",
+      "district": "안산시",
+      "address": "상록수체육관",
+      "lat": null,
+      "lng": null,
+      "year": "2026",
+      "games": [
+        "e스포츠"
+      ],
+      "source": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+      "theme_link": [
+        3,
+        5
+      ],
+      "confidence": "high",
+      "subtype_note": "",
+      "notes": "안산시가 2026년에 개최한 시민 참여형 e스포츠 페스티벌이다.",
+      "loc_approx": true,
+      "region_id": "gyeonggi",
+      "scope": "regional",
+      "evidence_ids": [
+        "ev-update-gyeonggi-ansan-esports-festival-2026"
+      ],
+      "coord_method": "source_only_no_coordinates",
+      "coord_note": "공식 자료에서 장소는 확인했으나 좌표는 별도로 검증하지 않았다.",
+      "resource_type": "event",
+      "source_ids": [
+        "source-update-gyeonggi-ansan-esports-festival-2026"
+      ],
+      "operational_status": "needs_review",
+      "public_note": "운영상태는 확인이 필요합니다. 이용 전 공개 자료를 확인해 주세요.",
+      "status_provenance": null,
+      "status_checked_at": null,
+      "review": {
+        "status": "needs_review",
+        "reason": "Current/ended status has not been independently verified."
+      },
+      "off_map": true
     }
   ],
   "negative_evidence": [
@@ -12491,12 +12589,12 @@
       "count": 27
     },
     {
-      "category": "경기장·인프라",
-      "count": 24
+      "category": "지자체정책·조례",
+      "count": 25
     },
     {
-      "category": "지자체정책·조례",
-      "count": 23
+      "category": "경기장·인프라",
+      "count": 24
     },
     {
       "category": "언론보도",
@@ -12521,9 +12619,9 @@
       "approver": "repository_owner"
     },
     "approved_by": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
-    "approved_at": "2026-07-11T22:46:12.373777Z",
+    "approved_at": "2026-07-19T00:00:00Z",
     "input": "data/resource-map.v1.json",
-    "sha256": "39aab758d654e3e417d4194fbcee803bf977294b8b169872ec203fd0f325eb0d"
+    "sha256": "a49aa62179581ebaae225dce0ab5cf6d5b3fb3367f60376f6743f9dcf30717a6"
   },
   "sources": [
     {
@@ -15094,6 +15192,28 @@
       "raw": "국립특수교육원 '국립특수교육원 2025 전국 장애학생 e페스티벌 운영계획' https://www.nise.go.kr/boardCnts/view.do?boardID=13&boardSeq=734476&lev=0&m=0301&opType=N&page=1&s=nise&searchType=null&statusYN=W",
       "urls": [
         "https://www.nise.go.kr/boardCnts/view.do?boardID=13&boardSeq=734476&lev=0&m=0301&opType=N&page=1&s=nise&searchType=null&statusYN=W"
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-jeonnam-gwangyang-youth-esports-2026",
+      "entry_id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "raw": "광양시 공식 보도자료 https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "urls": [
+        "https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000"
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-gyeonggi-ansan-esports-festival-2026",
+      "entry_id": "update-gyeonggi-ansan-esports-festival-2026",
+      "raw": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+      "urls": [
+        "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540"
       ],
       "kind": "raw_source",
       "verification_status": "needs_review",
@@ -21018,6 +21138,52 @@
           "raw_token": "https://www.nise.go.kr/boardCnts/view.do?boardID=13&boardSeq=734476&lev=0&m=0301&opType=N&page=1&s=nise&searchType=null&statusYN=W",
           "disposition": "mapped",
           "source_id": "source-visible-regional-jeju-efestival-esports-program"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "raw_source": "광양시 공식 보도자료 https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "source_ids": [
+        "source-update-jeonnam-gwangyang-youth-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "광양시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-jeonnam-gwangyang-youth-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+          "disposition": "mapped",
+          "source_id": "source-update-jeonnam-gwangyang-youth-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-gyeonggi-ansan-esports-festival-2026",
+      "raw_source": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+      "source_ids": [
+        "source-update-gyeonggi-ansan-esports-festival-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "안산시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
         }
       ]
     }

@@ -107,6 +107,7 @@ const inputPaths = [...new Set([
   ...(await sourceFiles(join(ROOT, 'tests'), 'tests')),
   'baseline/v2/site.v2.json',
   'baseline/v2/region-geo.v2.json',
+  'data/additions.v1.json',
   'data/site.v3.json',
   'data/resource-coverage.v3.json',
   'data/resource-map.v1.json',

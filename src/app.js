@@ -79,7 +79,7 @@ function uniqueIds(records, label) {
 function validatePublicData(payload) {
   const site = requireRecord(payload, "site.v3.json");
   if (site.schema_version !== 3) throw new DataIntegrityError("schema_version must be 3.");
-  if (!Array.isArray(site.entries) || site.entries.length !== 230) throw new DataIntegrityError("entries must contain exactly 230 records.");
+  if (!Array.isArray(site.entries) || site.entries.length < 230 || site.meta?.entry_count !== site.entries.length) throw new DataIntegrityError("entries must match the published entry count and retain the 230-entry baseline.");
   if (!Array.isArray(site.regions) || site.regions.length !== 17) throw new DataIntegrityError("regions must contain exactly 17 records.");
   if (!Array.isArray(site.sources)) throw new DataIntegrityError("sources must be an array.");
 
@@ -337,8 +337,9 @@ function moveToResults({ regionId = null, category = null } = {}) {
   dispatch(actions.hydrate({ region: regionId, category: category ? [category] : [] }));
   scheduleMap(state.region);
   const heading = byId("results-heading");
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  heading?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  // Matrix controls can be activated again immediately. An in-flight smooth
+  // scroll made the second activation unreliable in iOS WebKit.
+  heading?.scrollIntoView({ behavior: "auto", block: "start" });
   heading?.focus({ preventScroll: true });
 }
 

@@ -53,17 +53,17 @@ test.describe("AC01 browser activation contract", () => {
   }
 });
 
-test("콜드 홈은 17개 시·도 지형도와 230건 중 첫 12건을 보여준다", async ({ page }) => {
+test("콜드 홈은 17개 시·도 지형도와 232건 중 첫 12건을 보여준다", async ({ page }) => {
   await page.goto("/index.html");
-  await expect(page.locator("#result-count")).toHaveText("230개 중 12개 표시");
+  await expect(page.locator("#result-count")).toHaveText("232개 중 12개 표시");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   await expect(page.locator("#national-map .national-region")).toHaveCount(17);
   await expect(page.locator("#load-more")).toBeVisible();
   await expect(page.locator("#compare-matrix .matrix-chart-row")).toHaveCount(17);
-  await expect(page.locator("#compare-matrix .matrix-chart-summary")).toHaveText("230건 · 17개 시·도 · 8개 유형");
+  await expect(page.locator("#compare-matrix .matrix-chart-summary")).toHaveText("232건 · 17개 시·도 · 8개 유형");
   const matrix = page.locator("#compare-matrix table");
   await expect(matrix.locator("tbody tr")).toHaveCount(17);
-  await expect(matrix.locator("tfoot td").last()).toHaveText("230");
+  await expect(matrix.locator("tfoot td").last()).toHaveText("232");
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
 });
 
@@ -106,7 +106,7 @@ test("비교 차트의 범례와 지역명은 데이터 탐색 필터로 이동�
   await page.locator('[data-matrix-sort="region"]').click();
   await expect(page.locator(".matrix-chart-row").first()).toHaveAttribute("data-region", "seoul");
   await page.locator('#compare-matrix .matrix-legend button[data-category="지자체정책·조례"]').click();
-  await expect(page.locator("#result-count")).toHaveText("23개 중 12개 표시");
+  await expect(page.locator("#result-count")).toHaveText("25개 중 12개 표시");
   await expect(page.locator("#results-heading")).toBeFocused();
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ category: "지자체정책·조례" });
@@ -173,7 +173,7 @@ test("map is an inert reference and cannot change navigation state", async ({ pa
   await expect(page.locator("#region-map-description")).toContainText("비대화형 참고도");
 });
 
-test("점진 노출로 기본 페이지 길이를 제한하면서 230건 전부 도달할 수 있다", async ({ page }) => {
+test("점진 노출로 기본 페이지 길이를 제한하면서 232건 전부 도달할 수 있다", async ({ page }) => {
   await page.goto("/index.html");
   const initialHeight = await page.evaluate(() => document.documentElement.scrollHeight / innerHeight);
   const compactViewport = await page.evaluate(() => innerWidth < 600);
@@ -182,7 +182,7 @@ test("점진 노출로 기본 페이지 길이를 제한하면서 230건 전부 
     if (await page.locator("#load-more").isHidden()) break;
     await page.locator("#load-more").click();
   }
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(230);
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(232);
   await expect(page.locator("#load-more")).toBeHidden();
 });
 
@@ -364,12 +364,12 @@ test("root, matrix, results, detail, and research have no serious or critical ax
   await page.goto("/research/");
   await expect(page.locator("#dataset-facts dd")).toContainText([
     "v3",
-    "230건",
+    "232건",
     "17개 시·도",
-    "230개 source ref",
+    "232개 source ref",
     "승인된 기준일 없음",
-    "확인 필요 230건 · 운영 중 0건 · 종료 0건",
-    "학교 43건 · 대회 97건 · 시설 24건 · 기타 66건",
+    "확인 필요 232건 · 운영 중 0건 · 종료 0건",
+    "학교 43건 · 대회 99건 · 시설 24건 · 기타 66건",
   ]);
   await expect(page.locator("#research-load-error")).toBeHidden();
   await expect(page.locator("#coverage-by-category > li")).toHaveCount(8);

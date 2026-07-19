@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "total_entries": 230,
-  "covered_entries": 230,
+  "total_entries": 232,
+  "covered_entries": 232,
   "entries": [
     {
       "id": "busan-001",
@@ -1151,6 +1151,16 @@
     {
       "id": "visible-regional-jeju-efestival-esports-program",
       "category": "교육청대회·사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "category": "지자체정책·조례",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gyeonggi-ansan-esports-festival-2026",
+      "category": "지자체정책·조례",
       "resource_type": "event"
     }
   ]

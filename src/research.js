@@ -1,7 +1,7 @@
 const dataUrl = new URL("../data/site.v3.json", import.meta.url);
 
 const EXPECTED_SCHEMA_VERSION = 3;
-const EXPECTED_ENTRY_COUNT = 230;
+const MINIMUM_ENTRY_COUNT = 230;
 const EXPECTED_REGION_COUNT = 17;
 const RENDER_TARGETS = [
   "#dataset-facts",
@@ -143,9 +143,9 @@ const SOURCE_VERIFICATION_VALUES = new Set(["needs_review", "verified", "rejecte
 export function validateResearchData(data) {
   requireInvariant(data && typeof data === "object" && !Array.isArray(data), "payload");
   requireInvariant(data.schema_version === EXPECTED_SCHEMA_VERSION, "schema_version");
-  requireInvariant(Array.isArray(data.entries) && data.entries.length === EXPECTED_ENTRY_COUNT, "entries");
+  requireInvariant(Array.isArray(data.entries) && data.entries.length >= MINIMUM_ENTRY_COUNT, "entries");
   requireInvariant(Array.isArray(data.regions) && data.regions.length === EXPECTED_REGION_COUNT, "regions");
-  requireInvariant(data.meta?.entry_count === EXPECTED_ENTRY_COUNT && data.meta?.region_count === EXPECTED_REGION_COUNT, "meta counts");
+  requireInvariant(data.meta?.entry_count === data.entries?.length && data.meta.entry_count >= MINIMUM_ENTRY_COUNT && data.meta?.region_count === EXPECTED_REGION_COUNT, "meta counts");
   requireInvariant(
     Array.isArray(data.sources)
       && Array.isArray(data.coverage_by_category)

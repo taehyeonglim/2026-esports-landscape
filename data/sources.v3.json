@@ -2573,6 +2573,28 @@
       "kind": "raw_source",
       "verification_status": "needs_review",
       "checked_at": null
+    },
+    {
+      "id": "source-update-jeonnam-gwangyang-youth-esports-2026",
+      "entry_id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "raw": "광양시 공식 보도자료 https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "urls": [
+        "https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000"
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-gyeonggi-ansan-esports-festival-2026",
+      "entry_id": "update-gyeonggi-ansan-esports-festival-2026",
+      "raw": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+      "urls": [
+        "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540"
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
     }
   ]
 }

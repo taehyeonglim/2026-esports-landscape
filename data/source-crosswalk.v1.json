@@ -5920,6 +5920,52 @@
           "source_id": "source-visible-regional-jeju-efestival-esports-program"
         }
       ]
+    },
+    {
+      "entry_id": "update-jeonnam-gwangyang-youth-esports-2026",
+      "raw_source": "광양시 공식 보도자료 https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "source_ids": [
+        "source-update-jeonnam-gwangyang-youth-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "광양시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-jeonnam-gwangyang-youth-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+          "disposition": "mapped",
+          "source_id": "source-update-jeonnam-gwangyang-youth-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-gyeonggi-ansan-esports-festival-2026",
+      "raw_source": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+      "source_ids": [
+        "source-update-gyeonggi-ansan-esports-festival-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "안산시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
+        }
+      ]
     }
   ]
 }
