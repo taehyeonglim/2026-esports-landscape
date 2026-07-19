@@ -53,7 +53,18 @@ export function matrixModel(entries, regions) {
   return { categories, rows, columnTotals, grandTotal };
 }
 
-export function renderMatrix(container, model, onSelect) {
+const CATEGORY_COLORS = Object.freeze([
+  "#f4c64f",
+  "#52c7dc",
+  "#f07c67",
+  "#78c79b",
+  "#a995e8",
+  "#ef9abb",
+  "#79a7db",
+  "#b4c1cb",
+]);
+
+function renderExactTable(model, onSelect) {
   const table = document.createElement("table");
   table.className = "compare-matrix";
   const caption = document.createElement("caption");
@@ -143,5 +154,136 @@ export function renderMatrix(container, model, onSelect) {
   tfoot.append(footRow);
   table.append(tfoot);
 
-  container.replaceChildren(table);
+  return table;
+}
+
+function chartRow(row, maximum, colors, onSelect) {
+  const article = document.createElement("div");
+  article.className = "matrix-chart-row";
+  article.dataset.region = row.regionId;
+
+  const regionButton = document.createElement("button");
+  regionButton.type = "button";
+  regionButton.className = "matrix-chart-label";
+  regionButton.dataset.region = row.regionId;
+  regionButton.textContent = row.regionName;
+  regionButton.setAttribute("aria-label", `${row.regionName} 전체 사례 ${row.total}건 보기`);
+  regionButton.addEventListener("click", () => onSelect({ regionId: row.regionId }));
+
+  const track = document.createElement("div");
+  track.className = "matrix-bar-track";
+  track.setAttribute("aria-label", `${row.regionName} 유형별 공개자료`);
+  for (const [index, cell] of row.cells.entries()) {
+    if (cell.count === 0) continue;
+    const segment = document.createElement("button");
+    segment.type = "button";
+    segment.className = "matrix-segment";
+    segment.dataset.region = row.regionId;
+    segment.dataset.category = cell.category;
+    segment.dataset.count = String(cell.count);
+    segment.style.setProperty("--segment-width", `${(cell.count / maximum) * 100}%`);
+    segment.style.setProperty("--category-color", colors[index]);
+    segment.setAttribute("aria-label", `${row.regionName} ${cell.category} ${cell.count}건 보기`);
+    segment.title = `${cell.category} · ${cell.count}건`;
+    if (cell.count / maximum >= 0.075) {
+      const count = document.createElement("span");
+      count.textContent = String(cell.count);
+      count.setAttribute("aria-hidden", "true");
+      segment.append(count);
+    }
+    segment.addEventListener("click", () => onSelect({ regionId: row.regionId, category: cell.category }));
+    track.append(segment);
+  }
+
+  const total = document.createElement("strong");
+  total.className = "matrix-chart-total";
+  total.textContent = String(row.total);
+  total.setAttribute("aria-label", `${row.total}건`);
+  article.append(regionButton, track, total);
+  return article;
+}
+
+export function renderMatrix(container, model, onSelect) {
+  const colors = model.categories.map((_, index) => CATEGORY_COLORS[index % CATEGORY_COLORS.length]);
+  const maximum = Math.max(1, ...model.rows.map((row) => row.total));
+  const visualization = document.createElement("section");
+  visualization.className = "matrix-visualization";
+  visualization.setAttribute("aria-labelledby", "matrix-chart-title");
+
+  const chartHeader = document.createElement("div");
+  chartHeader.className = "matrix-chart-header";
+  const headingGroup = document.createElement("div");
+  const title = document.createElement("h3");
+  title.id = "matrix-chart-title";
+  title.textContent = "지역별 공개자료 구성";
+  const summary = document.createElement("p");
+  summary.className = "matrix-chart-summary";
+  summary.textContent = `${model.grandTotal}건 · ${model.rows.length}개 시·도 · ${model.categories.length}개 유형`;
+  headingGroup.append(title, summary);
+
+  const sortControls = document.createElement("div");
+  sortControls.className = "matrix-sort-controls";
+  sortControls.setAttribute("role", "group");
+  sortControls.setAttribute("aria-label", "지역 정렬");
+  const totalSort = document.createElement("button");
+  totalSort.type = "button";
+  totalSort.dataset.matrixSort = "total";
+  totalSort.textContent = "총건수순";
+  totalSort.setAttribute("aria-pressed", "true");
+  const regionSort = document.createElement("button");
+  regionSort.type = "button";
+  regionSort.dataset.matrixSort = "region";
+  regionSort.textContent = "시·도순";
+  regionSort.setAttribute("aria-pressed", "false");
+  sortControls.append(totalSort, regionSort);
+  chartHeader.append(headingGroup, sortControls);
+
+  const legend = document.createElement("div");
+  legend.className = "matrix-legend";
+  legend.setAttribute("aria-label", "활동 유형 필터");
+  for (const [index, column] of model.columnTotals.entries()) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.category = column.category;
+    button.style.setProperty("--category-color", colors[index]);
+    button.setAttribute("aria-label", `전 지역 ${column.category} ${column.count}건 보기`);
+    const swatch = document.createElement("i");
+    swatch.setAttribute("aria-hidden", "true");
+    const label = document.createElement("span");
+    label.textContent = column.category;
+    const count = document.createElement("strong");
+    count.textContent = String(column.count);
+    button.append(swatch, label, count);
+    button.addEventListener("click", () => onSelect({ category: column.category }));
+    legend.append(button);
+  }
+
+  const axis = document.createElement("div");
+  axis.className = "matrix-chart-axis";
+  axis.innerHTML = `<span></span><div><span>0</span><span>${Math.round(maximum / 2)}</span><span>${maximum}</span></div><span>건</span>`;
+  const rowContainer = document.createElement("div");
+  rowContainer.className = "matrix-chart-rows";
+  const renderRows = (sortMode) => {
+    const rows = sortMode === "total"
+      ? [...model.rows].sort((left, right) => right.total - left.total || left.regionName.localeCompare(right.regionName, "ko"))
+      : model.rows;
+    rowContainer.replaceChildren(...rows.map((row) => chartRow(row, maximum, colors, onSelect)));
+    totalSort.setAttribute("aria-pressed", String(sortMode === "total"));
+    regionSort.setAttribute("aria-pressed", String(sortMode === "region"));
+  };
+  totalSort.addEventListener("click", () => renderRows("total"));
+  regionSort.addEventListener("click", () => renderRows("region"));
+  renderRows("total");
+  visualization.append(chartHeader, legend, axis, rowContainer);
+
+  const tableDetails = document.createElement("details");
+  tableDetails.className = "matrix-table-details";
+  const tableSummary = document.createElement("summary");
+  tableSummary.textContent = "정확한 수치 표 보기";
+  const tableScroll = document.createElement("div");
+  tableScroll.className = "matrix-scroll";
+  tableScroll.append(renderExactTable(model, onSelect));
+  tableDetails.append(tableSummary, tableScroll);
+
+  container.replaceChildren(visualization, tableDetails);
 }

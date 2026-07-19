@@ -42,6 +42,8 @@ test("public DOM exposes the interactive national landscape before the card arch
   assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
   for (const selector of ["region-select", "entry-search", "detail-panel", "detail-back", "map-status", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /id="compare-matrix"/);
+  assert.match(html, /03 \/ INTERACTIVE CHART/);
+  assert.match(html, /막대 길이는 지역별 총건수, 색 구간은 유형별 건수입니다/);
   for (const selector of ["national-map", "map-readout", "region-shortcuts", "region-lens", "signals", "cases", "editorial-insights", "featured-stories", "load-more"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /assets\/school-esports-landscape\.webp/);
   assert.match(html, /assets\/esports-landscape-mark\.png/);

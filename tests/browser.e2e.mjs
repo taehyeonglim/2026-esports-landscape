@@ -59,6 +59,8 @@ test("콜드 홈은 17개 시·도 지형도와 230건 중 첫 12건을 보여�
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   await expect(page.locator("#national-map .national-region")).toHaveCount(17);
   await expect(page.locator("#load-more")).toBeVisible();
+  await expect(page.locator("#compare-matrix .matrix-chart-row")).toHaveCount(17);
+  await expect(page.locator("#compare-matrix .matrix-chart-summary")).toHaveText("230건 · 17개 시·도 · 8개 유형");
   const matrix = page.locator("#compare-matrix table");
   await expect(matrix.locator("tbody tr")).toHaveCount(17);
   await expect(matrix.locator("tfoot td").last()).toHaveText("230");
@@ -97,15 +99,18 @@ test("전국 지형도와 대표 사례가 데이터 탐색으로 이어진다",
     .toEqual({ entry: "busan-001" });
 });
 
-test("매트릭스 열 헤더는 전 지역 카테고리 필터로, 행 헤더는 지역 필터로 이동한다", async ({ page }) => {
+test("비교 차트의 범례와 지역명은 데이터 탐색 필터로 이동한다", async ({ page }) => {
   await page.goto("/index.html");
   await page.locator("#explore > summary").click();
-  await page.locator('#compare-matrix thead button[data-category="지자체정책·조례"]').click();
+  await expect(page.locator(".matrix-chart-row").first()).toHaveAttribute("data-region", "busan");
+  await page.locator('[data-matrix-sort="region"]').click();
+  await expect(page.locator(".matrix-chart-row").first()).toHaveAttribute("data-region", "seoul");
+  await page.locator('#compare-matrix .matrix-legend button[data-category="지자체정책·조례"]').click();
   await expect(page.locator("#result-count")).toHaveText("23개 중 12개 표시");
   await expect(page.locator("#results-heading")).toBeFocused();
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ category: "지자체정책·조례" });
-  await page.locator('#compare-matrix tbody th button[data-region="busan"]').click();
+  await page.locator('#compare-matrix .matrix-chart-label[data-region="busan"]').click();
   await expect(page.locator("#result-count")).toHaveText("27개 중 12개 표시");
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ region: "busan" });
@@ -318,7 +323,7 @@ test("desktop and narrow layouts keep browse before map without horizontal overf
   }
 });
 
-test("reduced motion removes all timing and matrix cell selection never smooth-scrolls", async ({ page }) => {
+test("reduced motion removes all timing and chart segment selection never smooth-scrolls", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.addInitScript(() => {
     window.__smoothScrollCalls = 0;
@@ -330,7 +335,7 @@ test("reduced motion removes all timing and matrix cell selection never smooth-s
   });
   await page.goto("/index.html");
   await page.locator("#explore > summary").click();
-  await page.locator('#compare-matrix td button[data-region="busan"][data-category="교육청대회·사업"]').click();
+  await page.locator('#compare-matrix .matrix-segment[data-region="busan"][data-category="교육청대회·사업"]').click();
   await expect(page.locator(".entry-card").first()).toBeVisible();
   await expect(page.locator("#results-heading")).toBeFocused();
   const motion = await page.evaluate(() => {
