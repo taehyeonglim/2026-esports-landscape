@@ -223,7 +223,7 @@ PYTHONPATH=src python3 -m unittest discover -s tests/python -p 'test_*.py'
 
 `Weekly source discovery` 워크플로는 매주 월요일 09:00(KST)에 교육부·17개 시도교육청 홈페이지와 최근 14일 검색 RSS를 확인합니다. URL은 문서 번호 같은 식별용 쿼리를 유지하고 추적 파라미터와 프래그먼트만 제거한 뒤, `data/discovery/seen.v1.json`의 기존 URL 해시와 비교합니다. 제목은 원문 대신 정규화한 SHA-256 지문만 저장해 동일 제목의 다른 URL도 중복 가능 후보로 표시합니다.
 
-새 URL이 있으면 `automation/discovery-*` 브랜치와 검토용 PR을 생성합니다. 공개 데이터인 `data/site.v3.json`은 자동으로 수정하지 않습니다. 이전 수집 PR이 열려 있으면 다음 실행은 변경 없이 종료하므로 검토되지 않은 후보가 누적되지 않습니다.
+새 URL이 있으면 `automation/discovery-*` 브랜치와 검토용 PR을 생성합니다. 공개 데이터인 `data/site.v3.json`은 자동으로 수정하지 않습니다. 이전 수집 PR이 열려 있으면 새 PR을 중복 생성하지 않고 기존 PR의 장부에 새 후보를 추가합니다.
 
 후보 검토 결과는 다음 명령으로 기록합니다.
 

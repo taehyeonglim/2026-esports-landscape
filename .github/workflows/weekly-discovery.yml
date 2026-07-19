@@ -33,15 +33,24 @@ jobs:
         run: |
           count=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("automation/discovery-"))] | length')
           printf 'count=%s\n' "$count" >> "$GITHUB_OUTPUT"
-          if [ "$count" -gt 0 ]; then
-            printf 'An earlier discovery PR is still awaiting review; this run made no changes.\n' >> "$GITHUB_STEP_SUMMARY"
+          if [ "$count" -gt 1 ]; then
+            printf 'More than one discovery PR is open; refusing an ambiguous update.\n' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if [ "$count" -eq 1 ]; then
+            branch=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("automation/discovery-"))][0].headRefName')
+            if [[ ! "$branch" =~ ^automation/discovery-[0-9]+$ ]]; then
+              exit 1
+            fi
+            printf 'branch=%s\n' "$branch" >> "$GITHUB_OUTPUT"
+            git fetch --no-tags origin "$branch"
+            git show FETCH_HEAD:data/discovery/seen.v1.json > data/discovery/seen.v1.json
+            git show FETCH_HEAD:data/discovery/candidates.v1.json > data/discovery/candidates.v1.json
           fi
       - name: Test discovery contracts
-        if: steps.open-review.outputs.count == '0'
         run: PYTHONPATH=src python -m unittest tests.python.test_weekly_discovery
       - name: Collect unseen candidates
         id: collect
-        if: steps.open-review.outputs.count == '0'
         run: |
           PYTHONPATH=src python -m esports_data.weekly_discovery --report "$RUNNER_TEMP/discovery-report.json"
           python - "$RUNNER_TEMP/discovery-report.json" "$GITHUB_STEP_SUMMARY" <<'PY'
@@ -55,24 +64,38 @@ jobs:
               output.write(f"- Already seen: {report['duplicates']}\n")
               output.write(f"- New review candidates: {report['new_candidates']}\n")
           PY
-          if git diff --quiet -- data/discovery/seen.v1.json data/discovery/candidates.v1.json; then
-            printf 'changed=false\n' >> "$GITHUB_OUTPUT"
-          else
+          changed=$(python -c 'import json,sys; r=json.load(open(sys.argv[1])); print("true" if r["new_candidates"] or r["bootstrapped_urls"] else "false")' "$RUNNER_TEMP/discovery-report.json")
+          if [ "$changed" = true ]; then
             printf 'changed=true\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'changed=false\n' >> "$GITHUB_OUTPUT"
           fi
       - name: Commit new candidate state
         if: steps.collect.outputs.changed == 'true'
         env:
-          BRANCH_NAME: automation/discovery-${{ github.run_id }}
+          EXISTING_BRANCH: ${{ steps.open-review.outputs.branch }}
+          NEW_BRANCH: automation/discovery-${{ github.run_id }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH_NAME"
+          state_dir="$RUNNER_TEMP/discovery-state"
+          mkdir "$state_dir"
+          cp data/discovery/seen.v1.json "$state_dir/seen.v1.json"
+          cp data/discovery/candidates.v1.json "$state_dir/candidates.v1.json"
+          if [ -n "$EXISTING_BRANCH" ]; then
+            git checkout -B "$EXISTING_BRANCH" "origin/$EXISTING_BRANCH"
+            branch="$EXISTING_BRANCH"
+          else
+            git checkout -b "$NEW_BRANCH"
+            branch="$NEW_BRANCH"
+          fi
+          cp "$state_dir/seen.v1.json" data/discovery/seen.v1.json
+          cp "$state_dir/candidates.v1.json" data/discovery/candidates.v1.json
           git add data/discovery/seen.v1.json data/discovery/candidates.v1.json
           git commit -m "data: add weekly discovery candidates"
-          git push origin "$BRANCH_NAME"
+          git push origin "$branch"
       - name: Open review pull request
-        if: steps.collect.outputs.changed == 'true'
+        if: steps.collect.outputs.changed == 'true' && steps.open-review.outputs.count == '0'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH_NAME: automation/discovery-${{ github.run_id }}
@@ -86,5 +109,5 @@ jobs:
             '- `needs_review` 후보를 원문에서 확인합니다.' \
             '- 채택·중복·제외 결정을 `review_discovery` 명령으로 기록합니다.' \
             '- 이 PR은 `data/site.v3.json`을 자동 변경하거나 공개하지 않습니다.' \
-            '- 이 PR이 열려 있는 동안 다음 주 수집은 건너뜁니다.' > "$body"
+            '- 다음 주 수집에서 새 후보가 발견되면 이 PR에 추가됩니다.' > "$body"
           gh pr create --base main --head "$BRANCH_NAME" --title "data: weekly source discovery" --body-file "$body"

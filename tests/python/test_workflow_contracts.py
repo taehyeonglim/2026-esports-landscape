@@ -97,9 +97,12 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('- cron: "0 0 * * 1"', workflow)
         self.assertIn("contents: write\n  pull-requests: write", workflow)
         self.assertIn('startswith("automation/discovery-")', workflow)
+        self.assertIn("git show FETCH_HEAD:data/discovery/seen.v1.json", workflow)
+        self.assertIn('git checkout -B "$EXISTING_BRANCH" "origin/$EXISTING_BRANCH"', workflow)
         self.assertIn("data/discovery/seen.v1.json data/discovery/candidates.v1.json", workflow)
         self.assertNotIn("git add data/site.v3.json", workflow)
         self.assertNotIn("git push --force", workflow)
+        self.assertNotIn("this run made no changes", workflow)
         for action in ("actions/checkout", "actions/setup-python"):
             self.assertRegex(workflow, rf"uses: {re.escape(action)}@[0-9a-f]{{40}}")
 
