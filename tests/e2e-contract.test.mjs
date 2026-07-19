@@ -24,28 +24,28 @@ async function releaseFiles(directory = root, prefix = "") {
 
 test("built release has base-aware app, data, GeoJSON, and research surfaces", async () => {
   for (const relativePath of [
-    "index.html", "src/app.js", "src/research.js", "styles/main.css", "styles/research.css",
+    "index.html", "src/app.js", "src/research.js", "styles/main.css", "styles/research.css", "styles/shell.css",
     "assets/esports-landscape-mark.png", "assets/favicon-32.png", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png",
     "data/site.v3.json", "data/national-map.v1.json", "data/resource-coverage.v3.json", "geo/regions/busan.geojson", "research/index.html", "release-manifest.json",
   ]) await exists(relativePath);
   const [app, research] = await Promise.all([read("src/app.js"), read("src/research.js")]);
   assert.match(app, /new URL\("\.\/", document\.baseURI\)/);
   assert.match(app, /new URL\("data\/site\.v3\.json", baseUrl\)/);
-  assert.match(app, /RegionLoader\(\{ baseUrl/);
+  assert.match(app, /new URL\("data\/national-map\.v1\.json", baseUrl\)/);
   assert.match(research, /new URL\("\.\.\/data\/site\.v3\.json", import\.meta\.url\)/);
 });
 
-test("public DOM exposes the interactive national landscape before the card archive and retains the reference map", async () => {
+test("public DOM exposes the search-first workspace before one national map and responsive detail panel", async () => {
   const [html, app] = await Promise.all([read("index.html"), read("src/app.js")]);
   const cardsAt = html.indexOf('id="result-list"');
-  const mapAt = html.indexOf('id="region-map"');
+  const mapAt = html.indexOf('id="national-map"');
   assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
-  for (const selector of ["region-select", "entry-search", "detail-panel", "detail-back", "map-status", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
+  for (const selector of ["workspace", "browse-tab", "compare-tab", "browse-view", "compare-view", "region-select", "entry-search", "filter-panel", "active-filters", "detail-panel", "detail-back", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /id="compare-matrix"/);
-  assert.match(html, /03 \/ INTERACTIVE CHART/);
-  assert.match(html, /막대 길이는 지역별 총건수, 색 구간은 유형별 건수입니다/);
-  for (const selector of ["national-map", "map-readout", "region-shortcuts", "region-lens", "signals", "cases", "editorial-insights", "featured-stories", "load-more"]) assert.match(html, new RegExp(`id="${selector}"`));
-  assert.match(html, /assets\/school-esports-landscape\.webp/);
+  assert.match(html, /role="tablist"/);
+  assert.match(html, /시·도 공식 순서로 비교합니다/);
+  for (const selector of ["national-map", "map-readout", "region-shortcuts", "map-context", "snapshot", "selected", "editorial-insights", "featured-stories", "load-more"]) assert.match(html, new RegExp(`id="${selector}"`));
+  assert.doesNotMatch(html, /id="region-map"|id="region-lens"|class="story-break"/);
   assert.match(html, /assets\/esports-landscape-mark\.png/);
   assert.match(html, /rel="icon"[^>]+assets\/favicon-32\.png/);
   assert.match(html, /href="https:\/\/github\.com\/taehyeonglim"/);
@@ -53,13 +53,11 @@ test("public DOM exposes the interactive national landscape before the card arch
   assert.match(html, /class="category-actions"/);
   assert.match(html, /id="type-filter"/);
   assert.match(html, /aria-live=/);
-  const map = html.match(/<svg\s+id="region-map"[^>]*>[\s\S]*?<\/svg>/)?.[0];
-  assert.ok(map, "map subtree must exist");
-  assert.match(map, /role="img"/);
-  assert.match(map, /aria-label=/);
-  assert.doesNotMatch(map, /<a\b|role="(?:button|link)"|tabindex\s*=|\son\w+\s*=/i);
-  assert.doesNotMatch(app, /elements\.map\.addEventListener/);
+  assert.match(html, /<dialog\s+id="detail-panel"/);
+  assert.match(html, /<dialog\s+id="filter-panel"/);
+  assert.doesNotMatch(app, /RegionLoader|projectGeoJson|geo\/regions|map-worker/);
   assert.match(app, /data\/national-map\.v1\.json/);
+  assert.match(app, /view:\s*"browse"/);
 });
 
 test("landing copy presents data directly without editorial metaphors", async () => {
@@ -68,7 +66,7 @@ test("landing copy presents data directly without editorial metaphors", async ()
   ]);
   const landingCopy = `${html}\n${editorial}\n${landscape}`;
   assert.doesNotMatch(landingCopy, /시작|흐름|장면|출발점|이어|놓인다|이동하세요|생태계|숫자가 현장/);
-  for (const statement of ["공개자료 232건", "공개자료 유형별 건수", "대표 사례", "원문 출처"]) {
+  for (const statement of ["공개자료 232건", "공개자료 유형별 현황", "대표 사례", "원문 출처"]) {
     assert.match(html, new RegExp(statement));
   }
   assert.match(editorial, /대회·행사 유형으로 분류된 공개자료입니다/);
@@ -79,7 +77,7 @@ test("release graph resolves local links, all 17 GeoJSON regions, and checked ma
   const [index, research, researchScript, dataText, manifestText] = await Promise.all([
     read("index.html"), read("research/index.html"), read("src/research.js"), read("data/site.v3.json"), read("release-manifest.json"),
   ]);
-  assert.match(research, /href="\.\.\/index\.html"/);
+  assert.match(research, /href="\.\.\/index\.html#workspace"/);
   assert.match(research, /rel="icon"[^>]+\.\.\/assets\/favicon-32\.png/);
   assert.match(research, /src="\.\.\/src\/research\.js"/);
   assert.match(research, /id="research-load-error"[^>]*role="alert"/);
@@ -119,7 +117,7 @@ test("release graph resolves local links, all 17 GeoJSON regions, and checked ma
   }
   const expectedGeo = new Set(data.regions.map((region) => region.geojson_ref));
   assert.deepEqual(new Set([...paths].filter((entry) => entry.startsWith("geo/regions/"))), expectedGeo);
-  for (const required of ["index.html", "research/index.html", "src/research.js", "src/landscape.js", "styles/research.css", "data/site.v3.json", "data/national-map.v1.json", "input-provenance.json"]) assert.ok(paths.has(required));
+  for (const required of ["index.html", "research/index.html", "src/research.js", "src/landscape.js", "styles/shell.css", "styles/research.css", "data/site.v3.json", "data/national-map.v1.json", "input-provenance.json"]) assert.ok(paths.has(required));
   assert.ok(!paths.has("release-manifest.json"), "self artifact must not affect release identity");
   assert.deepEqual(
     [...paths].sort(),

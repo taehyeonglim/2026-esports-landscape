@@ -1,10 +1,12 @@
 export const RESOURCE_TYPES = Object.freeze(["school", "event", "facility", "other"]);
 export const SORT_MODES = Object.freeze(["name-asc", "name-desc", "year-asc", "year-desc"]);
+export const VIEW_MODES = Object.freeze(["browse", "compare"]);
 
 const EMPTY_LIST = Object.freeze([]);
 const DEFAULT_MAP_LOAD_STATE = Object.freeze({ status: "idle", region: null, error: null, generation: 0 });
 
 export const DEFAULT_APP_STATE = Object.freeze({
+  view: "browse",
   region: null,
   type: null,
   query: "",
@@ -20,6 +22,7 @@ export const DEFAULT_APP_STATE = Object.freeze({
 
 export const ActionTypes = Object.freeze({
   HYDRATE: "HYDRATE",
+  SET_VIEW: "SET_VIEW",
   SET_REGION: "SET_REGION",
   SET_TYPE: "SET_TYPE",
   SET_QUERY: "SET_QUERY",
@@ -47,11 +50,19 @@ function normalizeSort(value) {
   return SORT_MODES.includes(sort) ? sort : null;
 }
 
+function normalizeView(value) {
+  const view = value == null ? "" : String(value).normalize("NFKC").trim();
+  return VIEW_MODES.includes(view) ? view : "browse";
+}
+
 
 export function createAppState(overrides = {}) {
   const state = { ...DEFAULT_APP_STATE, ...overrides };
+  const entry = state.entry == null || state.entry === "" ? null : String(state.entry);
   return {
     ...state,
+    view: entry ? "browse" : normalizeView(state.view),
+    entry,
     query: normalizeQuery(state.query),
     ...Object.fromEntries([...MULTI_FIELDS].map((field) => [field, normalizeMulti(state[field])])),
     sort: normalizeSort(state.sort),
@@ -72,6 +83,7 @@ function normalizeMapLoadState(value) {
 
 export const actions = Object.freeze({
   hydrate: (state) => ({ type: ActionTypes.HYDRATE, state }),
+  setView: (view) => ({ type: ActionTypes.SET_VIEW, view }),
   setRegion: (region) => ({ type: ActionTypes.SET_REGION, region }),
   setType: (resourceType) => ({ type: ActionTypes.SET_TYPE, resourceType }),
   setQuery: (query) => ({ type: ActionTypes.SET_QUERY, query }),
@@ -86,6 +98,10 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
   switch (action.type) {
     case ActionTypes.HYDRATE:
       return createAppState(action.state);
+    case ActionTypes.SET_VIEW: {
+      const view = normalizeView(action.view);
+      return { ...state, view, entry: view === "compare" ? null : state.entry };
+    }
     case ActionTypes.SET_REGION:
       return { ...state, region: action.region == null || action.region === "" ? null : String(action.region), entry: null };
     case ActionTypes.SET_TYPE:
@@ -98,11 +114,15 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
     case ActionTypes.SET_SORT:
       return { ...state, sort: normalizeSort(action.sort) };
     case ActionTypes.SET_ENTRY:
-      return { ...state, entry: action.entry == null || action.entry === "" ? null : String(action.entry) };
+      return {
+        ...state,
+        view: action.entry == null || action.entry === "" ? state.view : "browse",
+        entry: action.entry == null || action.entry === "" ? null : String(action.entry),
+      };
     case ActionTypes.SET_MAP_LOAD_STATE:
       return { ...state, mapLoadState: normalizeMapLoadState(action.mapLoadState) };
     case ActionTypes.RESET_FILTERS:
-      return { ...state, type: null, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], sort: null, entry: null };
+      return { ...state, region: null, type: null, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], sort: null, entry: null };
     default:
       return state;
   }

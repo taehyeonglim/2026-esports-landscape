@@ -23,11 +23,11 @@ test("state normalizes query and deduplicates multi-select filters", () => {
   assert.deepEqual(state.category, ["시설", "정책"]);
 });
 
-test("reset filters clears the advanced type filter alongside search, filters, sort, and entry", () => {
+test("reset filters clears region, search, advanced filters, sort, and entry", () => {
   const state = createAppState({ region: "busan", type: "other", query: "조례", category: ["지자체정책·조례"], sort: "name-asc", entry: "busan-001" });
   const reset = appReducer(state, actions.resetFilters());
   assert.equal(reset.type, null);
-  assert.equal(reset.region, "busan");
+  assert.equal(reset.region, null);
   assert.equal(reset.query, "");
   assert.deepEqual(reset.category, []);
   assert.equal(reset.sort, null);
@@ -44,6 +44,11 @@ test("URL codec keeps only allowed values and has canonical ordering", () => {
   assert.equal(decoded.entry, "busan-001");
   assert.equal(encodeUrl(decoded, options), "?region=busan&q=%EB%B6%80%EC%82%B0&category=%EC%A0%95%EC%B1%85&entry=busan-001");
   assert.equal(canonicalUrl({ pathname: "/2026-esports-landscape/", search: "?q=%EB%B6%80%EC%82%B0&region=busan", hash: "#map" }, options), "/2026-esports-landscape/?region=busan&q=%EB%B6%80%EC%82%B0#map");
+  const compared = decodeUrl("?view=compare&region=busan", options);
+  assert.equal(compared.view, "compare");
+  assert.equal(encodeUrl(compared, options), "?view=compare&region=busan");
+  assert.equal(createAppState({ view: "compare", entry: "busan-001" }).view, "browse");
+  assert.equal(appReducer(createAppState({ entry: "busan-001" }), actions.setView("compare")).entry, null);
 });
 
 test("search supports quoted AND terms across entry fields", () => {

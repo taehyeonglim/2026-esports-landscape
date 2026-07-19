@@ -1,6 +1,6 @@
-import { createAppState, normalizeMulti, normalizeQuery, SORT_MODES } from "./state.js";
+import { createAppState, normalizeMulti, normalizeQuery, SORT_MODES, VIEW_MODES } from "./state.js";
 
-export const URL_KEYS = Object.freeze(["region", "type", "q", "category", "schoolLevel", "theme", "scope", "status", "sort", "entry"]);
+export const URL_KEYS = Object.freeze(["view", "region", "type", "q", "category", "schoolLevel", "theme", "scope", "status", "sort", "entry"]);
 const MULTI_KEYS = new Set(["category", "schoolLevel", "theme", "scope", "status"]);
 const TYPE_VALUES = Object.freeze(["school", "event", "facility", "other"]);
 
@@ -14,7 +14,7 @@ function requireOptions(options) {
 function isAllowed(value, options, key) {
   if (!value) return false;
   if (key === "entry" || key === "q") return true;
-  const builtIn = key === "type" ? TYPE_VALUES : key === "sort" ? SORT_MODES : null;
+  const builtIn = key === "view" ? VIEW_MODES : key === "type" ? TYPE_VALUES : key === "sort" ? SORT_MODES : null;
   if (builtIn && !builtIn.includes(value)) return false;
   const allowed = options.allowed[key];
   return builtIn != null && allowed == null || Array.isArray(allowed) && allowed.map(String).includes(value);
@@ -41,6 +41,7 @@ function validEntryIds(entries) {
 }
 
 function isDefault(key, value) {
+  if (key === "view") return value === "browse";
   return Array.isArray(value) ? value.length === 0 : value === (key === "q" ? "" : null);
 }
 
