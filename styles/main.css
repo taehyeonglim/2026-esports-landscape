@@ -350,7 +350,7 @@ input::placeholder { color: #707b84; }
 
 @media (max-width: 767px) {
   .tool-hero { padding-top: 0; }
-  .hero-inner { width: calc(100% - 1.25rem); min-height: 0; padding: 1.2rem 0 1.4rem; gap: .8rem; }
+  .hero-inner { width: calc(100% - 1.25rem); min-height: 0; padding: 1rem 0 1.1rem; gap: .8rem; }
   .hero-copy .eyebrow { margin-bottom: .45rem; font-size: .62rem; }
   .hero-copy h1 {
     font-size: clamp(1.9rem, 9vw, 2.65rem);
