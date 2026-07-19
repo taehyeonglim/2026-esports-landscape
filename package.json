@@ -15,7 +15,10 @@
     "test:e2e": "node scripts/build.mjs && node --test tests/e2e-contract.test.mjs",
     "e2e": "npm run test:e2e",
     "test:browser": "npm run build && playwright test",
-    "verify:release": "npm run extract && npm run validate && npm test && npm run test:e2e && npm run test:browser && node scripts/verify-release.mjs"
+    "discovery:bootstrap": "PYTHONPATH=src python3 -m esports_data.weekly_discovery --bootstrap-only",
+    "discovery:run": "PYTHONPATH=src python3 -m esports_data.weekly_discovery",
+    "test:discovery": "PYTHONPATH=src python3 -m unittest tests.python.test_weekly_discovery",
+    "verify:release": "npm run extract && npm run validate && npm test && npm run test:discovery && npm run test:e2e && npm run test:browser && node scripts/verify-release.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",

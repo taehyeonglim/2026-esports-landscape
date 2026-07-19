@@ -1,0 +1,90 @@
+name: Weekly source discovery
+
+on:
+  schedule:
+    # Every Monday at 09:00 Asia/Seoul (GitHub cron is UTC).
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-source-discovery
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: main
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.13"
+      - name: Check for an open discovery review
+        id: open-review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          count=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("automation/discovery-"))] | length')
+          printf 'count=%s\n' "$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" -gt 0 ]; then
+            printf 'An earlier discovery PR is still awaiting review; this run made no changes.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Test discovery contracts
+        if: steps.open-review.outputs.count == '0'
+        run: PYTHONPATH=src python -m unittest tests.python.test_weekly_discovery
+      - name: Collect unseen candidates
+        id: collect
+        if: steps.open-review.outputs.count == '0'
+        run: |
+          PYTHONPATH=src python -m esports_data.weekly_discovery --report "$RUNNER_TEMP/discovery-report.json"
+          python - "$RUNNER_TEMP/discovery-report.json" "$GITHUB_STEP_SUMMARY" <<'PY'
+          import json
+          import sys
+
+          report = json.load(open(sys.argv[1], encoding="utf-8"))
+          with open(sys.argv[2], "a", encoding="utf-8") as output:
+              output.write("## Weekly source discovery\n\n")
+              output.write(f"- Successful surfaces: {report['successful_surfaces']}/{report['total_surfaces']}\n")
+              output.write(f"- Already seen: {report['duplicates']}\n")
+              output.write(f"- New review candidates: {report['new_candidates']}\n")
+          PY
+          if git diff --quiet -- data/discovery/seen.v1.json data/discovery/candidates.v1.json; then
+            printf 'changed=false\n' >> "$GITHUB_OUTPUT"
+          else
+            printf 'changed=true\n' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit new candidate state
+        if: steps.collect.outputs.changed == 'true'
+        env:
+          BRANCH_NAME: automation/discovery-${{ github.run_id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH_NAME"
+          git add data/discovery/seen.v1.json data/discovery/candidates.v1.json
+          git commit -m "data: add weekly discovery candidates"
+          git push origin "$BRANCH_NAME"
+      - name: Open review pull request
+        if: steps.collect.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH_NAME: automation/discovery-${{ github.run_id }}
+        run: |
+          body="$RUNNER_TEMP/discovery-pr.md"
+          printf '%s\n' \
+            '## 검토 목적' \
+            '' \
+            '공개 자료에서 처음 발견된 URL만 수집한 자동 후보입니다.' \
+            '' \
+            '- `needs_review` 후보를 원문에서 확인합니다.' \
+            '- 채택·중복·제외 결정을 `review_discovery` 명령으로 기록합니다.' \
+            '- 이 PR은 `data/site.v3.json`을 자동 변경하거나 공개하지 않습니다.' \
+            '- 이 PR이 열려 있는 동안 다음 주 수집은 건너뜁니다.' > "$body"
+          gh pr create --base main --head "$BRANCH_NAME" --title "data: weekly source discovery" --body-file "$body"

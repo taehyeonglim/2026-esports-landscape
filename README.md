@@ -190,6 +190,9 @@ python3 -m http.server 4177 --directory dist
 | `npm test` | JavaScript 단위 테스트 실행 |
 | `npm run test:e2e` | 빌드 및 정적 계약 E2E 테스트 실행 |
 | `npm run test:browser` | 데스크톱·모바일 Playwright 테스트 실행 |
+| `npm run discovery:bootstrap` | 현재 공개 출처를 기존 확인 자료로 등록 |
+| `npm run discovery:run` | 신규 출처 후보 수집 및 중복 제거 실행 |
+| `npm run test:discovery` | 주간 수집·검토 계약 테스트 실행 |
 | `npm run verify:release` | 추출부터 브라우저 및 릴리스 검증까지 전체 실행 |
 
 Python 테스트는 다음과 같이 실행합니다.
@@ -215,6 +218,28 @@ PYTHONPATH=src python3 -m unittest discover -s tests/python -p 'test_*.py'
 | `publish` | 승인과 품질 보고서를 검증하고 불변 스냅샷 출판 |
 
 운영 CLI는 fail-closed 방식입니다. 입력, 정책, 승인, 서명, 해시 또는 측정값이 누락되거나 모호하면 추정값으로 진행하지 않고 차단 결과를 반환합니다. 실제 출판은 저장소의 보호된 GitHub Actions 워크플로를 통해 수행하는 것을 전제로 합니다.
+
+## 주간 신규 자료 수집
+
+`Weekly source discovery` 워크플로는 매주 월요일 09:00(KST)에 교육부·17개 시도교육청 홈페이지와 최근 14일 검색 RSS를 확인합니다. URL은 문서 번호 같은 식별용 쿼리를 유지하고 추적 파라미터와 프래그먼트만 제거한 뒤, `data/discovery/seen.v1.json`의 기존 URL 해시와 비교합니다. 제목은 원문 대신 정규화한 SHA-256 지문만 저장해 동일 제목의 다른 URL도 중복 가능 후보로 표시합니다.
+
+새 URL이 있으면 `automation/discovery-*` 브랜치와 검토용 PR을 생성합니다. 공개 데이터인 `data/site.v3.json`은 자동으로 수정하지 않습니다. 이전 수집 PR이 열려 있으면 다음 실행은 변경 없이 종료하므로 검토되지 않은 후보가 누적되지 않습니다.
+
+후보 검토 결과는 다음 명령으로 기록합니다.
+
+```bash
+# 공개 데이터의 기존 항목에 연결해 채택
+PYTHONPATH=src python3 -m esports_data.review_discovery \
+  --candidate candidate-0123456789abcdef --decision accepted --entry-id entry-id
+
+# 중복 또는 제외 처리
+PYTHONPATH=src python3 -m esports_data.review_discovery \
+  --candidate candidate-0123456789abcdef --decision duplicate
+PYTHONPATH=src python3 -m esports_data.review_discovery \
+  --candidate candidate-0123456789abcdef --decision rejected
+```
+
+채택·중복·제외 결과도 확인 이력에 남으므로 이후 수집에서는 같은 URL을 다시 후보로 만들지 않습니다. `accepted`는 실제 공개 항목 ID가 있을 때만 허용하며, 후보를 공개 데이터에 추가하는 작업은 자료 내용과 개인정보를 사람이 확인한 뒤 별도 변경으로 진행합니다.
 
 ## 데이터 모델
 

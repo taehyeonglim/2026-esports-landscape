@@ -92,6 +92,17 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn('--verify-at "$(date -u +%Y-%m-%dT%H:%M:%SZ)"', workflow)
         self.assertIn('persist-credentials: false', workflow)
 
+    def test_weekly_discovery_is_review_gated_and_does_not_publish(self):
+        workflow = (ROOT / ".github" / "workflows" / "weekly-discovery.yml").read_text()
+        self.assertIn('- cron: "0 0 * * 1"', workflow)
+        self.assertIn("contents: write\n  pull-requests: write", workflow)
+        self.assertIn('startswith("automation/discovery-")', workflow)
+        self.assertIn("data/discovery/seen.v1.json data/discovery/candidates.v1.json", workflow)
+        self.assertNotIn("git add data/site.v3.json", workflow)
+        self.assertNotIn("git push --force", workflow)
+        for action in ("actions/checkout", "actions/setup-python"):
+            self.assertRegex(workflow, rf"uses: {re.escape(action)}@[0-9a-f]{{40}}")
+
 
 if __name__ == "__main__":
     unittest.main()

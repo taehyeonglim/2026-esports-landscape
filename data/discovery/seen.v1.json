@@ -1,0 +1,1510 @@
+{
+  "canonicalization_version": 1,
+  "items": [
+    {
+      "canonical_url": "https://brena.or.kr/brena/location.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-005"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "80e73b4a743de7d536222e0622280e003889a8a877b53099c4d04d7743fac0e1"
+      ],
+      "url_sha256": "5c0a52d0ddeed28d6098c6e9e372201f88159e64247aaeb9cc7d3979cf7d17cd"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/notice.do?articleNo=1328&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-014"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c8fb47c56ef507b058970063557c122b5730cbc3ac5f6af6e5a662e6feb42ce5"
+      ],
+      "url_sha256": "014f7847e9aecccfbfc2f0ed938fef08f43622a644266a58f46fa11154a2c9e6"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/notice.do?articleNo=2523&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-009"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "bc14fc4edfe27f21a6dce0ed4067460143d4161a28ddb8ade86d84cb30dc848b"
+      ],
+      "url_sha256": "ca47c57488999c94f31a84a7cc6d53db51c36de89a8de405864242030b557652"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_01.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-005"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "80e73b4a743de7d536222e0622280e003889a8a877b53099c4d04d7743fac0e1"
+      ],
+      "url_sha256": "bb2a6a9234d903dd807d8c7829c8c0f587a603f16979d714cc85072c7b524c45"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=1974&mode=view&srCategoryId=",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-025"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "ac12c50ec223e3cf4a08bf374aaf35ded46f6e6f9851bc8289beda4fce740a77"
+      ],
+      "url_sha256": "3e9c693491b80b4bee3c627705c0fcd147846e0b1bb750705c83478eccb233a3"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=2372&mode=view&srCategoryId=",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-015"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "cebc4c64bfc65d07834c91df83914d7615fbe0b8749f41490fee39a620b609fc"
+      ],
+      "url_sha256": "a983ede3f86996c0547def15ff185e93ce0c1467f1f0ad6012effbcf3f079324"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?articleNo=1963&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-017"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fc6de1a6658ac9422106f5ed120e1f412b3a13a6940ee2deead1791073400ab9"
+      ],
+      "url_sha256": "42662f9d48ad784495c5d6e8b8d0cd594c0f8031d973a886e144fd22200f65fa"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?articleNo=1964&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-024"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "d6564ab9620e00fc4ced5cae19bbabd25c2091dd141860de13d6f86dd6a3a203"
+      ],
+      "url_sha256": "dc6aba5a1d32071c03e3d6ffadb4eb0dfbed5eae5c7f273e35d4723d5a79deb3"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?articleNo=1964&mode=view&title=%5BToo%20Much%20Game%5D%20%EB%8F%99%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90%20e%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%EB%8F%99%EC%95%84%EB%A6%AC",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-024"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "d6564ab9620e00fc4ced5cae19bbabd25c2091dd141860de13d6f86dd6a3a203"
+      ],
+      "url_sha256": "06c527cf045facf1b20d7c24ee5476b9b8ee9926f50203c0ca69f7c4fcbeeb52"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?mode=list",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-015"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "cebc4c64bfc65d07834c91df83914d7615fbe0b8749f41490fee39a620b609fc"
+      ],
+      "url_sha256": "09b9ede808911f88bf2d200c1fa18dd3935c59e24fcc38dcaa0c5d6550c173f0"
+    },
+    {
+      "canonical_url": "https://care.gb.go.kr/Main/chi/page.do?cmd=2&iidx=55992&mnu_order=2&mnu_uid=7525&pageNo=1&pageSize=10&pageType=0002&searchWord=&year=2024",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-gyeongbuk-national-training-center-2024"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "be1a5c444c2483aa49b44f557054202c8c71cfc4d68993135b5375f7200f8fc5"
+      ],
+      "url_sha256": "091d0c9cad1a9e8e4fd97d211947c5b26ec695deeb2753d951891dff0a014f8b"
+    },
+    {
+      "canonical_url": "https://cbea.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-chungbuk-esports-association",
+        "visible-regional-chungbuk-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "6d4cc39462bdb91907c5a921874a5f48ca9b3ce336e81d3df989da084171e06a",
+        "a5ff80d49d430afea0d3b4b56e4115c283decfdf54680c45594e5d19ea762454"
+      ],
+      "url_sha256": "8f11aa8da72e8b58088fa945c55ef1cab3405bc7956e1c2e21694c9f8fa5de9e"
+    },
+    {
+      "canonical_url": "https://ccon.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungnam-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c782a99c37feb92f188733029df7ed222efa53553d2940c646f8b7f921d7ad65"
+      ],
+      "url_sha256": "f768cca5c18e9dc288e0000262fa7fd25b354ec7ed98b564c3dfe6c7e58e07a7"
+    },
+    {
+      "canonical_url": "https://ccon.kr/bbs/board.php?bo_table=news&wr_id=117",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-chungnam-permanent-arena-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "20fd63de467178b6da14b3ab8a69ca67987f7826b33a6db07a349c40c9a499e7"
+      ],
+      "url_sha256": "33f082aaddce82954072897585999247c1855700e9e83882f09df05bb3b52a22"
+    },
+    {
+      "canonical_url": "https://cm.asiae.co.kr/article/2025011410301979597",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-004"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "08c0406714dae60b11df4f6ad1061c2131b3b4bc22492b29527c482e100fcfa1"
+      ],
+      "url_sha256": "09b226815caf8719ad460190d2d4a7baa1132bc7b9c42fc5caf30c668d85a272"
+    },
+    {
+      "canonical_url": "https://council.busan.go.kr/assem/user/assem/minute/preView.busan?command=update&minuteSid=23300",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-008"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c16eb20917c581872bfbd98a04806a7341c83e912d7c38f99755913736da2d50"
+      ],
+      "url_sha256": "4e59f1b0041e5a37860dff5075a0866e5e98d497ffdb0f786db8644e2f8aa839"
+    },
+    {
+      "canonical_url": "https://culture.seoul.go.kr/culture/culture/cultureEvent/view.do?cultcode=148861&menuNo=200010",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-seoul-ges-2024-culture"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "5644b2c928882101f09963379e8625002324260bac61f6a090e093327aa201de"
+      ],
+      "url_sha256": "0ba6224dbf822d2725cc0d6fbceb02455ed488b6413181c7c8c5daaa2926b7b1"
+    },
+    {
+      "canonical_url": "https://deuhome.deu.ac.kr/game/sub01_03.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-020"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "1eb53a30cdb4398a3b702d031a986a92a2d07159c10f550cdcbb4eb5e3ee8851"
+      ],
+      "url_sha256": "00a0ebce8917153653cd5038fc305ac58a1ad4d34155d74fbd172f78a8f159f3"
+    },
+    {
+      "canonical_url": "https://dje.dicia.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-daejeon-dream-arena",
+        "visible-regional-daejeon-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "066eb43562b706f252ae2befa05655ded02886e57e8ca62f8771175a470edb8e",
+        "76565aa7ed9bd40a7e64c62adb90d210dbbe8d546e8842a30f5faee422232b39"
+      ],
+      "url_sha256": "ff568d18e452311bd11db30345a5da93d161bed63792c622415973f9cb16a5fe"
+    },
+    {
+      "canonical_url": "https://gnarena.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gyeongnam-arena",
+        "visible-regional-gyeongnam-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "e69fce3df9ae81956a7f8515a1bed6570872d8c8c180ac934aefc7cb5b97cef7",
+        "ed410ce16a918d4541d26db7ade9e6a7b1c192e7e1f2369cc0741124839b8bca"
+      ],
+      "url_sha256": "86fd32f2a79e3294f3f2115726255bd4d7a8b5ef62b044dbea68eca2a5a28ac0"
+    },
+    {
+      "canonical_url": "https://gnarena.or.kr/sub/rsvlist.php",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-gyeongnam-middle-high-tournament-2025"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "199f35dd2dbf26a9705088d6d8bb40a9c86437204147ccb9aa961fdc8ffaf2dc"
+      ],
+      "url_sha256": "756d5b9475777b7662e4823b057ed868a20240feac038b06134c5bf7ae85e789"
+    },
+    {
+      "canonical_url": "https://gvr.ysu.ac.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-021"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "78d9c6896ea279a3397a388312b0b84f0222a233a41a390e1acd7314df64d304"
+      ],
+      "url_sha256": "576436450f9e177b07a691ab3b99f35945d7b446ba72ab6a1a7200fb70573417"
+    },
+    {
+      "canonical_url": "https://hijob.pen.go.kr/sub/school_view.asp?school=17",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-014"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c8fb47c56ef507b058970063557c122b5730cbc3ac5f6af6e5a662e6feb42ce5"
+      ],
+      "url_sha256": "4b8ef8e62c9f163f9948d242f9e5fa9e6e0c1de187b5e2b05044f652035a5d83"
+    },
+    {
+      "canonical_url": "https://home.pen.go.kr/bssc/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-001"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "440814c0c6853a63e32a2f275b153a92d464fb4a3c8b4e75e4f53ae0d309626d"
+      ],
+      "url_sha256": "cdfadc3b5bd0f618d0b8b885fe1226bbf26781cd2ad2aafa29655a806dd29cd0"
+    },
+    {
+      "canonical_url": "https://home.pen.go.kr/swai/main.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-004"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "08c0406714dae60b11df4f6ad1061c2131b3b4bc22492b29527c482e100fcfa1"
+      ],
+      "url_sha256": "c816dfe79b72e24a471ac3945e2151940f8113f9e4376c995ca4f701b2ffcc26"
+    },
+    {
+      "canonical_url": "https://ingame.or.kr/eSportsChallenge",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-incheon-esports-challenge",
+        "visible-regional-incheon-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "8168eddb8a472952c6b5627f70ef37147fb13b1c3ed9f3e6250671c0847f2461",
+        "c34c47e3c334c0f5c5c5600c0938865d325a7758c85e20b54a76dc508b421609"
+      ],
+      "url_sha256": "aaffd7df5908da5dd6b1ca802f3196569ec0308a7adce5adbb36775d1c609cac"
+    },
+    {
+      "canonical_url": "https://jcia.or.kr/cf/Board/8917/detailView.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-jeonnam-esports-2025",
+        "visible-regional-jeonnam-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "743f3374c31514ba083d7d0cf36feb928aa6952a612669d411854541fb644b21",
+        "a341e013cbdb4020d4558b5b5861b6fcaf799e2c5e2dcd757a401d4e1b5d95ed"
+      ],
+      "url_sha256": "89ea2f868802a5db86139b6b3e6bc334e68cf98bb2ec0882cde4a0b71cd53ab1"
+    },
+    {
+      "canonical_url": "https://jespa.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-jeju-esports-association"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "4f6d6b645682e61347e42a3f9e74c4bcf33035e9772cd30018fcbfff704a15b5"
+      ],
+      "url_sha256": "adc4d2b4a4521583eedfb4520381bc2007d21aa585214f495fe81fb845de95f9"
+    },
+    {
+      "canonical_url": "https://keg.e-sports.or.kr/notice",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungbuk-keg-regional-qualifier",
+        "visible-regional-chungnam-keg-regional-qualifier",
+        "visible-regional-daegu-keg-regional-qualifier",
+        "visible-regional-daejeon-keg-regional-qualifier",
+        "visible-regional-gangwon-keg-regional-qualifier",
+        "visible-regional-gwangju-keg-regional-qualifier",
+        "visible-regional-gyeongbuk-keg-regional-qualifier",
+        "visible-regional-gyeonggi-keg-regional-qualifier",
+        "visible-regional-gyeongnam-keg-regional-qualifier",
+        "visible-regional-incheon-keg-regional-qualifier",
+        "visible-regional-jeju-keg-regional-qualifier",
+        "visible-regional-jeonbuk-keg-regional-qualifier",
+        "visible-regional-jeonnam-keg-regional-qualifier",
+        "visible-regional-sejong-keg-regional-qualifier",
+        "visible-regional-seoul-keg-regional-qualifier",
+        "visible-regional-ulsan-keg-regional-qualifier"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "18cf9b5e9d17acb3f4dbc04469e5dfaf369410a9e479ff4bba01ac0d55b325b0",
+        "1b31b45024f34f5d7d8483e7561f230b5058fe747acfd0961adbea85607fa275",
+        "27f98510dd95bec12ef1afbace44bf2bf60c4016bbca9a64a1cb5819220fbdb1",
+        "3b22820e7162dc7fb93e36992cd08c0bb409dc2cb8064ddff6a3cf619bf670ea",
+        "4f8a806870f824b996e540e4f0fcc529c045502b6a39141826967b2e97f49583",
+        "62ed3d13053399db354f0b5622323a6d37aca6cfe43a6e39440a6d35c874281a",
+        "653c15f1cec02ae0b931a2b058b34763afc03b976de73423962772852708c126",
+        "7425d4680eb4d3b58911dff8d47a830c0456db1f779d78cdedf846b53dc5f519",
+        "7b2a8a46e114bf5bb794a948dff20116651e10175307591bed270db943b90552",
+        "8b7fd7919309f96d739606e8b65afe54493043a128ecd75b7ccc24f573929182",
+        "99e2217a3a4ff2e193baa7b1c77357a2f7f6ea42ee39706f6f0a26b095758a52",
+        "a3e9d659472dba508182a2af284eef6977eae103d407be091c4c5ae17197faca",
+        "b9300102e5d5598f54e0747564e2ebdbb0f81ae52920fac9bc082f3d07f26452",
+        "cac7dc15bf1f75e50fc76efcfc1eeb628b10727ff590eb374d0d040a78a0cbe6",
+        "e16362ea8f3dd3b6c38000151b20c673ae15aefd5574d549c9f4a6e6a0102af6",
+        "ec8ef15f65c87f20ca445df0485752aa62d0093b600b7a1d8319f136336cb171"
+      ],
+      "url_sha256": "1bc4a09abe64c4ed407ed8c9a76f45ae4ad1d667fc831d428bbfd2201853ec26"
+    },
+    {
+      "canonical_url": "https://kel.e-sports.or.kr/notice/view/1275",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungbuk-kel-regional-team",
+        "visible-regional-chungnam-kel-regional-team",
+        "visible-regional-daegu-kel-regional-team",
+        "visible-regional-daejeon-kel-regional-team",
+        "visible-regional-gangwon-kel-regional-team",
+        "visible-regional-gwangju-kel-regional-team",
+        "visible-regional-gyeongbuk-kel-regional-team",
+        "visible-regional-gyeonggi-kel-regional-team",
+        "visible-regional-gyeongnam-kel-regional-team",
+        "visible-regional-incheon-kel-regional-team",
+        "visible-regional-jeju-kel-regional-team",
+        "visible-regional-jeonbuk-kel-regional-team",
+        "visible-regional-jeonnam-kel-regional-team",
+        "visible-regional-sejong-kel-regional-team",
+        "visible-regional-seoul-kel-regional-team",
+        "visible-regional-ulsan-kel-regional-team"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "06d9055c67d32910c14b9efc8efa85a74bda9b5585f4c5c352c553b5825cf71a",
+        "32416713142a83a785ab7f462704ffb634c7ba08b0cd76616693fbfebf38eacc",
+        "35265c612f2cd0de84e870fc3a179fb65ec680ce0a24b314553c6fe780066841",
+        "392aeb7e813ad925db7109f4475d08ab319c03829928b2ddb73400a9c5a0fc51",
+        "39e7e9943d8f010d6dad21498b0459c0e17946d861ea1c1f08b371ed14322e0d",
+        "44b45333b3009b503f827608493d31aa488705c235a93ceba146eeb2caa296e4",
+        "595a7e3a703fc71c486d1676b126a9e0644d469b6dfdc43cd9ec8f7255219453",
+        "76b3beb9175332382bbf8e1a64137927ecbfa284972bc7d7317302e4638cc164",
+        "7ed0b4d78842fb4560629a2270694f779ae7fa395d5408b4644f434726565b56",
+        "87f4ce9cc471c93afdb0599ccbb07fecb16dd1bd42f035f0cd4c7997a3954d6f",
+        "94f097ba76e4ecc7acd6e2035e0f49a1cdadb78ef005dd12c7338422aa17b112",
+        "99c709dc92f150e2a0b067b1cccc5d02eae272b099677f4b32d334a63500d9e5",
+        "afe5a3f3418387a4730696712f8e847e7c100b0ce2e4c320377362fdea50e833",
+        "b44030d3fcb275204465d5df7d9e29e10dcb3783e938dd9f033c3a875e8e7fbc",
+        "bca3366bd751f33006f6b86d8561b3630611cb1f2f2ec5a2a3e66dcc64b824ae",
+        "df5e28468a67b819b0b8df1fd11d5890043d3f0773c6a4f8f9edbed774108231"
+      ],
+      "url_sha256": "1810e9d3cf934382d61e7b4068878839a9c64609b8b44a0f1cc4cbf802e456ee"
+    },
+    {
+      "canonical_url": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%96%91%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-014"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c8fb47c56ef507b058970063557c122b5730cbc3ac5f6af6e5a662e6feb42ce5"
+      ],
+      "url_sha256": "1d1fee2a6940a017271985ddfb243031e2200e1db3383a713d60e01268e2e093"
+    },
+    {
+      "canonical_url": "https://ko.wikipedia.org/wiki/%EB%B6%80%EC%82%B0%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-013"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "b490067239ee7933cf8971038600843fd150646217ece1ef0da2e1bd6cb5acc6"
+      ],
+      "url_sha256": "a860cead9bcc9666d336986f3f7ad9f4028f2f99a764cd8c3283d91901908b2c"
+    },
+    {
+      "canonical_url": "https://korean.visitseoul.net/attractions/e-%EC%8A%A4%ED%8F%AC%EC%B8%A0-%EC%8A%A4%ED%83%80%EB%94%94%EC%9B%80/KOP003376",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-seoul-esports-stadium"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "204c3cfcf98c2b662f8a1ad4d72fa3b656902b31a9ee9ad11d6550d48550b804"
+      ],
+      "url_sha256": "5f4cb86690d08776dbf4740ca5f6c47b89b5f2288a9263e07ce8d3894d90504c"
+    },
+    {
+      "canonical_url": "https://kr.acrofan.com/detail.php?number=318411",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-011"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "dae0e7a8024bdb91b590e27370ba05341762dca665e0101f8e1dc3e8369f17c0"
+      ],
+      "url_sha256": "b935273bfd58328392ff0ae6071380bd4b792a126957936dddb5a68497d5bc3b"
+    },
+    {
+      "canonical_url": "https://kscms.ks.ac.kr/ces/Main.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-022"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "d0a832761d6e45c11d15849a3c86b44f0c2458d8b5fb7b35c21d9bf59e5e7cff"
+      ],
+      "url_sha256": "6bada653ca8f106c001e396488c2b5223aad44b89dc401b10de6c143a598959c"
+    },
+    {
+      "canonical_url": "https://m.kukinews.com/article/view/kuk202011180316",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-005"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "80e73b4a743de7d536222e0622280e003889a8a877b53099c4d04d7743fac0e1"
+      ],
+      "url_sha256": "e8ff7f82871a2ec9c5d5a4526c7204cd23925a79428c685c47ad34142602d791"
+    },
+    {
+      "canonical_url": "https://m.kukinews.com/article/view/kuk202502170192",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-009"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "bc14fc4edfe27f21a6dce0ed4067460143d4161a28ddb8ade86d84cb30dc848b"
+      ],
+      "url_sha256": "653da8e7487a6227b902ed1fda0807e00f8420e2416fb6bbb7b37051405710e3"
+    },
+    {
+      "canonical_url": "https://m.seoul.co.kr/news/2026/05/11/20260511500093",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-010"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "39d1cbfb01656c87949b3a59b96c450196312362bc9af7651227ae0098c63819"
+      ],
+      "url_sha256": "cd78d3dd88b7794824b1162608ccfcaf18bcb28ff0a95c7297053a4b4dc71438"
+    },
+    {
+      "canonical_url": "https://mis.tu.ac.kr/game/index.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-019"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "3b977c1e41be1cb07be9294a6b574a15d4d83580ffca4628acf65c4aae2b5605"
+      ],
+      "url_sha256": "76847bd6703bc8e4682ce8af9b24934411b320993555d752ecc8766001c8d76b"
+    },
+    {
+      "canonical_url": "https://mobile.busan.com/view/busan/view.php?code=2026010613451132352",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-022"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "d0a832761d6e45c11d15849a3c86b44f0c2458d8b5fb7b35c21d9bf59e5e7cff"
+      ],
+      "url_sha256": "efabeed1566106a724f5824788fcc6b145c4498a24a5c03cdf881dd4c7e76d94"
+    },
+    {
+      "canonical_url": "https://mypnu.net/freead/27155214",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-017"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fc6de1a6658ac9422106f5ed120e1f412b3a13a6940ee2deead1791073400ab9"
+      ],
+      "url_sha256": "f892a7a2a67b70039aef487b93f2fbf65bdaea1e7cff1c6176b17315c14209a4"
+    },
+    {
+      "canonical_url": "https://namu.wiki/w/%EB%B6%80%EC%82%B0%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B3%BC%ED%95%99%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-013"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "b490067239ee7933cf8971038600843fd150646217ece1ef0da2e1bd6cb5acc6"
+      ],
+      "url_sha256": "47b4fc1fe5d51a96623268a5db923728fb535bc3965a8c1f4d92021e38806251"
+    },
+    {
+      "canonical_url": "https://news.knn.co.kr/news/article/140566",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-003",
+        "busan-015"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9b7894a3e952b232b08aa6d7853b2c09ee920fa9340d053be2527d07dffa3bd8",
+        "cebc4c64bfc65d07834c91df83914d7615fbe0b8749f41490fee39a620b609fc"
+      ],
+      "url_sha256": "5c2415ea3d4f40d0863f520c824eb0ce298c9cb9bcc59ad4eba6e13ee0a1e802"
+    },
+    {
+      "canonical_url": "https://newsroom.smilegate.com/bbs/board.php?bo_table=news&wr_id=2034",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungbuk-youth-esports-festival",
+        "visible-regional-chungnam-youth-esports-festival",
+        "visible-regional-daegu-youth-esports-festival",
+        "visible-regional-daejeon-youth-esports-festival",
+        "visible-regional-gangwon-youth-esports-festival",
+        "visible-regional-gwangju-youth-esports-festival",
+        "visible-regional-gyeongbuk-youth-esports-festival",
+        "visible-regional-gyeonggi-youth-esports-festival",
+        "visible-regional-gyeongnam-youth-esports-festival",
+        "visible-regional-incheon-youth-esports-festival",
+        "visible-regional-jeju-youth-esports-festival",
+        "visible-regional-jeonbuk-youth-esports-festival",
+        "visible-regional-jeonnam-youth-esports-festival",
+        "visible-regional-sejong-youth-esports-festival",
+        "visible-regional-seoul-youth-esports-festival",
+        "visible-regional-ulsan-youth-esports-festival"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "0f48b59a9246ae0beb5ae68dfcf6a9097be6828a1f5c45a886d9962418591f18",
+        "2410c5a8b9df090bc607ebe95dd589ceea034788915371addaa5db16aa7b314d",
+        "2a97ea09524f9f326fbeb2cd00be996df24ef6b5261ab66b7927798940cf89d6",
+        "3f01ad4a71b4bd1fe6ccce2340cb358fa51004b76754c0b98aca5118a527dc66",
+        "47cfd8882e04f14e76db86fe7fcca9e1cd5120b8a6ee5914d34f47e733e3972b",
+        "491fcaf1b33c99772777bea1fa6e7eccefc0d656c7c83f744cb1babb674d16d3",
+        "57d50020aba1f1b3d7565b8e96b8dcf902ef7bce21bf3235977aa8f31658fe5a",
+        "5b5ca8f8a0ef3e4c2e5dfd18824315cb0e41334ceddd58dbf92fac759bea31f2",
+        "65bf45dc6bc0773f5332deca1ff628944ed47581671138e23b16608104e32101",
+        "91ce5ca7d881753b6ce7b191a6e9578166269ae609a3b3ea69029bc191c1c679",
+        "963efa2abb8e7292a595ec235fb78f149713283d26cb8c7b2605b22336aba968",
+        "b2951b1df9cff59e4362fa88b16a00035befe4abf55b7d1ca46b2c0ced4fed0a",
+        "ba8e25c658d1cb67c43be750cf5ab9ab9b214eebe5903952599453093087fd21",
+        "d6d77f378207b2fc26f67c5b8f30a0ab8a1464752fecf3990e9d63fda82aea3b",
+        "d8b47dd9215befe567702cfd5e785ff1a23c2ff69f79aa0f7434bc396bbf3f98",
+        "dbfd36dc52ce7c15624150790c52747f8fdc66e4b3c9358fbe39d3a8b7153c31"
+      ],
+      "url_sha256": "cd246b38af964d9fa2c2c7efa8f5fd64112b5ecc69d17f497059ba3a2cb6cfc2"
+    },
+    {
+      "canonical_url": "https://radiology.deu.ac.kr/www/deu-today.do?articleNo=58977&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-023"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "38c481bb948c5f3d7eb18f1cc79ed14618b9facd851975221a4653aa08e00273"
+      ],
+      "url_sha256": "bf5a2cd77fecb5b14d5c4c0dc6774fbd72a61acc53dc26c330f8e2e324d2a492"
+    },
+    {
+      "canonical_url": "https://school.busanedu.net/common/nttFileDownload.do?fileKey=eec2298c5a7f2cb0646d6b54eabba136",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-001"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "440814c0c6853a63e32a2f275b153a92d464fb4a3c8b4e75e4f53ae0d309626d"
+      ],
+      "url_sha256": "be3e18c76d42d7cb731cdb42ee5e1456aee5fb72420994328b59003f8c7edad8"
+    },
+    {
+      "canonical_url": "https://school.cbe.go.kr/cjss/M010308/",
+      "decision": "accepted",
+      "entry_ids": [
+        "elementary-chungbuk-2022-cheongju-seongsin-efestival"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "bfd80cdc9f41ce94bfd895b7400453a58e3afd483a0d62cd15e97f7ae2f9a6b4"
+      ],
+      "url_sha256": "3642a3cc9d9f63e1661953b469549a6b55b6c402b24a2f92bc3ad65e1f6db802"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-012",
+        "visible-regional-chungbuk-school-club-instructor",
+        "visible-regional-chungbuk-school-league-open-circuit",
+        "visible-regional-chungbuk-school-sports-festival-selection",
+        "visible-regional-chungnam-school-club-instructor",
+        "visible-regional-chungnam-school-league-open-circuit",
+        "visible-regional-chungnam-school-sports-festival-selection",
+        "visible-regional-daegu-school-club-instructor",
+        "visible-regional-daegu-school-league-open-circuit",
+        "visible-regional-daegu-school-sports-festival-selection",
+        "visible-regional-daejeon-school-club-instructor",
+        "visible-regional-daejeon-school-league-open-circuit",
+        "visible-regional-daejeon-school-sports-festival-selection",
+        "visible-regional-gangwon-school-club-instructor",
+        "visible-regional-gangwon-school-league-open-circuit",
+        "visible-regional-gangwon-school-sports-festival-selection",
+        "visible-regional-gwangju-school-club-instructor",
+        "visible-regional-gwangju-school-league-open-circuit",
+        "visible-regional-gwangju-school-sports-festival-selection",
+        "visible-regional-gyeongbuk-school-club-instructor",
+        "visible-regional-gyeongbuk-school-league-open-circuit",
+        "visible-regional-gyeongbuk-school-sports-festival-selection",
+        "visible-regional-gyeonggi-school-club-instructor",
+        "visible-regional-gyeonggi-school-league-open-circuit",
+        "visible-regional-gyeonggi-school-sports-festival-selection",
+        "visible-regional-gyeongnam-school-club-instructor",
+        "visible-regional-gyeongnam-school-league-open-circuit",
+        "visible-regional-gyeongnam-school-sports-festival-selection",
+        "visible-regional-incheon-school-club-instructor",
+        "visible-regional-incheon-school-league-open-circuit",
+        "visible-regional-incheon-school-sports-festival-selection",
+        "visible-regional-jeju-school-club-instructor",
+        "visible-regional-jeju-school-league-open-circuit",
+        "visible-regional-jeju-school-sports-festival-selection",
+        "visible-regional-jeonbuk-school-club-instructor",
+        "visible-regional-jeonbuk-school-league-open-circuit",
+        "visible-regional-jeonbuk-school-sports-festival-selection",
+        "visible-regional-jeonnam-school-club-instructor",
+        "visible-regional-jeonnam-school-league-open-circuit",
+        "visible-regional-jeonnam-school-sports-festival-selection",
+        "visible-regional-sejong-school-club-instructor",
+        "visible-regional-sejong-school-league-open-circuit",
+        "visible-regional-sejong-school-sports-festival-selection",
+        "visible-regional-seoul-school-club-instructor",
+        "visible-regional-seoul-school-league-open-circuit",
+        "visible-regional-seoul-school-sports-festival-selection",
+        "visible-regional-ulsan-school-club-instructor",
+        "visible-regional-ulsan-school-league-open-circuit",
+        "visible-regional-ulsan-school-sports-festival-selection"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "013c95b9900eda06f779b9e3dec77b48b4684d9b3b07eac391034f6a3b82b996",
+        "015cf1e727f1cfef60197dc58ea9a8a0161217a57f5e24e7ca35e4656abd5978",
+        "0fd87ac73ddc5a9d6d9ef6cc343bad8cba82b10ec1be99fbb318ae7053b6143e",
+        "121b73b3e1b4cdd3b56eba221b183296e0888a9407afd7db527a05f268665628",
+        "14b21c8a93f38bd857c3000ed4027f3e902f80337078c75678e1c047f2ae82da",
+        "1af0cd17df4c4b6e6c947fbe7870c3f8d54c23da96d6c36175e87ca2c0d9d097",
+        "1b85fc76f2424c089758fe801f6f608a518eca460bd72028f7db15998c62bdf4",
+        "1ba2d60e15e85ccea2fe00318a8c8b90a1ceec227c811d82370157f0b1841453",
+        "1dc395c52dd937ef60c52a3b6e8ee1f822828b9bda63e0dea653cfb303b7aba2",
+        "21511a01038f4fec83bd44b601c058c3f2bfd55c5b7c8e8fb61c10c502d48d2b",
+        "2a916d6f392fd93d0c09c7143a970129ebde74be207a99b7aa9bbc4f53dccc38",
+        "347c0aa3a9c84d988b46168e7154c0210b4dda68667c6eccaa8a21bd6c9a6bad",
+        "362eddc518648ad52aa0d4713c4cc4b6f3769c9b05c9c0e64a1fb7d696608eed",
+        "377687770aece614e8890fd03bbc589025ea92364ec4d53d99a9a0ec97f67a54",
+        "37c014615abe5b4f051a805b5d1fc128ef3655e44ba81b9af65eb794d1a98262",
+        "383c9ec04b75fd534858d9df18075d9d3840b9c2c4e8ed5debafee3aa2096abc",
+        "3c32264d2d10d328957970abe3ad8d097f0123b56377359b729e4015703a708c",
+        "40a0b0646e7219243dcaef9a3bf0bd06cdb6364167de81d68b5ffdea22899d90",
+        "49f443f449935f3fc0a62e1782f342de6ba7d7418f2ab14002bfeba35530a55f",
+        "535ecea6ec9dea9639c992d2f7923849d7eb8a296c6cbf9138051380d6bc4e92",
+        "59aa9a6a9f05b2412d8df0956864b39de0bbf24e01a483167afaffda26e551f1",
+        "66b981b611a0912241c9b79a28a8d125b29c0ccc858d84a861f986085d2d43e9",
+        "6c8ad0a2b5bec68f58b3fcc9c08ed83211deb127f6a4d67ad678052ca3d23aae",
+        "701099588b69f4afe1df5880ac55d4abcd471fdca4ff4fd49f0e5183b16b15b3",
+        "77195ed73ec02a36aafe2a9d0e5460d3cc992cea18f6e6fcb407e97a4144275c",
+        "7d948a6820a2ba63d17c1e71175726965ded4b70efcdf792b9fd510ee24c0eb9",
+        "85c82761e1bec966d7dc4459f73b7e343bfe0f7d53747338d59da6ceca57c643",
+        "85f5021933b54b7d370182a9d006939763e28534a2f3ea42dcfb073c41bd2d19",
+        "8c260b25a43b7aca22065c321e636edf6e102ae9aff05b121fcce63d1a30280d",
+        "8fc35ba97c91de4f0f629dd93ce97dfbb979a99119c28198eb9e9ac837692a05",
+        "96ff795230a8d3b20a956dba819d25a92057b6ade2e87371a87fdd7b00aa4ebe",
+        "a4c2d7ea6c560480ff237c2ffb3f8b826a4722ec1443f26237d0734b7cea47f7",
+        "a4f9d96a1be781577c23f5551d52655dedc1a5322c3198abaac642beccae6e1a",
+        "a9804faf2fd47084e91b9484857c6f74906ce9dd158d012ac0d72f677f135c42",
+        "a9d97046449c964ecb0cc8500ddc47ecc94e9204ecdc2f4df35b58b400e9e72a",
+        "b180f5253557da3991252f32ed60bbc47d6fa1d62a7f541dc7461cbf3ccaa81e",
+        "b19ab4224f8b6c93659556cc948cc1a40eddb5c47cfd55caeec8378ca07502c4",
+        "b289991e872ce9faff2a41d105b35aa300fe9ae6ab7dd503a2e02765d2328ca5",
+        "b99f54e2d2d86905913239e7d5d2a68d9032c3a0f60260429949e35e51286a05",
+        "bc4ad223ffdeea2beb195426a5f9036cf28d9a1755fd1b88420a8149d15f862b",
+        "bfff1e1d3d04f74c560cf2d9d68ea3195bbe3d45a18395534b47bf08821c6bed",
+        "ca9b8136a1f572f521c51169675d654e89fe0cf686064ac353412d251ad5472f",
+        "cbb58ef5310f3fa0655680cf406246ff4e82a0d81c4a8bdbc76e628f525545ae",
+        "d9fa851effdb6f4ebd4dabe538e0a2d60c6314664361f405799f17988031cd08",
+        "dc082fef15da429739e4ef5d16e7e0efb919b6ddd9427d48c42a4312e38b52c4",
+        "dee399e9eeb18115b496ca21e17661b346acda4d829ec103e92509600cb010d8",
+        "e4bdcd798eb0decb5ccc4d6f090cc5fa21a756a1fc95d1db959f6ed03492864a",
+        "f25a02ccb8037766c2abc9d03b7cb35f0ee26d2988c230c194f7d3a5d2c449a9",
+        "fc5d4971d6c44bab69923d7f51ccdd59f1cdd0562057d4013338113b270958c7"
+      ],
+      "url_sha256": "4ae1f260c2dc20f6f5ce7b43bb72c392b2d565e855e083779b6248f3f8339f8e"
+    },
+    {
+      "canonical_url": "https://school.use.go.kr/ue-h/MABAJCA/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-ulsan-technical-high-esports"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "393b763aebffe94cff1628951a6208ed4ce38c1e43aa3ea1015f1c8e1a2be284"
+      ],
+      "url_sha256": "2902bea238f92dcc3cfbee142730f117d43c4483b1815b5f24e02de6ddb73928"
+    },
+    {
+      "canonical_url": "https://sejongsc.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-sejong-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9f1475fcd149588fb3e01c9a541de5b6f3d9880b514a88ed379349043a837491"
+      ],
+      "url_sha256": "899322666f5aea57549ea2ee65e94d949ff765a2473307ca23f92f07e53a77c8"
+    },
+    {
+      "canonical_url": "https://seoulesports.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-seoul-association",
+        "visible-regional-seoul-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "09c94c577253367b58514f19a6a867e51e2e56d71f76670e7469bb4cf067ce11",
+        "c6b06e24c0f44486fd91998224bea471f32d1c59ab977fba212e37f4fd1a7e94"
+      ],
+      "url_sha256": "70eaa7ad4a00e659b910316015222f419f94c866cdb96272c2006ef41148cb3a"
+    },
+    {
+      "canonical_url": "https://sites.google.com/view/daegu-esports/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-daegu-esports-association",
+        "visible-regional-daegu-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "0d7c9b06d600f42c4e9372b18ce7c1eec0acb9c491932afe2dfcff417f203f63",
+        "dfc418dd644f482ba449367cd72cc925c8dfd4ac54b5f14b341a91ee3fa7858b"
+      ],
+      "url_sha256": "cef80469b39003242548c2b2869d1788ce0691c473d88b0b3796845626401dcd"
+    },
+    {
+      "canonical_url": "https://uipa.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-ulsan-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "e09031c6806e2a507a335e060426aac9d4e74a4ce0758037ada0b42a40d89259"
+      ],
+      "url_sha256": "b8287377169cc8f08d2b506b5993bf401f8354639efd3cb2af53d5ff7d7328a4"
+    },
+    {
+      "canonical_url": "https://uipa.or.kr/webuser/policy/view.html?bd_id=17",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-ulsan-uipa-esports"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "080a264983eb5b37a8e4c2a13a396c4f36e2c6fc4a13e2da47e75a93cf3e783f"
+      ],
+      "url_sha256": "cf67d746e794da2640c9696d00f4b50d2bd491a684f5faa315e5f4e7012ca631"
+    },
+    {
+      "canonical_url": "https://uni.dongseo.ac.kr/game/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-018"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "a533b4caf23207c70f4c6bd9b8c39f588333338628c71e973168e5d5f314b14f"
+      ],
+      "url_sha256": "7eaed08ce5e4795686d5e54741ccde250a13208208f7f792b40b224c671183b7"
+    },
+    {
+      "canonical_url": "https://use.go.kr/news/user/bbs/BD_selectBbs.do?q_bbsDocNo=20240723154027724&q_bbsSn=1006",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-ulsan-commercial-high"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "34017295239b1f0eef513254031c635558f21fe6b5f4f7eb84f1ff66cbd56f88"
+      ],
+      "url_sha256": "86f5ba0af322d9113451a5268c89376e83d849f58f524e89786aea48944a8ce3"
+    },
+    {
+      "canonical_url": "https://use.go.kr/news/user/bbs/BD_selectBbs.do?q_bbsDocNo=20250616104700694&q_bbsSn=1005",
+      "decision": "accepted",
+      "entry_ids": [
+        "elementary-ulsan-2025-special-efestival"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fb5036a15ca6bbfa7546cac4fff6caaaa4c1c90959fdc952cda0904e3eedd3a9"
+      ],
+      "url_sha256": "75dde798485f4cb14dd89fdd96d9aeae50c314887fee3b5856d0d3015be111e0"
+    },
+    {
+      "canonical_url": "https://www.ajunews.com/view/20240730131853667",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-007"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "44c4fedc36c137ce98f3b053c18e0084a21ceae7403a97f43d957cac10065087"
+      ],
+      "url_sha256": "872b4924fdcccc3c69884529b871d9cf85883e74abbebf2241197448a41dc3f5"
+    },
+    {
+      "canonical_url": "https://www.betanews.net/article/view/beta202510010009",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-021"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "78d9c6896ea279a3397a388312b0b84f0222a233a41a390e1acd7314df64d304"
+      ],
+      "url_sha256": "6d94356f2fb5c6a2dc8b953c9df93066343d1933ddb321312e98250bccb09957"
+    },
+    {
+      "canonical_url": "https://www.busan.com/view/busan/view.php?code=2023111515015855797",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-020"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "1eb53a30cdb4398a3b702d031a986a92a2d07159c10f550cdcbb4eb5e3ee8851"
+      ],
+      "url_sha256": "06929d8c9af7132faee9811629bb776cc882e0b983ee379bcc1b9f84e496c0e7"
+    },
+    {
+      "canonical_url": "https://www.busan.go.kr/igosi/view?conGosiGbn=&curPage=123&gosiGbn=P&sno=74763",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-008"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c16eb20917c581872bfbd98a04806a7341c83e912d7c38f99755913736da2d50"
+      ],
+      "url_sha256": "057dd03d1f7dba0fbf97a3aea33bb195f95141b52899be048423798e60e16c22"
+    },
+    {
+      "canonical_url": "https://www.busaneconomy.com/news/articleView.html?idxno=298238",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-003"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9b7894a3e952b232b08aa6d7853b2c09ee920fa9340d053be2527d07dffa3bd8"
+      ],
+      "url_sha256": "52dcc8b2c21149e1819939f30d4441bbc2a798f1ab0277c8391227090c5ac300"
+    },
+    {
+      "canonical_url": "https://www.busaneconomy.com/news/articleView.html?idxno=89515",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-008"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c16eb20917c581872bfbd98a04806a7341c83e912d7c38f99755913736da2d50"
+      ],
+      "url_sha256": "16164f1f5f6fe364517c79fb65aadadb3cd932bdac6d3e4e3f33bc54c9ec69cd"
+    },
+    {
+      "canonical_url": "https://www.cepa.or.kr/board/boardDetail.do?ms=78&pm=6&seq=11380",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-chungnam-governor-cup"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "281a097dcd5a48003b7eebb492f206a8de3d93377d64037d98fa8da612444fd5"
+      ],
+      "url_sha256": "c280407a27c48eb7777b0594c164ba83359a955fbe27c6610efac881da8f45fc"
+    },
+    {
+      "canonical_url": "https://www.chungbuk.go.kr/www/selectBbsNttView.do?bbsNo=65&key=429&nttNo=419091",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-chungbuk-jecheon-arena-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "eb379488ee2a5f8e32e61dd97f79d68ac752225570b5f18e28049486f538e058"
+      ],
+      "url_sha256": "8f81e2693b083325c5a25c2ffbe638cde5ae858780edeccf726c168e4654c71e"
+    },
+    {
+      "canonical_url": "https://www.civicnews.com/news/articleView.html?idxno=37271",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-007"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "44c4fedc36c137ce98f3b053c18e0084a21ceae7403a97f43d957cac10065087"
+      ],
+      "url_sha256": "bb886a724521bf9c8bef77855c48f955abaf583d8d4d65a1f5e7c7c75c956231"
+    },
+    {
+      "canonical_url": "https://www.cntu.ac.kr/esports/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-jeonnam-cntu-esports-department"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "4d15b13459be732c0c73aa0aee754fd36928d6b80de8433778524a0ffbdb526e"
+      ],
+      "url_sha256": "07dd6da7b5ed040749b24f1dc2bd257e9af0646f3ccd297d77e034e6dd990e03"
+    },
+    {
+      "canonical_url": "https://www.dcoe.or.kr/business/detail/107",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-daegu-keg-2024-representative"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "f341b8a5c40009319a379eb9d34b64ffbb8d478e2b2b56f357bd20b7efa2c3fb"
+      ],
+      "url_sha256": "7363f2d558dbbb152d350ef5334a3afc892525104b10e9f9c92c3ce5c4b23a02"
+    },
+    {
+      "canonical_url": "https://www.deu.ac.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-020"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "1eb53a30cdb4398a3b702d031a986a92a2d07159c10f550cdcbb4eb5e3ee8851"
+      ],
+      "url_sha256": "343f510bb70646b9f3f699a47f8321d718d9243caa4d5c15d01038e9f7c8d697"
+    },
+    {
+      "canonical_url": "https://www.etnews.com/20241008000241",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-014"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c8fb47c56ef507b058970063557c122b5730cbc3ac5f6af6e5a662e6feb42ce5"
+      ],
+      "url_sha256": "27cd1d26a836a521030fac2f9e4f2410a375d47fc7e8882b8fdae6a77bc5cf39"
+    },
+    {
+      "canonical_url": "https://www.facebook.com/PNU.ULT/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-017"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fc6de1a6658ac9422106f5ed120e1f412b3a13a6940ee2deead1791073400ab9"
+      ],
+      "url_sha256": "57c54bac46484e1856c48b3bf58520bf216062bf3a4f6fd83012b6d97e8438cf"
+    },
+    {
+      "canonical_url": "https://www.fnnews.com/news/202307201059081718",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-003"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9b7894a3e952b232b08aa6d7853b2c09ee920fa9340d053be2527d07dffa3bd8"
+      ],
+      "url_sha256": "9c4ab2b4d75c9c7bb075ba218af2fa6656a60d0cd803ac9970279926a025c923"
+    },
+    {
+      "canonical_url": "https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01515634&bidPbancOrd=000&fileSeq=3&fileType=&prcmBsneSeCd=03",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungbuk-university-league-anchor",
+        "visible-regional-chungnam-university-league-anchor",
+        "visible-regional-daegu-university-league-anchor",
+        "visible-regional-daejeon-university-league-anchor",
+        "visible-regional-gangwon-university-league-anchor",
+        "visible-regional-gwangju-university-league-anchor",
+        "visible-regional-gyeongbuk-university-league-anchor",
+        "visible-regional-gyeonggi-university-league-anchor",
+        "visible-regional-gyeongnam-university-league-anchor",
+        "visible-regional-incheon-university-league-anchor",
+        "visible-regional-jeju-university-league-anchor",
+        "visible-regional-jeonbuk-university-league-anchor",
+        "visible-regional-jeonnam-university-league-anchor",
+        "visible-regional-sejong-university-league-anchor",
+        "visible-regional-seoul-university-league-anchor",
+        "visible-regional-ulsan-university-league-anchor"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "02749de9d3939174d0a583f8e2198ec893ce71f2e86cfc12db21611d99bbea47",
+        "2da0def33de982fabbb42f3617f5f76d8ebf873b705173746fb7834f782c0092",
+        "32ec0205cdb9c256f3422d9378e8fabb2e6e468ac51059642a56c548d533808f",
+        "3ced7721ddc9ce7204a621c935c1683c307f54ca38ffde1d735683513a297efb",
+        "427178270dad641d49615ea8116b9918d1c409aa3a055349abb616bab41b1047",
+        "4d56f0e78a2086ea6dbdbcf824df11b7cc5f20c73249178ef90e96d6282e3a3a",
+        "4dfc5f19369c0dd4ac563e821e81e6ae05e6b28ca753665933ad65baf381029e",
+        "4e23b02fc2b2e4c7affd99c361f3f7b769bb2ed3c2fdc25dc00dc4f2543b287a",
+        "5eb1d8b41a7f70c1403a37fa4433c88b855ba31309cdbaa9b87b11c01773518d",
+        "9057da849f683d9d811835e631a88720bec5043b17933e6bc6f5f2c05f647f9a",
+        "912166a0a3d185b1500639fca826120d33efa91ad0a37cffd38ab23608f4f3cc",
+        "a5e53ab29b330942a6620b5de2e6e386c07154619e6d7882175ef387119209fe",
+        "a92a67e3d7f3dd7f485113d048d1caa29d906e5dec1aa6d3ffa15749d6113c30",
+        "c812c07e9aee886067f3ad83840fb7ea2ea08db77b40dd6f9fdd810ab44a6133",
+        "d91426f251a5811195666cc3a131fcbdbfe49742013ea51bd8eea82e8844ad53",
+        "dc9fff5b2b515e58b714cc0caf3f782c7d284303c26b6d197d1cc73a61d7f4de"
+      ],
+      "url_sha256": "f44d0784f1eaef122b950801a837d174612dc183e2e92175d8e0fc2509ee669d"
+    },
+    {
+      "canonical_url": "https://www.gcon.or.kr/gcon/business/gconNotice/view.do?menuNo=200061&pbancSrnm=11153",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-gyeonggi-fc-mobile-team-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fa8f5d47a8045f5c5259867a3f76f9a526ee60fc25119c2511873cd303b54b98"
+      ],
+      "url_sha256": "5f5a612bf0a52c780eb74dffcf73ab1b64093a71e4b06662c8dc1c070da407f6"
+    },
+    {
+      "canonical_url": "https://www.gcon.or.kr/gcon/main/contents.do?menuNo=200032",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gyeonggi-gcon-esports",
+        "visible-regional-gyeonggi-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "1cf2100d34cf9175ee8aba63d378d0bfbdf02b3e748fc911154c9c0de5129cc6",
+        "6b9087b8ca1f5e030447df82ea7c16bc28336b650234ab7df0d6b742dea7d6d4"
+      ],
+      "url_sha256": "5f1bdeb196ebc8d013ae6b7e0c566e8e3fea2e587ec798da325f3b96ba022992"
+    },
+    {
+      "canonical_url": "https://www.gicon.or.kr/",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gwangju-gicon-esports",
+        "visible-regional-gwangju-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "3c676c706f33b9c7ad16397bfb0890d06285851135c6255d90f548a0846d75d3",
+        "d79de0ace689e515efea217e9f118c0e9b82de5d0ef656a41528642441c456f7"
+      ],
+      "url_sha256": "7e64e30f6f09dc1958d8135a131bc0434154bb326de4a8385a8eb5670ad204f0"
+    },
+    {
+      "canonical_url": "https://www.gicon.or.kr/menu.es?mid=a40103000000",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-gwangju-esports-arena-official"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "c72d107aa783de1527054945c04b39a8a436394edef9aa5fe6d8f0f30ff7056a"
+      ],
+      "url_sha256": "4dcd99d3f52018a002fda96a30a2c3a2a3d83936f0efc62a3940af8ddc9f5dbf"
+    },
+    {
+      "canonical_url": "https://www.gunsan.go.kr/main/m363/view/9830592",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-jeonbuk-gunsan-amateur-esports-2026",
+        "visible-regional-jeonbuk-local-esports-event"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "5a833ff32f89f8dadb54a5501449e67b63465d4d72b2d19b31763e7086dfd1ca",
+        "c3b42ad9978f311ead24ec1412a517bf86e56e2f704312b4bba4789b733ef6cc"
+      ],
+      "url_sha256": "260ed5c51eea0ea3498966d6c7f2f0a074d5b53cb5af46542a7336049886938f"
+    },
+    {
+      "canonical_url": "https://www.gwto.or.kr/www/selectBbsNttView.do?bbsNo=5&integrDeptCode=&key=25&nttNo=2372&pageIndex=8&searchCnd=all&searchCtgry=&searchKrwd=",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gangwon-lck-msi-wonju",
+        "visible-regional-gangwon-regional-game-agency"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "99e65f63b9f74f5a8dc151450710374224162ea619cea94307c5a2c90a7a7c76",
+        "e093ed7d9fb5e7e8a9db5b38086f24074edb5bda3286d0ba226859e12895e70c"
+      ],
+      "url_sha256": "1a7c352894e9fb8becfba2011e29c1b06e39f47eee77229967818e7e37a31294"
+    },
+    {
+      "canonical_url": "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&integrDeptCode=&key=282&nttNo=131259&pageIndex=16&searchCnd=all&searchCtgry=&searchKrwd=",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-gangwon-hongcheon-festival-2025"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "5c7ebfd52a679e2ff97c282ac715e32ce4c14046296ca1be1ce4285a14311b9c"
+      ],
+      "url_sha256": "4684646b12724c7e1b2f477504ab30b49abf6ffbf926ac7fe359ffb553a9b11c"
+    },
+    {
+      "canonical_url": "https://www.inven.co.kr/webzine/news/?news=315738",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-012"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "0fd87ac73ddc5a9d6d9ef6cc343bad8cba82b10ec1be99fbb318ae7053b6143e"
+      ],
+      "url_sha256": "db97d4fd52f6a2496a6be35a0fc258ad0f1566c08b573cec278261f6c219a761"
+    },
+    {
+      "canonical_url": "https://www.inven.co.kr/webzine/news/?news=316605",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-006"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "2f27d50c8dbedd63103b6d7edecab9bbfe6ed2daf3d3475ee1fa26a12a942801"
+      ],
+      "url_sha256": "f95b28dbfabf7a81c7b626a72cad2fd00137e547d7329f47e882c6ef050f5512"
+    },
+    {
+      "canonical_url": "https://www.jcon.or.kr/board/view.php?bbsId=BBSMSTR_000000000003&nttId=4411&pageId=C000000018",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-jeonbuk-keg-2026-selection"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "7984cacb3cfc0784be31236e8a354dc630ac9556189170f78583de99ee99a3e8"
+      ],
+      "url_sha256": "ad047832a0b1d53c073da382e940927b10a6fac1e7dc805861fced74d5746c9c"
+    },
+    {
+      "canonical_url": "https://www.jne.go.kr/upload/open/na/bbs_297/ntt_5172045/doc_f5c1d1a2-64a6-44d0-be1b-f14e29b9b18b1774a2216b68232.pdf",
+      "decision": "accepted",
+      "entry_ids": [
+        "elementary-jeonnam-2026-disabled-student-sports-esports"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "aa52f1a4e57a6df4b2fd5d5ebcc2e1f236437a97234b2d0c1fc3207df602f97c"
+      ],
+      "url_sha256": "032a9057e0d77037c603e7971a492b03aa45f595f0f9a4d808ac25fd0efa5a23"
+    },
+    {
+      "canonical_url": "https://www.khgames.co.kr/news/articleView.html?idxno=302611",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-006"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "2f27d50c8dbedd63103b6d7edecab9bbfe6ed2daf3d3475ee1fa26a12a942801"
+      ],
+      "url_sha256": "9a1f7a43ec657d161c4749596b0d8926336044baab12084d49c8fd3fbb0787d7"
+    },
+    {
+      "canonical_url": "https://www.kocca.kr/kocca/subPage.do?menuNo=205025",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-005"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "80e73b4a743de7d536222e0622280e003889a8a877b53099c4d04d7743fac0e1"
+      ],
+      "url_sha256": "56d92a0088605b85227c5483dd924d4ca4f1180475d11c88a05189b0b273ebc1"
+    },
+    {
+      "canonical_url": "https://www.kyungnam.ac.kr/game/",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "15957ed3b5b3f236fa46ba8fbcc763fda4bc5f54bec547295b4462ab2345e93f"
+      ],
+      "url_sha256": "a2eeecec90544621f4cf1bef4de292fe7a665648bd3120dd345ec423ef44773f"
+    },
+    {
+      "canonical_url": "https://www.kyungnam.ac.kr/game/10708/subview.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "15957ed3b5b3f236fa46ba8fbcc763fda4bc5f54bec547295b4462ab2345e93f"
+      ],
+      "url_sha256": "ff81445ea28a9356e93edf161fc39fad0a5221a7f5cbc00f77ebe6ed1362ae0b"
+    },
+    {
+      "canonical_url": "https://www.law.go.kr/ordinSc.do?menuId=3&query=%EC%A0%84%EB%B6%81%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%9D%B4%EC%8A%A4%ED%8F%AC%EC%B8%A0%28%EC%A0%84%EC%9E%90%EC%8A%A4%ED%8F%AC%EC%B8%A0%29%20%EC%A7%84%ED%9D%A5%20%EC%A1%B0%EB%A1%80",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-jeonbuk-esports-ordinance"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "8e2dff8b8985b7745e39ef1b13738012fa18a03086d2dbde107d5ab1ca94a3f3"
+      ],
+      "url_sha256": "768a51270a6f441d9b3383c3df5a06744aae94fe07738f8166a61b2dbea49f7c"
+    },
+    {
+      "canonical_url": "https://www.mhj21.com/news/articleView.html?idxno=252012",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-002"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "2db62c177c3c520fa8ecb0b4433c7780e67fbafb4b1adcf5fbee6b60c67314ec"
+      ],
+      "url_sha256": "29c6caee91b0a6b1e146c8dc746ca27fa0371ed54f9c11b680a90e776f8ce402"
+    },
+    {
+      "canonical_url": "https://www.newsis.com/view/NISX20240730_0002831284",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-007",
+        "busan-013"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "44c4fedc36c137ce98f3b053c18e0084a21ceae7403a97f43d957cac10065087",
+        "b490067239ee7933cf8971038600843fd150646217ece1ef0da2e1bd6cb5acc6"
+      ],
+      "url_sha256": "01b54154acb9f6a6dcfaeeda009da3ddca4cdc4151a0e6c283a38642ce3f306d"
+    },
+    {
+      "canonical_url": "https://www.nise.go.kr/boardCnts/view.do?boardID=13&boardSeq=734476&lev=0&m=0301&opType=N&page=1&s=nise&searchType=null&statusYN=W",
+      "decision": "accepted",
+      "entry_ids": [
+        "visible-regional-chungbuk-disabled-efestival-prelim",
+        "visible-regional-chungbuk-efestival-esports-program",
+        "visible-regional-chungnam-disabled-efestival-prelim",
+        "visible-regional-chungnam-efestival-esports-program",
+        "visible-regional-daegu-disabled-efestival-prelim",
+        "visible-regional-daegu-efestival-esports-program",
+        "visible-regional-daejeon-disabled-efestival-prelim",
+        "visible-regional-daejeon-efestival-esports-program",
+        "visible-regional-gangwon-disabled-efestival-prelim",
+        "visible-regional-gangwon-efestival-esports-program",
+        "visible-regional-gwangju-disabled-efestival-prelim",
+        "visible-regional-gwangju-efestival-esports-program",
+        "visible-regional-gyeongbuk-disabled-efestival-prelim",
+        "visible-regional-gyeongbuk-efestival-esports-program",
+        "visible-regional-gyeonggi-disabled-efestival-prelim",
+        "visible-regional-gyeonggi-efestival-esports-program",
+        "visible-regional-gyeongnam-disabled-efestival-prelim",
+        "visible-regional-gyeongnam-efestival-esports-program",
+        "visible-regional-incheon-disabled-efestival-prelim",
+        "visible-regional-incheon-efestival-esports-program",
+        "visible-regional-jeju-disabled-efestival-prelim",
+        "visible-regional-jeju-efestival-esports-program",
+        "visible-regional-jeonbuk-disabled-efestival-prelim",
+        "visible-regional-jeonbuk-efestival-esports-program",
+        "visible-regional-jeonnam-disabled-efestival-prelim",
+        "visible-regional-jeonnam-efestival-esports-program",
+        "visible-regional-sejong-disabled-efestival-prelim",
+        "visible-regional-sejong-efestival-esports-program",
+        "visible-regional-seoul-disabled-efestival-prelim",
+        "visible-regional-seoul-efestival-esports-program",
+        "visible-regional-ulsan-disabled-efestival-prelim",
+        "visible-regional-ulsan-efestival-esports-program"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "04e00e810d83060a90730ea5846cb860e5671b1f15d9bc20afe5065f778412bc",
+        "0ea1ac2f8dc2308d8605c9d8885fd0d9024e96bace3f21a78391a15aaaf0b858",
+        "19efddd5e80e0f0dd751eb435b4a3f144ddd9643d2490461d6c74d604b0329f7",
+        "1fc3ddac3c92c75050a83c97ddd52b69704278cc1b6d5eddaf43705184c48a86",
+        "24b2124802a670e4c54c98c6ec9913622e0bc06af77ab42b767ba8244df4fcc3",
+        "24baf08adb01478b82bc378e2f49c86e72c7b1a6c44222cfad86bbaeff923f16",
+        "2af8e7f02a68f414e1712bd77ece86dad085cc5dca16bde70767ca4bca624788",
+        "31b7b6346e6f26238da9c84e41e89393615ee8934b916c1c02cd1f2e82e95db3",
+        "334f0fd58ceab4a0ebd4ccba7755feff54d8dc2f0f72178e0f72c70cbc5656eb",
+        "356fa67fc17858a2190befeaee28943c721884983bc5e528841eaca5ddf69ebc",
+        "367e469ec9ce22fc8193d0fd7bb66d0e0f73171af685af14dc373b16e5cdefdb",
+        "4f970a3aa3a4b60b6c059e3ef7f4715f79dc911c8c6e8ffc76b496831b48e20a",
+        "592e9acec7c65f387dd868e68924792c853f625f9d45e6db2e2ec558846e440a",
+        "654f43324d74bed8d83ed81d1feca5c1d9467431441a8e8005c5112a92343bbf",
+        "66e640468abf9b7b85fa502b77d4275279353bd1bdef93c31d164be9004a8877",
+        "936dee005ab9a482aa16ac51d50bd3672b9b44b3e6a96b98eda2523bcd40d1e7",
+        "9626487eb9505e391f79bb09a057b3949d9f249df2d23bada3531b834ab48a41",
+        "993439d7697b74e2a64d752f2dd4fd281b9a4b1848a21d548ccfc0890dfafaf7",
+        "aa44d078492bbc4e192713d66d488e4a01e1bc06bc5602505e20c41b4087775d",
+        "aa886b44d7bf0cb746d7b18759f446dd7be75867a8a242e7fcc87c7db15fea76",
+        "ad4bab830b8ae59d7c242674d6ba163527c048689f422daab12628e6c5d59528",
+        "b589dc5effe81d3f77e42bdf3e40da72f2b6c390c1a016a03037d57e2f3eb718",
+        "ca8cddebb84ef380ef8dd37819be674d9bfebc10380c9930bf9706f08161229a",
+        "ce7bb71b647e27f623cf235cec4ff068d8747d7bee6ebfe48145e1495d929d15",
+        "d18641072a8b41423c14a4fc78e4a8d3e5dbff3752c84e916efb629ad4552616",
+        "dbd5ba40d17c6c2d621dfeb404bfe8a5bac1534458ad8b3e6d3d4902b1bbebad",
+        "ec96007d72c70284eb76caee15ceacb2b8f16de5381f7872ae4e5970eff0bd78",
+        "ef440d1dd2bff60b4da706952cdb70f117a3419b8235551d3560e04bac73edf5",
+        "efcb6fa73cb61b01a464af82009acf38a733d1dc5dd852cc574cf3f95b78d173",
+        "f3231970221859ac329ab344c826c6d44d638a4d7499cee5625eabca32eb1a67",
+        "f6470f57821dc75bac7df59436fd8f83cbc4d27a5648ff625f5df2d99d8855a4",
+        "fac183c82b32e65d7d091c00bfaaf4bb6cdcafbebbe66e4fcb98409744ea3c22"
+      ],
+      "url_sha256": "aee80ff9797916146e85d438eb3fc0e3766497f500da1205f976fc44b5388c3f"
+    },
+    {
+      "canonical_url": "https://www.pusan.ac.kr/kor/CMS/CirclesMgr/View.do?cic_seq=253&mCode=MN090",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-017"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fc6de1a6658ac9422106f5ed120e1f412b3a13a6940ee2deead1791073400ab9"
+      ],
+      "url_sha256": "70e427a0899b46af731c6fac5af27b58c78a3eb0f6a15a1f9814bd61683e6f40"
+    },
+    {
+      "canonical_url": "https://www.seoul.go.kr/policy/view.do?id=108&lan=KO",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-seoul-policy-ges"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "4d9ab56d8e3fd53fe6aac14a205d77d4a32d5e683fd4dcc7f0ca639197645bf6"
+      ],
+      "url_sha256": "63a7fdcee5cc137048eb9bbb4b2176662d97b79f5a35f4c70a07ae06435a504f"
+    },
+    {
+      "canonical_url": "https://www.sjsori.com/news/articleView.html?idxno=85311",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-sejong-fn-center"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "958c175c4e535f55159050aa258cd9d0bcac0bc675a1def96cde354a75eba9ea"
+      ],
+      "url_sha256": "95aa9555be4e613b8919239092264d263bc03194ae8722ab5a7943fd4f3ded11"
+    },
+    {
+      "canonical_url": "https://www.tu.ac.kr/game/index.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-019"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "3b977c1e41be1cb07be9294a6b574a15d4d83580ffca4628acf65c4aae2b5605"
+      ],
+      "url_sha256": "d66ac9805f4bac5e857582f81b13c2528f2e02fcee3f1b5146a2fd3c99d53152"
+    },
+    {
+      "canonical_url": "https://www.tu.ac.kr/game/sub05_01.do?articleNo=87834&mode=view",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-019"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "3b977c1e41be1cb07be9294a6b574a15d4d83580ffca4628acf65c4aae2b5605"
+      ],
+      "url_sha256": "d6c35b5d79c63599d79e833dc4f18531537d47def60a6c30bb69704e9f784875"
+    },
+    {
+      "canonical_url": "https://www.wevity.com/index_university.php?c=find&gbn=view&gp=4&ix=100748&s=_university",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gyeongbuk-university-esports"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "caba267c57453a6a12f045e59c01d083830f39e2c561575ddea2bc086d92f5dc"
+      ],
+      "url_sha256": "6bec7768f3f101eb79214ec0ef5b260709376602af66b76007eff80879c82cbf"
+    },
+    {
+      "canonical_url": "https://www.ysu.ac.kr/kor/CMS/DeptIntro/view.do?code=DE0019&mCode=MN389",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-021"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "78d9c6896ea279a3397a388312b0b84f0222a233a41a390e1acd7314df64d304"
+      ],
+      "url_sha256": "51139e1090131d546be66ab95c46bbad882687ab91557413faef951818c7f50b"
+    },
+    {
+      "canonical_url": "https://www2.sejong.go.kr/youth/prog/progrm/kor/sub03_02/view.do?progrmNo=1841&tmeNo=1",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-audit-sejong-bangok-youth-esports-club"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9faa222fb24549a2efb469a3d98f077a8b53f53855ad60c3320e19b9fe720c3e"
+      ],
+      "url_sha256": "54eb898e3504c9fade651fbe7c1b5c13f7ebf2ce89d4b394b4e9a702ab48d625"
+    }
+  ],
+  "schema_version": 1
+}
