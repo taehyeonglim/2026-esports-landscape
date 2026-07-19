@@ -78,6 +78,7 @@ const provenanceOnlyContracts = [
 ];
 const publicFiles = [
   'index.html',
+  ...(await sourceFiles(join(ROOT, 'assets'), 'assets')).filter(path => /\.(?:avif|png|webp)$/.test(path)),
   ...(await sourceFiles(join(ROOT, 'src'), 'src')).filter(path => path.endsWith('.js')),
   ...(await sourceFiles(join(ROOT, 'styles'), 'styles')).filter(path => /\.(?:css|woff2|txt)$/.test(path)),
   ...(await sourceFiles(join(ROOT, 'research'), 'research')).filter(path => path.endsWith('.html')),
@@ -91,6 +92,7 @@ const inputPaths = [...new Set([
   ...requiredRootInputs,
   ...(await Promise.all(optionalRootInputs.map(async path => await exists(join(ROOT, path)) ? path : null))).filter(Boolean),
   ...(await sourceFiles(join(ROOT, '.github'), '.github')),
+  ...(await sourceFiles(join(ROOT, 'assets'), 'assets')),
   ...(await sourceFiles(join(ROOT, 'adr'), 'adr')),
   ...(await sourceFiles(join(ROOT, 'config'), 'config')),
   ...(await sourceFiles(join(ROOT, 'data/reference'), 'data/reference')),

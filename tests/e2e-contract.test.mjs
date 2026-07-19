@@ -41,6 +41,8 @@ test("public DOM keeps cards before a noninteractive map and exposes accessibili
   assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
   for (const selector of ["region-select", "entry-search", "detail-panel", "detail-back", "map-status", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /id="compare-matrix"/);
+  for (const selector of ["signals", "paths", "cases", "editorial-insights", "featured-stories"]) assert.match(html, new RegExp(`id="${selector}"`));
+  assert.match(html, /assets\/school-esports-landscape\.webp/);
   assert.match(html, /class="category-actions"/);
   assert.match(html, /id="type-filter"/);
   assert.match(html, /aria-live=/);
