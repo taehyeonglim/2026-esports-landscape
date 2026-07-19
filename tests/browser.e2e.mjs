@@ -60,6 +60,25 @@ test("콜드 홈은 230건 전체와 17개 시·도 매트릭스를 보여준다
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
 });
 
+test("편집형 시작점과 대표 사례가 데이터 탐색으로 이어진다", async ({ page }) => {
+  await page.goto("/index.html");
+  await expect(page.locator("#editorial-insights .signal-card")).toHaveCount(4);
+  await expect(page.locator("#featured-stories .featured-card")).toHaveCount(3);
+
+  await page.locator('[data-story-category="학교동아리·팀"]').click();
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(41);
+  await expect(page.locator("#results-heading")).toBeFocused();
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ category: "학교동아리·팀" });
+
+  await page.goto("/index.html");
+  await page.locator('[data-feature-entry="busan-001"]').click();
+  await expect(page.locator("#detail-panel")).toBeVisible();
+  await expect(page.locator("#detail-heading")).toContainText("부산광역시교육청 e스포츠 챌린지 대회");
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ entry: "busan-001" });
+});
+
 test("매트릭스 열 헤더는 전 지역 카테고리 필터로, 행 헤더는 지역 필터로 이동한다", async ({ page }) => {
   await page.goto("/index.html");
   await page.locator('#compare-matrix thead button[data-category="지자체정책·조례"]').click();

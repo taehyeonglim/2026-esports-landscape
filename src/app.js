@@ -7,6 +7,7 @@ import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SORT_LABELS
 import { renderDetail } from "./detail.js";
 import { renderStatRibbon } from "./stat-ribbon.js";
 import { matrixModel, renderMatrix } from "./matrix.js";
+import { editorialModel, renderEditorial } from "./editorial.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
@@ -17,6 +18,8 @@ const elements = Object.freeze({
   matrix: byId("compare-matrix"), typeFilter: byId("type-filter"), categoryActions: document.querySelector(".category-actions"),
   back: byId("detail-back"), map: byId("region-map"), mapGeometry: byId("region-map-geometry"), mapStatus: byId("map-status"), live: byId("live-status"),
   statRibbon: byId("stat-ribbon"),
+  editorialInsights: byId("editorial-insights"), featuredStories: byId("featured-stories"),
+  storyPaths: byId("paths"),
 });
 let state = createAppState();
 let data;
@@ -303,6 +306,23 @@ function openEntry(id) {
   byId("detail-heading")?.focus();
 }
 
+function moveToResults({ regionId = null, category = null } = {}) {
+  dispatch(actions.hydrate({ region: regionId, category: category ? [category] : [] }));
+  scheduleMap(state.region);
+  const heading = byId("results-heading");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  heading?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  heading?.focus({ preventScroll: true });
+}
+
+function openFeaturedEntry(id) {
+  dispatch(actions.hydrate({ entry: id }));
+  const detail = elements.detail;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  detail?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  byId("detail-heading")?.focus({ preventScroll: true });
+}
+
 function bindEvents() {
   elements.region.addEventListener("change", (event) => dispatch(actions.setRegion(event.target.value || null)));
   elements.search.addEventListener("input", (event) => {
@@ -330,6 +350,14 @@ function bindEvents() {
     dispatch(actions.resetFilters(), "replace");
   });
   elements.cards.addEventListener("click", (event) => { const card = event.target.closest("[data-entry-id]"); if (card) openEntry(card.dataset.entryId); });
+  elements.storyPaths?.addEventListener("click", (event) => {
+    const path = event.target.closest("[data-story-category]");
+    if (path) moveToResults({ category: path.dataset.storyCategory });
+  });
+  elements.featuredStories?.addEventListener("click", (event) => {
+    const feature = event.target.closest("[data-feature-entry]");
+    if (feature) openFeaturedEntry(feature.dataset.featureEntry);
+  });
   elements.back.addEventListener("click", () => {
     const closingEntryId = state.entry;
     dispatch(actions.setEntry(null));
@@ -365,6 +393,9 @@ async function start() {
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
     if (elements.statRibbon) renderStatRibbon(elements.statRibbon, data);
+    if (elements.editorialInsights && elements.featuredStories) {
+      renderEditorial(elements.editorialInsights, elements.featuredStories, editorialModel(data));
+    }
     const model = matrixModel(data.entries, data.regions);
     elements.categoryActions.replaceChildren(...model.categories.map((category) => {
       const chip = document.createElement("button");
@@ -374,14 +405,7 @@ async function start() {
       chip.textContent = category;
       return chip;
     }));
-    renderMatrix(elements.matrix, model, ({ regionId = null, category = null }) => {
-      dispatch(actions.hydrate({ region: regionId, category: category ? [category] : [] }));
-      scheduleMap(state.region);
-      const heading = byId("results-heading");
-      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      heading?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      heading?.focus({ preventScroll: true });
-    });
+    renderMatrix(elements.matrix, model, moveToResults);
     populateSelect(elements.region, data.regions.map((region) => ({ value: region.id, label: region.name })));
     populateSelect(elements.schoolLevel, optionValues("schoolLevel").map((value) => ({ value, label: value })));
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
