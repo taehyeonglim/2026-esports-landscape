@@ -82,6 +82,7 @@ jobs:
           mkdir "$state_dir"
           cp data/discovery/seen.v1.json "$state_dir/seen.v1.json"
           cp data/discovery/candidates.v1.json "$state_dir/candidates.v1.json"
+          git restore data/discovery/seen.v1.json data/discovery/candidates.v1.json
           if [ -n "$EXISTING_BRANCH" ]; then
             git checkout -B "$EXISTING_BRANCH" "origin/$EXISTING_BRANCH"
             branch="$EXISTING_BRANCH"

@@ -98,6 +98,7 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("contents: write\n  pull-requests: write", workflow)
         self.assertIn('startswith("automation/discovery-")', workflow)
         self.assertIn("git show FETCH_HEAD:data/discovery/seen.v1.json", workflow)
+        self.assertIn("git restore data/discovery/seen.v1.json data/discovery/candidates.v1.json", workflow)
         self.assertIn('git checkout -B "$EXISTING_BRANCH" "origin/$EXISTING_BRANCH"', workflow)
         self.assertIn("data/discovery/seen.v1.json data/discovery/candidates.v1.json", workflow)
         self.assertNotIn("git add data/site.v3.json", workflow)
