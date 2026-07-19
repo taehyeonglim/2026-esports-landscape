@@ -8,6 +8,7 @@ import { renderDetail } from "./detail.js";
 import { renderStatRibbon } from "./stat-ribbon.js";
 import { matrixModel, renderMatrix } from "./matrix.js";
 import { editorialModel, renderEditorial } from "./editorial.js";
+import { landscapeModel, renderMapReadout, renderNationalMap, renderRegionLens, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
@@ -20,10 +21,14 @@ const elements = Object.freeze({
   statRibbon: byId("stat-ribbon"),
   editorialInsights: byId("editorial-insights"), featuredStories: byId("featured-stories"),
   storyPaths: byId("paths"),
+  nationalMap: byId("national-map"), mapReadout: byId("map-readout"), regionShortcuts: byId("region-shortcuts"), regionLens: byId("region-lens"),
+  loadMore: byId("load-more"),
 });
+const PAGE_SIZE = 12;
 let state = createAppState();
 let data;
 let entries = [];
+let landscape;
 let entryById = new Map();
 let sourcesByEntry = new Map();
 const loader = new RegionLoader({ baseUrl, origin: location.origin });
@@ -31,6 +36,7 @@ let mapRequestId = 0;
 let mapLoadTimer = null;
 let mapWorker = null;
 let searchTimer = null;
+let visibleCount = PAGE_SIZE;
 
 
 function populateStaticSelects() {
@@ -151,6 +157,12 @@ async function loadPublicData() {
   }
 }
 
+async function loadNationalMap() {
+  const response = await fetch(new URL("data/national-map.v1.json", baseUrl), { headers: { Accept: "application/json" } });
+  if (!response.ok) throw new DataRequestError(`National map request failed (${response.status}).`);
+  return response.json();
+}
+
 function reportStartError(error) {
   const messageByType = {
     DataRequestError: "데이터 요청에 실패했습니다. 잠시 후 다시 시도해 주세요.",
@@ -187,6 +199,7 @@ function updateUrl(mode = "push") {
 }
 
 function dispatch(action, historyMode = "push") {
+  if (!['SET_ENTRY', 'SET_MAP_LOAD_STATE'].includes(action.type)) visibleCount = PAGE_SIZE;
   state = appReducer(state, action);
   updateUrl(historyMode);
   render();
@@ -293,12 +306,26 @@ function render() {
   elements.categoryActions.querySelectorAll("[data-category-chip]").forEach((chip) => {
     chip.setAttribute("aria-pressed", String(chip.dataset.categoryChip === (state.category[0] || "")));
   });
-  renderCards(elements.cards, filtered, state.entry);
-  elements.count.textContent = `${filtered.length}개 항목`;
-  elements.live.textContent = `검색 결과 ${filtered.length}개`;
+  const selectedIndex = state.entry ? filtered.findIndex((entry) => entry.id === state.entry) : -1;
+  const limit = Math.min(filtered.length, Math.max(visibleCount, selectedIndex + 1));
+  renderCards(elements.cards, filtered.slice(0, limit), state.entry);
+  elements.count.textContent = `${filtered.length}개 중 ${limit}개 표시`;
+  elements.live.textContent = `검색 결과 ${filtered.length}개 중 ${limit}개 표시`;
+  elements.loadMore.hidden = limit >= filtered.length;
+  if (!elements.loadMore.hidden) elements.loadMore.textContent = `사례 ${Math.min(PAGE_SIZE, filtered.length - limit)}개 더 보기`;
   const entry = entryById.get(state.entry);
   elements.detail.hidden = !entry;
   if (entry) renderDetail(elements.detailContent, entry, sourcesByEntry.get(entry.id) || []);
+  if (landscape) {
+    updateNationalMap(elements.nationalMap, state.region);
+    renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
+    renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
+    renderRegionLens(elements.regionLens, landscape, state.region, {
+      onCategory: (regionId, category) => moveToResults({ regionId, category }),
+      onEntry: openFeaturedEntry,
+      onRegion: selectLandscapeRegion,
+    });
+  }
 }
 
 function openEntry(id) {
@@ -313,6 +340,13 @@ function moveToResults({ regionId = null, category = null } = {}) {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   heading?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   heading?.focus({ preventScroll: true });
+}
+
+function selectLandscapeRegion(regionId) {
+  dispatch(actions.hydrate({ region: regionId }));
+  scheduleMap(state.region);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  elements.regionLens?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
 }
 
 function openFeaturedEntry(id) {
@@ -349,6 +383,10 @@ function bindEvents() {
     searchTimer = null;
     dispatch(actions.resetFilters(), "replace");
   });
+  elements.loadMore.addEventListener("click", () => {
+    visibleCount += PAGE_SIZE;
+    render();
+  });
   elements.cards.addEventListener("click", (event) => { const card = event.target.closest("[data-entry-id]"); if (card) openEntry(card.dataset.entryId); });
   elements.storyPaths?.addEventListener("click", (event) => {
     const path = event.target.closest("[data-story-category]");
@@ -370,6 +408,7 @@ function bindEvents() {
     clearTimeout(searchTimer);
     searchTimer = null;
     state = decodeUrl(location.search, { allowed: allowed(), entries });
+    visibleCount = PAGE_SIZE;
     render();
     if (state.region !== previousRegion) scheduleMap(state.region);
     if (state.entry && state.entry !== previousEntry) {
@@ -392,6 +431,23 @@ async function start() {
     });
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
+    landscape = landscapeModel(entries, data.regions);
+    try {
+      const nationalMapAsset = await loadNationalMap();
+      renderNationalMap(elements.nationalMap, nationalMapAsset, landscape, {
+        onSelect: selectLandscapeRegion,
+        onPreview: (regionId) => renderMapReadout(elements.mapReadout, landscape.byId.get(regionId)),
+      });
+      elements.nationalMap.addEventListener("pointerleave", () => renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null));
+      elements.nationalMap.addEventListener("focusout", (event) => {
+        if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
+      });
+    } catch (error) {
+      console.error("National landscape map unavailable:", error);
+      elements.nationalMap.hidden = true;
+      elements.nationalMap.closest(".hero-map")?.classList.add("map-unavailable");
+      renderMapReadout(elements.mapReadout, null);
+    }
     if (elements.statRibbon) renderStatRibbon(elements.statRibbon, data);
     if (elements.editorialInsights && elements.featuredStories) {
       renderEditorial(elements.editorialInsights, elements.featuredStories, editorialModel(data));

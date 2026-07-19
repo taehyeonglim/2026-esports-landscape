@@ -21,7 +21,10 @@ for (const task of fixture.tasks) {
 
 async function openTask(page, task) {
   await page.goto("/index.html");
-  await page.locator(`#compare-matrix td button[data-region="${task.region}"][data-category="${task.category}"]`).click();
+  await page.locator(`#national-map [data-region="${task.region}"]`).focus();
+  await page.locator(`#national-map [data-region="${task.region}"]`).press("Enter");
+  await expect(page.locator("#region-lens h2")).toContainText(task.region === "busan" ? "부산" : task.region === "seoul" ? "서울" : task.region === "gyeonggi" ? "경기" : task.region === "sejong" ? "세종" : "");
+  await page.locator(`#region-lens [data-category="${task.category}"]`).click();
   const card = page.locator(`[data-entry-id="${task.entry_id}"]`);
   await expect(card).toBeVisible();
   await card.click();
@@ -35,7 +38,7 @@ function seriousOrCritical(violations) {
 
 test.describe("AC01 browser activation contract", () => {
   for (const task of fixture.tasks) {
-    test(`${task.id}: cold root matrix cell and card open the verified detail`, async ({ page }) => {
+    test(`${task.id}: national map, regional signal, and card open the verified detail`, async ({ page }) => {
       const started = Date.now();
       await openTask(page, task);
       await expect(page.locator("#detail-heading")).toHaveText(task.target_name);
@@ -50,26 +53,28 @@ test.describe("AC01 browser activation contract", () => {
   }
 });
 
-test("콜드 홈은 230건 전체와 17개 시·도 매트릭스를 보여준다", async ({ page }) => {
+test("콜드 홈은 17개 시·도 지형도와 230건 중 첫 12건을 보여준다", async ({ page }) => {
   await page.goto("/index.html");
-  await expect(page.locator("#result-count")).toHaveText("230개 항목");
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(230);
+  await expect(page.locator("#result-count")).toHaveText("230개 중 12개 표시");
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
+  await expect(page.locator("#national-map .national-region")).toHaveCount(17);
+  await expect(page.locator("#load-more")).toBeVisible();
   const matrix = page.locator("#compare-matrix table");
   await expect(matrix.locator("tbody tr")).toHaveCount(17);
   await expect(matrix.locator("tfoot td").last()).toHaveText("230");
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
 });
 
-test("편집형 시작점과 대표 사례가 데이터 탐색으로 이어진다", async ({ page }) => {
+test("전국 지형도와 대표 사례가 데이터 탐색으로 이어진다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#editorial-insights .signal-card")).toHaveCount(4);
   await expect(page.locator("#featured-stories .featured-card")).toHaveCount(3);
 
-  await page.locator('[data-story-category="학교동아리·팀"]').click();
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(41);
-  await expect(page.locator("#results-heading")).toBeFocused();
+  await page.locator('#national-map [data-region="seoul"]').click();
+  await expect(page.locator('#national-map [data-region="seoul"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#region-lens h2")).toContainText("서울");
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
-    .toEqual({ category: "학교동아리·팀" });
+    .toEqual({ region: "seoul" });
 
   await page.goto("/index.html");
   await page.locator('[data-feature-entry="busan-001"]').click();
@@ -81,13 +86,14 @@ test("편집형 시작점과 대표 사례가 데이터 탐색으로 이어진�
 
 test("매트릭스 열 헤더는 전 지역 카테고리 필터로, 행 헤더는 지역 필터로 이동한다", async ({ page }) => {
   await page.goto("/index.html");
+  await page.locator("#explore > summary").click();
   await page.locator('#compare-matrix thead button[data-category="지자체정책·조례"]').click();
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(23);
+  await expect(page.locator("#result-count")).toHaveText("23개 중 12개 표시");
   await expect(page.locator("#results-heading")).toBeFocused();
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ category: "지자체정책·조례" });
   await page.locator('#compare-matrix tbody th button[data-region="busan"]').click();
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(27);
+  await expect(page.locator("#result-count")).toHaveText("27개 중 12개 표시");
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ region: "busan" });
 });
@@ -96,7 +102,7 @@ test("유형 '기타' 66건이 고급 필터로 도달 가능하다", async ({ p
   await page.goto("/index.html");
   await page.locator(".advanced-filters summary").click();
   await page.locator("#type-filter").selectOption("other");
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(66);
+  await expect(page.locator("#result-count")).toHaveText("66개 중 12개 표시");
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
     .toEqual({ type: "other" });
 });
@@ -147,6 +153,30 @@ test("map is an inert reference and cannot change navigation state", async ({ pa
   await path.dispatchEvent("keydown", { key: " " });
   await expect.poll(() => page.evaluate(() => ({ href: location.href, length: history.length, state: history.state, resultCount: document.querySelector("#result-count").textContent, detailHidden: document.querySelector("#detail-panel").hidden, mapStatus: document.querySelector("#map-status").textContent }))).toEqual(before);
   await expect(page.locator("#region-map-description")).toContainText("비대화형 참고도");
+});
+
+test("점진 노출로 기본 페이지 길이를 제한하면서 230건 전부 도달할 수 있다", async ({ page }) => {
+  await page.goto("/index.html");
+  const initialHeight = await page.evaluate(() => document.documentElement.scrollHeight / innerHeight);
+  const compactViewport = await page.evaluate(() => innerWidth < 600);
+  expect(initialHeight).toBeLessThan(compactViewport ? 16 : 10);
+  for (let index = 0; index < 19; index += 1) {
+    if (await page.locator("#load-more").isHidden()) break;
+    await page.locator("#load-more").click();
+  }
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(230);
+  await expect(page.locator("#load-more")).toBeHidden();
+});
+
+test("전국 지도 자산 실패 시 지역 버튼으로 같은 탐색을 계속한다", async ({ page }) => {
+  await page.route("**/data/national-map.v1.json", (route) => route.abort());
+  await page.goto("/index.html");
+  await expect(page.locator("#national-map")).toBeHidden();
+  await expect(page.locator("#region-shortcuts button")).toHaveCount(17);
+  await page.locator('[data-region-shortcut="busan"]').click();
+  await expect(page.locator("#region-lens h2")).toContainText("부산");
+  await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search))))
+    .toEqual({ region: "busan" });
 });
 
 test("detail back and browser history preserve the card-oriented navigation path", async ({ page }) => {
@@ -224,6 +254,7 @@ test("current status without complete verification metadata fails closed", async
 test("desktop and narrow layouts keep browse before map without horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/index.html");
+  await page.locator("#explore > summary").click();
   await expect(page.locator(".entry-card").first()).toBeVisible();
   const desktop = await page.evaluate(async () => {
     await document.fonts.ready;
@@ -285,6 +316,7 @@ test("reduced motion removes all timing and matrix cell selection never smooth-s
     };
   });
   await page.goto("/index.html");
+  await page.locator("#explore > summary").click();
   await page.locator('#compare-matrix td button[data-region="busan"][data-category="교육청대회·사업"]').click();
   await expect(page.locator(".entry-card").first()).toBeVisible();
   await expect(page.locator("#results-heading")).toBeFocused();
@@ -301,6 +333,7 @@ test("reduced motion removes all timing and matrix cell selection never smooth-s
 
 test("root, matrix, results, detail, and research have no serious or critical axe violations", async ({ page }) => {
   await page.goto("/index.html");
+  await page.locator("#explore > summary").click();
   await expect(page.locator('#region-select option[value="busan"]')).toHaveCount(1);
   for (const selector of ["body", "#compare-matrix", "#result-list"]) {
     const results = await new AxeBuilder({ page }).include(selector).analyze();

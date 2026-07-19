@@ -25,7 +25,7 @@ async function releaseFiles(directory = root, prefix = "") {
 test("built release has base-aware app, data, GeoJSON, and research surfaces", async () => {
   for (const relativePath of [
     "index.html", "src/app.js", "src/research.js", "styles/main.css", "styles/research.css",
-    "data/site.v3.json", "data/resource-coverage.v3.json", "geo/regions/busan.geojson", "research/index.html", "release-manifest.json",
+    "data/site.v3.json", "data/national-map.v1.json", "data/resource-coverage.v3.json", "geo/regions/busan.geojson", "research/index.html", "release-manifest.json",
   ]) await exists(relativePath);
   const [app, research] = await Promise.all([read("src/app.js"), read("src/research.js")]);
   assert.match(app, /new URL\("\.\/", document\.baseURI\)/);
@@ -34,14 +34,14 @@ test("built release has base-aware app, data, GeoJSON, and research surfaces", a
   assert.match(research, /new URL\("\.\.\/data\/site\.v3\.json", import\.meta\.url\)/);
 });
 
-test("public DOM keeps cards before a noninteractive map and exposes accessibility hooks", async () => {
+test("public DOM exposes the interactive national landscape before the card archive and retains the reference map", async () => {
   const [html, app] = await Promise.all([read("index.html"), read("src/app.js")]);
   const cardsAt = html.indexOf('id="result-list"');
   const mapAt = html.indexOf('id="region-map"');
   assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
   for (const selector of ["region-select", "entry-search", "detail-panel", "detail-back", "map-status", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /id="compare-matrix"/);
-  for (const selector of ["signals", "paths", "cases", "editorial-insights", "featured-stories"]) assert.match(html, new RegExp(`id="${selector}"`));
+  for (const selector of ["national-map", "map-readout", "region-shortcuts", "region-lens", "signals", "cases", "editorial-insights", "featured-stories", "load-more"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /assets\/school-esports-landscape\.webp/);
   assert.match(html, /class="category-actions"/);
   assert.match(html, /id="type-filter"/);
@@ -52,6 +52,7 @@ test("public DOM keeps cards before a noninteractive map and exposes accessibili
   assert.match(map, /aria-label=/);
   assert.doesNotMatch(map, /<a\b|role="(?:button|link)"|tabindex\s*=|\son\w+\s*=/i);
   assert.doesNotMatch(app, /elements\.map\.addEventListener/);
+  assert.match(app, /data\/national-map\.v1\.json/);
 });
 
 test("release graph resolves local links, all 17 GeoJSON regions, and checked manifest assets", async () => {
@@ -97,7 +98,7 @@ test("release graph resolves local links, all 17 GeoJSON regions, and checked ma
   }
   const expectedGeo = new Set(data.regions.map((region) => region.geojson_ref));
   assert.deepEqual(new Set([...paths].filter((entry) => entry.startsWith("geo/regions/"))), expectedGeo);
-  for (const required of ["index.html", "research/index.html", "src/research.js", "styles/research.css", "data/site.v3.json", "input-provenance.json"]) assert.ok(paths.has(required));
+  for (const required of ["index.html", "research/index.html", "src/research.js", "src/landscape.js", "styles/research.css", "data/site.v3.json", "data/national-map.v1.json", "input-provenance.json"]) assert.ok(paths.has(required));
   assert.ok(!paths.has("release-manifest.json"), "self artifact must not affect release identity");
   assert.deepEqual(
     [...paths].sort(),
