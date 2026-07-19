@@ -221,22 +221,7 @@ export function renderMatrix(container, model, onSelect) {
   summary.textContent = `${model.grandTotal}건 · ${model.rows.length}개 시·도 · ${model.categories.length}개 유형`;
   headingGroup.append(title, summary);
 
-  const sortControls = document.createElement("div");
-  sortControls.className = "matrix-sort-controls";
-  sortControls.setAttribute("role", "group");
-  sortControls.setAttribute("aria-label", "지역 정렬");
-  const totalSort = document.createElement("button");
-  totalSort.type = "button";
-  totalSort.dataset.matrixSort = "total";
-  totalSort.textContent = "총건수순";
-  totalSort.setAttribute("aria-pressed", "true");
-  const regionSort = document.createElement("button");
-  regionSort.type = "button";
-  regionSort.dataset.matrixSort = "region";
-  regionSort.textContent = "시·도순";
-  regionSort.setAttribute("aria-pressed", "false");
-  sortControls.append(totalSort, regionSort);
-  chartHeader.append(headingGroup, sortControls);
+  chartHeader.append(headingGroup);
 
   const legend = document.createElement("div");
   legend.className = "matrix-legend";
@@ -263,17 +248,7 @@ export function renderMatrix(container, model, onSelect) {
   axis.innerHTML = `<span></span><div><span>0</span><span>${Math.round(maximum / 2)}</span><span>${maximum}</span></div><span>건</span>`;
   const rowContainer = document.createElement("div");
   rowContainer.className = "matrix-chart-rows";
-  const renderRows = (sortMode) => {
-    const rows = sortMode === "total"
-      ? [...model.rows].sort((left, right) => right.total - left.total || left.regionName.localeCompare(right.regionName, "ko"))
-      : model.rows;
-    rowContainer.replaceChildren(...rows.map((row) => chartRow(row, maximum, colors, onSelect)));
-    totalSort.setAttribute("aria-pressed", String(sortMode === "total"));
-    regionSort.setAttribute("aria-pressed", String(sortMode === "region"));
-  };
-  totalSort.addEventListener("click", () => renderRows("total"));
-  regionSort.addEventListener("click", () => renderRows("region"));
-  renderRows("total");
+  rowContainer.replaceChildren(...model.rows.map((row) => chartRow(row, maximum, colors, onSelect)));
   visualization.append(chartHeader, legend, axis, rowContainer);
 
   const tableDetails = document.createElement("details");

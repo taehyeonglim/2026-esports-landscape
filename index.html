@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="대한민국 17개 시·도의 학교 e스포츠 관련 공개자료 232건을 지역과 활동 유형별로 제공합니다.">
+  <meta name="description" content="대한민국 17개 시·도의 학교 e스포츠 관련 공개자료 232건을 검색하고 지역과 활동 유형별로 비교합니다.">
   <meta name="theme-color" content="#06111f">
   <title>학교 e스포츠 지형도 2026</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -12,164 +12,161 @@
   <link rel="preload" href="styles/fonts/Rajdhani-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="styles/fonts/Rajdhani-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/shell.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <a class="skip-link" href="#national-map-heading">전국 지형도로 건너뛰기</a>
+  <a class="skip-link" href="#workspace-title">사례 탐색으로 건너뛰기</a>
 
-  <header class="site-header">
+  <header class="site-shell-header">
     <nav class="site-nav" aria-label="주요 메뉴">
       <a class="wordmark" href="./" aria-label="학교 e스포츠 지형도 홈">
         <span class="wordmark-mark" aria-hidden="true"><img src="assets/esports-landscape-mark.png" width="1024" height="1024" alt=""></span>
         <span>학교 e스포츠 지형도</span>
       </a>
       <div class="nav-links">
-        <a href="#landscape">전국 지형도</a>
-        <a href="#cases">현장 기록</a>
-        <a href="#archive">데이터 탐색</a>
+        <a href="#workspace">사례 탐색</a>
+        <a href="#snapshot">데이터 요약</a>
+        <a href="research/">연구 방법</a>
       </div>
     </nav>
-
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow">SCHOLASTIC ESPORTS LANDSCAPE · 2026</p>
-        <h1>전국 학교<br>e스포츠<br><em>공개자료 232건</em></h1>
-        <p class="hero-lede">17개 시·도의 학교 동아리, 교육청 대회, 시설, 정책 관련 공개자료를 지역과 활동 유형별로 확인할 수 있습니다.</p>
-        <div class="hero-actions">
-          <a class="primary-action" href="#landscape">지역별 사례 보기 <span aria-hidden="true">↘</span></a>
-          <a class="text-action" href="#archive">전체 사례 검색</a>
-        </div>
-        <p class="stat-ribbon" id="stat-ribbon" hidden></p>
-      </div>
-
-      <section class="hero-map" aria-labelledby="national-map-heading">
-        <div class="map-frame-heading">
-          <div>
-            <span>LIVE DATA ATLAS</span>
-            <h2 id="national-map-heading">전국 공개 사례 분포</h2>
-          </div>
-          <span class="map-coordinate" aria-hidden="true">KR / 17</span>
-        </div>
-        <div class="national-map-stage">
-          <svg id="national-map" role="group" aria-label="17개 시·도별 공개자료 확인 사례 지도"></svg>
-          <div class="map-orbit map-orbit-one" aria-hidden="true"></div>
-          <div class="map-orbit map-orbit-two" aria-hidden="true"></div>
-        </div>
-        <div class="map-readout" id="map-readout" aria-live="polite">
-          <span>LOADING DATA</span><strong>지도 데이터를 불러오는 중입니다</strong>
-        </div>
-        <div class="map-legend"><span><i></i> 확인 사례 적음</span><span><i></i> 확인 사례 많음</span></div>
-        <div class="region-shortcuts" id="region-shortcuts" aria-label="지역 바로 선택"></div>
-      </section>
-    </div>
   </header>
 
   <main>
-    <section class="region-lens-section" id="landscape" aria-label="선택 지역 탐색">
-      <div class="region-lens" id="region-lens"></div>
+    <section class="tool-hero" aria-labelledby="page-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">SCHOLASTIC ESPORTS LANDSCAPE · 2026</p>
+          <h1 id="page-title">근거 있는 학교 e스포츠 사례를<br><em>지역·활동별로 찾기</em></h1>
+          <p class="hero-lede">교사·교육청·지자체 담당자가 17개 시·도의 학교 동아리, 교육청 대회, 시설과 정책 사례를 원문 근거와 함께 빠르게 확인할 수 있습니다.</p>
+        </div>
+        <div class="hero-context">
+          <p class="trust-note"><strong>해석 안내</strong> 공개자료에서 확인한 사례이며, 실제 활동 규모·성과·순위를 뜻하지 않습니다.</p>
+          <p class="stat-ribbon" id="stat-ribbon" hidden></p>
+          <a class="method-link" href="research/">연구 방법과 데이터 한계 보기 ↗</a>
+        </div>
+      </div>
     </section>
 
-    <section class="signals-section" id="signals" aria-labelledby="signals-heading">
-      <div class="section-heading">
-        <p class="section-number">01 / DATA SUMMARY</p>
-        <div>
-          <p class="section-kicker">공개자료 유형별 건수</p>
-          <h2 id="signals-heading">활동 유형별<br>확인 사례</h2>
-          <p>공개자료에서 확인한 유형별 건수입니다. 실제 운영 규모나 현재 상태를 뜻하지 않습니다.</p>
+    <section class="workspace-section" id="workspace" aria-labelledby="workspace-title">
+      <div class="workspace-shell">
+        <header class="workspace-header">
+          <div>
+            <p class="section-number">01 / DATA WORKSPACE</p>
+            <h2 id="workspace-title">사례를 검색하고 비교하세요</h2>
+            <p>검색어나 지역을 먼저 선택하고, 필요한 경우 카테고리와 검토 조건을 더해 결과를 좁힐 수 있습니다.</p>
+          </div>
+          <div class="workspace-tabs" role="tablist" aria-label="데이터 보기 방식">
+            <button id="browse-tab" type="button" role="tab" aria-selected="true" aria-controls="browse-view" data-view="browse">사례 탐색</button>
+            <button id="compare-tab" type="button" role="tab" aria-selected="false" aria-controls="compare-view" data-view="compare" tabindex="-1">지역 비교</button>
+          </div>
+        </header>
+
+        <div id="browse-view" class="workspace-view" role="tabpanel" aria-labelledby="browse-tab">
+          <div class="search-toolbar" aria-label="빠른 검색">
+            <label class="search-field" for="entry-search">
+              <span>통합 검색</span>
+              <input id="entry-search" type="search" autocomplete="off" placeholder="이름, 기관, 주소, 종목, 출처 검색">
+            </label>
+            <label class="region-field" for="region-select">
+              <span>지역</span>
+              <select id="region-select"><option value="">전체 지역</option></select>
+            </label>
+            <button id="mobile-filter-trigger" class="mobile-filter-trigger" type="button" aria-haspopup="dialog" aria-controls="filter-panel" aria-expanded="false">필터 <span id="mobile-filter-count">0</span></button>
+          </div>
+
+          <dialog id="filter-panel" class="filter-panel" aria-labelledby="filter-panel-title" open>
+            <div class="filter-panel-heading">
+              <div><p class="filter-kicker">REFINE RESULTS</p><h3 id="filter-panel-title">필터</h3></div>
+              <button id="filter-panel-close" class="filter-panel-close" type="button" aria-label="필터 닫기">×</button>
+            </div>
+            <div class="category-filter">
+              <p>활동 카테고리</p>
+              <div class="category-actions" role="group" aria-label="카테고리 필터"></div>
+            </div>
+            <details class="advanced-filters">
+              <summary>고급 필터</summary>
+              <div class="filter-grid">
+                <label>유형 <select id="type-filter"><option value="">전체</option></select></label>
+                <label>학교급 <select id="school-level-filter"><option value="">전체</option></select></label>
+                <label>상태 <select id="status-filter"><option value="">전체</option></select></label>
+                <label>범위 <select id="scope-filter"><option value="">전체</option></select></label>
+                <label>정렬 <select id="sort-filter"><option value="">기본순</option></select></label>
+                <button id="reset-filters" type="button">모든 조건 초기화</button>
+              </div>
+            </details>
+            <div class="filter-panel-footer">
+              <button id="filter-panel-result" type="button">결과 보기</button>
+            </div>
+          </dialog>
+
+          <div id="active-filters" class="active-filters" aria-label="적용된 필터"></div>
+          <p id="live-status" class="sr-only" aria-live="polite"></p>
+
+          <div class="explorer-layout">
+            <section class="browse-panel" aria-labelledby="results-heading">
+              <div class="results-heading">
+                <div><p class="results-kicker">SEARCH RESULTS</p><h2 id="results-heading" tabindex="-1">검색 결과</h2></div>
+                <p class="result-tally"><strong id="result-count"></strong><span id="result-visible"></span></p>
+              </div>
+              <div id="result-list" class="result-list"></div>
+              <button id="load-more" class="load-more" type="button" hidden>사례 더 보기</button>
+            </section>
+
+            <aside class="context-rail" aria-label="지도와 사례 상세">
+              <dialog id="detail-panel" class="detail-panel" aria-labelledby="detail-heading">
+                <button id="detail-back" class="detail-back" type="button">← 결과로 돌아가기</button>
+                <div id="detail-content"></div>
+              </dialog>
+
+              <details id="map-context" class="map-context" open>
+                <summary class="map-frame-heading">
+                  <div><span>REGION FILTER</span><h2 id="national-map-heading">지도에서 지역 선택</h2></div>
+                  <span class="map-coordinate" aria-hidden="true">KR / 17</span>
+                </summary>
+                <div class="national-map-stage">
+                  <svg id="national-map" role="group" aria-label="17개 시·도별 공개자료 확인 사례 지도"></svg>
+                  <div class="map-orbit map-orbit-one" aria-hidden="true"></div>
+                  <div class="map-orbit map-orbit-two" aria-hidden="true"></div>
+                </div>
+                <div class="map-readout" id="map-readout" aria-live="polite"><span>LOADING DATA</span><strong>지도 데이터를 불러오는 중입니다</strong></div>
+                <div class="region-shortcuts" id="region-shortcuts" aria-label="지역 바로 선택"></div>
+                <p class="map-note">색은 공개자료에서 확인된 건수의 차이만 보여 줍니다. 실제 활동 규모나 순위가 아닙니다.</p>
+              </details>
+            </aside>
+          </div>
         </div>
+
+        <div id="compare-view" class="workspace-view compare-view" role="tabpanel" aria-labelledby="compare-tab" hidden>
+          <div class="compare-heading">
+            <div><p class="results-kicker">17 REGIONS × 8 CATEGORIES</p><h2>지역별 공개자료 구성</h2></div>
+            <p>시·도 공식 순서로 비교합니다. 차트의 지역·카테고리를 선택하면 해당 사례 목록으로 이동합니다.</p>
+          </div>
+          <p class="matrix-caveat"><strong>해석 안내</strong> 막대는 공개자료에서 확인한 사례 수입니다. 지역의 실제 활동 규모나 순위를 나타내지 않습니다.</p>
+          <div id="compare-matrix"></div>
+          <a class="method-link" href="research/">연구 방법과 데이터 한계 보기 ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="snapshot-section" id="snapshot" aria-labelledby="snapshot-heading">
+      <div class="compact-heading">
+        <div><p class="section-number">02 / DATA SNAPSHOT</p><h2 id="snapshot-heading">공개자료 유형별 현황</h2></div>
+        <p>유형별 분류 건수이며 현재 운영 규모를 뜻하지 않습니다.</p>
       </div>
       <div class="signal-grid" id="editorial-insights" aria-live="polite"></div>
     </section>
 
-    <section class="cases-section" id="cases" aria-labelledby="cases-heading">
-      <div class="section-heading section-heading-dark">
-        <p class="section-number">02 / SELECTED RECORDS</p>
-        <div>
-          <p class="section-kicker">출처가 확인된 대표 사례</p>
-          <h2 id="cases-heading">대표 사례<br>3건</h2>
-          <p>대회, 학교 시설, 지역 조례 사례입니다. 각 항목에서 출처와 검토 상태를 확인할 수 있습니다.</p>
-        </div>
+    <section class="selected-section" id="selected" aria-labelledby="selected-heading">
+      <div class="compact-heading compact-heading-dark">
+        <div><p class="section-number">03 / SELECTED RECORDS</p><h2 id="selected-heading">근거와 함께 보는 대표 사례</h2></div>
+        <p>대회, 학교 시설, 지역 조례 사례의 상세와 원문 출처를 바로 확인할 수 있습니다.</p>
       </div>
       <div class="featured-grid" id="featured-stories"></div>
     </section>
-
-    <section class="story-break" aria-label="학교 e스포츠 관련 활동 일러스트레이션">
-      <img src="assets/school-esports-landscape.webp" width="1536" height="1024" loading="lazy" alt="학교 동아리, 지역 대회, 교육 시설과 지원 정책을 표현한 일러스트레이션">
-      <div class="story-break-copy">
-        <p class="story-label">DATA SCOPE / 2026</p>
-        <p class="story-statement">이 페이지는 공개자료 232건을 분류합니다.<br>실제 활동 규모와 순위는 제공하지 않습니다.</p>
-      </div>
-    </section>
-
-    <details class="matrix-panel" id="explore">
-      <summary>
-        <span class="section-number">03 / INTERACTIVE CHART</span>
-        <span><strong>17개 시·도 × 활동 유형 비교 차트</strong><small>막대 길이는 지역별 총건수, 색 구간은 유형별 건수입니다.</small></span>
-        <span class="summary-action">차트 열기 <i aria-hidden="true">＋</i></span>
-      </summary>
-      <div class="matrix-content">
-        <p class="matrix-caveat"><strong>해석 안내</strong> 막대는 공개자료에서 확인한 사례 수입니다. 지역의 실제 활동 규모나 순위를 나타내지 않습니다.</p>
-        <div id="compare-matrix"></div>
-        <a class="method-link" href="research/">연구 방법과 데이터 한계 보기 ↗</a>
-      </div>
-    </details>
-
-    <section class="explorer-section" id="archive" aria-labelledby="results-heading">
-      <div class="explorer-heading">
-        <p class="section-number">04 / OPEN ARCHIVE</p>
-        <div>
-          <p class="section-kicker">공개자료 232건</p>
-          <h2>조건으로 직접<br>찾아보기</h2>
-          <p>이름, 지역, 학교급, 활동 유형으로 사례를 검색하고 각 항목의 원문 출처를 확인할 수 있습니다.</p>
-        </div>
-      </div>
-
-      <div class="explorer-layout">
-        <section class="browse-panel" aria-labelledby="results-heading">
-          <div class="results-heading"><h2 id="results-heading" tabindex="-1">사례 탐색</h2><p id="result-count"></p></div>
-          <div class="filter-row">
-            <label for="region-select">지역</label>
-            <select id="region-select"><option value="">전체 지역</option></select>
-            <div class="category-actions" role="group" aria-label="카테고리 필터"></div>
-          </div>
-          <div class="search-row">
-            <label for="entry-search">항목 검색</label>
-            <input id="entry-search" type="search" autocomplete="off" placeholder="이름, 기관, 주소, 종목, 출처 검색">
-          </div>
-          <details class="advanced-filters">
-            <summary>고급 필터</summary>
-            <div class="filter-grid">
-              <label>유형 <select id="type-filter"><option value="">전체</option></select></label>
-              <label>학교급 <select id="school-level-filter"><option value="">전체</option></select></label>
-              <label>상태 <select id="status-filter"><option value="">전체</option></select></label>
-              <label>범위 <select id="scope-filter"><option value="">전체</option></select></label>
-              <label>정렬 <select id="sort-filter"><option value="">기본순</option></select></label>
-              <button id="reset-filters" type="button">필터 초기화</button>
-            </div>
-          </details>
-          <p id="live-status" class="sr-only" aria-live="polite"></p>
-          <div id="result-list" class="result-list"></div>
-          <button id="load-more" class="load-more" type="button" hidden>사례 더 보기</button>
-        </section>
-
-        <section id="detail-panel" class="detail-panel" aria-labelledby="detail-heading" hidden>
-          <button id="detail-back" type="button">결과로 돌아가기</button>
-          <div id="detail-content"></div>
-        </section>
-
-        <section class="map-panel" aria-labelledby="map-heading">
-          <div class="map-heading"><h2 id="map-heading">선택 지역 경계</h2><p id="map-status" aria-live="polite">지역을 선택하면 경계를 불러옵니다.</p></div>
-          <svg id="region-map" viewBox="0 0 860 680" role="img" aria-label="선택한 지역의 행정 경계 참고 지도" aria-describedby="region-map-description">
-            <desc id="region-map-description">선택한 지역의 행정 경계를 표시하는 비대화형 참고도입니다.</desc>
-            <g id="region-map-geometry"></g>
-          </svg>
-          <p class="map-note">지도는 참고용 보조 시각입니다. 항목 탐색과 상세 정보는 지도 없이도 사용할 수 있습니다.</p>
-        </section>
-      </div>
-    </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <div class="footer-identity"><strong>학교 e스포츠 지형도 2026</strong><p>공개자료로 확인한 사례이며 실제 활동의 완전한 목록이나 현재 운영 상태를 보장하지 않습니다.</p></div>
     <div class="footer-credit">
       <span>CREATED &amp; CURATED BY</span>

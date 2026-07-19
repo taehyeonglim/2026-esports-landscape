@@ -3,24 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="전국 학교 e스포츠 인덱스의 자료 계보, 방법, 한계와 공개자료 수집 범위를 설명합니다.">
-  <title>연구 방법과 데이터 한계 | 전국 학교 e스포츠 인덱스</title>
+  <meta name="description" content="학교 e스포츠 지형도의 자료 계보, 방법, 한계와 공개자료 수집 범위를 설명합니다.">
+  <title>연구 방법과 데이터 한계 | 학교 e스포츠 지형도 2026</title>
   <meta name="theme-color" content="#0a1220">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
   <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/shell.css">
   <link rel="stylesheet" href="../styles/research.css">
 </head>
 <body>
-  <header class="site-header">
+  <a class="skip-link" href="#notice-title">연구 내용으로 건너뛰기</a>
+  <header class="site-shell-header">
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <a class="wordmark" href="../index.html" aria-label="학교 e스포츠 지형도 홈">
+        <span class="wordmark-mark" aria-hidden="true"><img src="../assets/esports-landscape-mark.png" width="1024" height="1024" alt=""></span>
+        <span>학교 e스포츠 지형도</span>
+      </a>
+      <div class="nav-links"><a href="../index.html#workspace">사례 탐색</a><a href="../index.html#snapshot">데이터 요약</a><a href="./" aria-current="page">연구 방법</a></div>
+    </nav>
+  </header>
+  <section class="research-hero">
     <div class="header-inner">
       <p class="eyebrow">Scholastic Esports Landscape</p>
       <h1>연구 방법과 데이터 한계</h1>
-      <p class="lede">전국 학교 e스포츠 인덱스의 자료 계보와 해석 범위를 별도 페이지에서 확인합니다.</p>
-      <a class="back-link" href="../index.html">← 인덱스로 돌아가기</a>
+      <p class="lede">학교 e스포츠 지형도의 자료 계보와 해석 범위를 확인합니다.</p>
+      <a class="back-link" href="../index.html#workspace">← 사례 탐색으로 돌아가기</a>
     </div>
-  </header>
+  </section>
   <main class="research-shell">
     <p id="research-load-error" class="research-load-error" role="alert" hidden>연구 데이터를 표시할 수 없습니다. 데이터를 다시 확인해 주세요.</p>
     <section class="notice" aria-labelledby="notice-title">
@@ -51,6 +62,10 @@
     <section class="panel" aria-labelledby="notes-title"><h2 id="notes-title">데이터셋 메모</h2><ul id="site-notes" class="notes-list"></ul></section>
     <section class="panel provenance" aria-labelledby="provenance-title"><h2 id="provenance-title">데이터 계보와 원문 참조</h2><p>이 페이지는 배포 데이터의 구조와 한계를 읽기 쉽게 보여 줍니다. 원문 데이터와 공개 입력 기록은 아래에서 별도로 확인할 수 있습니다.</p><ul><li><a href="../data/site.v3.json">v3 canonical data</a></li><li><a href="../data/resource-coverage.v3.json">resource coverage</a></li><li><a href="../input-provenance.json">입력 provenance</a></li></ul></section>
   </main>
+  <footer class="site-footer">
+    <div class="footer-identity"><strong>학교 e스포츠 지형도 2026</strong><p>공개자료에서 확인한 사례의 수집 범위와 해석 한계를 함께 공개합니다.</p></div>
+    <nav class="footer-links" aria-label="푸터 메뉴"><a href="../index.html#workspace">사례 탐색</a><a href="../data/site.v3.json">공개 데이터 보기</a></nav>
+  </footer>
   <script type="module" src="../src/research.js"></script>
 </body>
 </html>

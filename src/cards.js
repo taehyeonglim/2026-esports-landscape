@@ -22,17 +22,14 @@ export function createEntryCard(entry, { selected = false } = {}) {
   title.textContent = text(entry.name);
   const meta = document.createElement("span");
   meta.className = "card-line";
-  meta.textContent = [entry.region_name, TYPE_LABELS[entry.resource_type], entry.category, entry.year].filter(Boolean).join(" · ");
-  const facts = document.createElement("span");
-  facts.className = "card-line";
-  const checked = entry.status_checked_at;
-  const sourceLabel = SOURCE_LABELS[entry.source_kind];
-  facts.textContent = `최근 확인일: ${checked || "미확인"} · 출처 유형: ${sourceLabel}`;
-  const badges = document.createElement("span");
-  badges.className = "card-line card-badges";
-  const confidence = entry.confidence == null ? "미확인" : CONFIDENCE_LABELS[entry.confidence];
-  badges.textContent = `신뢰도 ${confidence} · 상태 ${OPERATIONAL_STATUS_LABELS[entry.operational_status]} · 범위 ${SCOPE_LABELS[entry.scope]}`;
-  card.append(title, meta, facts, badges);
+  meta.textContent = [entry.region_name, entry.category, entry.year].filter(Boolean).join(" · ");
+  const status = document.createElement("span");
+  status.className = "card-status";
+  status.textContent = `상태 ${OPERATIONAL_STATUS_LABELS[entry.operational_status]}`;
+  const link = document.createElement("span");
+  link.className = "card-link";
+  link.textContent = "상세·원문 보기 →";
+  card.append(title, meta, status, link);
   return card;
 }
 

@@ -1,49 +1,78 @@
 import { actions, appReducer, createAppState } from "./state.js";
 import { decodeUrl, encodeUrl } from "./url-codec.js";
 import { filterEntries } from "./search.js";
-import { RegionLoader } from "./region-loader.js";
-import { projectGeoJson } from "./projection.js";
 import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SORT_LABELS, SOURCE_LABELS, TYPE_LABELS, renderCards } from "./cards.js";
 import { renderDetail } from "./detail.js";
 import { renderStatRibbon } from "./stat-ribbon.js";
 import { matrixModel, renderMatrix } from "./matrix.js";
 import { editorialModel, renderEditorial } from "./editorial.js";
-import { landscapeModel, renderMapReadout, renderNationalMap, renderRegionLens, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
+import { landscapeModel, renderMapReadout, renderNationalMap, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
 const elements = Object.freeze({
-  region: byId("region-select"), search: byId("entry-search"),
-  schoolLevel: byId("school-level-filter"), status: byId("status-filter"), scope: byId("scope-filter"), sort: byId("sort-filter"), reset: byId("reset-filters"),
-  cards: byId("result-list"), count: byId("result-count"), detail: byId("detail-panel"), detailContent: byId("detail-content"),
-  matrix: byId("compare-matrix"), typeFilter: byId("type-filter"), categoryActions: document.querySelector(".category-actions"),
-  back: byId("detail-back"), map: byId("region-map"), mapGeometry: byId("region-map-geometry"), mapStatus: byId("map-status"), live: byId("live-status"),
-  statRibbon: byId("stat-ribbon"),
-  editorialInsights: byId("editorial-insights"), featuredStories: byId("featured-stories"),
-  storyPaths: byId("paths"),
-  nationalMap: byId("national-map"), mapReadout: byId("map-readout"), regionShortcuts: byId("region-shortcuts"), regionLens: byId("region-lens"),
+  region: byId("region-select"),
+  search: byId("entry-search"),
+  typeFilter: byId("type-filter"),
+  schoolLevel: byId("school-level-filter"),
+  status: byId("status-filter"),
+  scope: byId("scope-filter"),
+  sort: byId("sort-filter"),
+  reset: byId("reset-filters"),
+  cards: byId("result-list"),
+  count: byId("result-count"),
+  visible: byId("result-visible"),
   loadMore: byId("load-more"),
+  live: byId("live-status"),
+  activeFilters: byId("active-filters"),
+  categoryActions: document.querySelector(".category-actions"),
+  detail: byId("detail-panel"),
+  detailContent: byId("detail-content"),
+  back: byId("detail-back"),
+  mapContext: byId("map-context"),
+  nationalMap: byId("national-map"),
+  mapReadout: byId("map-readout"),
+  regionShortcuts: byId("region-shortcuts"),
+  browseTab: byId("browse-tab"),
+  compareTab: byId("compare-tab"),
+  browseView: byId("browse-view"),
+  compareView: byId("compare-view"),
+  tabs: document.querySelector(".workspace-tabs"),
+  matrix: byId("compare-matrix"),
+  filterPanel: byId("filter-panel"),
+  filterTrigger: byId("mobile-filter-trigger"),
+  filterCount: byId("mobile-filter-count"),
+  filterClose: byId("filter-panel-close"),
+  filterResult: byId("filter-panel-result"),
+  advancedFilters: document.querySelector(".advanced-filters"),
+  statRibbon: byId("stat-ribbon"),
+  editorialInsights: byId("editorial-insights"),
+  featuredStories: byId("featured-stories"),
 });
+
 const PAGE_SIZE = 12;
+const mobileQuery = matchMedia("(max-width: 767px)");
+const compactQuery = matchMedia("(max-width: 1023px)");
 let state = createAppState();
 let data;
 let entries = [];
 let landscape;
+let comparisonModel;
+let matrixRendered = false;
+let filterModalActive = false;
+let detailModalActive = false;
 let entryById = new Map();
 let sourcesByEntry = new Map();
-const loader = new RegionLoader({ baseUrl, origin: location.origin });
-let mapRequestId = 0;
-let mapLoadTimer = null;
-let mapWorker = null;
 let searchTimer = null;
 let visibleCount = PAGE_SIZE;
-
+let lastEntryTriggerId = null;
 
 function populateStaticSelects() {
   populateSelect(elements.typeFilter, Object.entries(TYPE_LABELS).map(([value, label]) => ({ value, label })));
   populateSelect(elements.scope, Object.entries(SCOPE_LABELS).map(([value, label]) => ({ value, label })));
   populateSelect(elements.sort, Object.entries(SORT_LABELS).map(([value, label]) => ({ value, label })));
 }
+
 class DataRequestError extends Error {
   constructor(message, cause) { super(message, { cause }); this.name = "DataRequestError"; }
 }
@@ -174,8 +203,18 @@ function reportStartError(error) {
   message.textContent = messageByType[error?.name] || "화면을 표시하는 중 오류가 발생했습니다.";
   elements.cards.replaceChildren(message);
   elements.count.textContent = "데이터를 표시할 수 없습니다.";
+  elements.visible.textContent = "";
   elements.live.textContent = message.textContent;
   console.error("Public data startup error:", error);
+}
+
+function populateSelect(select, values) {
+  select.append(...values.map(({ value, label }) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    return option;
+  }));
 }
 
 function optionValues(key) {
@@ -185,8 +224,12 @@ function optionValues(key) {
 
 function allowed() {
   return {
-    region: data.regions.map((region) => region.id), type: ["school", "event", "facility", "other"],
-    category: optionValues("category"), schoolLevel: optionValues("schoolLevel"), scope: Object.keys(SCOPE_LABELS), status: optionValues("status"),
+    region: data.regions.map((region) => region.id),
+    type: ["school", "event", "facility", "other"],
+    category: optionValues("category"),
+    schoolLevel: optionValues("schoolLevel"),
+    scope: Object.keys(SCOPE_LABELS),
+    status: optionValues("status"),
     sort: Object.keys(SORT_LABELS),
     entry: entries.map((entry) => entry.id),
   };
@@ -195,103 +238,87 @@ function allowed() {
 function updateUrl(mode = "push") {
   const query = encodeUrl(state, { allowed: allowed(), entries });
   const url = `${location.pathname}${query}${location.hash}`;
-  if (mode === "replace") history.replaceState(null, "", url); else history.pushState(null, "", url);
+  if (mode === "replace") history.replaceState(null, "", url);
+  else history.pushState(null, "", url);
 }
 
 function dispatch(action, historyMode = "push") {
-  if (!['SET_ENTRY', 'SET_MAP_LOAD_STATE'].includes(action.type)) visibleCount = PAGE_SIZE;
+  if (action.type !== "SET_ENTRY") visibleCount = PAGE_SIZE;
   state = appReducer(state, action);
   updateUrl(historyMode);
   render();
-  if (action.type === "SET_REGION") scheduleMap(state.region);
 }
 
-function populateSelect(select, values) {
-  select.append(...values.map(({ value, label }) => {
-    const option = document.createElement("option"); option.value = value; option.textContent = label; return option;
+function sheetFilterCount() {
+  return state.category.length
+    + state.schoolLevel.length
+    + state.status.length
+    + state.scope.length
+    + Number(Boolean(state.type))
+    + Number(Boolean(state.sort));
+}
+
+function activeFilterDescriptors() {
+  const descriptors = [];
+  if (state.query) descriptors.push({ key: "query", label: `검색: ${state.query}` });
+  if (state.region) descriptors.push({ key: "region", label: `지역: ${landscape?.byId.get(state.region)?.name || state.region}` });
+  if (state.type) descriptors.push({ key: "type", label: `유형: ${TYPE_LABELS[state.type]}` });
+  state.category.forEach((value) => descriptors.push({ key: "category", label: `카테고리: ${value}` }));
+  state.schoolLevel.forEach((value) => descriptors.push({ key: "schoolLevel", label: `학교급: ${value}` }));
+  state.status.forEach((value) => descriptors.push({ key: "status", label: `상태: ${OPERATIONAL_STATUS_LABELS[value]}` }));
+  state.scope.forEach((value) => descriptors.push({ key: "scope", label: `범위: ${SCOPE_LABELS[value]}` }));
+  if (state.sort) descriptors.push({ key: "sort", label: `정렬: ${SORT_LABELS[state.sort]}` });
+  return descriptors;
+}
+
+function renderActiveFilters() {
+  elements.activeFilters.replaceChildren(...activeFilterDescriptors().map(({ key, label }) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "active-filter";
+    button.dataset.clearFilter = key;
+    button.setAttribute("aria-label", `${label} 필터 제거`);
+    button.textContent = label;
+    return button;
   }));
 }
 
-function renderMapPath(path) {
-  if (typeof path !== "string" || path.trim() === "") throw new Error("표시할 경계가 없습니다.");
-  elements.mapGeometry.replaceChildren();
-  const svgPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  svgPath.setAttribute("d", path); svgPath.setAttribute("class", "boundary");
-  elements.mapGeometry.append(svgPath);
+function renderWorkspaceView() {
+  const compare = state.view === "compare";
+  elements.browseTab.setAttribute("aria-selected", String(!compare));
+  elements.compareTab.setAttribute("aria-selected", String(compare));
+  elements.browseTab.tabIndex = compare ? -1 : 0;
+  elements.compareTab.tabIndex = compare ? 0 : -1;
+  elements.browseView.hidden = compare;
+  elements.compareView.hidden = !compare;
+  if (compare && !matrixRendered) {
+    renderMatrix(elements.matrix, comparisonModel, moveToResults);
+    matrixRendered = true;
+  }
 }
 
-function cancelMapWork() {
-  clearTimeout(mapLoadTimer);
-  mapLoadTimer = null;
-  loader.abort();
-  mapWorker?.terminate();
-  mapWorker = null;
-}
-
-function loadMapInWorker(regionId, requestId) {
-  return new Promise((resolve, reject) => {
-    const worker = new Worker(new URL("./map-worker.js", import.meta.url), { type: "module" });
-    mapWorker = worker;
-    const finish = () => {
-      if (mapWorker === worker) mapWorker = null;
-      worker.terminate();
-    };
-    worker.addEventListener("message", ({ data }) => {
-      finish();
-      if (data?.requestId !== requestId) {
-        reject(new Error("지도 작업자가 다른 요청의 응답을 반환했습니다."));
-        return;
-      }
-      if (!data?.ok) {
-        reject(new Error(typeof data?.error === "string" ? data.error : "지도 작업자가 잘못된 응답을 반환했습니다."));
-        return;
-      }
-      resolve(data.path);
-    }, { once: true });
-    worker.addEventListener("error", (event) => {
-      finish();
-      reject(event.error || new Error(event.message || "지도 작업자를 시작하지 못했습니다."));
-    }, { once: true });
-    try {
-      worker.postMessage({ baseUrl, origin: location.origin, regionId, requestId });
-    } catch (error) {
-      finish();
-      reject(error);
-    }
-  });
-}
-
-function scheduleMap(regionId) {
-  const requestId = ++mapRequestId;
-  cancelMapWork();
-  elements.mapGeometry.replaceChildren();
-  if (!regionId) {
-    elements.mapStatus.textContent = "지역을 선택하면 경계를 불러옵니다.";
+function syncDetailSurface(entry) {
+  if (!entry) {
+    if (elements.detail.open) elements.detail.close();
+    detailModalActive = false;
+    elements.mapContext.hidden = false;
     return;
   }
-  elements.mapStatus.textContent = "지역 경계를 불러오는 중입니다.";
-  mapLoadTimer = setTimeout(() => loadMap(regionId, requestId), 150);
-}
 
-async function loadMap(regionId, requestId = ++mapRequestId) {
-  try {
-    if (typeof Worker === "function") {
-      const path = await loadMapInWorker(regionId, requestId);
-      if (requestId !== mapRequestId || state.region !== regionId) return;
-      renderMapPath(path);
-    } else {
-      const geojson = await loader.load(regionId);
-      if (requestId !== mapRequestId || state.region !== regionId) return;
-      if (geojson == null) throw new Error("현재 요청의 지도 응답이 비어 있습니다.");
-      renderMapPath(projectGeoJson(geojson).path);
+  if (mobileQuery.matches) {
+    elements.mapContext.hidden = false;
+    if (!detailModalActive) {
+      if (elements.detail.open) elements.detail.close();
+      elements.detail.showModal();
+      detailModalActive = true;
     }
-    elements.mapStatus.textContent = "지역 경계를 표시했습니다.";
-  } catch (error) {
-    if (requestId === mapRequestId && state.region === regionId) {
-      console.error(`Map request or rendering failed for ${regionId}:`, error);
-      elements.mapStatus.textContent = "지도를 불러오지 못했습니다. 카드 탐색은 계속 사용할 수 있습니다.";
-    }
+    return;
   }
+
+  if (detailModalActive && elements.detail.open) elements.detail.close();
+  detailModalActive = false;
+  if (!elements.detail.open) elements.detail.setAttribute("open", "");
+  elements.mapContext.hidden = true;
 }
 
 function render() {
@@ -306,56 +333,125 @@ function render() {
   elements.categoryActions.querySelectorAll("[data-category-chip]").forEach((chip) => {
     chip.setAttribute("aria-pressed", String(chip.dataset.categoryChip === (state.category[0] || "")));
   });
+
   const selectedIndex = state.entry ? filtered.findIndex((entry) => entry.id === state.entry) : -1;
   const limit = Math.min(filtered.length, Math.max(visibleCount, selectedIndex + 1));
   renderCards(elements.cards, filtered.slice(0, limit), state.entry);
-  elements.count.textContent = `${filtered.length}개 중 ${limit}개 표시`;
-  elements.live.textContent = `검색 결과 ${filtered.length}개 중 ${limit}개 표시`;
+  elements.count.textContent = `${filtered.length}건`;
+  elements.visible.textContent = `${limit}개 표시`;
+  elements.live.textContent = `검색 결과 ${filtered.length}건 중 ${limit}개 표시`;
   elements.loadMore.hidden = limit >= filtered.length;
   if (!elements.loadMore.hidden) elements.loadMore.textContent = `사례 ${Math.min(PAGE_SIZE, filtered.length - limit)}개 더 보기`;
+  elements.filterCount.textContent = String(sheetFilterCount());
+  elements.filterResult.textContent = `${filtered.length}건 결과 보기`;
+  renderActiveFilters();
+  renderWorkspaceView();
+
   const entry = entryById.get(state.entry);
-  elements.detail.hidden = !entry;
   if (entry) renderDetail(elements.detailContent, entry, sourcesByEntry.get(entry.id) || []);
+  syncDetailSurface(entry);
+
   if (landscape) {
     updateNationalMap(elements.nationalMap, state.region);
     renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
-    renderRegionLens(elements.regionLens, landscape, state.region, {
-      onCategory: (regionId, category) => moveToResults({ regionId, category }),
-      onEntry: openFeaturedEntry,
-      onRegion: selectLandscapeRegion,
-    });
   }
 }
 
-function openEntry(id) {
-  if (state.entry !== id) dispatch(actions.setEntry(id));
-  byId("detail-heading")?.focus();
-}
-
-function moveToResults({ regionId = null, category = null } = {}) {
-  dispatch(actions.hydrate({ region: regionId, category: category ? [category] : [] }));
-  scheduleMap(state.region);
+function resultsHeading({ scroll = true } = {}) {
   const heading = byId("results-heading");
-  // Matrix controls can be activated again immediately. An in-flight smooth
-  // scroll made the second activation unreliable in iOS WebKit.
-  heading?.scrollIntoView({ behavior: "auto", block: "start" });
+  if (scroll) heading?.scrollIntoView({ behavior: "auto", block: "start" });
   heading?.focus({ preventScroll: true });
 }
 
+function openEntry(id) {
+  lastEntryTriggerId = id;
+  if (state.entry !== id) dispatch(actions.setEntry(id));
+  requestAnimationFrame(() => byId("detail-heading")?.focus({ preventScroll: !mobileQuery.matches }));
+}
+
+function closeDetail() {
+  const closingEntryId = state.entry || lastEntryTriggerId;
+  dispatch(actions.setEntry(null), "replace");
+  requestAnimationFrame(() => {
+    const card = closingEntryId ? document.querySelector(`[data-entry-id="${CSS.escape(closingEntryId)}"]`) : null;
+    (card || byId("results-heading"))?.focus();
+  });
+}
+
+function moveToResults({ regionId = null, category = null } = {}) {
+  closeFilterPanel({ restoreFocus: false });
+  dispatch(actions.hydrate({ view: "browse", region: regionId, category: category ? [category] : [] }));
+  resultsHeading();
+}
+
 function selectLandscapeRegion(regionId) {
-  dispatch(actions.hydrate({ region: regionId }));
-  scheduleMap(state.region);
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  elements.regionLens?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  const nextState = state.view === "browse"
+    ? appReducer(state, actions.setRegion(regionId))
+    : createAppState({ ...state, view: "browse", region: regionId, entry: null });
+  state = nextState;
+  visibleCount = PAGE_SIZE;
+  updateUrl();
+  render();
+  resultsHeading();
 }
 
 function openFeaturedEntry(id) {
-  dispatch(actions.hydrate({ entry: id }));
-  const detail = elements.detail;
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  detail?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-  byId("detail-heading")?.focus({ preventScroll: true });
+  lastEntryTriggerId = id;
+  dispatch(actions.hydrate({ ...state, view: "browse", entry: id }));
+  byId("workspace")?.scrollIntoView({ behavior: "auto", block: "start" });
+  requestAnimationFrame(() => byId("detail-heading")?.focus({ preventScroll: !mobileQuery.matches }));
+}
+
+function selectView(view) {
+  if (state.view === view) return;
+  dispatch(actions.setView(view));
+  requestAnimationFrame(() => byId(`${view}-tab`)?.focus({ preventScroll: true }));
+}
+
+function openFilterPanel() {
+  if (!mobileQuery.matches || filterModalActive) return;
+  if (elements.filterPanel.open) elements.filterPanel.close();
+  elements.advancedFilters.open = true;
+  elements.filterPanel.showModal();
+  filterModalActive = true;
+  elements.filterTrigger.setAttribute("aria-expanded", "true");
+  requestAnimationFrame(() => elements.filterClose.focus());
+}
+
+function closeFilterPanel({ restoreFocus = true } = {}) {
+  if (!filterModalActive) return;
+  elements.filterPanel.close();
+  filterModalActive = false;
+  elements.filterTrigger.setAttribute("aria-expanded", "false");
+  if (restoreFocus) requestAnimationFrame(() => elements.filterTrigger.focus());
+}
+
+function syncResponsiveUi() {
+  if (mobileQuery.matches) {
+    if (elements.filterPanel.open && !filterModalActive) elements.filterPanel.close();
+  } else {
+    if (filterModalActive) closeFilterPanel({ restoreFocus: false });
+    if (!elements.filterPanel.open) elements.filterPanel.setAttribute("open", "");
+  }
+
+  elements.mapContext.open = !compactQuery.matches;
+  syncDetailSurface(entryById.get(state.entry));
+}
+
+function clearActiveFilter(key) {
+  const actionsByKey = {
+    query: () => actions.setQuery(""),
+    region: () => actions.setRegion(null),
+    type: () => actions.setType(null),
+    category: () => actions.setFilter("category", []),
+    schoolLevel: () => actions.setFilter("schoolLevel", []),
+    status: () => actions.setFilter("status", []),
+    scope: () => actions.setFilter("scope", []),
+    sort: () => actions.setSort(null),
+  };
+  const action = actionsByKey[key]?.();
+  if (action) dispatch(action, "replace");
 }
 
 function bindEvents() {
@@ -384,41 +480,91 @@ function bindEvents() {
     searchTimer = null;
     dispatch(actions.resetFilters(), "replace");
   });
+  elements.activeFilters.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-clear-filter]");
+    if (button) clearActiveFilter(button.dataset.clearFilter);
+  });
   elements.loadMore.addEventListener("click", () => {
     visibleCount += PAGE_SIZE;
     render();
   });
-  elements.cards.addEventListener("click", (event) => { const card = event.target.closest("[data-entry-id]"); if (card) openEntry(card.dataset.entryId); });
-  elements.storyPaths?.addEventListener("click", (event) => {
-    const path = event.target.closest("[data-story-category]");
-    if (path) moveToResults({ category: path.dataset.storyCategory });
+  elements.cards.addEventListener("click", (event) => {
+    const card = event.target.closest("[data-entry-id]");
+    if (card) openEntry(card.dataset.entryId);
   });
   elements.featuredStories?.addEventListener("click", (event) => {
     const feature = event.target.closest("[data-feature-entry]");
     if (feature) openFeaturedEntry(feature.dataset.featureEntry);
   });
-  elements.back.addEventListener("click", () => {
-    const closingEntryId = state.entry;
-    dispatch(actions.setEntry(null));
-    const card = closingEntryId ? document.querySelector(`[data-entry-id="${CSS.escape(closingEntryId)}"]`) : null;
-    (card || byId("results-heading"))?.focus();
+  elements.back.addEventListener("click", closeDetail);
+  elements.detail.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeDetail();
   });
+  elements.tabs.addEventListener("click", (event) => {
+    const tab = event.target.closest("[role=tab]");
+    if (tab) selectView(tab.dataset.view);
+  });
+  elements.tabs.addEventListener("keydown", (event) => {
+    const order = ["browse", "compare"];
+    const current = order.indexOf(state.view);
+    let next = null;
+    if (["ArrowRight", "ArrowDown"].includes(event.key)) next = order[(current + 1) % order.length];
+    if (["ArrowLeft", "ArrowUp"].includes(event.key)) next = order[(current - 1 + order.length) % order.length];
+    if (event.key === "Home") next = order[0];
+    if (event.key === "End") next = order.at(-1);
+    if (!next) return;
+    event.preventDefault();
+    selectView(next);
+  });
+  elements.filterTrigger.addEventListener("click", openFilterPanel);
+  elements.filterClose.addEventListener("click", () => closeFilterPanel());
+  elements.filterResult.addEventListener("click", () => closeFilterPanel());
+  elements.filterPanel.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeFilterPanel();
+  });
+  elements.filterPanel.addEventListener("click", (event) => {
+    if (event.target === elements.filterPanel && filterModalActive) closeFilterPanel();
+  });
+  mobileQuery.addEventListener("change", syncResponsiveUi);
+  compactQuery.addEventListener("change", syncResponsiveUi);
   addEventListener("popstate", () => {
     const previousEntry = state.entry;
-    const previousRegion = state.region;
     clearTimeout(searchTimer);
     searchTimer = null;
     state = decodeUrl(location.search, { allowed: allowed(), entries });
     visibleCount = PAGE_SIZE;
     render();
-    if (state.region !== previousRegion) scheduleMap(state.region);
     if (state.entry && state.entry !== previousEntry) {
-      byId("detail-heading")?.focus();
+      requestAnimationFrame(() => byId("detail-heading")?.focus());
     } else if (previousEntry && !state.entry) {
-      const card = document.querySelector(`[data-entry-id="${CSS.escape(previousEntry)}"]`);
-      (card || byId("results-heading"))?.focus();
+      requestAnimationFrame(() => {
+        const card = document.querySelector(`[data-entry-id="${CSS.escape(previousEntry)}"]`);
+        (card || byId("results-heading"))?.focus();
+      });
     }
   });
+}
+
+async function initializeNationalMap() {
+  try {
+    const nationalMapAsset = await loadNationalMap();
+    renderNationalMap(elements.nationalMap, nationalMapAsset, landscape, {
+      onSelect: selectLandscapeRegion,
+      onPreview: (regionId) => renderMapReadout(elements.mapReadout, landscape.byId.get(regionId)),
+    });
+    elements.nationalMap.addEventListener("pointerleave", () => renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null));
+    elements.nationalMap.addEventListener("focusout", (event) => {
+      if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
+    });
+    render();
+  } catch (error) {
+    console.error("National landscape map unavailable:", error);
+    elements.nationalMap.hidden = true;
+    elements.mapContext.classList.add("map-unavailable");
+    renderMapReadout(elements.mapReadout, null);
+  }
 }
 
 async function start() {
@@ -433,28 +579,11 @@ async function start() {
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
     landscape = landscapeModel(entries, data.regions);
-    try {
-      const nationalMapAsset = await loadNationalMap();
-      renderNationalMap(elements.nationalMap, nationalMapAsset, landscape, {
-        onSelect: selectLandscapeRegion,
-        onPreview: (regionId) => renderMapReadout(elements.mapReadout, landscape.byId.get(regionId)),
-      });
-      elements.nationalMap.addEventListener("pointerleave", () => renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null));
-      elements.nationalMap.addEventListener("focusout", (event) => {
-        if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
-      });
-    } catch (error) {
-      console.error("National landscape map unavailable:", error);
-      elements.nationalMap.hidden = true;
-      elements.nationalMap.closest(".hero-map")?.classList.add("map-unavailable");
-      renderMapReadout(elements.mapReadout, null);
-    }
-    if (elements.statRibbon) renderStatRibbon(elements.statRibbon, data);
-    if (elements.editorialInsights && elements.featuredStories) {
-      renderEditorial(elements.editorialInsights, elements.featuredStories, editorialModel(data));
-    }
-    const model = matrixModel(data.entries, data.regions);
-    elements.categoryActions.replaceChildren(...model.categories.map((category) => {
+    comparisonModel = matrixModel(data.entries, data.regions);
+
+    renderStatRibbon(elements.statRibbon, data);
+    renderEditorial(elements.editorialInsights, elements.featuredStories, editorialModel(data));
+    elements.categoryActions.replaceChildren(...comparisonModel.categories.map((category) => {
       const chip = document.createElement("button");
       chip.type = "button";
       chip.dataset.categoryChip = category;
@@ -462,13 +591,17 @@ async function start() {
       chip.textContent = category;
       return chip;
     }));
-    renderMatrix(elements.matrix, model, moveToResults);
     populateSelect(elements.region, data.regions.map((region) => ({ value: region.id, label: region.name })));
     populateSelect(elements.schoolLevel, optionValues("schoolLevel").map((value) => ({ value, label: value })));
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
+
     state = decodeUrl(location.search, { allowed: allowed(), entries });
     if (encodeUrl(state, { allowed: allowed(), entries }) !== location.search) updateUrl("replace");
-    bindEvents(); render(); scheduleMap(state.region);
+    bindEvents();
+    syncResponsiveUi();
+    render();
+    void initializeNationalMap();
+    if (state.entry) requestAnimationFrame(() => byId("detail-heading")?.focus());
   } catch (error) {
     reportStartError(error);
   }

@@ -32,23 +32,25 @@ export function renderDetail(container, entry, sources = []) {
   heading.textContent = value(entry.name);
   const summary = document.createElement("p");
   summary.className = "detail-summary";
-  summary.textContent = value(entry.subtype, entry.category);
-  const facts = document.createElement("dl");
-  facts.className = "detail-facts";
-  const checked = entry.status_checked_at || "최근 확인일 미확인";
+  summary.textContent = [entry.region_name, entry.category, entry.year].filter(Boolean).join(" · ");
+  const status = document.createElement("div");
+  status.className = "detail-status";
   [
-    ["지역", entry.region_name], ["유형", TYPE_LABELS[entry.resource_type]], ["분류", entry.category], ["범위", SCOPE_LABELS[entry.scope]],
-    ["운영 기관", entry.operator], ["학교급", entry.school_level], ["행정구역", entry.district],
-    ["주소", entry.address], ["연도", entry.year], ["종목", entry.games], ["신뢰도", entry.confidence == null ? "미확인" : CONFIDENCE_LABELS[entry.confidence]],
-    ["상태", OPERATIONAL_STATUS_LABELS[entry.operational_status]], ["최근 확인일", checked], ["출처 유형", SOURCE_LABELS[entry.source_kind]],
-    ["상태 근거", entry.status_provenance || "독립 검증 근거 미확인"], ["상태 검토 사유", entry.review?.reason],
-  ].forEach(([label, item]) => facts.append(field(label, item)));
+    `상태 ${OPERATIONAL_STATUS_LABELS[entry.operational_status]}`,
+    `신뢰도 ${entry.confidence == null ? "미확인" : CONFIDENCE_LABELS[entry.confidence]}`,
+    `범위 ${SCOPE_LABELS[entry.scope]}`,
+  ].forEach((label) => {
+    const badge = document.createElement("span");
+    badge.textContent = label;
+    status.append(badge);
+  });
   const notes = document.createElement("p");
   notes.className = "detail-notes";
   notes.textContent = entry.public_note;
   const sourceHeading = document.createElement("h3");
-  sourceHeading.textContent = "출처";
+  sourceHeading.textContent = "원문 출처";
   const list = document.createElement("ul");
+  list.className = "source-list";
   if (sources.length === 0) {
     const item = document.createElement("li");
     item.textContent = "등록된 출처가 없습니다.";
@@ -64,6 +66,7 @@ export function renderDetail(container, entry, sources = []) {
       const raw = document.createElement("p");
       raw.textContent = source.raw;
       const links = document.createElement("ul");
+      links.className = "source-links";
       const safeUrls = source.urls.map(safeHttpUrl).filter(Boolean);
       if (safeUrls.length === 0) {
         const noLink = document.createElement("li");
@@ -76,7 +79,7 @@ export function renderDetail(container, entry, sources = []) {
           link.href = url;
           link.target = "_blank";
           link.rel = "noopener noreferrer";
-          link.textContent = url;
+          link.textContent = `${new URL(url).hostname}에서 원문 보기 ↗`;
           linkItem.append(link);
           links.append(linkItem);
         }
@@ -86,6 +89,22 @@ export function renderDetail(container, entry, sources = []) {
       list.append(item);
     }
   }
-  container.replaceChildren(heading, summary, facts, notes, sourceHeading, list);
+
+  const metadataDetails = document.createElement("details");
+  metadataDetails.className = "detail-metadata";
+  const metadataSummary = document.createElement("summary");
+  metadataSummary.textContent = "전체 메타데이터 보기";
+  const facts = document.createElement("dl");
+  facts.className = "detail-facts";
+  const checked = entry.status_checked_at || "최근 확인일 미확인";
+  [
+    ["지역", entry.region_name], ["유형", TYPE_LABELS[entry.resource_type]], ["분류", entry.category], ["범위", SCOPE_LABELS[entry.scope]],
+    ["운영 기관", entry.operator], ["학교급", entry.school_level], ["행정구역", entry.district],
+    ["주소", entry.address], ["연도", entry.year], ["종목", entry.games], ["신뢰도", entry.confidence == null ? "미확인" : CONFIDENCE_LABELS[entry.confidence]],
+    ["상태", OPERATIONAL_STATUS_LABELS[entry.operational_status]], ["최근 확인일", checked], ["출처 유형", SOURCE_LABELS[entry.source_kind]],
+    ["상태 근거", entry.status_provenance || "독립 검증 근거 미확인"], ["상태 검토 사유", entry.review?.reason],
+  ].forEach(([label, item]) => facts.append(field(label, item)));
+  metadataDetails.append(metadataSummary, facts);
+  container.replaceChildren(heading, summary, status, notes, sourceHeading, list, metadataDetails);
   return heading;
 }

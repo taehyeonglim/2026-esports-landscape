@@ -11,13 +11,14 @@ a { color: var(--blue); text-underline-offset: 3px; }
 a:hover { color: var(--focus); }
 a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
-.site-header { position: relative; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #101f3a 0%, var(--bg-0) 100%); }
-.site-header::after {
+.research-hero { position: relative; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #101f3a 0%, var(--bg-0) 100%); }
+.research-hero::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
   background:
     linear-gradient(90deg, var(--gold) 0 34%, transparent calc(34% + 1px)) top / 100% 3px no-repeat,
     linear-gradient(90deg, var(--blue) 0 100%) bottom / 100% 2px no-repeat;
 }
+.nav-links a[aria-current="page"] { color: var(--gold); }
 .header-inner, .research-shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
 .header-inner { padding: 34px 0 30px; }
 .eyebrow { margin: 0 0 3px; color: var(--gold); font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; }
