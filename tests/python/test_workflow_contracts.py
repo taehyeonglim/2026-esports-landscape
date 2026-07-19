@@ -41,7 +41,10 @@ class WorkflowContractTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "pages.yml").read_text()
         self.assertIn("permissions:\n  contents: read\n", workflow)
         self.assertNotIn("permissions:\n  contents: read\n  pages: write\n  id-token: write", workflow)
-        self.assertIn("build:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read", workflow)
+        self.assertIn("build:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n      pages: read", workflow)
+        build_permissions = workflow.split("  build:", 1)[1].split("  human-gate:", 1)[0]
+        self.assertNotIn("pages: write", build_permissions)
+        self.assertNotIn("id-token: write", build_permissions)
         self.assertIn("human-gate:\n    needs: build\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read", workflow)
         self.assertIn("deploy:\n    needs: [build, human-gate]\n    runs-on: ubuntu-latest\n    permissions:\n      pages: write\n      id-token: write", workflow)
         self.assertIn("SOURCE_REF: ${{ inputs.source_ref || github.sha }}", workflow)
