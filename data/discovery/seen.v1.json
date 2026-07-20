@@ -272,6 +272,18 @@
       "url_sha256": "576436450f9e177b07a691ab3b99f35945d7b446ba72ab6a1a7200fb70573417"
     },
     {
+      "canonical_url": "https://gwangyang.go.kr/kor/board.es?act=view&bid=0057&list_no=201746&mid=a11007000000",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-jeonnam-gwangyang-youth-esports-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "fc583748b6f98f56e7b95aa9d6498680a29b27218abfd570a7637faf026d0f23"
+      ],
+      "url_sha256": "5dcf770cabf46cfc8b5b7a9f9a711e7251d9b7ac37e73ad4b5af1775f42b8708"
+    },
+    {
       "canonical_url": "https://hijob.pen.go.kr/sub/school_view.asp?school=17",
       "decision": "accepted",
       "entry_ids": [
@@ -719,6 +731,16 @@
       "url_sha256": "45c1a71842ed6e1c26a7ded10778f853f24efad960c0a5031f5ae23409a915a6"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBkQ19HR0Fsa2F2eG1scEhOQ1QxS3dKdW1GT2FRNGc1b0FtTWZLZ3pNbFJpb2YyLWhBS3dBRUk4dy1DZjZTX3M1djNKTWVNLWxpNTlrdGFyZDE?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-20",
+      "title_sha256": [
+        "2fc20c8724a3827348d1602e4f09686f3d2e9f6cbb3ae80ab00c72a9b091102a"
+      ],
+      "url_sha256": "bdd3b571d6d5cfa2de69e8683ca8ed170c51d1767a0cfc5b406a35c5570e212f"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1jQWFjZ1J3NzJzV3BmaU11N3FjLVJHVVhZRlQzQWJTWFFFRWRLb0xneUozTXZuOVFIenpkS0pIckpzRS1teTFEMkl4bWYwbFJITEc2cEt1ZWMxM0Ix?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -772,6 +794,26 @@
         "803f14a66e82b8a9494c0503e8bb3d94a9640b2f89d928ab56ffac2f43133710"
       ],
       "url_sha256": "75c82c9024f78c6a8c62d55d57bdafa63919e26e6713d12279e4c5e384050991"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Ocl82VHlZVWtTcFFNOWxhMzg5UlV4V3A4LVEzTjFpbmE2ZzZ2QWJlbkpPZUZDc2JQX0NZNExjSXpuTXh2VUZKN29JWWdCeVA0MWNYSWZkMEZvZXdCNnBBeQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-20",
+      "title_sha256": [
+        "ead4cc4fc34069671ce5446c1e752f27ccce9b9e81225b45b8f2cc2cdb78c46e"
+      ],
+      "url_sha256": "d0d4929386903078b97d4ca6b289906cbc636289bb82bc5ff334797eba2ec43e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Yc1pIcU5HMzNlVUlOX2RqZkhqWmt1NFZjVHlvcWZtQU85dDMybmhwVXZsYWFvZHBPUVlpejNnVDRYSVQ5R3lqdU1wamtEN0VXa0tDX21Yb2gtdng2eWpNRA?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-20",
+      "title_sha256": [
+        "0e9d02c1642c63e302ba3e2b87889b9f27692ffd21762a90ceacaa3348bd62ab"
+      ],
+      "url_sha256": "e07db4dea3fb8479e911889985b4175c976a53d81707ef99563b51f7d02578f1"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBfczNCY21Qbzl0V214M2w2QVlvaHFaT05peS1aYVl4cW1QZXNGaEg4cEVwS3RFY0RkSHo5aG52QmV6U3NVNTNLcXJqeUR2dlpucEt0Zll4ZTVZSHJpbmJmMXdB?oc=5",
@@ -829,6 +871,16 @@
         "0512498fc5396a15dc114ea95dd15b7bdc880d235bf75a870ce9f98e1dac3632"
       ],
       "url_sha256": "0515f167d2381dc31643304f888dd9ef47f36718619047adc494f8745a586a1e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9YcHJWVmtYOFhDUDRQSWxjSnJ0YmM0ckZvOFBnVFJjbXE1M09EQ1lhYXdUczNrcExiRUtCMDNYancwYW1BdG5TanBoam1ZYTN6WV84QTBOV1dNZGNlRlNZdS13RktXbVZS0gFrQVVfeXFMTjhfM3hVU0FLT0kxTmN6cTZ6VWNOLVNJNDVPVnhJVUNST1hQU0R6R1NHRjdfeUZxNElET0xES2RzLUwwOGVHNmNpUEpDRjRFZm1yZXpJMGlXNGh3UE9Wd1JrdmhIMXdULUI1OU0?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-20",
+      "title_sha256": [
+        "6570bc7abccba4afb7cc4aaebc9326f4e3aa82f4b567cc87dc7132f5eef6c219"
+      ],
+      "url_sha256": "be575d9d66db57bb178d9eb455ecb9bfc690434079015798e1e853cb6bb31fa9"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhTF9FUUpfSnM3NF9YeThBZWJpN0N5X2dlZVFhbEdKbUphbElQa1hRYld5T0Rvbnp6X1puRWw2VjRGY1h0cVhOQjR1SGxQdnEyeDlQVHdwbnk3eE91U21TSG9OczVfdU9XY3c?oc=5",
@@ -897,6 +949,16 @@
         "1ee4995b9127ef3e6499c002ba7fb860f0df353ea83bc813579a222361f57599"
       ],
       "url_sha256": "f2865e301571811517540abc85cdfa52e7bbe511594841d29fb043d97caee240"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9LZjlNb290bkFfXzdmQ0ZCdWRQMnBiRjhtLWlzN3p6bVdqUlkxMnVVNUtSWktnUHQyMGxTbzJsay00a1JlekxPQUZTR3JCSXVhcGs2RmtWX3pZeHo1ajZ6bXFlWXk2dW41SXZHTV92bGxfdmc?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-07-20",
+      "title_sha256": [
+        "23ecffd8861dfd27aab9a2887ff0b58c8db96e1985233d73c0aa4094f2fcbc26"
+      ],
+      "url_sha256": "3fdbd834a3fe1d32c498c544f34f54abcf47a6220636f336e9289b787388a31e"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5UUXQxUWFhQUZJeWRReTg1bnQxWHlQbXpjRFVkbnphLUlPZzRjSVBZM19pUjdfdmV3aVdnd0hZRk54RzFDbG93YUVSYkozNW9HajZWaFN0MFFMQVJqZ1lnaExDelhuWGUySHozallMTng?oc=5",
