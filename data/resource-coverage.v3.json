@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "total_entries": 232,
-  "covered_entries": 232,
+  "total_entries": 235,
+  "covered_entries": 235,
   "entries": [
     {
       "id": "busan-001",
@@ -1160,6 +1160,21 @@
     },
     {
       "id": "update-gyeonggi-ansan-esports-festival-2026",
+      "category": "지자체정책·조례",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gyeongbuk-yeongju-amateur-esports-2026",
+      "category": "지자체정책·조례",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-chungnam-seosan-youth-esports-2026",
+      "category": "지자체정책·조례",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gangwon-hongcheon-esports-festival-2026",
       "category": "지자체정책·조례",
       "resource_type": "event"
     }

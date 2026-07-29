@@ -5,12 +5,12 @@ import { CATEGORY_ORDER, categoryColumns, matrixModel } from "../src/matrix.js";
 
 const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
 
-test("matrix model is an exact 232-entry partition across 17 regions", () => {
+test("matrix model is an exact 235-entry partition across 17 regions", () => {
   const model = matrixModel(site.entries, site.regions);
-  assert.equal(model.grandTotal, 232);
+  assert.equal(model.grandTotal, 235);
   assert.equal(model.rows.length, 17);
-  assert.equal(model.rows.reduce((sum, row) => sum + row.total, 0), 232);
-  assert.equal(model.columnTotals.reduce((sum, column) => sum + column.count, 0), 232);
+  assert.equal(model.rows.reduce((sum, row) => sum + row.total, 0), 235);
+  assert.equal(model.columnTotals.reduce((sum, column) => sum + column.count, 0), 235);
   assert.deepEqual(model.rows.map((row) => row.regionId), site.regions.map((region) => region.id));
   const busan = model.rows.find((row) => row.regionId === "busan");
   assert.equal(busan.cells.find((cell) => cell.category === "교육청대회·사업").count, 3);

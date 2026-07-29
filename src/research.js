@@ -43,6 +43,7 @@ function renderFacts(data, target) {
     ["등록 항목", `${data.meta.entry_count}건`],
     ["대상 지역", `${data.meta.region_count}개 시·도`],
     ["원문 참조", `${data.sources.length}개 source ref`],
+    ["자료 반영일", data.meta.data_updated_at],
     ["상태 기준일", data.meta.validation_as_of ?? "승인된 기준일 없음"],
     ["상태 분포", `확인 필요 ${statusCounts.needs_review}건 · 운영 중 ${statusCounts.current}건 · 종료 ${statusCounts.ended}건`],
     ["자원 유형", `학교 ${resourceCounts.school}건 · 대회 ${resourceCounts.event}건 · 시설 ${resourceCounts.facility}건 · 기타 ${resourceCounts.other}건`],
