@@ -631,6 +631,26 @@
       "url_sha256": "e9e2fa32655c83d6fe52e7a94d1bf084513e24b259e1f4da18a6e8497e0bf8dc"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1fWUlCdDBpN29YN3l2LU5LdEwyNVZqX1JGdDhLV0lPOTkyWWVQMEQzdlFUT1RpeDVYTzdQdE1sWUpPek03djVBb3BVNA?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "eb6917260fa81b8d22cdf3b98fe26f6d467499dcdcd8a14915b0e9cf12b4559e"
+      ],
+      "url_sha256": "5bd928611db0cbee30123ab11463a07e916b1ff03a994638ced0279198897dae"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE4yQzlBUEFKOFNobEREWGhJWFNzVG04Vm5GWFJZeHZOWWE5b3JmNndvSXIwYy12TWNMdGpCUk9mUVAyazFmbVpOeEVLVQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "2cfad6f1e134fec5295c5b110ab66e9f3eceb719cfffc919a8d4a51079a92cff"
+      ],
+      "url_sha256": "1df454b4cd22871303fe6c7707d764afd3a90712d00b315682320c99691d32ea"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9qUTgyVFJKdUpUUTI1MGdUeE82V1ZzbXQtMXR1Mi0wV3pQTk1YNXdQREJQaGVmeHBSWk9QaG9PTllKdi1KNVhmc1BZVQ?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -652,6 +672,16 @@
       "url_sha256": "490a15e03797b6e4113734763ff46cf23398fd0b094f38bf70d1a459ee068b41"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBvbzFxc3pfMmxkeWFlVXVKa0hmZEFIZU43RVpCUFl3VGl2Z3A0aEpJSE9TaXhNbnBaWjVpaElOSUhjbE5VZktPMQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "5a652a0a3a6a7f4c9c1fc0fab1a05a6ad54bd7ecab0407f1a9f7ceb8c07d83b6"
+      ],
+      "url_sha256": "8ab4dcf05382d7fd4fde6a4ab66bf064740d474d6bb388e15fbc6160c7f7aca9"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE8zTjlWNUJ0RlBqak4zZVZtRnJIM3FTcWZabjd2SzJpNGpITU1hRUFMb2ZKVC1Ub0NYZXlLUjU2R1F6M1piZmlpUjNn?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -661,6 +691,26 @@
         "e3fbd48c5ed408f2c9f45679e45c86ba53633dff85a0ca896d4f5bf7e10ed215"
       ],
       "url_sha256": "c15edeb963fc1d9ada7924be87cdc904af55f99637c4648a7f3e4467d281b4a1"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE0zdWVqNVlqaUZpSUVVMGREOWk1M3hiMDRDOTY3VFVTVUV5UmVlYlllS1pLRlBSMzh1Yk95QXZGX3ZUQWx1NEN3Ny1kWVA1Z2M?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "f7a5eff0dc8237ba73019d8df6ed926d729b5de3ee09c1ff15d1a4af5484ec9f"
+      ],
+      "url_sha256": "5f3469c45913b39f34b00a802a0bf168ed3e352789bdd03c54cb3aff1fdb6c52"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1HM3I4MVFDNFJadUlJMGlWaXg3Qi1iVC1oaW5taGRGMXFLalFCWUVhMmprekpxQUMyLXo1aUs4WUFpLXFTT0hNRkJIVWNaTk0?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "5b1564461b82f43a67cfd52111c28aab45d530d71db6f2f56e43e8305a740c3e"
+      ],
+      "url_sha256": "d267156238c80d27cab44e12db63045cbc961ab982506805cc7e02c923053944"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5FbUt4SGh4b09fOExnOEhBZXlkQjJNMkUyR1Q5S3FpbDRzV3lPN0Y3LWhvNmFUQWJOb205R21FMVhmNnA0UE1SaGhTNnNlaWc?oc=5",
@@ -706,6 +756,26 @@
       "url_sha256": "de6b2eb4dd5a2f4717652e41bb860404f9de8f301bafeba2a028fa62e0c3b262"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1lblBnSzc4Q005dXpPRXEydUk3TjdnUFpaMnNLdkE2NTUyZUdhQUhTaUh0SElpRkxFU1Jqa1ZMMUZnWTdMQUhKaWJ2bU9Fc0xfUXF3?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "517d41dd71a85531688a160820310f14fecc1653e1badbe06870711f3ebdc10a"
+      ],
+      "url_sha256": "3165b557e5f50e8a985682ad53939f886b89f9cb9d564d9fec137fbaaf35782f"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE4yM3k4OE51dThDc3BJNW9JUWRtVXd0M1dYaFZmdU1hN1I2dU51RmFwTGpPVnByYTF1Q24wb3JkNnRPUVNTeGRoZmtibVpzd2Zxd213?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "c1b9bbd379a03aa7677beaedfbf50ff89448d4d07638e14c491832e470bf51fa"
+      ],
+      "url_sha256": "f042ccbcf46460d1af5b707268f3ada836b8424f2eee236f6452cd65390d5ceb"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5DY1dFVmc1TEpLV3dWVlFqYVRaNjVoa3RGMXNzQ0sxRkpjQmxqSlpsNkpJR19MS1h5WGZwMlRUcFZQclc1LWtjRkJkSGZfMk5mcGRZ?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -716,6 +786,16 @@
       "url_sha256": "c17efb346196b32d8cbe0ed5ff881a4ddda147cfd223d6bdc7ba60463febedfc"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5DRVA3ektIa2p3bEoyTmJ3MzROVnNINWFMRVBtaFREYThqTmc4SC1VdHh5VUV5cmhyV184ZF9jWkdBdkN5TC1Yb3Q1ZmNqRGl2?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "c63812e6484c41808793f31637e9d3b262fa87d0fbdf3f95dbdb81c3dea58ace"
+      ],
+      "url_sha256": "de219b6a3f7b8ee6bd620b305e4a89b58fe8a5fc0908c603fa5952257bb1a3c3"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5jdjZNbGFjQTVObk1ROVNRZXR4d3pSNnlkWlkwUXFjRTBHQU51bW5jR3FTRE5RNWNoWDFvaE9LSmFGNVdkLTlmOTdfc3Zxa2Ey0gFsQVVfeXFMUGd6Q2s3MjBrbmdpdHFzeGZwYzZoaUNoQXc5X2JiY0lIbm9WWERja3NpUU83UjJiY1lfTjkyek1uRDdMcmdSVV9VVTE1TURFN1dnTGpBU1VyZWZlTWo4OFJPam1sYlU0QlJ6V01v?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -724,6 +804,16 @@
         "99dc668431677fde595789497a5a71ba4420298523521864b26a8dc6f4d4e893"
       ],
       "url_sha256": "cb4a49c91db973cf7964ef282d79e40596702d21a55e4ef44694b64de2e7aaf6"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5tSlg2di1JWGU5R0dxakZteFdyUnpnRGRqSHk3LTkzYlBtd0U5SmdPS3Z3U05LWGZpLVM0Zl93b0V2bm1oRXdHSEs3TUZqQWFM?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "86a6d838b8b24150e23356e0daabe051fe7618302254cf8072f582bdf3c5d9ed"
+      ],
+      "url_sha256": "7d40bfdb766e525b1dc9dbdaeb69a7d25d916df51e6c158bf450dd99e0e318fd"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1oTWZ4SEZ0bVlRRkpXRW1VdklPcjVEWXZXbWtQODk5X1pZMjNFZ2drMlgzZXpRaTFyVExPcDRaNngxREpnRW9uT0hRV0Q1UGNheWfSAVNBVV95cUxNdlk2VzB4ME5oWV9sZ2RvVXMzdTBxdDRyZFdIVlRKaFFaR1htdGxSd3p0TGJocXJ1UkN0ODY1Wmo0Yk1iV2dJN1phWFdzYlZGS2lkMA?oc=5",
@@ -789,6 +879,16 @@
       "url_sha256": "08aa0acb84c7d69c290f7b6abd36bb53e8911fc30d3447ea8449801cc6046de5"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ZQ2dyTjV5c0RIeFlickl5djlWQjY4UHVzQ1B0MzRtVEwyZWZTVHBtUktZX1VDS3dqM1FLN0RXT0F1TnRCc19JN0hrOUNjNjBzbnlYQUVDYTA0OWc?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "b5a6552c938b4d5f14d0950b890ece819c935f3434127de4bb7a17272330e604"
+      ],
+      "url_sha256": "542673db678cc57a2de59de61a73ea78444b5b35902c537f1b724ed585cc4e95"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9KWWF4UDhka3ViRGlJNkJqdGI5SXdIUDhGcFRJclRHd2I1bnVYQzdZX1l6TGVhcU00eGU2cW5vRURXWHNvNmVfVlhrUUhOempNWlhONnRiNENhMTDSAWBBVV95cUxQd1c4ZTRvQzBJVzZYOUlDVHN0SS1pSV84ZlpILTFYSHBYTloxektlY0hRT0k3eGxySDMzd0dZVkpxRnJlXzdJSzQtZ2ZZZ0dQbHNBNjVrWXhGNnprdldVcVk?oc=5",
       "decision": "rejected",
       "entry_ids": [],
@@ -821,6 +921,16 @@
       "url_sha256": "bdd3b571d6d5cfa2de69e8683ca8ed170c51d1767a0cfc5b406a35c5570e212f"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5HYThGcWM1VTBFWHlnWUM4bFFmR0ZySVREVGxaSDFVYU1fdS1Hcmg1N1RETE9mNXRfalZLeUYwZjRtcmxEZnRIUTRmWUtCSnRpWFlSU1RYSVh5QQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "4052d67f5007aa734c6520d05d862ed842d373e0be35f1fdaa441acf266670ce"
+      ],
+      "url_sha256": "dc6fd1f29dacfc0682122d5e97d2cbe52b2a023832332465a9ae0c816204b28b"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE56bzZxZWVETXBjejUxajdJeVNuVDBsM2ZCUU9mMnQyeHZUUDZKUjVzaU9Na3N4OHFLZnNDMDNUZXVtY2I2ZGZJbGlqcHVXUXhyYkhoMXFYRmE1ZXh0bDhJ?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -829,6 +939,26 @@
         "1d81b8b7b98fe8bace19dafe9f987e6a60c46cd54ec34ff8db49836ebaac0da4"
       ],
       "url_sha256": "27cc4ac5149c28de00b1dc8fca33527a2b8bd0613e7034dfe7763ccba514dd67"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9EeUZfNjYxYzJ3cFNibU5ncEtlREU2TUtId3p3bEVpXzVpa2pHcW5pbG9TUHVQc2JSWllLQVd1NklvZ0V6cEZzNTZ3UmVBTDVqNnRVMWVRdmFIdkdIX2hv?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "69389e4e9fd8110d7270c4986d917024b73f00aa3a077fd29073d187165b83d6"
+      ],
+      "url_sha256": "69b49b3269272e40568539b7d68b61b16408bdd36eec415fc6a03d645dbe064f"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE14QzhnSWV0WVZweHVRTzEwRGNFdl9McG9qLWYxU3UtdWw4enIwbEFveFdlYlQ2bVJwNEltS0N0UmhiVzhnNnVKOFdCeHlyalBIQVlqbGVSR2tVWjVz?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "7007db07ed144f1256681a31b0c3ef035483df9a1c43b5006b31bbb15ae96432"
+      ],
+      "url_sha256": "39db759cdadc3a4dc4d9740a821121420a5b97e4f3895d3b78595e5a7668e521"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1jQWFjZ1J3NzJzV3BmaU11N3FjLVJHVVhZRlQzQWJTWFFFRWRLb0xneUozTXZuOVFIenpkS0pIckpzRS1teTFEMkl4bWYwbFJITEc2cEt1ZWMxM0Ix?oc=5",
@@ -853,6 +983,16 @@
       "url_sha256": "53a7e45c99ca2b2dae320833d64363723b1c8e02704e5988cadc76025a7adc83"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9PQkdnRFpIejVhOEtkSXRnYlRLSWU2WWxla19BSDVSZnNkLTlxdzBaSC1nQVdsRU5scmVTa25jVEtUOTVTbG1pNEJ4WjluSnNwV1NJVkplZGxPSm16?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "9fd8aae246e8fc6936f66d9141df4b8a025f9c855b13de1cc913e5148625a91c"
+      ],
+      "url_sha256": "72f084b177beba6d9a6eb8e5dfbcb796f578a9353632bcf7d957040a35145b8a"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9mMFJSbDAxWUJiaHBZOWl4bDBKbjZRZ21iQl9zd1U3Y040X0J6TS16aS10bnRheGFwaTR0dndMWU1EODBDUU4wZDNiVnFSY3ZMR0hQQlNjeG45Y3M1?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -862,6 +1002,66 @@
         "744463373f419bbfb6f582fe649d51b058d6ecba4b14e4d51102ff8127598d8c"
       ],
       "url_sha256": "1d9e680fb00b220b957afef8d921dd78f87b5912da977a210c0d5c7b376ba240"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1lR2RibXFfQ3JtUHlWazVSN0lYODhua01wdmdOQ1lSaXNTUG1ZMDNFRHl2QWJnWWNZaDhxRkwzSHZVLTZ1VHF6UGxrenQ5aEkxenNDc2dJbldHcjhRc1E?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "c76e43287b80238fd30ac47411bf7dea62f18c9a8bb8a90b60aaea342e5199f3"
+      ],
+      "url_sha256": "51e19dbde5354866b7c5e4231c66ff534afdadaa8c6dc5c155779b495541ce7c"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9JaXhoa19VWlJ3bloyRjhjVGV5YTdqOURrOW5LVDlIZjI3UUZfaFJXSGFTRE9ab1A3d0QwS0FINnVCMUo4czdOZlA0OFdKS1Znb2FfR21YYXEwbVJxRHc?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "f746774238f809d10c42bb0a21353ec9e3b3f3418155bd369efc01b30f0cdb86"
+      ],
+      "url_sha256": "5eb1866f8a1d53db099b49223bf19e8afc90ab5763b0cc5075d9cc8055be5f10"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1iQ2ZyX3BvNjN1eU9ITmY1RzBrSHliM2d4dHRJSUd5RFJ3UXlQQkdsVjFJRzNqcC1pWHpnd2VhVVlwODM0WWQtLV9QczVlaWczOVl0LTVaMW1RMEw2N3A4ZnB3WQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "fcb1505e11fabc36e60b3e5a8bd65fb8b365e86d23c8b67ed96e81d0ba2eed63"
+      ],
+      "url_sha256": "d733f66de26fb4537113853d7b50964b228d06fa17e465cee53984b1a148f0c9"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1tekVSY1hDcmpmbjZkSU1GT0huSFJFcEJobWIwZGVGbjFLcnUwUHRtX2V2ZllvdnVlMFdlVlFHa2pFa3h1RUYzaXFzZTJkSU52UXJ5MHdwTlFjU0hMSm5jTjVyQQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "e2be5745a7fdf953b1d3e2e52864352e334802b3793c510381358fbbed870927"
+      ],
+      "url_sha256": "ebcd9d273d1b569fd6411be647e02470e548a7e64b828a71427aef9b88182efd"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1veGs1V0RmTkNCSWd3b0NYWTN3QWx4ZGhPVXJVRE1HRUJEZzkwWEZsWW1Ba3lEMWpVQ25BWGw3eXdwX2V1R3BLU3FOS1dzRVBGMXU5NFZNeHRkc1Z5VUM5XzZjOA?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "17ecfa3e7022b05c9e1f6fc1d3c64a1251b33c8976d87c06a50e207e12a8fed9"
+      ],
+      "url_sha256": "a060a60371a9b04db4f328a39c3cc7889fe356411db84986e8df109057671718"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9lNnlPQjlhZktDbTJ5RV9xVFpSU0lVaFZNenFjOUNIY29aTjFrTVRfNm1NSnhhOTdYX0JxM21PS1NlcGI3SFRLcjNQY0k0a3pQZUlDMUoyUHQ5YXZ3cnhsZVUyVQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "c67722f371d7f6a9ba53471f2b30686ffc4c3bad326052a712ca951e9f2401ae"
+      ],
+      "url_sha256": "5ecf80b48fc3fc94602cfd2b76b8a758cf72db0ae6c03d06b1035819906d8a37"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFAzcnJ3cHBrWm9OUUNkVmpiQnJ6SzlPVjFUTUFsa01nOWR2UllLYUxqUVh3d1JtbGRZNVNfYTlFdGoyUERtaW1yY042QWk3aUpnejE4UkxObnEwRUNJNmstNVlTOA?oc=5",
@@ -957,6 +1157,66 @@
       "url_sha256": "ddb7302f4cdcdfd550fd7f15015290d14e33b5e96ca5a846740c166f8672657e"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBOdHVfSHp4anZCdW9kcjVrNUZPbkwxME5ueFg3Q2Z3NWJLVi1hd0NBOU91WmpNTExseEhhMGgzRm5OenQtcmI4R0ZrLVlRN2pDeUs2X0tHeDRqWFh5MjcxMTdjZTAwLVU?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "96ba561b320bcb65d41241a4df6a4a3d21b13fdc370e81abfcbdbc7ad3847d82"
+      ],
+      "url_sha256": "bf85b889fdd8f54b6e1d5bc593cb32a8dab77a87d0e1a6b40397f6600e005f3e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE40VTB6VjcyNkFjZTYxcktMQVBpbjdDVDBCSzFxXzc3LTVlRU9URTVmUHcwQTJ5cXMxdEZWNDNkSktfLV9PN1BxZHhQMkc5OHVCUWVzeVQzVGJMUDJNSXpBLWoyR3o?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "891c28ce87e445ff4547da90817f457e6a56bb0618e8e49575e5a0ad659b771b"
+      ],
+      "url_sha256": "6f0501040c6f1163b2ea08b2255ecba456365f5686da60de1b021e7ed59020f6"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE54bEVjWjdvMVlqcUM3bGVFelkzTWNsRlQ0ZmlCWXM5Z1piWDFMWmNOSm1QNVJXeDBZQmktZDRuWWhGN0ZVR2lFdUdFeGJCX0Z5UlVyUzRuOFNwTktETGlNV0ZuVVQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "e9d1465d8d1c71fe17ebe534ad75defc171187c689c4e81e565f0268479ded57"
+      ],
+      "url_sha256": "392afd42989ac65394f50aeb12d2376842858786d001c52ab41f6750affc7d02"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE80anZaUkRibXdHTkZsTWhGZnVPRHRzdGFpUzZkODkyNzJXU3FFYlY5OWZKTThEYVJ4UC1TZGVjcUo3UlNoOUlYSENuYXF5cGxnZk1Rdk1uN2JpQ2NGZ19FdG5kblA?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "282d9fe5de48ddb1c36f42318ad8a9b4d75d0f94c4fd900d03c73d330e937c19"
+      ],
+      "url_sha256": "7b1fe187da87ce147129c865f2eb6d532364fd9babc5044cb7103664f668d3b4"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBJWWRfXzlnSnJUYjctUkc0Tk9PN1BIT2paRUlHNVZmWEtzRnNHUkk4T0tyWkZNNGJ2ZXhEVjJ6Z19fOXlIbW1XUHZWQ1llN1U4RlQyd1pidmhHamgtTGJGV0ozSlM?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "141ec2b48a832bab4c26b274667fad8af838ec7a91eac8dda9069db855af3ad0"
+      ],
+      "url_sha256": "0fc73bc8f314ea77b096f3ceb662e55b2ffea06efc29b4f9c80de781f13d3676"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1tRmtDa016Z1VQQWh3SzBRN3JjaHN6WGhfYVhHTm8weGx2RUxVQ1lVSjM3NWZDNHEtSjdqUWZ5NzEzOGNjUEdnMUIyaHVUVktHa3J1OVpPNkFPTVRzekx3QlliNTNGdw?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "42db7688131b9cf4577ab32df007480beba6c4e425b6fd60e5638137ee338703"
+      ],
+      "url_sha256": "3c4251147be4297edf37a8ca08acc5645215d7b671b57371b1010627dd700c06"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBkdFdYM095eTlzX0FfeDRsZWxkczYyTHBqLXRkSFpSMVRkYTRJQ2huR0pZYTIyVnN3b2UxREhiM1NkOFlyZ1doRHpVczRUMC1pcldOOHRnbUhTcVdFcDFIN2ExVVlJQQ?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -978,6 +1238,16 @@
       "url_sha256": "c584b806d048ce2538b62b771f762f31ef36d2bd8ca9d86a0f6579750ada87e4"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5NSG1EY0dvSERzXzltMWItaEgyTFcxMGJqeHJCM0tiZm5nQm9VUnBtTF9WZ3JzakRVNW9jYno4ZUlmT3dJZjh0X2pPRnpJTE1jdTFmSm96UWdtc0hRMUZpeEVXendvN3QwSzFV?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "0bfd260a180e756863030606022d3d23db043aaac18e5d28b1928593cf832eab"
+      ],
+      "url_sha256": "942f7902a2648829ba55eff8ddf1fe1b5412b528eb581f83914bb25dca7f54ce"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5hdnczRXlXeHp2aGMzRWdUbW41UERON0F6SWlheGgyU1RSc3JOTjlra1RBNEFzS0J6OWFOVXQyV0NQcDVqTmNFd3RhWHZ5dG5adl94cE4ydjI3RkZueEZoYnB5NkpPQU5JaU5J?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -987,6 +1257,36 @@
         "6f70cf40a4816a8c36c977186df6accd79558563a8b6553fe71a5f4c60befcce"
       ],
       "url_sha256": "6ce794dbb9912a1b990aac7942f8b4eefaa483bf3c6e347e4fe40213dd7c3103"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5xYkdWWnpMWFBxRUdBLWxPRzRKTkxPcEp6Wm83TXhaWnU2WXlKYXR0TWVVa0h4UDZSWXVYUDJwRlJPNVoyYXpOUjNfTWMzd09FRDJrMHg5WWVBRzlYdW5wcl9FNHhxLWxrZnM4?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "4711f2d4469bb24a46ab6af2a770e98d155d8593303e6c16a381139b867456f7"
+      ],
+      "url_sha256": "4879353afb69518fcb9b889dfc943b362cafb958f73c5544f9880838bfaa9cf2"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE01YUxoU1pTZm45My1BU2N1d0JBYU51ZWtGbG85dnBIZjg0SWxDZWt3VXlYM2VoMFdWZXoyam1LaEduUWlINEtiZmdZQnFxdTVDZGRRWksxVXZfLUdHLVZZbGtmZUVzZm9v?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "d6c8076fa304f3cb6c67efbc036c8a1a442b22787c6af50fdef32ee9a791b853"
+      ],
+      "url_sha256": "0e16998d231a2dc646f61f01c3e695144d6c3d6fb736aa577c797d32cb16d1a5"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0xaThTSGdNQUZYdXhSQW9SWUxPd1NZaHhHTHMwRnJSRWhYU0FzQkNYM2RpU0E2TDdCQ1ExQzNmSzBPSUF6MHJFR2R1alBWVHlVR2s1cHczOTI4T1VqNWxMdmVJUjl0aHhR?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "440a6cd4a5a478f480daac875cf9b0810904550f83c1a30c2c8ec22a50add04b"
+      ],
+      "url_sha256": "2c856de2fc7d108a70f0570db324a0869b08517246756f4c275ef1a5b5513977"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OaVBiNXB1M1FxMnkwbEtJMGJXZWJBZWZ5YWJrNi0zNEdZU09Ca1dOR0JRalJkSEFLdy1zOWx6bERWOUprMFhiREY2WVRfTHZxd1MzOFdXM1lBOTQ2bEpwYXN1OFJsREk4?oc=5",
@@ -1031,6 +1331,16 @@
         "a7ae11ccb5ae1929d501e58a6c70742d1ed4cb2521ed46777cc5bda61abdafc8"
       ],
       "url_sha256": "54f8665a9c769ec4271110cd3a121115db7ab0d5f8173a2d58faf36e9f77fa57"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE42SFZXeU1iUENveFRYbnlQcXM5dmhYaWkxYVVYVTJJeGxrQlA3TmVFbmR6Rm5ERHhrMHg2QzhPUlhyeGhVTGRLMm5IbUxzVkZDMWdSM0FqNnBmcHlsQkpQTDZ5dmtqZktaeGfSAW5BVV95cUxQMmtEbll1QXcyek9pSnFtMTB0SHlnTmQ0XzBJejN0dG5nV19yZ25VUGUzdFItSkZDQU1SQmVuVFpVZENtOHhWYmZBUjdvVXZmWWhWNUdSRE1JZlhfYXo2d2dpbXdTekxDN2pkWDZoUQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "7a5519e85bc54c6ac4909700f7e8dcdcfb7c0d8e1cb5e2a45a65aae6cab60e14"
+      ],
+      "url_sha256": "fe0b1b8faaf52290288b6999ad56eb5e76d935a1e243f517c2a749e2e12e623e"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5sZEFvcjBQYmUycUlzMk0tSmVINnU3UVRxTDl5eENEYXhRNjVMNU9pY1V6QnZZQmZDTGpqaDhkUXZxQnN1bWxSVHVnTTVuZWd5YWVFbExWeE5BM25UWmt4VXBlMnlmLXBoUGc?oc=5",
@@ -1089,6 +1399,16 @@
       "url_sha256": "aa25310027192f3f3359a79592f5b8a709c5e6ef892b0ea53e8697a9b2f79c20"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5QR3ZTVHMxRUlKMHA5bFoxWkNwVElGT3lhRFpSVzNlR2FlZGNsUWxhaTRGbFl4a3FrVE9UalZZaF81MHZQWDhvTWRrS2NZNG9JeHRUT1kwQTF2Tjc2S2pVOFAxVmZXN2dqOUwycF9R?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "bfccb975ad3e107f520bfff747fc6595b289e582ae12996feec43e4633e52b60"
+      ],
+      "url_sha256": "e88e19b92f68e9f5477356c23285f52155e30795769a43763776c0ac4e96b4e9"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5uLXcwQnFMMEpPZkpIcmVRVG9iMk92RkpmM2RYVXlpRHhRQ25yNnV3VUMybEY1SklNVFdTUTZGeVBWVmJmUjROYjVrUGRkQlhUTERmekplR285V3dwRkp1VTFwd09ZcUJCMU95Tk930gFyQVVfeXFMT2t3V2lVUlZyT0J2cXVEVnJBY0tJZm8wajhlZ3I4UVNFRGpwMEk1VDFVVXdIcE1MOTFfZVJYamlWcHV1ZVgybUdSQlE1cVFlMnFWdnM3VGQtMkZNb2hsUDhCd254Zl8zMUJmb0xHdE43cWN3?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -1120,6 +1440,16 @@
       "url_sha256": "67c694d11d0dba1e9c41eb36ed768b0b80ecaf87596fa4f848b572d337fc966d"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9mbVNLa2hxN3I4MFpOYmxYOEo3UXdoUG14MFo5eEdnRURSN2UtY3FBRWNta0liN0Nzc0JnQ0NZaUVNZG9fbU5iTXVYMDUtdEdjSzlfRXl3UzNmeDVudHpOSlNLSG9QQS1HZm5YUkFR?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "7bbee008668f102ee3547efc716ef53ad998a7afc2835f7379ba32ee078021b5"
+      ],
+      "url_sha256": "7efeadf97e97d422035e850570ff387f3466270fd778701df6bfd2d64e3eb5d4"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBhMzdoWDJEc1JPWWR4dFZ2dEF0ZEw0TnpFazdDZDRadkhIU3M1M2lsOHdCbmdlTFc4ZnNyZ2tEd2FlWFVVeEhFSmh5enNsTTc4dHdXQ2RBaENwREFuOGhlWHhCYVhhQTJwZmU2WE5R?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -1139,6 +1469,26 @@
         "23ecffd8861dfd27aab9a2887ff0b58c8db96e1985233d73c0aa4094f2fcbc26"
       ],
       "url_sha256": "3fdbd834a3fe1d32c498c544f34f54abcf47a6220636f336e9289b787388a31e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBXeGZpRkV5MWZWbGwyWjVzQ1czenNPNEJmSVhPRW5YdTNJVFNjOUd5S2JIY1NEb3lpN3JuZDkwZ0NXTWJoM3U0X1lZZXBadWZlM3YtREVvV2NRVUxCLU82MUVmcV8tZkxXOVQwVWVDT1MtUkU?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "749e16c2b153769f41cf2ebc5291d723c2a2873ebcae139ab0a44a9863ea9d9f"
+      ],
+      "url_sha256": "3e81f50c0125fb663b6f83c6a2c377d9668a4109e27838ab39506f9605681691"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1XZEpWNFg0WGllU2NLMWhTQkNQeGM3ZG5OczI5NTd1ZVpWU1FCQjVjS3BNb2hVYWxVdDczTHNkYzBqYVdvMWxNRjFaSm82a1c4RGxzaF9hbVMtYUF5ZjA2M3RSS0lGcm1jM0VnbndadFI?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "44b369f30297601c843bec4f9f5a3341750de4ec59b93d96719189d999af1ac3"
+      ],
+      "url_sha256": "2effb2813dcba25b9999b8c28f2c796cd965849c62555abb6dd5d7844616c87d"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5UUXQxUWFhQUZJeWRReTg1bnQxWHlQbXpjRFVkbnphLUlPZzRjSVBZM19pUjdfdmV3aVdnd0hZRk54RzFDbG93YUVSYkozNW9HajZWaFN0MFFMQVJqZ1lnaExDelhuWGUySHozallMTng?oc=5",
@@ -1174,6 +1524,16 @@
       "url_sha256": "54c5aa223d8d6cf5b4e909c5bd6eda7fa330f1060258d20304c5e6f0d3110c55"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9WekV5MkhKTFlrc2JJX0tUNk1ucDB3bno5cFhPMlpRcm9LMzBYbldCNXBXWlZMRU90c29FcUJDaDlTQ0xLM0NkLWo0MzRQbDVtTWlxMDFIbW9HeEk0NExTNDY4cVpLcUZOMnItcWpjWnU?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "ad552b6991b2e0787eff61603063f24f473df9fb3bb29682982ff2c0c6c8c4e0"
+      ],
+      "url_sha256": "9e49b20e726e563f7216f6fd1a6c71cccf2176e805042cdbb12598492a8ee5e5"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9qLXZEM2h5WUNsTkl1Y3JfV2w0anZMTG9UTGh2RzhSVVIyR3hVMnZRRjRlMmtUc25KdUozWHkzY0I0aTQza21hbUpQZzNFVGpLa1cyTnBPYWhreDRlb2Fqamw0M3RPUVBNR1ZpUmlCWDQ?oc=5",
       "decision": "duplicate",
       "entry_ids": [],
@@ -1206,6 +1566,36 @@
       "url_sha256": "51def62736fd84e7b7d52072b08faf8cd25476ef57bf89faccf21339568baabb"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5vTVRrRXFWWFA3ZVh2aVIxN1hpck84VUFZdWEzUFFXYWNEaEYtakJjN1ZiZzNGZXpZZEprVDZkWXgyTnVlcElZbzREZHVZLWlhaVFqQm8wM2tSVnhjS2s0TXM1cFA1NnZrYkdVZzhUeThYUQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "35bc142417292a7a9e656112275bc8902f91c34a1c0ddbecaf036afd5ed42f18"
+      ],
+      "url_sha256": "5ac810af03cd73a82f0f881c03e3030d5a0728895fe9ebadd104b1ee1d8c7589"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9EMTl1anYtWEpSZnFUUkx5R0lUVEZtQU1LQmdVQlQ4aWdBY2VFd21BNzctRXhZamRZWTY4ek1uSXQ2bFhpWW5KREtUUmNxejZlc0JlTXFNa0ZkamtIWXp3VDhjVndCTzJvdWFGVnltQUVxdw?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "63ec4f57e6ba410aa5748026c40ea2433aeccddfba7f2d51423fb1daa56516c9"
+      ],
+      "url_sha256": "81c3c0cd8f7e51c49aa6bc605c3ce241ee558c55b194524c5fe32f1f3e3cafd6"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBqRXFGS3hEQXRISC05d1FVc3hEdXJaY0NWOVd1STliWE1HMTQ1WGMweGphVGFJa2pfbGpWNFFJdnRDOERvUTFTWUxnZFNLMzloXzA0N1FUOHJBeVRQT2swbERjZ1ZLSkxfa1p3R0xLSktlUQ?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "3542d342a012deef94921c49efe7904bf531ad84fcdc1f5e9c678a33d1df3a36"
+      ],
+      "url_sha256": "0d6fc1fd00d30e8c4cf942689d89a1c6008504af078f9b515ea8ae103079fbcb"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE93V2RoOTVJQnktVFVBY3ZZVTRpRXA5NTFtUW5oLTR3OWQtRGV3WnA4ZHlqb1Q3QVFZa2RRTkxMUHZlOGdJWFBxdjQ2YUdiTHA1UWpFNnlXWEQ4aHkzVHN6WUM2ZWY3NF93VW1rNVFQS0MwX3Bz?oc=5",
       "decision": "needs_review",
       "entry_ids": [],
@@ -1225,6 +1615,16 @@
         "23ecffd8861dfd27aab9a2887ff0b58c8db96e1985233d73c0aa4094f2fcbc26"
       ],
       "url_sha256": "0afae83f67b5cd205ab705718be2804d41e10c0a59e95e5f5d670903b60fd302"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kS3liaWVwVFJiT3M0STE0Vm5LQU5sLVZHUUJQNzVKaGVSallRTnpJeE5xUENzd0NlM211RHd3X2xDb3VYVGpBNjZPX0dzbmFQUXlxbUVfVk9VWGx4d1dmSlNXRkxHM2lzT0lvRG14WGtTejFuRVhYRtIBeEFVX3lxTE1kS3liaWVwVFJiT3M0STE0Vm5LQU5sLVZHUUJQNzVKaGVSallRTnpJeE5xUENzd0NlM211RHd3X2xDb3VYVGpBNjZPX0dzbmFQUXlxbUVfVk9VWGx4d1dmSlNXRkxHM2lzT0lvRG14WGtTejFuRVhYRg?oc=5",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-08-03",
+      "title_sha256": [
+        "12627ee4d4e4c5aabe023db381a00ea7225ce640df68285b576e19c4120cfbe4"
+      ],
+      "url_sha256": "bd576eacf8fe00ae859123b4d9f5adc171f2a8bc1c72c4c36af3d4e57761d9b8"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBoX21mOUpPeGR3RTNwWEZScGROcDQ5VjdCNkZPbGhJQzlnMXlheFJxd09UZ0diRjZzVm9mWVR3SFN1Z0VnZ3A5T0l3VFA3bHR0bTFxcGRSSTNFWXl1VV9YOHBudGR2V0dRbWlHLUY5dDJDMlNYUk44MnF3?oc=5",
@@ -1873,6 +2273,18 @@
       "url_sha256": "1a7c352894e9fb8becfba2011e29c1b06e39f47eee77229967818e7e37a31294"
     },
     {
+      "canonical_url": "https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "8740349a4eaa38e9cd8f06e10e87eabf061ea54a0e54f12ad7a3c4f27d9d4975"
+      ],
+      "url_sha256": "1d011c7d035d66d14fa5b2b1cc756a59249b5a1d9ce98ea5248b9c31542f71d8"
+    },
+    {
       "canonical_url": "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&integrDeptCode=&key=282&nttNo=131259&pageIndex=16&searchCnd=all&searchCtgry=&searchKrwd=",
       "decision": "accepted",
       "entry_ids": [
@@ -1883,6 +2295,18 @@
         "5c7ebfd52a679e2ff97c282ac715e32ce4c14046296ca1be1ce4285a14311b9c"
       ],
       "url_sha256": "4684646b12724c7e1b2f477504ab30b49abf6ffbf926ac7fe359ffb553a9b11c"
+    },
+    {
+      "canonical_url": "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "8740349a4eaa38e9cd8f06e10e87eabf061ea54a0e54f12ad7a3c4f27d9d4975"
+      ],
+      "url_sha256": "1987537415004c26ecbc22ead727365883152d383caa0a911371ba6c9b43f15a"
     },
     {
       "canonical_url": "https://www.inven.co.kr/webzine/news/?news=315738",
@@ -2103,6 +2527,18 @@
         "fc6de1a6658ac9422106f5ed120e1f412b3a13a6940ee2deead1791073400ab9"
       ],
       "url_sha256": "70e427a0899b46af731c6fac5af27b58c78a3eb0f6a15a1f9814bd61683e6f40"
+    },
+    {
+      "canonical_url": "https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-chungnam-seosan-youth-esports-2026"
+      ],
+      "first_seen_at": "2026-07-19",
+      "title_sha256": [
+        "9c29afdf3952c9eff1b63a68d143957bc137576fb01661d1e5401d1fa582e219"
+      ],
+      "url_sha256": "e1b7c09c31cd1d4a7affbed5443350f32c82756d962ad15ee084bc4a8a113c26"
     },
     {
       "canonical_url": "https://www.seoul.go.kr/policy/view.do?id=108&lan=KO",
