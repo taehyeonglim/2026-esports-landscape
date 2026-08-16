@@ -1,9 +1,10 @@
 # Project status
 
-- Last updated: **2026-08-16 15:17 KST**
+- Last updated: **2026-08-16 15:32 KST**
 - Maintainer handoff: **Codex**
-- Branch: **main**
+- Canonical branch: **main**
 - Latest product/data commit: **88d9d25a8c75** (`data: weekly source discovery (#9)`)
+- Latest coordination commit: **f473e4bfe3ce** (`docs: add NERV agent handoff`)
 - Remote state at update: **main matches origin/main**
 
 ## Mission
@@ -52,6 +53,8 @@ Latest verified baseline, 2026-08-16:
 
 Durable reference: [GitHub Actions run 31930460697](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31930460697)
 
+The coordination-only commit `f473e4bfe3ce` also passed the full build job in [run 31931308376](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31931308376); its deployment was likewise skipped at the pending human gate.
+
 ## Release and approval state
 
 - `data/resource-map.v1.json`: approved.
@@ -62,6 +65,18 @@ Durable reference: [GitHub Actions run 31930460697](https://github.com/taehyeong
 - Browser-matrix approval record: pending.
 - Production deployment must remain blocked until the recorded human gates are satisfied or the repository owner explicitly performs the audited manual override path.
 - The current main-only discovery change does not alter public site content.
+
+## Agent closeout routine
+
+The repository owner requires project sessions to finish with a durable NERV handoff and completed delivery:
+
+1. Verify the change.
+2. Update NERV status and handoff log.
+3. Commit task-owned files on a task branch.
+4. Push, open the PR, and merge it to `main`.
+5. Synchronize local `main`, verify remote parity, and record CI/release state.
+
+Commit-only, branch-only, push-only, and open-PR-only states are not normal completion. If a real blocker prevents delivery, it must be recorded in NERV and reported without bypassing protections.
 
 ## Next priorities
 

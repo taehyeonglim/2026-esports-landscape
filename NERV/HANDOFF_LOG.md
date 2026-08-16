@@ -2,6 +2,24 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-08-16 — Codex — Make NERV delivery a mandatory closeout routine
+
+**Outcome**
+
+- Recorded the owner's standing instruction that Codex must not end project work before completing the NERV handoff and commit → push → PR merge → main synchronization routine.
+- Added explicit blocked-delivery behavior so authentication, verification, conflicts, human input, and policy gates are reported rather than bypassed.
+- Kept the exception limited to purely conversational/read-only turns with no durable project decision; no empty commit is required in that case.
+
+**Verification**
+
+- Reconciled the rule across `AGENTS.md`, `NERV/README.md`, and `NERV/PROJECT_STATUS.md`.
+- Preserved the two pre-existing untracked user files and excluded them from delivery scope.
+
+**Publication path**
+
+- Task branch: `agent/enforce-nerv-closeout`.
+- Ready-for-merge [PR #10](https://github.com/taehyeonglim/2026-esports-landscape/pull/10) carries this closeout rule to `main`.
+
 ## 2026-08-16 — Codex — Establish shared NERV handoff
 
 **Outcome**
@@ -19,7 +37,8 @@ Newest entries go first. Keep entries concise and link to durable artifacts.
 
 **Publication**
 
-- The owner explicitly requested that these coordination documents be committed and pushed to `main`.
+- Committed and pushed to `main` as [`f473e4bfe3ce`](https://github.com/taehyeonglim/2026-esports-landscape/commit/f473e4bfe3ce18243e5a3f7dce387f124219421e).
+- The full build passed in [run 31931308376](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31931308376); deployment was skipped at the pending AC01 human gate.
 
 ## 2026-08-16 — Codex — Review and merge weekly discovery PR #9
 

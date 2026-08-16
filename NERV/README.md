@@ -32,6 +32,18 @@ After any material change to code, data, documentation, configuration, pull requ
 
 Read-only analysis with no durable project or external-state change does not need a log entry.
 
+## Mandatory session closeout gate
+
+For project work, NERV handoff is part of delivery rather than an optional note. The normal completion path is:
+
+1. Verify the task result.
+2. Refresh `PROJECT_STATUS.md` and prepend `HANDOFF_LOG.md`.
+3. Commit only task-owned changes on a task branch.
+4. Push the branch, open the PR, and merge it into the default branch.
+5. Synchronize local `main`, verify it matches `origin/main`, and check CI/release state.
+
+Do not describe a session as complete while its work exists only locally, only on a branch, or only in an open PR. When delivery is genuinely blocked, preserve the work, record the exact blocker here, and never bypass repository or human-approval protections.
+
 ## Status vocabulary
 
 - **Completed**: the requested change exists in the intended destination.
