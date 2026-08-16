@@ -19,7 +19,8 @@ Newest entries go first. Keep entries concise and link to durable artifacts.
 
 **Publication path**
 
-- Task branch: `agent/document-data-date`; the PR reference is added before merge.
+- Task branch: `agent/document-data-date`.
+- Ready-for-merge [PR #11](https://github.com/taehyeonglim/2026-esports-landscape/pull/11) carries this diagnosis to `main`.
 
 ## 2026-08-16 — Codex — Make NERV delivery a mandatory closeout routine
 
