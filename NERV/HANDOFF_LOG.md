@@ -2,6 +2,26 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-08-16 — Codex — Diagnose the July 29 public data date
+
+**Outcome**
+
+- Confirmed that `자료 반영일` represents the public dataset cutoff sourced from `data/additions.v1.json.updated_at`, not a Git, review, build, or deploy timestamp.
+- Confirmed that PR #9 changed only discovery ledgers and admitted no new public entries, so the cutoff remained 2026-07-29.
+- Confirmed that the live Pages JSON is byte-identical to the current repository `data/site.v3.json` and contains the same date and 235-entry count.
+- Confirmed that the last successful production deployment is [run 30446302924](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/30446302924) from 2026-07-29; later builds are stopped at the pending AC01 human gate.
+
+**Verification**
+
+- Traced the value through `data/additions.v1.json` → `scripts/extract-data.mjs` → `data/site.v3.json` → `src/app.js`.
+- Compared SHA-256 hashes of the live and local `data/site.v3.json`; they match exactly.
+- Reviewed Git history for the last public-data change and GitHub Actions history for the last successful Pages deployment.
+
+**Publication path**
+
+- Task branch: `agent/document-data-date`.
+- Ready-for-merge [PR #11](https://github.com/taehyeonglim/2026-esports-landscape/pull/11) carries this diagnosis to `main`.
+
 ## 2026-08-16 — Codex — Make NERV delivery a mandatory closeout routine
 
 **Outcome**
