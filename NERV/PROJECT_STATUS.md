@@ -1,10 +1,10 @@
 # Project status
 
-- Last updated: **2026-08-16 15:32 KST**
+- Last updated: **2026-08-16 15:42 KST**
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**
 - Latest product/data commit: **88d9d25a8c75** (`data: weekly source discovery (#9)`)
-- Latest coordination commit: **f473e4bfe3ce** (`docs: add NERV agent handoff`)
+- Latest coordination commit: **87bd77cda01e** (`docs: enforce NERV closeout delivery (#10)`)
 - Remote state at update: **main matches origin/main**
 
 ## Mission
@@ -40,6 +40,16 @@ PR #9 was reviewed and squash-merged on 2026-08-16.
 - Discovery never mutates `data/site.v3.json` automatically; accepted publication additions require a separate human-reviewed change.
 
 Durable reference: [GitHub PR #9](https://github.com/taehyeonglim/2026-esports-landscape/pull/9)
+
+## Public data date semantics
+
+- The UI's `자료 반영일 2026.07.29` is the public dataset cutoff, not the latest Git commit, discovery review, build, or deployment time.
+- `scripts/extract-data.mjs` copies `data/additions.v1.json.updated_at` into `data/site.v3.json.meta.data_updated_at`; `src/app.js` renders that value without modification.
+- The live Pages JSON and the current repository `data/site.v3.json` are byte-identical and both contain `data_updated_at=2026-07-29` with 235 entries.
+- PR #9 changed only the discovery candidate and seen ledgers. It admitted no new public entries, so it correctly did not advance the public data cutoff.
+- The latest successful production deployment remains the 2026-07-29 run from commit `f6a0bb2`; later pushes pass the build but stop at the pending AC01 human approval gate.
+
+Durable references: [live public JSON](https://taehyeonglim.github.io/2026-esports-landscape/data/site.v3.json), [last successful Pages run 30446302924](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/30446302924)
 
 ## Verification baseline
 
