@@ -5966,6 +5966,89 @@
           "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
         }
       ]
+    },
+    {
+      "entry_id": "update-gyeongbuk-yeongju-amateur-esports-2026",
+      "raw_source": "영주시 공식 공고 https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+      "source_ids": [
+        "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "영주시 공식 공고",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-chungnam-seosan-youth-esports-2026",
+      "raw_source": "서산시 공식 보도자료 https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+      "source_ids": [
+        "source-update-chungnam-seosan-youth-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "서산시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-chungnam-seosan-youth-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+          "disposition": "mapped",
+          "source_id": "source-update-chungnam-seosan-youth-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-gangwon-hongcheon-esports-festival-2026",
+      "raw_source": "홍천군 공식 보도자료 https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498 ; 홍천문화재단 공식 행사 페이지 https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+      "source_ids": [
+        "source-update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "홍천군 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 2,
+          "kind": "text",
+          "raw_token": "홍천문화재단 공식 행사 페이지",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 3,
+          "kind": "url",
+          "raw_token": "https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        }
+      ]
     }
   ]
 }

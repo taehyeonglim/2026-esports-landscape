@@ -63,7 +63,7 @@ test.describe("AC01 search-first activation contract", () => {
 
 test("콜드 홈은 첫 화면에서 검색과 첫 결과를 제공하고 비교 차트는 지연 렌더링한다", async ({ page }) => {
   await page.goto("/index.html");
-  await expect(page.locator("#result-count")).toHaveText("232건");
+  await expect(page.locator("#result-count")).toHaveText("235건");
   await expect(page.locator("#result-visible")).toHaveText("12개 표시");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   await expect(page.locator("#national-map .national-region")).toHaveCount(17);
@@ -104,7 +104,7 @@ test("빠른 필터, 활성 조건 칩, 고급 필터와 전체 초기화가 URL
   await expect(page.locator("#mobile-filter-count")).toHaveText("2");
   await page.locator("#reset-filters").click();
   await expect(page.locator("#active-filters")).toBeEmpty();
-  await expect(page.locator("#result-count")).toHaveText("232건");
+  await expect(page.locator("#result-count")).toHaveText("235건");
   await expect.poll(() => page.evaluate(() => location.search)).toBe("");
 });
 
@@ -115,11 +115,11 @@ test("모바일 필터는 모달 시트로 열리고 현재 결과 수와 포커
   await expect(page.locator("#filter-panel")).toBeVisible();
   expect(await page.locator("#filter-panel").evaluate((dialog) => dialog.matches(":modal"))).toBe(true);
   await page.locator('[data-category-chip="지자체정책·조례"]').click();
-  await expect(page.locator("#filter-panel-result")).toHaveText("25건 결과 보기");
+  await expect(page.locator("#filter-panel-result")).toHaveText("28건 결과 보기");
   await page.keyboard.press("Escape");
   await expect(page.locator("#filter-panel")).toBeHidden();
   await expect(page.locator("#mobile-filter-trigger")).toBeFocused();
-  await expect(page.locator("#result-count")).toHaveText("25건");
+  await expect(page.locator("#result-count")).toHaveText("28건");
 });
 
 test("지역 비교 탭은 공식 시도 순서를 사용하고 선택을 필터된 목록으로 연결한다", async ({ page }) => {
@@ -129,14 +129,14 @@ test("지역 비교 탭은 공식 시도 순서를 사용하고 선택을 필터
   await expect(page.locator(".matrix-chart-row")).toHaveCount(17);
   await expect(page.locator(".matrix-chart-row").first()).toHaveAttribute("data-region", "seoul");
   await expect(page.locator("[data-matrix-sort]")).toHaveCount(0);
-  await expect(page.locator(".matrix-chart-summary")).toHaveText("232건 · 17개 시·도 · 8개 유형");
+  await expect(page.locator(".matrix-chart-summary")).toHaveText("235건 · 17개 시·도 · 8개 유형");
   const matrix = page.locator("#compare-matrix table");
   await expect(matrix.locator("tbody tr")).toHaveCount(17);
-  await expect(matrix.locator("tfoot td").last()).toHaveText("232");
+  await expect(matrix.locator("tfoot td").last()).toHaveText("235");
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
   await page.locator('#compare-matrix .matrix-legend button[data-category="지자체정책·조례"]').click();
   await expect(page.locator("#browse-tab")).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator("#result-count")).toHaveText("25건");
+  await expect(page.locator("#result-count")).toHaveText("28건");
   await expect(page.locator("#results-heading")).toBeFocused();
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search)))).toEqual({ category: "지자체정책·조례" });
 });
@@ -195,7 +195,7 @@ test("결과 카드는 핵심 정보만 표시하고 상세에서 원문과 전�
   await expect(page.locator(".detail-facts")).toBeVisible();
 });
 
-test("점진 노출로 초기 길이를 제한하면서 232건 전부 도달할 수 있다", async ({ page }) => {
+test("점진 노출로 초기 길이를 제한하면서 235건 전부 도달할 수 있다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   let guard = 0;
@@ -204,8 +204,8 @@ test("점진 노출로 초기 길이를 제한하면서 232건 전부 도달할 
     guard += 1;
     if (guard > 25) throw new Error("load more did not terminate");
   }
-  await expect(page.locator("#result-list .entry-card")).toHaveCount(232);
-  await expect(page.locator("#result-visible")).toHaveText("232개 표시");
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(235);
+  await expect(page.locator("#result-visible")).toHaveText("235개 표시");
 });
 
 test("malformed 229-entry public data fails closed", async ({ page }) => {
@@ -324,12 +324,13 @@ test("home, comparison, responsive detail, filter dialog, and research have no s
   await page.goto("/research/");
   await expect(page.locator("#dataset-facts dd")).toContainText([
     "v3",
-    "232건",
+    "235건",
     "17개 시·도",
-    "232개 source ref",
+    "235개 source ref",
+    "2026-07-29",
     "승인된 기준일 없음",
-    "확인 필요 232건 · 운영 중 0건 · 종료 0건",
-    "학교 43건 · 대회 99건 · 시설 24건 · 기타 66건",
+    "확인 필요 235건 · 운영 중 0건 · 종료 0건",
+    "학교 43건 · 대회 102건 · 시설 24건 · 기타 66건",
   ]);
   await expect(page.locator(".wordmark")).toContainText("학교 e스포츠 지형도");
   await expect(page.locator(".back-link")).toHaveCSS("min-height", "44px");

@@ -7,13 +7,13 @@ import { landscapeModel } from "../src/landscape.js";
 const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
 const nationalMap = JSON.parse(await readFile(new URL("../data/national-map.v1.json", import.meta.url), "utf8"));
 
-test("landscape model partitions all 232 entries into 17 interactive regions", () => {
+test("landscape model partitions all 235 entries into 17 interactive regions", () => {
   const model = landscapeModel(site.entries, site.regions);
-  assert.equal(model.total, 232);
+  assert.equal(model.total, 235);
   assert.equal(model.regions.length, 17);
   assert.equal(model.byId.size, 17);
-  assert.equal(model.regions.reduce((sum, region) => sum + region.total, 0), 232);
-  assert.equal(model.nationalCategoryTotals.reduce((sum, category) => sum + category.count, 0), 232);
+  assert.equal(model.regions.reduce((sum, region) => sum + region.total, 0), 235);
+  assert.equal(model.nationalCategoryTotals.reduce((sum, category) => sum + category.count, 0), 235);
   assert.equal(model.topRegions.length, 3);
   for (const region of model.regions) {
     assert.ok(region.total > 0);

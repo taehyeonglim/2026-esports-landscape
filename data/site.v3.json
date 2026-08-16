@@ -1,10 +1,11 @@
 {
   "schema_version": 3,
   "meta": {
-    "entry_count": 232,
+    "entry_count": 235,
     "region_count": 17,
     "coord_source": "southkorea-maps KOSTAT 2018 municipality centroid plus deterministic v1 jitter",
     "migration_note": "Migrated from Busan pilot v1 to national schema v2.",
+    "data_updated_at": "2026-07-29",
     "source_schema_version": 2,
     "extraction": {
       "input": "baseline/v2/site.v2.json",
@@ -12,8 +13,8 @@
     },
     "additions": {
       "input": "data/additions.v1.json",
-      "count": 2,
-      "sha256": "aec47f1e31107a9cad6a915223fe4e5a7a611cf52dd8a4508fbd31e05e6de404"
+      "count": 5,
+      "sha256": "51736257444c227371acb13630066e9a0bab961a2766b7790a3b44ab2ec36680"
     },
     "region_lineage": {
       "input": "baseline/v2/region-geo.v2.json",
@@ -10854,6 +10855,143 @@
         "reason": "Current/ended status has not been independently verified."
       },
       "off_map": true
+    },
+    {
+      "id": "update-gyeongbuk-yeongju-amateur-esports-2026",
+      "name": "2026년 제3회 영주시장배 아마추어 e스포츠대회",
+      "category": "지자체정책·조례",
+      "subtype": "기초지자체 전국 아마추어 e스포츠대회",
+      "operator": "영주시",
+      "school_level": "무관",
+      "district": "영주시",
+      "address": "영주시 국민체육센터",
+      "lat": null,
+      "lng": null,
+      "year": "2026",
+      "games": [
+        "리그 오브 레전드",
+        "발로란트",
+        "브롤스타즈"
+      ],
+      "source": "영주시 공식 공고 https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+      "theme_link": [
+        3,
+        5
+      ],
+      "confidence": "high",
+      "subtype_note": "",
+      "notes": "영주시가 운영 용역을 공식 발주한 제3회 대회다. 2026년 8월 1일 영주시 국민체육센터에서 결선을 열며 전국 아마추어가 참가 대상이다.",
+      "loc_approx": true,
+      "region_id": "gyeongbuk",
+      "scope": "regional",
+      "evidence_ids": [
+        "ev-update-gyeongbuk-yeongju-amateur-esports-2026"
+      ],
+      "coord_method": "source_only_no_coordinates",
+      "coord_note": "공식 자료에서 장소는 확인했으나 좌표는 별도로 검증하지 않았다.",
+      "resource_type": "event",
+      "source_ids": [
+        "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+      ],
+      "operational_status": "needs_review",
+      "public_note": "운영상태는 확인이 필요합니다. 이용 전 공개 자료를 확인해 주세요.",
+      "status_provenance": null,
+      "status_checked_at": null,
+      "review": {
+        "status": "needs_review",
+        "reason": "Current/ended status has not been independently verified."
+      },
+      "off_map": true
+    },
+    {
+      "id": "update-chungnam-seosan-youth-esports-2026",
+      "name": "제1회 서산시 전국 청소년 e스포츠대회",
+      "category": "지자체정책·조례",
+      "subtype": "기초지자체 전국 청소년 e스포츠대회",
+      "operator": "서산시",
+      "school_level": "청소년",
+      "district": "서산시",
+      "address": "서산시",
+      "lat": null,
+      "lng": null,
+      "year": "2026",
+      "games": [
+        "e스포츠"
+      ],
+      "source": "서산시 공식 보도자료 https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+      "theme_link": [
+        3,
+        5
+      ],
+      "confidence": "high",
+      "subtype_note": "",
+      "notes": "서산시가 2026년 신규 교육·문화 시책으로 제1회 전국 청소년 e스포츠대회 개최를 공식 발표했다. 세부 종목과 장소는 공식 원문에서 확인되지 않아 확장하지 않았다.",
+      "loc_approx": true,
+      "region_id": "chungnam",
+      "scope": "regional",
+      "evidence_ids": [
+        "ev-update-chungnam-seosan-youth-esports-2026"
+      ],
+      "coord_method": "source_only_no_coordinates",
+      "coord_note": "공식 자료에서 지역은 확인했으나 세부 장소와 좌표는 별도로 검증하지 않았다.",
+      "resource_type": "event",
+      "source_ids": [
+        "source-update-chungnam-seosan-youth-esports-2026"
+      ],
+      "operational_status": "needs_review",
+      "public_note": "운영상태는 확인이 필요합니다. 이용 전 공개 자료를 확인해 주세요.",
+      "status_provenance": null,
+      "status_checked_at": null,
+      "review": {
+        "status": "needs_review",
+        "reason": "Current/ended status has not been independently verified."
+      },
+      "off_map": true
+    },
+    {
+      "id": "update-gangwon-hongcheon-esports-festival-2026",
+      "name": "2026 홍천 e스포츠 페스티벌",
+      "category": "지자체정책·조례",
+      "subtype": "기초지자체 시민·청소년 참여형 e스포츠 축제",
+      "operator": "홍천군·홍천문화재단",
+      "school_level": "무관",
+      "district": "홍천군",
+      "address": "홍천종합체육관",
+      "lat": null,
+      "lng": null,
+      "year": "2026",
+      "games": [
+        "e스포츠"
+      ],
+      "source": "홍천군 공식 보도자료 https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498 ; 홍천문화재단 공식 행사 페이지 https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+      "theme_link": [
+        3,
+        5
+      ],
+      "confidence": "high",
+      "subtype_note": "",
+      "notes": "홍천군과 홍천문화재단 등이 2026년 7월 25일부터 26일까지 홍천종합체육관에서 개최한 지역 참여형 e스포츠 페스티벌이다.",
+      "loc_approx": true,
+      "region_id": "gangwon",
+      "scope": "regional",
+      "evidence_ids": [
+        "ev-update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "coord_method": "source_only_no_coordinates",
+      "coord_note": "공식 자료에서 장소는 확인했으나 좌표는 별도로 검증하지 않았다.",
+      "resource_type": "event",
+      "source_ids": [
+        "source-update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "operational_status": "needs_review",
+      "public_note": "운영상태는 확인이 필요합니다. 이용 전 공개 자료를 확인해 주세요.",
+      "status_provenance": null,
+      "status_checked_at": null,
+      "review": {
+        "status": "needs_review",
+        "reason": "Current/ended status has not been independently verified."
+      },
+      "off_map": true
     }
   ],
   "negative_evidence": [
@@ -12585,12 +12723,12 @@
       "count": 41
     },
     {
-      "category": "대학학과·전공·동아리",
-      "count": 27
+      "category": "지자체정책·조례",
+      "count": 28
     },
     {
-      "category": "지자체정책·조례",
-      "count": 25
+      "category": "대학학과·전공·동아리",
+      "count": 27
     },
     {
       "category": "경기장·인프라",
@@ -12621,7 +12759,7 @@
     "approved_by": "Taehyeong Lim <97349770+taehyeonglim@users.noreply.github.com>",
     "approved_at": "2026-07-19T00:00:00Z",
     "input": "data/resource-map.v1.json",
-    "sha256": "a49aa62179581ebaae225dce0ab5cf6d5b3fb3367f60376f6743f9dcf30717a6"
+    "sha256": "dcf0b4a5e7b07a312a78f98620456d82c1cbedab789e7d5125f37e68bd6aba22"
   },
   "sources": [
     {
@@ -15214,6 +15352,40 @@
       "raw": "안산시 공식 보도자료 https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
       "urls": [
         "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540"
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-gyeongbuk-yeongju-amateur-esports-2026",
+      "entry_id": "update-gyeongbuk-yeongju-amateur-esports-2026",
+      "raw": "영주시 공식 공고 https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+      "urls": [
+        "https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd="
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-chungnam-seosan-youth-esports-2026",
+      "entry_id": "update-chungnam-seosan-youth-esports-2026",
+      "raw": "서산시 공식 보도자료 https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+      "urls": [
+        "https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd="
+      ],
+      "kind": "raw_source",
+      "verification_status": "needs_review",
+      "checked_at": null
+    },
+    {
+      "id": "source-update-gangwon-hongcheon-esports-festival-2026",
+      "entry_id": "update-gangwon-hongcheon-esports-festival-2026",
+      "raw": "홍천군 공식 보도자료 https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498 ; 홍천문화재단 공식 행사 페이지 https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+      "urls": [
+        "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498",
+        "https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E"
       ],
       "kind": "raw_source",
       "verification_status": "needs_review",
@@ -21184,6 +21356,89 @@
           "raw_token": "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=B0238&bbs_seq=1677540",
           "disposition": "mapped",
           "source_id": "source-update-gyeonggi-ansan-esports-festival-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-gyeongbuk-yeongju-amateur-esports-2026",
+      "raw_source": "영주시 공식 공고 https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+      "source_ids": [
+        "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "영주시 공식 공고",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.yeongju.go.kr/open_content/main/page.do?board_code=&cmd=2&mnu_uid=10638&not_ancmt_mgt_no=24643&pageNo=1&srchColumn=&srchDept=5090186&srchKwd=",
+          "disposition": "mapped",
+          "source_id": "source-update-gyeongbuk-yeongju-amateur-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-chungnam-seosan-youth-esports-2026",
+      "raw_source": "서산시 공식 보도자료 https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+      "source_ids": [
+        "source-update-chungnam-seosan-youth-esports-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "서산시 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-chungnam-seosan-youth-esports-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.seosan.go.kr/www/selectBbsNttView.do?bbsNo=101&integrDeptCode=&key=1260&nttNo=332176&pageIndex=1&searchCnd=all&searchCtgry=&searchKrwd=",
+          "disposition": "mapped",
+          "source_id": "source-update-chungnam-seosan-youth-esports-2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "update-gangwon-hongcheon-esports-festival-2026",
+      "raw_source": "홍천군 공식 보도자료 https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498 ; 홍천문화재단 공식 행사 페이지 https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+      "source_ids": [
+        "source-update-gangwon-hongcheon-esports-festival-2026"
+      ],
+      "tokens": [
+        {
+          "position": 0,
+          "kind": "text",
+          "raw_token": "홍천군 공식 보도자료",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 1,
+          "kind": "url",
+          "raw_token": "https://www.hongcheon.go.kr/www/selectBbsNttView.do?bbsNo=112&key=282&nttNo=142498",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 2,
+          "kind": "text",
+          "raw_token": "홍천문화재단 공식 행사 페이지",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
+        },
+        {
+          "position": 3,
+          "kind": "url",
+          "raw_token": "https://www.hccf.or.kr/Home/H20000/H20200/cultureList?cult_type=E",
+          "disposition": "mapped",
+          "source_id": "source-update-gangwon-hongcheon-esports-festival-2026"
         }
       ]
     }

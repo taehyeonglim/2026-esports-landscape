@@ -80,7 +80,7 @@ async function generate(output) {
   const resourceMap = JSON.parse(resourceMapText);
   JSON.parse(schemaText);
   if (siteV2.entries?.length !== 230 || siteV2.regions?.length !== 17) fail('Expected the authoritative v2 input to contain 230 entries and 17 regions.');
-  if (additions.schema_version !== 1 || !Array.isArray(additions.entries)) fail('Additions file is invalid.');
+  if (additions.schema_version !== 1 || !/^\d{4}-\d{2}-\d{2}$/.test(additions.updated_at) || !Array.isArray(additions.entries)) fail('Additions file is invalid.');
   const sourceEntries = [...siteV2.entries, ...additions.entries];
   const resourceById = resourceMapById(resourceMap, sourceEntries);
   const regionIds = siteV2.regions.map(region => region.id);
@@ -130,7 +130,7 @@ async function generate(output) {
   const v3 = {
     ...siteV2,
     schema_version: 3,
-    meta: { ...siteV2.meta, entry_count: entries.length, source_schema_version: siteV2.schema_version, extraction: { input: 'baseline/v2/site.v2.json', sha256: sha256(siteText) }, additions: { input: 'data/additions.v1.json', count: additions.entries.length, sha256: sha256(additionsText) }, region_lineage: { input: 'baseline/v2/region-geo.v2.json', sha256: sha256(geoText) } },
+    meta: { ...siteV2.meta, entry_count: entries.length, data_updated_at: additions.updated_at, source_schema_version: siteV2.schema_version, extraction: { input: 'baseline/v2/site.v2.json', sha256: sha256(siteText) }, additions: { input: 'data/additions.v1.json', count: additions.entries.length, sha256: sha256(additionsText) }, region_lineage: { input: 'baseline/v2/region-geo.v2.json', sha256: sha256(geoText) } },
     coverage_by_category: [...entries.reduce((counts, entry) => counts.set(entry.category, (counts.get(entry.category) ?? 0) + 1), new Map())].map(([category, count]) => ({ category, count })).sort((left, right) => right.count - left.count || left.category.localeCompare(right.category, 'ko')),
     resource_types: RESOURCE_TYPES,
     resource_map: { schema_version: resourceMap.schema_version, status: resourceMap.status, owner_roles: resourceMap.owner_roles, approved_by: resourceMap.approved_by, approved_at: resourceMap.approved_at, input: 'data/resource-map.v1.json', sha256: sha256(resourceMapText) },

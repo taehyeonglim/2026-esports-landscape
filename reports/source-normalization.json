@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "raw_source_tokens": 554,
-  "mapped_source_tokens": 554,
+  "raw_source_tokens": 562,
+  "mapped_source_tokens": 562,
   "omitted_source_tokens": 0,
   "summary": {
-    "entries": 232,
-    "sources": 232,
-    "crosswalk_rows": 232,
-    "mapped_entries": 232,
+    "entries": 235,
+    "sources": 235,
+    "crosswalk_rows": 235,
+    "mapped_entries": 235,
     "omitted_entries": 0
   }
 }

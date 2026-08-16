@@ -7,8 +7,8 @@ const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.me
 
 test("editorial model turns the full dataset into four movements and three evidence-linked stories", () => {
   const model = editorialModel(site);
-  assert.deepEqual(model.insights.map(({ count }) => count), [99, 43, 24, 66]);
-  assert.equal(model.insights.reduce((sum, insight) => sum + insight.count, 0), 232);
+  assert.deepEqual(model.insights.map(({ count }) => count), [102, 43, 24, 66]);
+  assert.equal(model.insights.reduce((sum, insight) => sum + insight.count, 0), 235);
   assert.equal(model.featured.length, 3);
   for (const feature of model.featured) {
     assert.ok(site.entries.some((entry) => entry.id === feature.id));

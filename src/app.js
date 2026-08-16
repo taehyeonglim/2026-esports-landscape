@@ -48,6 +48,7 @@ const elements = Object.freeze({
   statRibbon: byId("stat-ribbon"),
   editorialInsights: byId("editorial-insights"),
   featuredStories: byId("featured-stories"),
+  dataUpdatedAt: byId("data-updated-at"),
 });
 
 const PAGE_SIZE = 12;
@@ -109,6 +110,7 @@ function validatePublicData(payload) {
   const site = requireRecord(payload, "site.v3.json");
   if (site.schema_version !== 3) throw new DataIntegrityError("schema_version must be 3.");
   if (!Array.isArray(site.entries) || site.entries.length < 230 || site.meta?.entry_count !== site.entries.length) throw new DataIntegrityError("entries must match the published entry count and retain the 230-entry baseline.");
+  if (typeof site.meta?.data_updated_at !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(site.meta.data_updated_at)) throw new DataIntegrityError("meta.data_updated_at must be a valid date.");
   if (!Array.isArray(site.regions) || site.regions.length !== 17) throw new DataIntegrityError("regions must contain exactly 17 records.");
   if (!Array.isArray(site.sources)) throw new DataIntegrityError("sources must be an array.");
 
@@ -169,6 +171,12 @@ function validatePublicData(payload) {
   });
   if (sourceIds.size !== site.sources.length) throw new DataIntegrityError("sources must have unique ids.");
   return site;
+}
+
+function renderDataUpdatedAt(value) {
+  const [year, month, day] = value.split("-");
+  elements.dataUpdatedAt.textContent = `자료 반영일 ${year}.${month}.${day}`;
+  elements.dataUpdatedAt.dateTime = value;
 }
 
 async function loadPublicData() {
@@ -578,6 +586,7 @@ async function initializeNationalMap() {
 async function start() {
   try {
     data = validatePublicData(await loadPublicData());
+    renderDataUpdatedAt(data.meta.data_updated_at);
     const regionIndex = new Map(data.regions.map((region) => [region.id, region]));
     const sourceIndex = new Map(data.sources.map((source) => [source.id, source]));
     entries = data.entries.map((entry) => {
