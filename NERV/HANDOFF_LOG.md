@@ -17,7 +17,8 @@ Newest entries go first. Keep entries concise and link to durable artifacts.
 
 **Publication path**
 
-- Task branch: `agent/enforce-nerv-closeout`; the PR reference is added before merge.
+- Task branch: `agent/enforce-nerv-closeout`.
+- Ready-for-merge [PR #10](https://github.com/taehyeonglim/2026-esports-landscape/pull/10) carries this closeout rule to `main`.
 
 ## 2026-08-16 — Codex — Establish shared NERV handoff
 
