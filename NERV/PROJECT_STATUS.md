@@ -4,7 +4,7 @@
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**
 - Latest product/data commit: **3e1a690fd415** (`data: weekly source discovery (#12)`)
-- Latest coordination commit: **87bd77cda01e** (`docs: enforce NERV closeout delivery (#10)`)
+- Latest coordination commit: **f5c03ae032a9** (`docs: close out discovery review (#13)`)
 - Remote state at update: **main matches origin/main**
 
 ## Mission
@@ -48,9 +48,9 @@ Durable reference: [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-
 - `scripts/extract-data.mjs` copies `data/additions.v1.json.updated_at` into `data/site.v3.json.meta.data_updated_at`; `src/app.js` renders that value without modification.
 - The live Pages JSON and the current repository `data/site.v3.json` are byte-identical and both contain `data_updated_at=2026-07-29` with 235 entries.
 - PR #9 changed only the discovery candidate and seen ledgers. It admitted no new public entries, so it correctly did not advance the public data cutoff.
-- The latest successful production deployment remains the 2026-07-29 run from commit `f6a0bb2`; later pushes pass the build but stop at the pending AC01 human approval gate.
+- The latest successful production deployment is the 2026-08-20 repository-owner override run from commit `f5c03ae032a9`. The override deployed after the complete automated release verification without claiming that pending study approvals were complete.
 
-Durable references: [live public JSON](https://taehyeonglim.github.io/2026-esports-landscape/data/site.v3.json), [last successful Pages run 30446302924](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/30446302924)
+Durable references: [live public JSON](https://taehyeonglim.github.io/2026-esports-landscape/data/site.v3.json), [successful Pages run 32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324)
 
 ## Verification baseline
 
@@ -77,6 +77,8 @@ The coordination-only commit `f473e4bfe3ce` also passed the full build job in [r
 - Browser-matrix approval record: pending.
 - Production deployment must remain blocked until the recorded human gates are satisfied or the repository owner explicitly performs the audited manual override path.
 - The current main-only discovery change does not alter public site content.
+- On 2026-08-20 the repository owner explicitly invoked the audited `workflow_dispatch` override for `f5c03ae032a9`. Build, release verification, override validation, artifact upload, and Pages deployment all passed in run 32314397324.
+- Post-deploy smoke checks passed for the home page, research page, JSON and manifest content types, and the expected 404 response. The live `data/site.v3.json` is byte-identical to the repository copy.
 
 ## Agent closeout routine
 

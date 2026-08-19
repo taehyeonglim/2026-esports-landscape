@@ -2,6 +2,25 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-08-20 — Codex — Deploy main through repository-owner override
+
+**Outcome**
+
+- Dispatched the audited GitHub Pages repository-owner override for `f5c03ae032a9` after the owner's explicit deployment instruction.
+- Kept AC01, usability, design, and browser approval fixtures recorded as pending; the override did not represent them as approved.
+- Successfully deployed the complete atomic Pages artifact in run 32314397324.
+
+**Verification**
+
+- Complete release verification, manifest verification, artifact upload, owner-override gate, and Pages deployment all passed.
+- Home and research routes returned 200; the contract 404 route returned 404.
+- Live JSON and release manifest returned `application/json`; the live `data/site.v3.json` SHA-256 matched the repository file.
+
+**References**
+
+- [GitHub Actions run 32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324)
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+
 ## 2026-08-20 — Codex — Review weekly discovery PR #12
 
 **Outcome**
