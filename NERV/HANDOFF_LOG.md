@@ -20,8 +20,8 @@ Newest entries go first. Keep entries concise and link to durable artifacts.
 
 **References**
 
-- Review commit `f04435850a96` on the PR branch.
-- [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-landscape/pull/12)
+- Squash-merged [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-landscape/pull/12) as `3e1a690fd415`.
+- [Post-merge run 32313375605](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32313375605) passed the complete build and release verification; the human gate failed closed and deployment was skipped because AC01 remains pending.
 
 ## 2026-08-16 — Codex — Diagnose the July 29 public data date
 
