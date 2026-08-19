@@ -2,6 +2,27 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-08-20 — Codex — Review weekly discovery PR #12
+
+**Outcome**
+
+- Reviewed all 41 new discovery candidates against the current public dataset, source policy, refreshed RSS metadata, and available official sources.
+- Classified 22 repeated reports of already represented events/programs as duplicate and rejected 19 out-of-scope or media-only candidates.
+- Final candidate ledger: 2 accepted, 97 duplicate, 80 rejected, and 0 needs-review.
+- Added no public entries because no candidate-linked new case met the official-source admission standard; `data/site.v3.json` remains at 235 entries.
+
+**Verification**
+
+- Data validation passed for the deterministic 235-entry, 17-region graph.
+- JavaScript tests: 26/26 passed.
+- Python tests: 119/119 passed.
+- `git diff --check` passed.
+
+**References**
+
+- Review commit `f04435850a96` on the PR branch.
+- [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-landscape/pull/12)
+
 ## 2026-08-16 — Codex — Diagnose the July 29 public data date
 
 **Outcome**

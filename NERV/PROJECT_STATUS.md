@@ -1,11 +1,11 @@
 # Project status
 
-- Last updated: **2026-08-16 15:42 KST**
+- Last updated: **2026-08-20 KST**
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**
-- Latest product/data commit: **88d9d25a8c75** (`data: weekly source discovery (#9)`)
+- Latest reviewed data commit: **f04435850a96** (`data: review weekly discovery candidates`, PR #12 task branch)
 - Latest coordination commit: **87bd77cda01e** (`docs: enforce NERV closeout delivery (#10)`)
-- Remote state at update: **main matches origin/main**
+- Delivery target: **PR #12 into main**
 
 ## Mission
 
@@ -29,17 +29,18 @@ Canonical references:
 
 ## Discovery queue
 
-PR #9 was reviewed and squash-merged on 2026-08-16.
+PR #12's 41 new candidates were reviewed on 2026-08-20. Existing-event coverage was classified as duplicate; candidates outside scope or lacking a specific official source were rejected rather than admitted from media coverage alone.
 
-- Candidate ledger (`data/discovery/candidates.v1.json`): **138 total**
+- Candidate ledger (`data/discovery/candidates.v1.json`): **179 total**
 - Accepted: **2**
-- Duplicate: **75**
-- Rejected: **61**
+- Duplicate: **97**
+- Rejected: **80**
 - Needs review: **0**
 - The weekly discovery workflow remains scheduled for Monday 09:00 KST.
 - Discovery never mutates `data/site.v3.json` automatically; accepted publication additions require a separate human-reviewed change.
+- No new public entry was admitted in this review because the apparently new local cases lacked a candidate-linked official source meeting the repository's admission standard. The public dataset remains at 235 entries.
 
-Durable reference: [GitHub PR #9](https://github.com/taehyeonglim/2026-esports-landscape/pull/9)
+Durable reference: [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-landscape/pull/12)
 
 ## Public data date semantics
 
@@ -53,11 +54,12 @@ Durable references: [live public JSON](https://taehyeonglim.github.io/2026-espor
 
 ## Verification baseline
 
-Latest verified baseline, 2026-08-16:
+Latest verified baseline, 2026-08-20:
 
 - Data validation: passed for the deterministic 235-entry, 17-region graph.
 - JavaScript unit tests: **26/26 passed**.
 - Python tests: **119/119 passed**.
+- Weekly discovery candidates: **179 total, 0 needs-review**.
 - Post-merge GitHub Actions build: dependency setup, Playwright installation, complete release verification, manifest verification, Pages configuration, and artifact upload all passed.
 - The deployment job was skipped because the recorded **AC01 human approval is pending**. The workflow's final conclusion is therefore failure by policy, not a build or data regression.
 
