@@ -3,9 +3,9 @@
 - Last updated: **2026-08-20 KST**
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**
-- Latest reviewed data commit: **f04435850a96** (`data: review weekly discovery candidates`, PR #12 task branch)
+- Latest product/data commit: **3e1a690fd415** (`data: weekly source discovery (#12)`)
 - Latest coordination commit: **87bd77cda01e** (`docs: enforce NERV closeout delivery (#10)`)
-- Delivery target: **PR #12 into main**
+- Remote state at update: **main matches origin/main**
 
 ## Mission
 
@@ -29,7 +29,7 @@ Canonical references:
 
 ## Discovery queue
 
-PR #12's 41 new candidates were reviewed on 2026-08-20. Existing-event coverage was classified as duplicate; candidates outside scope or lacking a specific official source were rejected rather than admitted from media coverage alone.
+PR #12's 41 new candidates were reviewed and squash-merged on 2026-08-20. Existing-event coverage was classified as duplicate; candidates outside scope or lacking a specific official source were rejected rather than admitted from media coverage alone.
 
 - Candidate ledger (`data/discovery/candidates.v1.json`): **179 total**
 - Accepted: **2**
@@ -60,10 +60,10 @@ Latest verified baseline, 2026-08-20:
 - JavaScript unit tests: **26/26 passed**.
 - Python tests: **119/119 passed**.
 - Weekly discovery candidates: **179 total, 0 needs-review**.
-- Post-merge GitHub Actions build: dependency setup, Playwright installation, complete release verification, manifest verification, Pages configuration, and artifact upload all passed.
+- PR #12 post-merge GitHub Actions build: dependency setup, Playwright installation, complete release verification, manifest verification, Pages configuration, and artifact upload all passed.
 - The deployment job was skipped because the recorded **AC01 human approval is pending**. The workflow's final conclusion is therefore failure by policy, not a build or data regression.
 
-Durable reference: [GitHub Actions run 31930460697](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31930460697)
+Durable reference: [GitHub Actions run 32313375605](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32313375605)
 
 The coordination-only commit `f473e4bfe3ce` also passed the full build job in [run 31931308376](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31931308376); its deployment was likewise skipped at the pending human gate.
 
