@@ -2,6 +2,23 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-08-20 — Codex — Explain current data status in README
+
+**Outcome**
+
+- Added a README current-state summary covering 235 public cases, the 2026-07-29 data cutoff, 179 discovery candidates, the latest review result, and the 2026-08-20 deployment.
+- Explained why discovery PRs and deployments do not automatically advance the public data date.
+- Documented candidate decision semantics, PR #12's 41-candidate outcome, current RSS/article bias, and five concrete discovery improvements.
+
+**Verification**
+
+- Reconciled all README counts and dates against `data/site.v3.json`, `data/additions.v1.json`, and both discovery ledgers.
+- Data validation passed; `git diff --check` passed.
+
+**References**
+
+- [GitHub PR #15](https://github.com/taehyeonglim/2026-esports-landscape/pull/15)
+
 ## 2026-08-20 — Codex — Deploy main through repository-owner override
 
 **Outcome**
