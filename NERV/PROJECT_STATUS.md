@@ -19,6 +19,7 @@ Build and operate an evidence-centered static website for searching and comparin
 - Public entry lineage: **230-entry immutable v2 baseline + 5 reviewed additions**.
 - All 235 public entries still have `operational_status=needs_review`; confidence does not replace operational verification.
 - Current known evidence gaps: **109** `data_gaps` records and **27** `negative_evidence` records.
+- The public README now distinguishes discovered URLs from published cases, explains the 2026-07-29 data cutoff, records PR #12's 41-candidate outcome, and documents discovery limitations and improvement priorities.
 
 Canonical references:
 
@@ -94,7 +95,7 @@ Commit-only, branch-only, push-only, and open-PR-only states are not normal comp
 
 ## Next priorities
 
-1. Continue the weekly discovery cycle and review any new queue without admitting media-only or policy-ambiguous evidence.
+1. Improve discovery beyond article URLs: expand official institutional surfaces, add article-to-official-source follow-up, and group candidates by event before PR creation.
 2. Independently re-check the operational status of the 235 public entries, prioritizing high-impact and stale sources.
 3. Reduce the 109 documented data gaps and resolve the 45 entries whose geographic scope remains unknown.
 4. Complete and record AC01, usability, design, and browser-matrix human reviews before the next intended production deployment.
