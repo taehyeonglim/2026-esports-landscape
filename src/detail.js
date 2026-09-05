@@ -1,3 +1,4 @@
+import { reviewState, REVIEW_LABELS } from "./review-status.js";
 import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SOURCE_LABELS, TYPE_LABELS } from "./cards.js";
 const SOURCE_VERIFICATION_LABELS = Object.freeze({ needs_review: "확인 필요", verified: "검증됨", rejected: "제외됨" });
 
@@ -47,6 +48,9 @@ export function renderDetail(container, entry, sources = []) {
   const notes = document.createElement("p");
   notes.className = "detail-notes";
   notes.textContent = entry.public_note;
+  const reviewFacts = document.createElement("dl");
+  reviewFacts.className = "detail-facts";
+  [["근거 검토", REVIEW_LABELS[reviewState(entry)]], ["최근 검토 시도", entry.operational_review?.checked_at], ["다음 검토일", entry.operational_review?.next_review_at], ["판정 이유", entry.review?.reason]].forEach(([label, item]) => reviewFacts.append(field(label,item)));
   const sourceHeading = document.createElement("h3");
   sourceHeading.textContent = "원문 출처";
   const list = document.createElement("ul");
@@ -105,6 +109,6 @@ export function renderDetail(container, entry, sources = []) {
     ["상태 근거", entry.status_provenance || "독립 검증 근거 미확인"], ["상태 검토 사유", entry.review?.reason],
   ].forEach(([label, item]) => facts.append(field(label, item)));
   metadataDetails.append(metadataSummary, facts);
-  container.replaceChildren(heading, summary, status, notes, sourceHeading, list, metadataDetails);
+  container.replaceChildren(heading, summary, status, notes, reviewFacts, sourceHeading, list, metadataDetails);
   return heading;
 }

@@ -1,3 +1,4 @@
+import { REVIEW_LABELS } from "./review-status.js";
 import { actions, appReducer, createAppState } from "./state.js";
 import { decodeUrl, encodeUrl } from "./url-codec.js";
 import { filterEntries } from "./search.js";
@@ -16,6 +17,7 @@ const elements = Object.freeze({
   typeFilter: byId("type-filter"),
   schoolLevel: byId("school-level-filter"),
   status: byId("status-filter"),
+  reviewState: byId("review-state-filter"),
   scope: byId("scope-filter"),
   sort: byId("sort-filter"),
   reset: byId("reset-filters"),
@@ -177,6 +179,7 @@ function renderDataUpdatedAt(value) {
   const [year, month, day] = value.split("-");
   elements.dataUpdatedAt.textContent = `자료 반영일 ${year}.${month}.${day}`;
   elements.dataUpdatedAt.dateTime = value;
+  byId("last-reviewed-at").textContent = data.meta.last_reviewed_at ? `최근 운영 상태 검토일 ${data.meta.last_reviewed_at}` : "운영 상태 검토일 미확인";
 }
 
 async function loadPublicData() {
@@ -238,6 +241,7 @@ function allowed() {
     schoolLevel: optionValues("schoolLevel"),
     scope: Object.keys(SCOPE_LABELS),
     status: optionValues("status"),
+    reviewState: Object.keys(REVIEW_LABELS),
     sort: Object.keys(SORT_LABELS),
     entry: entries.map((entry) => entry.id),
   };
@@ -261,6 +265,7 @@ function sheetFilterCount() {
   return state.category.length
     + state.schoolLevel.length
     + state.status.length
+    + state.reviewState.length
     + state.scope.length
     + Number(Boolean(state.type))
     + Number(Boolean(state.sort));
@@ -274,6 +279,7 @@ function activeFilterDescriptors() {
   state.category.forEach((value) => descriptors.push({ key: "category", label: `카테고리: ${value}` }));
   state.schoolLevel.forEach((value) => descriptors.push({ key: "schoolLevel", label: `학교급: ${value}` }));
   state.status.forEach((value) => descriptors.push({ key: "status", label: `상태: ${OPERATIONAL_STATUS_LABELS[value]}` }));
+  state.reviewState.forEach((value) => descriptors.push({ key: "reviewState", label: `검토: ${REVIEW_LABELS[value]}` }));
   state.scope.forEach((value) => descriptors.push({ key: "scope", label: `범위: ${SCOPE_LABELS[value]}` }));
   if (state.sort) descriptors.push({ key: "sort", label: `정렬: ${SORT_LABELS[state.sort]}` });
   return descriptors;
@@ -335,6 +341,7 @@ function render() {
   elements.search.value = state.query;
   elements.typeFilter.value = state.type || "";
   elements.schoolLevel.value = state.schoolLevel[0] || "";
+  elements.reviewState.value = state.reviewState[0] || "";
   elements.status.value = state.status[0] || "";
   elements.scope.value = state.scope[0] || "";
   elements.sort.value = state.sort || "";
@@ -463,6 +470,7 @@ function clearActiveFilter(key) {
     type: () => actions.setType(null),
     category: () => actions.setFilter("category", []),
     schoolLevel: () => actions.setFilter("schoolLevel", []),
+    reviewState: () => actions.setFilter("reviewState", []),
     status: () => actions.setFilter("status", []),
     scope: () => actions.setFilter("scope", []),
     sort: () => actions.setSort(null),
@@ -489,6 +497,7 @@ function bindEvents() {
     dispatch(actions.setFilter("category", state.category[0] === value ? [] : [value]));
   });
   elements.schoolLevel.addEventListener("change", (event) => dispatch(actions.setFilter("schoolLevel", event.target.value ? [event.target.value] : []), "replace"));
+  elements.reviewState.addEventListener("change", event => dispatch(actions.setFilter("reviewState", event.target.value ? [event.target.value] : []), "replace"));
   elements.status.addEventListener("change", (event) => dispatch(actions.setFilter("status", event.target.value ? [event.target.value] : []), "replace"));
   elements.scope.addEventListener("change", (event) => dispatch(actions.setFilter("scope", event.target.value ? [event.target.value] : []), "replace"));
   elements.sort.addEventListener("change", (event) => dispatch(actions.setSort(event.target.value || null), "replace"));
@@ -610,6 +619,7 @@ async function start() {
     }));
     populateSelect(elements.region, data.regions.map((region) => ({ value: region.id, label: region.name })));
     populateSelect(elements.schoolLevel, optionValues("schoolLevel").map((value) => ({ value, label: value })));
+    populateSelect(elements.reviewState, Object.entries(REVIEW_LABELS).map(([value,label]) => ({value,label})));
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
 
     state = decodeUrl(location.search, { allowed: allowed(), entries });

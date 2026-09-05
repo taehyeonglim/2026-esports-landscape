@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { applyReviews,digest } from '../scripts/review-overlay.mjs';
+import { validateResearchData } from '../src/research.js';
+import { reviewState } from '../src/review-status.js';
+const base=JSON.parse(readFileSync(new URL('../data/site.v3.json',import.meta.url)));
+function review(){return {id:'review-test-00000001',entry_id:base.entries[0].id,prior_sha256:digest(base.entries[0]),changes:{operational_status:'current'},reason:'공식 자료에서 운영 확인',checked_at:'2026-09-05',approved_at:'2026-09-05',next_review_at:'2026-12-04',approved_by:'test-reviewer',status_supported:true,evidence:[{url:'https://www.moe.go.kr/test',summary:'운영 근거',sha256:'a'.repeat(64),publisher_id:'moe',official:true}]};}
+test('empty ledger preserves semantic baseline',()=>assert.deepEqual(applyReviews(base,{schema_version:1,reviews:[]}),base));
+test('approved status and evidence survive independent reprojection',()=>{const ledger={schema_version:1,reviews:[review()]};const a=applyReviews(base,ledger);assert.deepEqual(a,applyReviews(base,ledger));assert.equal(a.entries[0].operational_status,'current');assert.equal(a.sources.at(-1).evidence_sha256,'a'.repeat(64));assert.equal(a.meta.data_updated_at,'2026-09-05');assert.equal(reviewState(a.entries[0],'2026-12-04'),'due');assert.equal(reviewState(a.entries[0],'2026-09-05'),'confirmed');assert.throws(()=>applyReviews(a,ledger),/conflict/);});
+test('missing authority, duplicate IDs, stale hashes and invalid dates fail closed',()=>{for(const change of [{status_supported:false},{prior_sha256:'b'.repeat(64)},{checked_at:'2026-02-30'},{changes:{operational_status:'current',confidence:'high'}}])assert.throws(()=>applyReviews(base,{schema_version:1,reviews:[{...review(),...change}]}));assert.throws(()=>applyReviews(base,{schema_version:1,reviews:[review(),review()]}),/Duplicate/);});
+test('new admission keeps legacy IDs and adds one fully linked entry',()=>{const r={...review(),entry_id:'new-reviewed-school',prior_sha256:null,new_entry:{name:'새 학교 사례',region_id:base.regions[0].id,category:base.entries[0].category,resource_type:'school',operator:'공식 기관',year:2026,school_level:'고등학교',scope:'regional'}};const site=applyReviews(base,{schema_version:1,reviews:[r]});assert.equal(site.entries.length,base.entries.length+1);assert.deepEqual(site.entries.slice(0,-1),base.entries);assert.equal(site.entries.at(-1).source_ids.length,1);assert.doesNotThrow(()=>validateResearchData(site));});

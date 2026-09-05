@@ -90,6 +90,7 @@
                 <label>유형 <select id="type-filter"><option value="">전체</option></select></label>
                 <label>학교급 <select id="school-level-filter"><option value="">전체</option></select></label>
                 <label>상태 <select id="status-filter"><option value="">전체</option></select></label>
+                <label>근거 검토 <select id="review-state-filter"><option value="">전체</option></select></label>
                 <label>범위 <select id="scope-filter"><option value="">전체</option></select></label>
                 <label>정렬 <select id="sort-filter"><option value="">기본순</option></select></label>
                 <button id="reset-filters" type="button">모든 조건 초기화</button>
@@ -152,7 +153,7 @@
     <section class="snapshot-section" id="snapshot" aria-labelledby="snapshot-heading">
       <div class="compact-heading">
         <div><p class="section-number">02 / DATA SNAPSHOT</p><h2 id="snapshot-heading">공개자료 유형별 현황</h2></div>
-        <div class="snapshot-meta"><time id="data-updated-at" datetime="">자료 반영일 확인 중</time><p>유형별 분류 건수이며 현재 운영 규모를 뜻하지 않습니다.</p></div>
+        <div class="snapshot-meta"><time id="data-updated-at" datetime="">자료 반영일 확인 중</time><p id="last-reviewed-at">운영 상태 검토일 미확인</p><p>유형별 분류 건수이며 현재 운영 규모를 뜻하지 않습니다.</p></div>
       </div>
       <div class="signal-grid" id="editorial-insights" aria-live="polite"></div>
     </section>

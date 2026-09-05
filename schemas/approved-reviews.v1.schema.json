@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "reviews"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/review"
+      }
+    }
+  },
+  "$defs": {
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "entry_id",
+        "prior_sha256",
+        "changes",
+        "reason",
+        "checked_at",
+        "approved_at",
+        "next_review_at",
+        "approved_by",
+        "status_supported",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^review-[a-z0-9-]{8,80}$"
+        },
+        "entry_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prior_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "changes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "operator": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "district": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "address": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "notes": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "school_level": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "scope": {
+              "enum": [
+                "regional",
+                "nationwide",
+                "adjacent",
+                "unknown"
+              ]
+            },
+            "operational_status": {
+              "enum": [
+                "current",
+                "ended",
+                "needs_review"
+              ]
+            }
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "checked_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "approved_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "next_review_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "approved_by": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{2,63}$"
+        },
+        "status_supported": {
+          "type": "boolean"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "url",
+              "summary",
+              "sha256",
+              "publisher_id",
+              "official"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "pattern": "^https://",
+                "maxLength": 2048
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "publisher_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "official": {
+                "const": true
+              }
+            }
+          }
+        },
+        "new_entry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "region_id",
+            "category",
+            "resource_type",
+            "operator",
+            "year",
+            "school_level",
+            "scope"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "region_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resource_type": {
+              "enum": [
+                "school",
+                "event",
+                "facility",
+                "other"
+              ]
+            },
+            "operator": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "year": {
+              "type": "integer",
+              "minimum": 2000,
+              "maximum": 2100
+            },
+            "school_level": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "enum": [
+                "regional",
+                "nationwide",
+                "adjacent",
+                "unknown"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

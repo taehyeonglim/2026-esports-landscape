@@ -2,7 +2,7 @@
 
 ## Scope and authority
 
-`baseline/v2/site.v2.json` is the externalized, read-only v2 baseline. It contains **230** `entries` and **17** `regions`; those counts are migration invariants. Reviewed records created after that baseline live in `data/additions.v1.json`. `data/site.v3.json` is the generated v3 projection of the baseline plus those additions. Public releases are immutable snapshot bundles (`snapshots/<snapshot_id>/snapshot.json` plus `manifest.json`) selected only through `current.json`.
+`baseline/v2/site.v2.json` is the externalized, read-only v2 baseline. It contains **230** `entries` and **17** `regions`; those counts are migration invariants. Reviewed records created after that baseline live in `data/additions.v1.json`. `data/site.v3.json` is the generated v3 projection of the baseline, legacy additions, and append-only approved reviews/admissions in `data/approved-reviews.v1.json`. Operational review commands use the local SQLite workbench; the tracked ledger is its reviewed publication input. Public releases are immutable snapshot bundles (`snapshots/<snapshot_id>/snapshot.json` plus `manifest.json`) selected only through `current.json`.
 
 The dashboard has already externalized its baseline. This contract does **not** authorize an `index.html` change or a UI reimplementation.
 
@@ -33,3 +33,9 @@ Identity resolution is conservative: it may merge only when the kind and authori
 A published record requires `record_id`, `subject_id`, `status`, one or more claims, and non-empty `evidence_ids` and `source_ids`. Each claim requires `claim_id`, `kind`, `value`, `evidence_id`, and `source_id`. Evidence requires `evidence_id`, `source_id`, public `url`, `observed_at`, and a checksum. Sources require `source_id`, `tier`, and public `url`.
 
 Publication fails closed unless all required schema fields are complete (100%), quality-field coverage is at least 98%, core coverage is at least 99%, false publications and automatic mismerges are both 0, all references/checksums/schema validation pass, PII findings and overdue reviews are 0, no stop is requested, and the budget result is `PASS`.
+
+## Site operational reviews
+
+See [review-workbench.md](review-workbench.md). The baseline migration is validated separately from the approved overlay. Independent complete extractions must match the checked-in generated graph. Corrections require prior-record hashes; new admissions require unused IDs and official evidence. Sources retain document digests and registered publisher IDs. Site operational status remains separate from subject/claim publication status.
+
+The workbench exports a proposal manifest, not an immutable publication authorization. Existing `publish` and Pages approval gates remain authoritative. The original migration crosswalk covers baseline/legacy additions; later admissions and corrections use the approved-review hash and their added source references.

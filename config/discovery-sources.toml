@@ -21,3 +21,35 @@ endpoint = "https://news.google.com/rss/search?q=e%EC%8A%A4%ED%8F%AC%EC%B8%A0%20
 id = "news-major-esports"
 kind = "rss"
 endpoint = "https://news.google.com/rss/search?q=e%EC%8A%A4%ED%8F%AC%EC%B8%A0%20%ED%95%99%EA%B3%BC%20%EB%8C%80%ED%95%99%20when%3A14d&hl=ko&gl=KR&ceid=KR%3Ako"
+
+# Pilot institutional surfaces, taken from existing public evidence URLs.
+# Discovery registration is not publication authority or a successful fetch claim.
+[[source]]
+id = "pilot-cheongju-school"
+kind = "homepage"
+endpoint = "https://school.cbe.go.kr/cjss/M010308/"
+
+[[source]]
+id = "pilot-busan-computer-school"
+kind = "homepage"
+endpoint = "https://school.busanedu.net/pcs-h/main.do"
+
+[[source]]
+id = "pilot-busan-school-sports"
+kind = "homepage"
+endpoint = "https://home.pen.go.kr/bssc/"
+
+[[source]]
+id = "pilot-busan-arena"
+kind = "homepage"
+endpoint = "https://brena.or.kr/brena/sub05_03.do?mode=list"
+
+[[source]]
+id = "pilot-gyeongnam-arena"
+kind = "homepage"
+endpoint = "https://gnarena.or.kr/sub/rsvlist.php"
+
+[[source]]
+id = "pilot-special-education"
+kind = "homepage"
+endpoint = "https://www.nise.go.kr/"

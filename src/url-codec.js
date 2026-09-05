@@ -1,7 +1,7 @@
 import { createAppState, normalizeMulti, normalizeQuery, SORT_MODES, VIEW_MODES } from "./state.js";
 
-export const URL_KEYS = Object.freeze(["view", "region", "type", "q", "category", "schoolLevel", "theme", "scope", "status", "sort", "entry"]);
-const MULTI_KEYS = new Set(["category", "schoolLevel", "theme", "scope", "status"]);
+export const URL_KEYS = Object.freeze(["view", "region", "type", "q", "category", "schoolLevel", "theme", "scope", "status", "reviewState", "sort", "entry"]);
+const MULTI_KEYS = new Set(["category", "schoolLevel", "theme", "scope", "status", "reviewState"]);
 const TYPE_VALUES = Object.freeze(["school", "event", "facility", "other"]);
 
 function requireOptions(options) {

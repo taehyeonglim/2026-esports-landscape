@@ -49,6 +49,7 @@
         "public_note": { "type": "string", "minLength": 1 },
         "status_provenance": { "type": ["string", "null"] },
         "status_checked_at": { "type": ["string", "null"] },
+        "operational_review": {"type": "object", "additionalProperties": false, "required": ["id", "checked_at", "next_review_at", "reason", "evidence_ids"], "properties": {"id": {"type": "string", "minLength": 1}, "checked_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}, "next_review_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}, "reason": {"type": "string", "minLength": 1}, "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}}},
         "off_map": { "type": "boolean" }
       }
     },
@@ -63,6 +64,8 @@
         "urls": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^https?://" } },
         "kind": { "const": "raw_source" },
         "verification_status": { "enum": ["needs_review", "verified", "rejected"] },
+        "evidence_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "publisher_id": { "type": "string", "minLength": 1 },
         "checked_at": { "type": ["string", "null"] }
       }
     },

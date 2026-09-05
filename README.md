@@ -31,11 +31,12 @@
 ```text
 data/additions.v1.json.updated_at
   → scripts/extract-data.mjs
+  + data/approved-reviews.v1.json의 승인 변경일
   → data/site.v3.json.meta.data_updated_at
   → 웹사이트의 자료 반영일
 ```
 
-따라서 “이번 주 PR이 병합됐다” 또는 “사이트가 오늘 배포됐다”는 사실만으로 자료 반영일이 변경되지는 않습니다. 실제 신규 공개 사례가 `data/additions.v1.json`에 편입되고 전체 검증을 통과할 때만 날짜를 함께 갱신합니다.
+따라서 “이번 주 PR이 병합됐다” 또는 “사이트가 오늘 배포됐다”는 사실만으로 자료 반영일이 변경되지는 않습니다. 기존 추가 사례 반영일과 `data/approved-reviews.v1.json`의 실제 승인 변경일 중 최신 날짜를 사용합니다. 승인 변경 이력이 없으면 기존 자료 반영일을 유지합니다. 배포만으로 날짜를 올리지 않습니다.
 
 ## 프로젝트 개요
 
@@ -194,6 +195,22 @@ flowchart LR
 ```
 
 `dist/`, `.dist-stage-*`, `.extract-stage-*`, `.gjc/`, `artifacts/`, `test-results/`는 생성물 또는 로컬 작업용 디렉터리이며 Git의 프로젝트 소스가 아닙니다.
+
+## 로컬 자료 검토 워크벤치
+
+2026-09-05부터 승인 변경 이력과 로컬 검토 화면을 제공하며, 공개 사이트는 정적으로 유지합니다.
+
+```bash
+PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer
+```
+
+출력된 로컬 주소에서 기존 사례·신규 사례를 작성하고 근거를 직접 확인해 승인합니다.
+검토용 내보내기는 공개 배포가 아닙니다. 승인 이력을 Git에 반영하고 전체 검증과 기존 배포 승인을 거쳐야 합니다.
+사용법, 데이터 계약, 재검증, 복구 절차는 [자료 검토 안내](docs/review-workbench.md)를 참고하세요.
+
+전체 235건의 등록 링크 점검을 시도했으며, 원문을 하나 이상 가져온 사례는 153건입니다.
+이는 **운영 여부 검증 완료가 아닙니다**. 사람의 사실 판정은 아직 완료되지 않았고 공개 상태는 변경하지 않았습니다.
+집계 근거는 [재검증 도입 보고서](reports/review-rollout.v1.json)에 있습니다.
 
 ## 로컬 실행
 

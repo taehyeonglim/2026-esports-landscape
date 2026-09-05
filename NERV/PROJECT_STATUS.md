@@ -1,111 +1,68 @@
 # Project status
 
-- Last updated: **2026-08-20 KST**
+- Last updated: **2026-09-05 KST**
 - Maintainer handoff: **Codex**
-- Canonical branch: **main**
-- Latest product/data commit: **3e1a690fd415** (`data: weekly source discovery (#12)`)
-- Latest coordination commit: **f5c03ae032a9** (`docs: close out discovery review (#13)`)
-- Remote state at update: **main matches origin/main**
+- Canonical branch: **main**, verified remote base **6dd9ae1** before this implementation.
+- Implementation branch: **agent/review-workbench**; delivery in progress.
 
-## Mission
+## Product and data
 
-Build and operate an evidence-centered static website for searching and comparing public information about school esports across South Korea's 17 first-level regions, while keeping collection, review, privacy, lineage, and publication fail-closed.
+- Static HTML/CSS/ES modules and GitHub Pages remain the public architecture.
+- Public data remains **235 entries / 17 regions / 235 sources**, cutoff **2026-07-29**.
+- All 235 operational statuses remain `needs_review`. No automated fact approvals or public status changes were made.
+- The immutable 230-entry baseline and 5 legacy additions are preserved.
+- Approved reviews/admissions now persist through deterministic extraction via `data/approved-reviews.v1.json` (currently empty).
+- Corrections require prior-record hashes; new admissions require unused IDs, official evidence, and explicit human approval. PII and registered publisher/domain checks run before projection.
+- Public detail shows review reasons/dates; URL-compatible evidence-review filtering distinguishes confirmed and due cases without erasing historical status.
 
-## Current product and data
+## Local review operation
 
-- Static HTML/CSS/ES-module frontend deployed through GitHub Pages.
-- Search-first workspace, advanced filters, shareable URL state, desktop/mobile detail views, regional map, 17-region comparison matrix, and research/methodology page are implemented.
-- `data/site.v3.json`: schema v3, **235 public entries**, **17 regions**, and **235 source records**.
-- Public entry lineage: **230-entry immutable v2 baseline + 5 reviewed additions**.
-- All 235 public entries still have `operational_status=needs_review`; confidence does not replace operational verification.
-- Current known evidence gaps: **109** `data_gaps` records and **27** `negative_evidence` records.
-- The public README now distinguishes discovered URLs from published cases, explains the 2026-07-29 data cutoff, records PR #12's 41-candidate outcome, and documents discovery limitations and improvement priorities.
+- Start: `PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer`.
+- Loopback-only API with session token/Origin checks; atomic candidate decisions and replay-safe approval commands in SQLite.
+- Private database: `artifacts/workbench/reviews.sqlite3`; **235 unapproved drafts** and per-entry source-check results are prepared locally.
+- The existing 179 candidate decisions are imported idempotently. Main's ledger remains 2 accepted / 97 duplicate / 80 rejected / 0 pending.
+- Existing unrelated discovery **PR #16** remains open; it was not merged or reclassified by this implementation.
+- Export creates a proposal bundle and hash manifest in `artifacts/workbench/export`; it does not publish or authorize `publish`.
+- Existing subject/claim snapshot publication remains a distinct protected path. Do not claim site-review exports are snapshot publication receipts.
 
-Canonical references:
+Canonical guide: [`../docs/review-workbench.md`](../docs/review-workbench.md).
 
-- Product and commands: [`../README.md`](../README.md)
-- Public-data contract: [`../docs/data-contract.md`](../docs/data-contract.md)
-- Source and minor-data policy: [`../docs/source-policy.md`](../docs/source-policy.md)
-- Operations and release gates: [`../docs/operations.md`](../docs/operations.md), [`../docs/pages-release.md`](../docs/pages-release.md)
+## Rollout evidence and remaining work
 
-## Discovery queue
+Source reachability checks, not fact verification:
 
-PR #12's 41 new candidates were reviewed and squash-merged on 2026-08-20. Existing-event coverage was classified as duplicate; candidates outside scope or lacking a specific official source were rejected rather than admitted from media coverage alone.
+- Pilot: 30 entries; 7 with at least one fetched source, 23 unavailable through the sampled registered URLs.
+- Whole corpus: 235 entries; 153 with at least one fetched source, 82 unavailable; 115 unique URLs attempted, 87 fetched.
+- Up to 3 registered URLs per entry were checked; HTTP success does not confirm relevance or current operation.
+- Six additional institutional discovery surfaces: five accessible, one failed; zero-link results are not evidence of absent activity.
+- All checks produced reason codes and a next review date of 2026-12-04. **Human fact reviews completed: 0**.
+- Complete the pilot's actual official-source/fact reviews, then the remaining 205. The original plan's human-review rollout is pending, not completed.
+- Data gaps (109) and unresolved geographic scope (45) have not been adjudicated in this implementation.
 
-- Candidate ledger (`data/discovery/candidates.v1.json`): **179 total**
-- Accepted: **2**
-- Duplicate: **97**
-- Rejected: **80**
-- Needs review: **0**
-- The weekly discovery workflow remains scheduled for Monday 09:00 KST.
-- Discovery never mutates `data/site.v3.json` automatically; accepted publication additions require a separate human-reviewed change.
-- No new public entry was admitted in this review because the apparently new local cases lacked a candidate-linked official source meeting the repository's admission standard. The public dataset remains at 235 entries.
+Durable aggregate: [`../reports/review-rollout.v1.json`](../reports/review-rollout.v1.json). Raw documents, temporary titles, tokens, and personal information are excluded.
 
-Durable reference: [GitHub PR #12](https://github.com/taehyeonglim/2026-esports-landscape/pull/12)
+## Verification
 
-## Public data date semantics
+Final local `npm run verify:release` passed:
 
-- The UI's `자료 반영일 2026.07.29` is the public dataset cutoff, not the latest Git commit, discovery review, build, or deployment time.
-- `scripts/extract-data.mjs` copies `data/additions.v1.json.updated_at` into `data/site.v3.json.meta.data_updated_at`; `src/app.js` renders that value without modification.
-- The live Pages JSON and the current repository `data/site.v3.json` are byte-identical and both contain `data_updated_at=2026-07-29` with 235 entries.
-- PR #9 changed only the discovery candidate and seen ledgers. It admitted no new public entries, so it correctly did not advance the public data cutoff.
-- The latest successful production deployment is the 2026-08-20 repository-owner override run from commit `f5c03ae032a9`. The override deployed after the complete automated release verification without claiming that pending study approvals were complete.
+- JavaScript: **30/30**.
+- Python: **129/129**.
+- Static contracts: **6/6**, including exclusion of private administration files.
+- Public browser matrix: **110/110** across desktop Chromium/Firefox/WebKit and Android/iOS profiles.
+- Local administrator browser scenario: **1/1**, including explicit approval, restart persistence, mobile width, unauthorized API and private-file rejection.
+- Independent extraction, immutable baseline invariants, release hash reproducibility, input-only provenance changes, and output-mutation detection passed.
+- `git diff --check` passed. Existing user files were preserved.
 
-Durable references: [live public JSON](https://taehyeonglim.github.io/2026-esports-landscape/data/site.v3.json), [successful Pages run 32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324)
+## Release gates
 
-## Verification baseline
-
-Latest verified baseline, 2026-08-20:
-
-- Data validation: passed for the deterministic 235-entry, 17-region graph.
-- JavaScript unit tests: **26/26 passed**.
-- Python tests: **119/119 passed**.
-- Weekly discovery candidates: **179 total, 0 needs-review**.
-- PR #12 post-merge GitHub Actions build: dependency setup, Playwright installation, complete release verification, manifest verification, Pages configuration, and artifact upload all passed.
-- The deployment job was skipped because the recorded **AC01 human approval is pending**. The workflow's final conclusion is therefore failure by policy, not a build or data regression.
-
-Durable reference: [GitHub Actions run 32313375605](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32313375605)
-
-The coordination-only commit `f473e4bfe3ce` also passed the full build job in [run 31931308376](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/31931308376); its deployment was likewise skipped at the pending human gate.
-
-## Release and approval state
-
-- `data/resource-map.v1.json`: approved.
-- Repository-owner release approval: approved.
-- AC01 human approval: pending.
-- Usability approval: pending.
-- Design approval: pending.
-- Browser-matrix approval record: pending.
-- Production deployment must remain blocked until the recorded human gates are satisfied or the repository owner explicitly performs the audited manual override path.
-- The current main-only discovery change does not alter public site content.
-- On 2026-08-20 the repository owner explicitly invoked the audited `workflow_dispatch` override for `f5c03ae032a9`. Build, release verification, override validation, artifact upload, and Pages deployment all passed in run 32314397324.
-- Post-deploy smoke checks passed for the home page, research page, JSON and manifest content types, and the expected 404 response. The live `data/site.v3.json` is byte-identical to the repository copy.
-
-## Agent closeout routine
-
-The repository owner requires project sessions to finish with a durable NERV handoff and completed delivery:
-
-1. Verify the change.
-2. Update NERV status and handoff log.
-3. Commit task-owned files on a task branch.
-4. Push, open the PR, and merge it to `main`.
-5. Synchronize local `main`, verify remote parity, and record CI/release state.
-
-Commit-only, branch-only, push-only, and open-PR-only states are not normal completion. If a real blocker prevents delivery, it must be recorded in NERV and reported without bypassing protections.
-
-## Next priorities
-
-1. Improve discovery beyond article URLs: expand official institutional surfaces, add article-to-official-source follow-up, and group candidates by event before PR creation.
-2. Independently re-check the operational status of the 235 public entries, prioritizing high-impact and stale sources.
-3. Reduce the 109 documented data gaps and resolve the 45 entries whose geographic scope remains unknown.
-4. Complete and record AC01, usability, design, and browser-matrix human reviews before the next intended production deployment.
-5. Update pinned GitHub Actions that still emit the Node.js 20 deprecation warning before it becomes a hard compatibility issue.
+- Resource map and repository-owner release approval: recorded approved.
+- AC01, usability, design, and browser-matrix human approval records: still pending.
+- No owner override was invoked. A pending human gate must be reported as deployment blocked, even if all automated checks pass.
+- Last recorded successful deployment remains the 2026-08-20 owner-authorized run [32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324); no new deployment is claimed here.
+- This implementation's remote CI/merge outcome will be recorded during delivery closeout.
 
 ## Workspace note
 
-At this update, the main worktree contains two pre-existing untracked user files:
+Preserve the pre-existing untracked user files `data/site.v3 2.json` and `migrations/v2-to-v3 2.json`. They are not canonical inputs and are excluded from task commits.
 
-- `data/site.v3 2.json`
-- `migrations/v2-to-v3 2.json`
-
-They are not canonical project inputs. Preserve them and do not delete, overwrite, stage, or treat them as generated truth without explicit owner direction. `AGENTS.md`, `CLAUDE.md`, and `NERV/` are the tracked coordination surface for future agents.
+Private runtime state under `artifacts/workbench/` is intentionally not published. Back it up privately before deleting artifacts; its unapproved drafts and source-check observations are not reconstructed from the public site JSON alone.

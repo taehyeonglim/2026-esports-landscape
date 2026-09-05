@@ -82,7 +82,7 @@ function applyMigration(base, changes, { idempotent = false } = {}) {
   return result;
 }
 
-const [first, second] = await Promise.all([mkdtemp(join(tmpdir(), 'esports-validate-')), mkdtemp(join(tmpdir(), 'esports-validate-'))]);
+const [first, second, baseOnly] = await Promise.all([mkdtemp(join(tmpdir(), 'esports-validate-')), mkdtemp(join(tmpdir(), 'esports-validate-')), mkdtemp(join(tmpdir(), 'esports-base-'))]);
 try {
   await run(process.execPath, ['scripts/extract-data.mjs', '--output', first], { cwd: ROOT });
   await run(process.execPath, ['scripts/extract-data.mjs', '--output', second], { cwd: ROOT });
@@ -90,14 +90,15 @@ try {
   equalGraph(firstGraph, await byteGraph(second), 'Independent extraction byte graph');
   equalGraph(firstGraph, await byteGraph(ROOT), 'Tracked generated output');
 
+  await run(process.execPath, ['scripts/extract-data.mjs', '--base-only', '--output', baseOnly], { cwd: ROOT });
   const [v2, v3, geoV2, additions, coverage, resourceMap, sourcesFile, crosswalkFile, migration, report, schemaText, copiedSchemaText] = await Promise.all([
     readJson(join(ROOT, 'baseline/v2/site.v2.json')),
-    readJson(join(ROOT, 'data/site.v3.json')),
+    readJson(join(baseOnly, 'data/site.v3.json')),
     readJson(join(ROOT, 'baseline/v2/region-geo.v2.json')),
     readJson(join(ROOT, 'data/additions.v1.json')),
-    readJson(join(ROOT, 'data/resource-coverage.v3.json')),
+    readJson(join(baseOnly, 'data/resource-coverage.v3.json')),
     readJson(join(ROOT, 'data/resource-map.v1.json')),
-    readJson(join(ROOT, 'data/sources.v3.json')),
+    readJson(join(baseOnly, 'data/sources.v3.json')),
     readJson(join(ROOT, 'data/source-crosswalk.v1.json')),
     readJson(join(ROOT, 'migrations/v2-to-v3.json')),
     readJson(join(ROOT, 'reports/source-normalization.json')),
@@ -108,6 +109,7 @@ try {
   const schema = JSON.parse(schemaText);
   const totalEntries = 230 + additions.entries.length;
   const validateSchema = new Ajv2020({ allErrors: true, strict: true, strictRequired: false }).compile(schema);
+  if (!validateSchema(await readJson(join(ROOT, 'data/site.v3.json')))) fail('Reviewed projection fails schema');
   if (!validateSchema(v3)) fail(`Published v3 fails JSON Schema: ${JSON.stringify(validateSchema.errors)}`);
   if (v3.schema_version !== 3 || v2.entries.length !== 230 || v3.entries.length !== totalEntries || v2.regions.length !== 17 || v3.regions.length !== 17) fail('Expected schema v3 to preserve the 230-entry baseline, publish all additions, and retain 17 regions.');
   for (const key of originalTopLevel) if (!(key in v3) || stableJson(v2[key]) !== stableJson(v3[key])) fail(`Original top-level collection changed: ${key}.`);
@@ -174,5 +176,5 @@ try {
   }
   console.log(`Data validation passed: deterministic ${totalEntries}-entry, 17-region graph with a preserved 230-entry baseline and additions layer.`);
 } finally {
-  await Promise.all([rm(first, { recursive: true, force: true }), rm(second, { recursive: true, force: true })]);
+  await Promise.all([rm(first, { recursive: true, force: true }), rm(second, { recursive: true, force: true }), rm(baseOnly, { recursive: true, force: true })]);
 }

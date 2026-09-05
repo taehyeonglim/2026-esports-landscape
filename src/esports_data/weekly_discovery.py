@@ -62,6 +62,7 @@ class DiscoveredLink:
     source_id: str
     url: str
     title_sha256: str | None
+    event_sha256: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -166,6 +167,16 @@ def title_digest(value: str | None) -> str | None:
     return sha256(normalized.encode()).hexdigest() if normalized else None
 
 
+def event_digest(title: str) -> str | None:
+    """Conservative suggestion only: require explicit year, region and institution."""
+    year = re.search(r"20[0-9]{2}", title)
+    region = re.search(r"서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|전북|전남|경북|경남|제주", title)
+    institution = re.search(r"[가-힣]{2,}(?:교육청|학교|대학교|재단|협회)", title)
+    event = re.search(r"[가-힣a-zA-Z0-9 ·-]*(?:e스포츠|이스포츠)[가-힣a-zA-Z0-9 ·-]*(?:대회|리그|캠프)", title)
+    if not all((year, region, institution, event)): return None
+    return title_digest('|'.join(part.group() for part in (year, region, institution, event)))
+
+
 def relevant(value: str | None, url: str) -> bool:
     haystack = unicodedata.normalize("NFKC", f"{value or ''} {unquote(urlsplit(url).path)}").casefold()
     return any(keyword in haystack for keyword in KEYWORDS)
@@ -250,7 +261,7 @@ def parse_homepage(document: bytes, surface: Surface) -> tuple[tuple[DiscoveredL
     for raw_url, title in parser.anchors:
         canonical = canonicalize_url(raw_url, surface.endpoint)
         if canonical and relevant(title, canonical):
-            links[canonical] = DiscoveredLink(surface.source_id, canonical, title_digest(title))
+            links[canonical] = DiscoveredLink(surface.source_id, canonical, title_digest(title), event_digest(title))
     origin_host = urlsplit(surface.endpoint).hostname
     feeds = []
     for raw_feed in parser.feeds:
@@ -286,7 +297,7 @@ def parse_feed(document: bytes, surface: Surface) -> tuple[DiscoveredLink, ...]:
                 break
         canonical = canonicalize_url(raw_url or "", surface.endpoint)
         if canonical and relevant(title, canonical):
-            links[canonical] = DiscoveredLink(surface.source_id, canonical, title_digest(title))
+            links[canonical] = DiscoveredLink(surface.source_id, canonical, title_digest(title), event_digest(title))
     return tuple(links.values())
 
 
@@ -298,7 +309,7 @@ def load_surfaces(core_sources: Path, discovery_sources: Path) -> tuple[Surface,
     surfaces = []
     for surface in raw_surfaces:
         endpoint = canonicalize_url(surface.endpoint)
-        if surface.kind not in {"homepage", "rss"} or endpoint is None:
+        if surface.kind not in {"homepage", "rss", "sitemap"} or endpoint is None:
             raise DiscoveryError("invalid_surface")
         surfaces.append(Surface(surface.source_id, surface.kind, endpoint))
     if len({surface.source_id for surface in surfaces}) != len(surfaces):
@@ -309,6 +320,16 @@ def load_surfaces(core_sources: Path, discovery_sources: Path) -> tuple[Surface,
 def scan_surface(surface: Surface) -> SurfaceResult:
     try:
         document = _fetch_document(surface.endpoint, allowed_host=urlsplit(surface.endpoint).hostname)
+        if surface.kind == "sitemap":
+            if b"<!doctype" in document.lower() or b"<!entity" in document.lower(): raise DiscoveryError("unsafe_xml")
+            try: root = ElementTree.fromstring(document)
+            except ElementTree.ParseError as error: raise DiscoveryError("malformed_sitemap") from error
+            links = []
+            for node in root.iter():
+                if _local_name(node.tag) == "loc":
+                    url = canonicalize_url(node.text or "", surface.endpoint)
+                    if url and relevant(None,url): links.append(DiscoveredLink(surface.source_id,url,None))
+            return SurfaceResult(surface.source_id,"success",tuple(links))
         if surface.kind == "rss":
             return SurfaceResult(surface.source_id, "success", parse_feed(document, surface))
         links, feeds = parse_homepage(document, surface)
@@ -396,6 +417,7 @@ def merge_discovery(
             "discovered_via": link.source_id,
             "id": candidate_id,
             "possible_duplicate": possible_duplicate,
+            "event_sha256": link.event_sha256,
             "status": "needs_review",
             "title_sha256": link.title_sha256,
             "url_sha256": url_hash,
@@ -445,6 +467,8 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         _atomic_json(seen_path, seen)
         _atomic_json(candidates_path, candidates)
     report = {
+        "surface_results": [{"source_id":r.source_id,"status":r.status,"candidate_urls":len(r.links)} for r in sorted(results,key=lambda r:r.source_id)],
+        "event_groups": len({c.get("event_sha256") for c in candidates["candidates"] if c.get("event_sha256")}),
         **counts,
         "bootstrapped_urls": bootstrapped,
         "failed_surfaces": len(results) - len(successful),

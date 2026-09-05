@@ -1,3 +1,4 @@
+import { reviewState } from "./review-status.js";
 import { normalizeQuery, SORT_MODES } from "./state.js";
 
 export function normalizeSearchText(value) {
@@ -118,6 +119,7 @@ export function filterEntries(entries, state = {}) {
     .filter(({ entry }) => matchesGroup(entry, "theme", state.theme))
     .filter(({ entry }) => matchesGroup(entry, "scope", state.scope))
     .filter(({ entry }) => matchesGroup(entry, "status", state.status))
+    .filter(({ entry }) => !state.reviewState?.length || state.reviewState.includes(reviewState(entry)))
     .sort((left, right) => compareEntries(left, right, sort))
     .map(({ entry }) => entry);
 }

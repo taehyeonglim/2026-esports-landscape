@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, mkdtemp, open, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, open, readFile, readdir, rename, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { execFile } from 'node:child_process';
@@ -88,13 +88,14 @@ const publicFiles = [
 ].sort();
 
 const requiredRootInputs = ['index.html', 'package.json', 'package-lock.json', 'pyproject.toml', 'requirements.lock'];
-const optionalRootInputs = ['playwright.config.mjs'];
+const optionalRootInputs = ['playwright.config.mjs', 'playwright.admin.config.mjs'];
 const inputPaths = [...new Set([
   ...requiredRootInputs,
   ...(await Promise.all(optionalRootInputs.map(async path => await exists(join(ROOT, path)) ? path : null))).filter(Boolean),
   ...(await sourceFiles(join(ROOT, '.github'), '.github')),
   ...(await sourceFiles(join(ROOT, 'assets'), 'assets')),
   ...(await sourceFiles(join(ROOT, 'adr'), 'adr')),
+  ...(await sourceFiles(join(ROOT, 'admin'), 'admin')),
   ...(await sourceFiles(join(ROOT, 'config'), 'config')),
   ...(await sourceFiles(join(ROOT, 'data/reference'), 'data/reference')),
   ...(await sourceFiles(join(ROOT, 'docs'), 'docs')),
@@ -108,6 +109,7 @@ const inputPaths = [...new Set([
   'baseline/v2/site.v2.json',
   'baseline/v2/region-geo.v2.json',
   'data/additions.v1.json',
+  'data/approved-reviews.v1.json',
   'data/site.v3.json',
   'data/resource-coverage.v3.json',
   'data/resource-map.v1.json',
@@ -119,6 +121,7 @@ const inputSnapshot = await snapshot(inputPaths);
 const validationRoot = await mkdtemp(join(tmpdir(), 'esports-build-input-'));
 try {
   await materializeSnapshot(validationRoot, inputSnapshot);
+  await symlink(join(ROOT, "node_modules"), join(validationRoot, "node_modules"), "dir");
   await run(process.execPath, [join(ROOT, 'scripts/validate-data.mjs'), '--root', validationRoot], { cwd: ROOT });
 } catch (error) {
   await rm(validationRoot, { recursive: true, force: true });

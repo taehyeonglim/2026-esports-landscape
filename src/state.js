@@ -15,6 +15,7 @@ export const DEFAULT_APP_STATE = Object.freeze({
   theme: EMPTY_LIST,
   scope: EMPTY_LIST,
   status: EMPTY_LIST,
+  reviewState: EMPTY_LIST,
   sort: null,
   entry: null,
   mapLoadState: DEFAULT_MAP_LOAD_STATE,
@@ -33,8 +34,8 @@ export const ActionTypes = Object.freeze({
   RESET_FILTERS: "RESET_FILTERS",
 });
 
-const FILTER_FIELDS = new Set(["category", "schoolLevel", "theme", "scope", "status"]);
-const MULTI_FIELDS = new Set(["category", "schoolLevel", "theme", "scope", "status"]);
+const FILTER_FIELDS = new Set(["category", "schoolLevel", "theme", "scope", "status", "reviewState"]);
+const MULTI_FIELDS = new Set(["category", "schoolLevel", "theme", "scope", "status", "reviewState"]);
 
 export function normalizeQuery(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
