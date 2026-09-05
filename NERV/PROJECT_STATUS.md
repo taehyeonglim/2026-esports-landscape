@@ -2,8 +2,9 @@
 
 - Last updated: **2026-09-05 KST**
 - Maintainer handoff: **Codex**
-- Canonical branch: **main**, verified remote base **6dd9ae1** before this implementation.
-- Implementation branch: **agent/review-workbench**; delivery in progress.
+- Canonical branch: **main**.
+- Latest implementation commit: **116a5e20fa17cb9ee2d220ecb2d7c89bbcf044ee**, squash-merged through [PR #17](https://github.com/taehyeonglim/2026-esports-landscape/pull/17).
+- Implementation was committed as `77bd4fc`, pushed, merged, and local main synchronized with origin/main; the merged implementation branch was deleted.
 
 ## Product and data
 
@@ -52,6 +53,7 @@ Final local `npm run verify:release` passed:
 - Local administrator browser scenario: **1/1**, including explicit approval, restart persistence, mobile width, unauthorized API and private-file rejection.
 - Independent extraction, immutable baseline invariants, release hash reproducibility, input-only provenance changes, and output-mutation detection passed.
 - `git diff --check` passed. Existing user files were preserved.
+- Post-merge validation and JavaScript tests passed again in a clean detached checkout of `116a5e2`.
 
 ## Release gates
 
@@ -59,10 +61,13 @@ Final local `npm run verify:release` passed:
 - AC01, usability, design, and browser-matrix human approval records: still pending.
 - No owner override was invoked. A pending human gate must be reported as deployment blocked, even if all automated checks pass.
 - Last recorded successful deployment remains the 2026-08-20 owner-authorized run [32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324); no new deployment is claimed here.
-- This implementation's remote CI/merge outcome will be recorded during delivery closeout.
+- [Implementation run 33965821923](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33965821923) completed: build and full release verification **success**; human-gate **failure**; deploy **skipped**. Exact blocker: `Human approval gate: AC01 human approval is not approved.` The pending human approval policy blocked deployment; this is not a build regression or successful deployment.
+- This NERV-only closeout records the verified implementation destination and gate outcome; it does not change public artifacts or claim missing approvals.
 
 ## Workspace note
 
-Preserve the pre-existing untracked user files `data/site.v3 2.json` and `migrations/v2-to-v3 2.json`. They are not canonical inputs and are excluded from task commits.
+Preserve the initial untracked user files `data/site.v3 2.json` and `migrations/v2-to-v3 2.json`. After local main synchronization, 20 additional untracked numbered copies appeared (22 total), including 13 `geo/regions/* 2.geojson` files and copies under data/, migrations/, and reports/. Their producer was not established. None were deleted or committed.
+
+Extra GeoJSON copies conflict with the exact-17-file validation contract. Do not run in-place extraction in this workspace: its existing cleanup can delete extra GeoJSON files. Use a clean checkout for build/verification until the owner reconciles these copies. The merged tracked graph was verified separately and has exactly 17 region files.
 
 Private runtime state under `artifacts/workbench/` is intentionally not published. Back it up privately before deleting artifacts; its unapproved drafts and source-check observations are not reconstructed from the public site JSON alone.

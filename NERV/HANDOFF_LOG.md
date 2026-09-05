@@ -2,6 +2,28 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Deliver review workbench and preserve workspace copies
+
+**Outcome**
+
+- Committed implementation as `77bd4fc`, pushed and squash-merged [PR #17](https://github.com/taehyeonglim/2026-esports-landscape/pull/17) as `116a5e2`; synchronized local main with origin/main and deleted the merged implementation branch.
+- Preserved 22 untracked numbered copies observed after synchronization, including 13 extra GeoJSONs. Their origin is unverified. Use a clean checkout rather than in-place extraction until the copies are reconciled.
+
+**Verification**
+
+- Final complete local release gate passed (30 JavaScript, 129 Python, 6 static, 110 public-browser, 1 administrator scenarios and reproducible release hashes).
+- Post-merge data validation and 30 JavaScript tests passed in a clean checkout of `116a5e2`.
+
+**Remaining work**
+
+- Human fact review of the 30-case pilot and remaining 205 cases remains pending. Link reachability and unapproved drafts are not fact approvals.
+- Remote run 33965821923 passed build/full verification, failed the AC01 human approval gate (`AC01 human approval is not approved`), and skipped deploy. No owner override was invoked.
+
+**References**
+
+- [Implementation PR #17](https://github.com/taehyeonglim/2026-esports-landscape/pull/17)
+- [Implementation CI run](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33965821923)
+
 ## 2026-09-05 — Codex — Implement the local review and refresh workbench
 
 **Outcome**
