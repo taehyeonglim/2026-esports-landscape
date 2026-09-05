@@ -123,7 +123,7 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
     case ActionTypes.SET_MAP_LOAD_STATE:
       return { ...state, mapLoadState: normalizeMapLoadState(action.mapLoadState) };
     case ActionTypes.RESET_FILTERS:
-      return { ...state, region: null, type: null, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], sort: null, entry: null };
+      return { ...state, region: null, type: null, query: "", category: [], schoolLevel: [], theme: [], scope: [], status: [], reviewState: [], sort: null, entry: null };
     default:
       return state;
   }
@@ -131,7 +131,7 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
 
 export const selectors = Object.freeze({
   activeFilterCount(state) {
-    return [state.category, state.schoolLevel, state.theme, state.scope, state.status]
+    return [state.category, state.schoolLevel, state.theme, state.scope, state.status, state.reviewState]
       .reduce((count, values) => count + values.length, 0);
   },
   hasActiveFilters(state) {

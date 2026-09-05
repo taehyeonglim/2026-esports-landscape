@@ -74,7 +74,7 @@ def main():
             manifest = json.loads((repo/'dist/release-manifest.json').read_text())
             evidence = {'source_sha':source,'release_id':manifest['release_id'], 'policy':policy,
                         'verification':'\n'.join(line for line in verification.splitlines() if not line.startswith('[WebServer]'))[-120000:],
-                        'screenshots':{name:hashlib.sha256((evidence_dir/f'{name}.png').read_bytes()).hexdigest() for name in ('desktop','mobile','research')}, 'files':{}}
+                        'screenshots':{name:hashlib.sha256((evidence_dir/f'{name}.png').read_bytes()).hexdigest() for name in ('desktop','mobile','research','typology','detail')}, 'files':{}}
             # Explicit, bounded public inputs only. Never include credentials, private DB or raw source fetches.
             patterns = ['src/*.js','styles/*.css','scripts/astra-*.mjs','automation/*.py']
             paths = [repo/p for p in ['index.html','research/index.html','data/site.v3.json',
@@ -95,7 +95,7 @@ def main():
                     '--output-schema',str(repo/'schemas/astra-review-result.v1.schema.json'),
                     '--output-last-message',str(evidence_dir/'review.json'),
                     '-c','features.shell_tool=false','-c','model_reasoning_effort="high"','--json']
-            for name in ('desktop','mobile','research'):
+            for name in ('desktop','mobile','research','typology','detail'):
                 args += ['--image',str(evidence_dir/f'{name}.png')]
             execution = run(args+['-'],evidence_dir,data=prompt,timeout=1800)
             session = None

@@ -28,7 +28,7 @@ class AstraRunnerTests(unittest.TestCase):
                     if fail_verification: raise RuntimeError('verification failed')
                     return 'All gates passed'
                 if args[:2]==['node','scripts/astra-screenshots.mjs']:
-                    for name in ('desktop','mobile','research'): (Path(args[2])/f'{name}.png').write_bytes(b'fixture')
+                    for name in ('desktop','mobile','research','typology','detail'): (Path(args[2])/f'{name}.png').write_bytes(b'fixture')
                 if args[:2]==['codex','exec']:
                     self.assertIn('gpt-6-astra',args)
                     self.assertIn('features.shell_tool=false',args)

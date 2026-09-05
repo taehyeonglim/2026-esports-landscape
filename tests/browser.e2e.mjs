@@ -363,3 +363,21 @@ test("malformed research data fails closed without partial rendering", async ({ 
   }
   await expect.poll(() => errors.some((message) => message.includes("Invalid research data: confidence for busan-001"))).toBe(true);
 });
+
+test("근거 검토 필터 초기화와 사례별 한계 및 현재 연구 집계가 일치한다", async ({ page }) => {
+  await page.goto("/index.html?reviewState=confirmed");
+  await openFilterPanelWhenCompact(page);
+  await openAdvancedFilters(page);
+  await page.locator("#review-state-filter").selectOption("confirmed");
+  await expect(page.locator("#result-count")).toHaveText("0건");
+  await page.locator("#reset-filters").click();
+  await expect(page.locator("#review-state-filter")).toHaveValue("");
+  await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
+  await expect.poll(() => page.evaluate(() => location.search)).toBe("");
+  await page.goto("/index.html?entry=busan-016");
+  const entry = published.entries.find(item => item.id === "busan-016");
+  await expect(page.locator("#detail-content dt").filter({ hasText: "사례별 근거·한계" }).locator("+ dd")).toHaveText(entry.notes);
+  await page.goto("/research/");
+  const categories = page.locator("#typology-axes .axis").filter({ has: page.locator("h3", { hasText: "national category coverage" }) });
+  for (const item of published.coverage_by_category) await expect(categories).toContainText(`${item.category} ${item.count}건`);
+});

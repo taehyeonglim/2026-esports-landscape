@@ -56,6 +56,41 @@ function renderFacts(data, target) {
   }
 }
 
+export function currentTypology(data) {
+  const count = (entries, key) => {
+    const counts = new Map();
+    for (const entry of entries) {
+      const label = entry[key] || "미기록";
+      counts.set(label, (counts.get(label) ?? 0) + 1);
+    }
+    return [...counts].sort(([a], [b]) => a.localeCompare(b, "ko"))
+      .map(([label, total]) => `${label} ${total}건`);
+  };
+  const represented = new Set(data.entries.map(entry => entry.region_id));
+  const scope = value => data.entries.filter(entry => entry.scope === value).length;
+  const busan = data.entries.filter(entry => entry.region_id === "busan");
+  return data.typology_axes.map(axis => {
+    let values;
+    let rationale = axis.rationale;
+    if (axis.axis.includes("national regional coverage")) values = [
+      `등록 지역 ${data.regions.length}개 시·도`, `positive entry 보유 ${represented.size}개 시·도`,
+      `positive entry 미보유 ${data.regions.filter(region => !represented.has(region.id)).length}개 시·도`,
+    ];
+    else if (axis.axis.includes("national category coverage")) values = count(data.entries, "category");
+    else if (axis.axis.includes("school_level")) values = count(data.entries, "school_level");
+    else if (axis.axis.includes("geographic scope")) values = [
+      `지도 표시 regional ${scope("regional")}건`, `전국 사업 off-map ${scope("nationwide")}건`,
+      `인접 지역 off-map ${scope("adjacent")}건`, `위치 미상 off-map ${scope("unknown")}건`,
+    ];
+    else if (axis.axis.includes("Busan-only pattern")) {
+      values = [...count(busan, "category"), `부산 regional ${busan.filter(entry => entry.scope === "regional").length}건`,
+        `부산 off-map ${busan.filter(entry => entry.scope !== "regional").length}건`];
+      rationale = "부산은 원 파일럿 지역이다. 현재 등록 사례의 부산 내부 분포이며 전국 결론으로 일반화하지 않는다.";
+    }
+    return { ...axis, values: values ?? axis.values, rationale };
+  });
+}
+
 function renderTypology(axes, target) {
   for (const axis of axes ?? []) {
     const item = element("li", null, "axis");
@@ -261,7 +296,7 @@ export function renderResearch(data) {
   const targets = renderTargets();
   const fragments = Object.fromEntries(RENDER_TARGETS.map((selector) => [selector, document.createDocumentFragment()]));
   renderFacts(data, fragments["#dataset-facts"]);
-  renderTypology(data.typology_axes, fragments["#typology-axes"]);
+  renderTypology(currentTypology(data), fragments["#typology-axes"]);
   renderCoverage(data.coverage_by_category, fragments["#coverage-by-category"]);
   renderRecords(data.negative_evidence, data.regions, "negative", fragments["#negative-evidence"]);
   renderRecords(data.data_gaps, data.regions, "gap", fragments["#data-gaps"]);
