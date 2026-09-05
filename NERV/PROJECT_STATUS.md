@@ -61,7 +61,7 @@ Final local `npm run verify:release` passed:
 - AC01, usability, design, and browser-matrix human approval records: still pending.
 - No owner override was invoked. A pending human gate must be reported as deployment blocked, even if all automated checks pass.
 - Last recorded successful deployment remains the 2026-08-20 owner-authorized run [32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324); no new deployment is claimed here.
-- [Implementation run 33965821923](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33965821923) completed: build and full release verification **success**; human-gate **failure**; deploy **skipped**. The pending human approval policy blocked deployment; this is not a build regression or successful deployment.
+- [Implementation run 33965821923](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33965821923) completed: build and full release verification **success**; human-gate **failure**; deploy **skipped**. Exact blocker: `Human approval gate: AC01 human approval is not approved.` The pending human approval policy blocked deployment; this is not a build regression or successful deployment.
 - This NERV-only closeout records the verified implementation destination and gate outcome; it does not change public artifacts or claim missing approvals.
 
 ## Workspace note

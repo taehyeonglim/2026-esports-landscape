@@ -17,7 +17,7 @@ Newest entries go first. Keep entries concise and link to durable artifacts.
 **Remaining work**
 
 - Human fact review of the 30-case pilot and remaining 205 cases remains pending. Link reachability and unapproved drafts are not fact approvals.
-- Remote run 33965821923 passed build/full verification, failed the human approval gate, and skipped deploy. No owner override was invoked.
+- Remote run 33965821923 passed build/full verification, failed the AC01 human approval gate (`AC01 human approval is not approved`), and skipped deploy. No owner override was invoked.
 
 **References**
 
