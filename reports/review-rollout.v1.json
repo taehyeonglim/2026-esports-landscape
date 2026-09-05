@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-05",
+  "pilot": {
+    "attempted_entries": 30,
+    "batch": "pilot",
+    "checked_at": "2026-09-05",
+    "fact_reviews_completed": 0,
+    "next_review_at": "2026-12-04",
+    "pilot_entries": 30,
+    "public_changes": 0,
+    "reason_counts": {
+      "MANUAL_FACT_REVIEW_REQUIRED": 7,
+      "NO_WEB_SOURCE": 0,
+      "SOURCE_UNAVAILABLE": 23
+    },
+    "schema_version": 1,
+    "urls_attempted": 23,
+    "urls_fetched": 12
+  },
+  "all": {
+    "attempted_entries": 235,
+    "batch": "all",
+    "checked_at": "2026-09-05",
+    "fact_reviews_completed": 0,
+    "next_review_at": "2026-12-04",
+    "pilot_entries": 30,
+    "public_changes": 0,
+    "reason_counts": {
+      "MANUAL_FACT_REVIEW_REQUIRED": 153,
+      "NO_WEB_SOURCE": 0,
+      "SOURCE_UNAVAILABLE": 82
+    },
+    "schema_version": 1,
+    "urls_attempted": 115,
+    "urls_fetched": 87
+  },
+  "official_surfaces": [
+    {
+      "candidate_links": 0,
+      "source_id": "pilot-cheongju-school",
+      "status": "success"
+    },
+    {
+      "candidate_links": 0,
+      "source_id": "pilot-busan-computer-school",
+      "status": "success"
+    },
+    {
+      "candidate_links": 0,
+      "source_id": "pilot-busan-school-sports",
+      "status": "success"
+    },
+    {
+      "candidate_links": 16,
+      "source_id": "pilot-busan-arena",
+      "status": "success"
+    },
+    {
+      "candidate_links": 1,
+      "source_id": "pilot-gyeongnam-arena",
+      "status": "success"
+    },
+    {
+      "candidate_links": 0,
+      "source_id": "pilot-special-education",
+      "status": "failed"
+    }
+  ],
+  "drafts_prepared": 235,
+  "human_fact_reviews_completed": 0,
+  "public_status_changes": 0,
+  "remaining_gate": "Human source and fact review; no automatic approval"
+}

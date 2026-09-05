@@ -9,11 +9,11 @@ const nationalMap = JSON.parse(await readFile(new URL("../data/national-map.v1.j
 
 test("landscape model partitions all 235 entries into 17 interactive regions", () => {
   const model = landscapeModel(site.entries, site.regions);
-  assert.equal(model.total, 235);
+  assert.equal(model.total, site.entries.length);
   assert.equal(model.regions.length, 17);
   assert.equal(model.byId.size, 17);
-  assert.equal(model.regions.reduce((sum, region) => sum + region.total, 0), 235);
-  assert.equal(model.nationalCategoryTotals.reduce((sum, category) => sum + category.count, 0), 235);
+  assert.equal(model.regions.reduce((sum, region) => sum + region.total, 0), site.entries.length);
+  assert.equal(model.nationalCategoryTotals.reduce((sum, category) => sum + category.count, 0), site.entries.length);
   assert.equal(model.topRegions.length, 3);
   for (const region of model.regions) {
     assert.ok(region.total > 0);

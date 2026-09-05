@@ -2,6 +2,28 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Implement the local review and refresh workbench
+
+**Outcome**
+
+- Added deterministic approved corrections/admissions, registered official-source and PII checks, local SQLite review UI/API, proposal export, conservative event suggestions, and six institutional discovery surfaces.
+- Added public review-date disclosure and shareable evidence-review filtering. Preserved all 235 public statuses and the existing data cutoff.
+- Prepared 235 unapproved local drafts from bounded source checks. 153 entries had a fetched source; 82 require alternative source retrieval. These are not completed human fact reviews.
+
+**Verification**
+
+- Complete release verification passed: JavaScript 30, Python 129, static contracts 6, public browser scenarios 110, administrator scenario 1. Reproducible extraction/build/hash checks and diff hygiene passed.
+- Existing untracked user files and unrelated discovery PR #16 were preserved.
+
+**Remaining work**
+
+- Deliver implementation branch through PR merge and record remote CI. Human fact review of the pilot and remaining entries is pending. Existing human deployment approvals remain pending; no override or successful deployment is claimed.
+
+**References**
+
+- [Review operations](../docs/review-workbench.md)
+- [Rollout aggregate](../reports/review-rollout.v1.json)
+
 ## 2026-08-20 — Codex — Explain current data status in README
 
 **Outcome**

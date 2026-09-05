@@ -141,3 +141,8 @@ test("research deployment preserves one accessible failure surface and diagnosti
   assert.match(research, /console\.error\("Research data loading or rendering failed:"/);
   assert.doesNotMatch(research, /review\?\./);
 });
+
+
+test("private workbench and approval inputs are absent from public artifacts", async () => {
+  for (const file of ['admin/index.html','admin/admin.js','artifacts/workbench/reviews.sqlite3','data/approved-reviews.v1.json','src/esports_data/admin.py']) await assert.rejects(access(new URL(file,root)));
+});

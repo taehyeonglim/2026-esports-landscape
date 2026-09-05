@@ -3,6 +3,8 @@ import { fileURLToPath } from 'node:url';
 import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
+import { applyReviews } from './review-overlay.mjs';
+
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const RESOURCE_TYPES = Object.freeze(['school', 'event', 'facility', 'other']);
 const RESOURCE_MAP_STATUSES = new Set(['mechanically_derived_pending_owner_approval', 'approved']);
@@ -138,7 +140,8 @@ async function generate(output) {
     sources,
     raw_source_crosswalk: crosswalk,
   };
-  const coverage = { schema_version: 1, total_entries: entries.length, covered_entries: entries.length, entries: entries.map(entry => ({ id: entry.id, category: entry.category, resource_type: entry.resource_type })) };
+  const published = process.argv.includes('--base-only') ? v3 : applyReviews(v3, JSON.parse(await readFile(join(ROOT, 'data/approved-reviews.v1.json'), 'utf8')));
+  const coverage = { schema_version: 1, total_entries: published.entries.length, covered_entries: published.entries.length, entries: published.entries.map(entry => ({ id: entry.id, category: entry.category, resource_type: entry.resource_type })) };
   const migration = { schema_version: 1, from_schema_version: 2, to_schema_version: 3, entries: migrations };
   const normalization = {
     schema_version: 1,
@@ -154,9 +157,9 @@ async function generate(output) {
     mkdir(join(output, 'reports'), { recursive: true }),
   ]);
   await Promise.all([
-    writeFile(join(output, 'data/site.v3.json'), stableJson(v3)),
+    writeFile(join(output, 'data/site.v3.json'), stableJson(published)),
     writeFile(join(output, 'data/resource-coverage.v3.json'), stableJson(coverage)),
-    writeFile(join(output, 'data/sources.v3.json'), stableJson({ schema_version: 1, sources })),
+    writeFile(join(output, 'data/sources.v3.json'), stableJson({ schema_version: 1, sources: published.sources })),
     writeFile(join(output, 'data/source-crosswalk.v1.json'), stableJson({ schema_version: 1, crosswalk })),
     writeFile(join(output, 'data/schema.v3.json'), schemaText),
     writeFile(join(output, 'migrations/v2-to-v3.json'), stableJson(migration)),
@@ -183,7 +186,8 @@ async function replaceGenerated(stage) {
 
 const outputFlag = process.argv.indexOf('--output');
 const output = outputFlag === -1 ? null : process.argv[outputFlag + 1];
-if (outputFlag !== -1 && (!output || process.argv.length !== outputFlag + 2)) throw new Error('Usage: extract-data.mjs [--output directory]');
+if (process.argv.includes('--base-only') && !output) throw new Error('Base-only extraction requires an isolated output directory');
+if (outputFlag !== -1 && !output) throw new Error('Usage: extract-data.mjs [--output directory]');
 const stage = output ?? join(ROOT, `.extract-stage-${process.pid}`);
 if (!output) {
   await rm(stage, { recursive: true, force: true });

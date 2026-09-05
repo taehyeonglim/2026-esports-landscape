@@ -632,6 +632,13 @@ def build_parser() -> argparse.ArgumentParser:
     )
     publish_parser.set_defaults(handler=_command_publish)
 
+    from .admin import run as run_admin
+    admin_parser = commands.add_parser("admin", help="Local human review workbench")
+    admin_parser.add_argument("--root", default=".")
+    admin_parser.add_argument("--port", type=int, default=4188)
+    admin_parser.add_argument("--reviewer", required=True, help="Opaque reviewer ID (no personal data)")
+    admin_parser.set_defaults(handler=run_admin)
+
     return parser
 
 
