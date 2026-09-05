@@ -1,13 +1,14 @@
+import { caseSite } from "../src/record-scope.js";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { landscapeModel } from "../src/landscape.js";
 
-const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
+const site = caseSite(JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8")));
 const nationalMap = JSON.parse(await readFile(new URL("../data/national-map.v1.json", import.meta.url), "utf8"));
 
-test("landscape model partitions all 235 entries into 17 interactive regions", () => {
+test("landscape model partitions all case entries into 17 interactive regions", () => {
   const model = landscapeModel(site.entries, site.regions);
   assert.equal(model.total, site.entries.length);
   assert.equal(model.regions.length, 17);

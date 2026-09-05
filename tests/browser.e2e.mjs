@@ -1,3 +1,4 @@
+import { caseSite } from "../src/record-scope.js";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
@@ -5,9 +6,10 @@ import AxeBuilder from "@axe-core/playwright";
 
 const fixture = JSON.parse(await readFile(new URL("./fixtures/ac01-tasks.v1.json", import.meta.url), "utf8"));
 const published = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
-const publicCount = published.entries.length;
-const statusCount = status => published.entries.filter(e=>e.operational_status===status).length;
-const typeCount = type => published.entries.filter(e=>e.resource_type===type).length;
+const cases = caseSite(published);
+const publicCount = cases.entries.length;
+const statusCount = status => cases.entries.filter(e=>e.operational_status===status).length;
+const typeCount = type => cases.entries.filter(e=>e.resource_type===type).length;
 const dataUrl = "**/data/site.v3.json";
 const expectedTaskIds = ["U1", "U2", "U3", "U4", "U5"];
 const taskIds = fixture.tasks?.map((task) => task.id) ?? [];
@@ -119,11 +121,11 @@ test("모바일 필터는 모달 시트로 열리고 현재 결과 수와 포커
   await expect(page.locator("#filter-panel")).toBeVisible();
   expect(await page.locator("#filter-panel").evaluate((dialog) => dialog.matches(":modal"))).toBe(true);
   await page.locator('[data-category-chip="지자체정책·조례"]').click();
-  await expect(page.locator("#filter-panel-result")).toHaveText("28건 결과 보기");
+  await expect(page.locator("#filter-panel-result")).toHaveText(`${cases.entries.filter(entry => entry.category === "지자체정책·조례").length}건 결과 보기`);
   await page.keyboard.press("Escape");
   await expect(page.locator("#filter-panel")).toBeHidden();
   await expect(page.locator("#mobile-filter-trigger")).toBeFocused();
-  await expect(page.locator("#result-count")).toHaveText("28건");
+  await expect(page.locator("#result-count")).toHaveText(`${cases.entries.filter(entry => entry.category === "지자체정책·조례").length}건`);
 });
 
 test("지역 비교 탭은 공식 시도 순서를 사용하고 선택을 필터된 목록으로 연결한다", async ({ page }) => {
@@ -133,14 +135,14 @@ test("지역 비교 탭은 공식 시도 순서를 사용하고 선택을 필터
   await expect(page.locator(".matrix-chart-row")).toHaveCount(17);
   await expect(page.locator(".matrix-chart-row").first()).toHaveAttribute("data-region", "seoul");
   await expect(page.locator("[data-matrix-sort]")).toHaveCount(0);
-  await expect(page.locator(".matrix-chart-summary")).toHaveText(`${publicCount}건 · 17개 시·도 · 8개 유형`);
+  await expect(page.locator(".matrix-chart-summary")).toHaveText(`${publicCount}건 · 17개 시·도 · ${new Set(cases.entries.map(entry => entry.category)).size}개 유형`);
   const matrix = page.locator("#compare-matrix table");
   await expect(matrix.locator("tbody tr")).toHaveCount(17);
   await expect(matrix.locator("tfoot td").last()).toHaveText(String(publicCount));
   await expect(page.locator(".matrix-caveat")).toContainText("실제 활동 규모나 순위를 나타내지 않습니다");
   await page.locator('#compare-matrix .matrix-legend button[data-category="지자체정책·조례"]').click();
   await expect(page.locator("#browse-tab")).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator("#result-count")).toHaveText("28건");
+  await expect(page.locator("#result-count")).toHaveText(`${cases.entries.filter(entry => entry.category === "지자체정책·조례").length}건`);
   await expect(page.locator("#results-heading")).toBeFocused();
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search)))).toEqual({ category: "지자체정책·조례" });
 });
@@ -200,7 +202,7 @@ test("결과 카드는 핵심 정보만 표시하고 상세에서 원문과 전�
   await expect(page.locator("#detail-content")).toContainText("다음 검토일");
 });
 
-test("점진 노출로 초기 길이를 제한하면서 235건 전부 도달할 수 있다", async ({ page }) => {
+test("점진 노출로 초기 길이를 제한하면서 집계 대상 사례 전부 도달할 수 있다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   let guard = 0;
@@ -330,8 +332,9 @@ test("home, comparison, responsive detail, filter dialog, and research have no s
   await expect(page.locator("#dataset-facts dd")).toContainText([
     "v3",
     `${publicCount}건`,
+    `${published.entries.length}개 레코드 · 보조 참고 ${published.entries.length-publicCount}개는 사례 집계 제외`,
     "17개 시·도",
-    `${published.sources.length}개 source ref`,
+    `${cases.sources.length}개 source ref`,
     published.meta.data_updated_at,
     published.meta.validation_as_of ?? "승인된 기준일 없음",
     `확인 필요 ${statusCount('needs_review')}건 · 운영 중 ${statusCount('current')}건 · 종료 ${statusCount('ended')}건`,
@@ -379,5 +382,17 @@ test("근거 검토 필터 초기화와 사례별 한계 및 현재 연구 집�
   await expect(page.locator("#detail-content dt").filter({ hasText: "사례별 근거·한계" }).locator("+ dd")).toHaveText(entry.notes);
   await page.goto("/research/");
   const categories = page.locator("#typology-axes .axis").filter({ has: page.locator("h3", { hasText: "national category coverage" }) });
-  for (const item of published.coverage_by_category) await expect(categories).toContainText(`${item.category} ${item.count}건`);
+  for (const item of cases.coverage_by_category) await expect(categories).toContainText(`${item.category} ${item.count}건`);
+});
+
+test("지역 보조 참고 자료는 사례 검색과 집계에서 제외하고 연구 부록에 보존한다", async ({ page }) => {
+  await page.goto("/index.html");
+  await page.locator("#entry-search").fill("대구광역시 학교 이스포츠 클럽 강사 지원 참여 거점");
+  await expect(page.locator("#result-count")).toHaveText("0건");
+  await page.goto("/research/");
+  await expect(page.locator("#reference-records > li")).toHaveCount(published.entries.length - publicCount);
+  await expect(page.locator("#case-scope-summary")).toContainText(`${publicCount}개 사례만`);
+  await expect(page.locator("#reference-records")).toContainText("동일 행사 사례: national-audit-jeonbuk-gunsan-amateur-esports-2026");
+  await expect(page.locator("#typology-axes")).toContainText(`지도 적격 ${cases.entries.filter(entry => !entry.off_map).length}건`);
+  await expect(page.locator("#typology-axes")).toContainText(`좌표 미확인 ${cases.entries.filter(entry => entry.scope === "regional" && entry.off_map).length}건`);
 });

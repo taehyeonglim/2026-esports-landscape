@@ -1,3 +1,4 @@
+import { caseSite, isReferenceRecord } from "./record-scope.js";
 const dataUrl = new URL("../data/site.v3.json", import.meta.url);
 
 const EXPECTED_SCHEMA_VERSION = 3;
@@ -5,6 +6,8 @@ const MINIMUM_ENTRY_COUNT = 230;
 const EXPECTED_REGION_COUNT = 17;
 const RENDER_TARGETS = [
   "#dataset-facts",
+  "#reference-records",
+  "#case-scope-summary",
   "#typology-axes",
   "#coverage-by-category",
   "#negative-evidence",
@@ -40,7 +43,8 @@ function renderFacts(data, target) {
   const resourceCounts = Object.fromEntries([...RESOURCE_TYPE_VALUES].map((type) => [type, data.entries.filter((entry) => entry.resource_type === type).length]));
   const values = [
     ["스키마", `v${data.schema_version}`],
-    ["등록 항목", `${data.meta.entry_count}건`],
+    ["사례 집계", `${data.meta.entry_count}건`],
+    ["보존 원본", `${data.archival_count}개 레코드 · 보조 참고 ${data.reference_count}개는 사례 집계 제외`],
     ["대상 지역", `${data.meta.region_count}개 시·도`],
     ["원문 참조", `${data.sources.length}개 source ref`],
     ["자료 반영일", data.meta.data_updated_at],
@@ -57,6 +61,7 @@ function renderFacts(data, target) {
 }
 
 export function currentTypology(data) {
+  data = caseSite(data);
   const count = (entries, key) => {
     const counts = new Map();
     for (const entry of entries) {
@@ -79,7 +84,8 @@ export function currentTypology(data) {
     else if (axis.axis.includes("national category coverage")) values = count(data.entries, "category");
     else if (axis.axis.includes("school_level")) values = count(data.entries, "school_level");
     else if (axis.axis.includes("geographic scope")) values = [
-      `지도 표시 regional ${scope("regional")}건`, `전국 사업 off-map ${scope("nationwide")}건`,
+      `지도 적격 ${data.entries.filter(entry => !entry.off_map).length}건`,
+      `지역 범위 ${scope("regional")}건 중 좌표 미확인 ${data.entries.filter(entry => entry.scope === "regional" && entry.off_map).length}건`, `전국 사업 off-map ${scope("nationwide")}건`,
       `인접 지역 off-map ${scope("adjacent")}건`, `위치 미상 off-map ${scope("unknown")}건`,
     ];
     else if (axis.axis.includes("Busan-only pattern")) {
@@ -87,6 +93,7 @@ export function currentTypology(data) {
         `부산 off-map ${busan.filter(entry => entry.scope !== "regional").length}건`];
       rationale = "부산은 원 파일럿 지역이다. 현재 등록 사례의 부산 내부 분포이며 전국 결론으로 일반화하지 않는다.";
     }
+    if (axis.axis.includes("geographic scope")) rationale = "좌표가 있는 regional 사례만 위치 표시 적격이다. 좌표 미확인 사례는 off-map으로 보존한다. 현재 전국 지도는 지역별 자료 수를 요약한다.";
     return { ...axis, values: values ?? axis.values, rationale };
   });
 }
@@ -293,9 +300,20 @@ function renderTargets() {
 
 export function renderResearch(data) {
   validateResearchData(data);
+  const references = data.entries.filter(isReferenceRecord);
+  data = caseSite(data);
   const targets = renderTargets();
   const fragments = Object.fromEntries(RENDER_TARGETS.map((selector) => [selector, document.createDocumentFragment()]));
   renderFacts(data, fragments["#dataset-facts"]);
+  fragments["#case-scope-summary"].append(document.createTextNode(`원본 ${data.archival_count}개 레코드는 계보 보존용입니다. 지역별 지도 보조 표시로 만든 참고 자료 ${data.reference_count}개를 제외한 ${data.entries.length}개 사례만 검색·비교·지도에 집계합니다. 이는 현재 운영이나 지역 참여를 독립 검증했다는 뜻이 아닙니다.`));
+  for (const record of references) {
+    const item = element("li");
+    appendText(item, "p", `기존 표기(지역 참여 확인 아님): ${record.name}`);
+    appendText(item, "small", record.id);
+    appendText(item, "p", "지역별 지도 보조 표시로 작성된 참고 자료입니다. 독립 사례·지역 참여·정확한 장소의 근거로 사용하지 않으며 검색·지도·비교 집계에서 제외합니다.");
+    if (record.id === "visible-regional-jeonbuk-local-esports-event") appendText(item, "p", "동일 행사 사례: national-audit-jeonbuk-gunsan-amateur-esports-2026. 이 보조 표시는 중복 집계하지 않습니다.");
+    fragments["#reference-records"].append(item);
+  }
   renderTypology(currentTypology(data), fragments["#typology-axes"]);
   renderCoverage(data.coverage_by_category, fragments["#coverage-by-category"]);
   renderRecords(data.negative_evidence, data.regions, "negative", fragments["#negative-evidence"]);

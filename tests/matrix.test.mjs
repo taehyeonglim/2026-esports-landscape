@@ -1,11 +1,12 @@
+import { caseSite } from "../src/record-scope.js";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 import { CATEGORY_ORDER, categoryColumns, matrixModel } from "../src/matrix.js";
 
-const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
+const site = caseSite(JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8")));
 
-test("matrix model is an exact 235-entry partition across 17 regions", () => {
+test("matrix model is an exact case-entry partition across 17 regions", () => {
   const model = matrixModel(site.entries, site.regions);
   assert.equal(model.grandTotal, site.entries.length);
   assert.equal(model.rows.length, 17);

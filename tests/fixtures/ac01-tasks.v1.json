@@ -4,7 +4,7 @@
   "human_approval": {
     "status": "pending",
     "approved_by": null,
-    "note": "검색·필터 → 카드 → 반응형 상세 패널 → 원문 출처 동선 revision 4의 사람 검수를 기다립니다.",
+    "note": "사람 검수는 미완료입니다. 보조 참고 항목을 제외한 실제 사례로 자동화 U2/U3 대상을 교체했으며 사람 승인으로 간주하지 않습니다.",
     "approved_at": null
   },
   "tasks": [
@@ -19,19 +19,19 @@
     },
     {
       "id": "U2",
-      "target_name": "서울특별시 학교 이스포츠 클럽 강사 지원 참여 거점",
+      "target_name": "서울 e-스포츠 스타디움",
       "region": "seoul",
-      "category": "학교동아리·팀",
-      "entry_id": "visible-regional-seoul-school-club-instructor",
-      "expected_source_url_sha256": "4ae1f260c2dc20f6f5ce7b43bb72c392b2d565e855e083779b6248f3f8339f8e",
-      "expected_source_url": "https://school.e-sports.or.kr/"
+      "category": "경기장·인프라",
+      "entry_id": "national-completion-seoul-esports-stadium",
+      "expected_source_url_sha256": "5f4cb86690d08776dbf4740ca5f6c47b89b5f2288a9263e07ce8d3894d90504c",
+      "expected_source_url": "https://korean.visitseoul.net/attractions/e-%EC%8A%A4%ED%8F%AC%EC%B8%A0-%EC%8A%A4%ED%83%80%EB%94%94%EC%9B%80/KOP003376"
     },
     {
       "id": "U3",
-      "target_name": "경기콘텐츠진흥원·경기e스포츠협회 e스포츠 사업 거점",
+      "target_name": "경기콘텐츠진흥원 경기e스포츠 육성",
       "region": "gyeonggi",
-      "category": "경기장·인프라",
-      "entry_id": "visible-regional-gyeonggi-regional-game-agency",
+      "category": "지자체정책·조례",
+      "entry_id": "national-completion-gyeonggi-gcon-esports",
       "expected_source_url_sha256": "5f1bdeb196ebc8d013ae6b7e0c566e8e3fea2e587ec798da325f3b96ba022992",
       "expected_source_url": "https://www.gcon.or.kr/gcon/main/contents.do?menuNo=200032"
     },
