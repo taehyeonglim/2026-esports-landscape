@@ -1,9 +1,10 @@
+import { caseSite } from "../src/record-scope.js";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
 import { editorialModel } from "../src/editorial.js";
 
-const site = JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8"));
+const site = caseSite(JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8")));
 
 test("editorial model turns the full dataset into four movements and three evidence-linked stories", () => {
   const model = editorialModel(site);

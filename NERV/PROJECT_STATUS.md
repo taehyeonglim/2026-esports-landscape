@@ -9,7 +9,7 @@
 ## Product and data
 
 - Static HTML/CSS/ES modules and GitHub Pages remain the public architecture.
-- Public data remains **235 entries / 17 regions / 235 sources**, cutoff **2026-07-29**.
+- Archival data remains **235 records / 17 regions / 235 sources**, cutoff **2026-07-29**. Public case search/comparison uses **75 cases**; **160 legacy regional display references** are separated in the research appendix and excluded from case/map aggregates. The source graph and stable IDs remain intact.
 - All 235 operational statuses remain `needs_review`. No automated fact approvals or public status changes were made.
 - The immutable 230-entry baseline and 5 legacy additions are preserved.
 - Approved reviews/admissions now persist through deterministic extraction via `data/approved-reviews.v1.json` (currently empty).
@@ -46,10 +46,10 @@ Durable aggregate: [`../reports/review-rollout.v1.json`](../reports/review-rollo
 
 Final local `npm run verify:release` passed:
 
-- JavaScript: **42/42**.
+- JavaScript: **43/43**.
 - Python: **131/131**.
 - Static contracts: **6/6**, including exclusion of private administration files.
-- Public browser matrix: **115/115** across desktop Chromium/Firefox/WebKit and Android/iOS profiles.
+- Public browser matrix: **120/120** across desktop Chromium/Firefox/WebKit and Android/iOS profiles.
 - Local administrator browser scenario: **1/1**, including explicit approval, restart persistence, mobile width, unauthorized API and private-file rejection.
 - Independent extraction, immutable baseline invariants, release hash reproducibility, input-only provenance changes, and output-mutation detection passed.
 - `git diff --check` passed. Existing user files were preserved.
@@ -57,14 +57,14 @@ Final local `npm run verify:release` passed:
 
 ## Release gates
 
-- Owner instruction on 2026-09-05 delegates release assessment to **gpt-6-astra**, high reasoning. Signed AI approval replaces the mandatory human-study gate for this route; individual fact review and protected snapshot publication remain distinct.
-- [AI release guide](../docs/astra-release.md): local authenticated Codex runner, 15-minute macOS polling, full verification and screenshots, seven-check structured verdict, Ed25519 receipt, exact source/artifact/policy binding, independent Actions rebuild and verification, live readback.
-- LaunchAgent `com.taehyeong.esports-astra-review` installed and enabled. Public verification key is registered as a GitHub variable; local private directory/key permissions verified 0700/0600. No ChatGPT credential is transferred to GitHub.
-- First actual review of `894488c` **rejected** deployment: reset omitted reviewState; research typology retained baseline counts; detail omitted case-specific evidence limitations. No receipt or deploy dispatch was produced.
-- Follow-up fixes on `agent/astra-review-fixes` reset/count the review filter, derive current typology, display subtype/notes, add browser regression coverage and provide readable viewport/detail/typology images. Full local verification passed: **42 JS, 131 Python, 6 static, 115 public-browser, 1 administrator**, reproducible hashes.
-- [Push CI 33967255150](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33967255150): build success; release-gate/deploy skipped as designed for push. This is not a deployment.
-- Human AC01/usability/design/browser fixtures remain pending and unchanged. No owner override is invoked by the AI coordinator.
-- Next: merge fixes, reinstall coordinator copy, obtain a fresh genuine model verdict and confirm Pages readback. Mac must remain awake/online with valid local Codex and GitHub sessions.
+- Owner delegates release assessment to **gpt-6-astra**, high reasoning. Signed AI approval replaces the mandatory human-study gate for this route; fact approval and protected snapshot publication remain separate.
+- [AI release guide](../docs/astra-release.md): full local verification, five screenshots, seven structured checks, Ed25519 source/artifact/policy binding, independent Actions rebuild and live readback.
+- Installed LaunchAgent `com.taehyeong.esports-astra-review` polls every 15 minutes. Public key is registered in GitHub; private directory/key permissions are 0700/0600. Mac must be awake/online with valid local Codex and GitHub sessions.
+- First actual review of `894488c` rejected reset, typology and detail-disclosure defects; fixes merged in PR #20 as `32aa2587c22121dc93f6be09fff1f9cd97309ca6`.
+- Second actual review of `32aa258` rejected unsupported regional anchors, a duplicate Gunsan event and conflated scope/coordinate counts. Neither review signed or dispatched deployment.
+- Follow-up `agent/astra-data-scope`: isolate 160 legacy reference anchors, retain 75 case records and all 235 archival IDs, report coordinate eligibility separately. U2/U3 automated navigation targets now use case records; human approval remains pending.
+- Full local release gate passed: **43 JS, 131 Python, 6 static, 120 public-browser, 1 administrator**, reproducible hashes. Push CI 33967703649 passed build and skipped deploy as intended; no new successful deployment yet.
+- Next: merge the partition, obtain a fresh genuine model verdict, confirm Actions deployment and live hashes. Reintroducing reference records requires explicit source/duplicate review, not an operational-status edit alone.
 
 ## Workspace note
 

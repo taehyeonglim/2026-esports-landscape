@@ -1,3 +1,4 @@
+import { caseSite } from "../src/record-scope.js";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
@@ -266,10 +267,25 @@ test("research typology counts the complete current corpus rather than baseline 
   for (const [marker, key] of [["national category coverage", "category"], ["school_level", "school_level"]]) {
     const values = axes.find(axis => axis.axis.includes(marker)).values;
     const expected = new Map();
-    for (const entry of data.entries) expected.set(entry[key], (expected.get(entry[key]) ?? 0) + 1);
+    for (const entry of caseSite(data).entries) expected.set(entry[key], (expected.get(entry[key]) ?? 0) + 1);
     assert.deepEqual(new Set(values), new Set([...expected].map(([label, count]) => `${label} ${count}건`)));
   }
   const extended = structuredClone(data);
   extended.entries.push({ ...data.entries[0], id: "test-count", category: "새 분류", school_level: "새 학교급" });
   assert.ok(currentTypology(extended).find(axis => axis.axis.includes("school_level")).values.includes("새 학교급 1건"));
+});
+
+test("reference partition preserves archival records and counts the Gunsan event only once", () => {
+  const before = JSON.stringify(data);
+  const cases = caseSite(data);
+  assert.equal(data.entries.length, 235);
+  assert.equal(cases.entries.length, 75);
+  assert.equal(cases.reference_count, 160);
+  assert.ok(cases.entries.every(entry => !entry.id.startsWith("visible-regional-")));
+  assert.ok(cases.entries.some(entry => entry.id === "national-audit-jeonbuk-gunsan-amateur-esports-2026"));
+  assert.equal(cases.sources.length, 75);
+  assert.equal(JSON.stringify(data), before);
+  const scope = currentTypology(data).find(axis => axis.axis.includes("geographic scope"));
+  assert.ok(scope.values.includes("지도 적격 23건"));
+  assert.ok(scope.values.includes("지역 범위 28건 중 좌표 미확인 5건"));
 });

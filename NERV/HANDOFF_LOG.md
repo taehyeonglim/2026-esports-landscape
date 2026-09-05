@@ -2,6 +2,27 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Separate unsupported reference anchors after Astra rejection
+
+**Outcome**
+
+- Second real Astra review rejected the `32aa258` release. It found unsupported regional participation anchors, duplicate Gunsan event counting, and scope/coordinate conflation; no signed dispatch occurred.
+- Preserve the 235-record archival graph and IDs, but exclude all 160 legacy regional display anchors from case search/comparison/map aggregates. Research explicitly separates those references; case count is 75. Coordinate eligibility is 23, with five additional regional cases lacking coordinates.
+- Update U2/U3 automation targets to case records; retain pending human approval. No operational facts were approved.
+
+**Verification**
+
+- Full release verification passed: 43 JS, 131 Python, 6 static, 120 public browser, 1 administrator, reproducible hashes. Reference partition, duplicate exclusion and off-map regression scenarios passed.
+
+**Remaining work**
+
+- Merge this correction and obtain a fresh model verdict before deployment. Earlier push build success is not deployment success.
+
+**References**
+
+- [Partition policy and automation](../docs/astra-release.md)
+- [Public record projection](../src/record-scope.js)
+
 ## 2026-09-05 — Codex — Fix defects found by the first real Astra review
 
 **Outcome**

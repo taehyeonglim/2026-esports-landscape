@@ -1,3 +1,4 @@
+import { caseSite } from "./record-scope.js";
 import { REVIEW_LABELS } from "./review-status.js";
 import { actions, appReducer, createAppState } from "./state.js";
 import { decodeUrl, encodeUrl } from "./url-codec.js";
@@ -594,7 +595,7 @@ async function initializeNationalMap() {
 
 async function start() {
   try {
-    data = validatePublicData(await loadPublicData());
+    data = caseSite(validatePublicData(await loadPublicData()));
     renderDataUpdatedAt(data.meta.data_updated_at);
     const regionIndex = new Map(data.regions.map((region) => [region.id, region]));
     const sourceIndex = new Map(data.sources.map((source) => [source.id, source]));

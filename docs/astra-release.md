@@ -34,3 +34,9 @@ launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.taehyeong.esports-astr
 ```
 
 The public key authenticates the trusted local coordinator's assertion, not a cryptographic attestation from OpenAI. Protect the Mac and repository administration permissions. The reviewer provides an AI assessment; browser automation and screenshots do not establish real human usability study results or complete accessibility certification. All 235 currently unverified operation statuses remain disclosed as such.
+
+## Archival records and case counts
+
+Astra's second actual review identified unsupported regional display anchors and a duplicated event. `src/record-scope.js` conservatively excludes the entire legacy `visible-regional-*` family (160 records) from case search, map summaries and comparisons. The original 235-record graph, stable IDs and source lineage remain intact; 75 case records are displayed and 160 reference records are explicitly separated in the research appendix. The Gunsan event's auxiliary anchor is therefore not counted a second time. All operation statuses remain `needs_review`.
+
+This is a presentation partition, not factual approval or deletion. A reference record must not be read as confirmed local participation or an exact venue. Reintroducing one requires specific official evidence, duplicate assessment and an explicit revision to the partition policy; an operational-status edit alone does not admit it. Geographic typology separately reports scope and coordinate eligibility (currently 28 regional cases, 23 coordinate-eligible and 5 without coordinates).
