@@ -2,6 +2,27 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Fix independent Linux mobile gate after Astra approval
+
+**Outcome**
+
+- Third actual Astra review approved all seven checks for `97bdd79` (PR #21). The coordinator signed and dispatched run 33968760867.
+- Independent push CI 33968581254 caught an iOS-WebKit viewport regression (first card 674.15625px versus 664px viewport). Cancelled the signed dispatch before deployment; no approval bypass or deployment success is claimed.
+- Shortened hero/disclosure copy to restore first-result visibility without weakening the test. Reconciled README statistics with 75 cases and 160 archival references.
+
+**Verification**
+
+- Full local suite passed: 43 JS, 131 Python, 6 static, 120 public browser, 1 administrator, reproducibility. New source requires a fresh model receipt and Linux validation.
+
+**Remaining work**
+
+- Merge correction, run the automatic review again, and confirm actual deployment and live hashes.
+
+**References**
+
+- [Failed independent build](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33968581254)
+- [Cancelled signed dispatch](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33968760867)
+
 ## 2026-09-05 — Codex — Separate unsupported reference anchors after Astra rejection
 
 **Outcome**

@@ -3,7 +3,7 @@
 - Last updated: **2026-09-05 KST**
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**.
-- Latest implementation commit: **894488c58a8b4f6e008196b5d3a8af7a8a5baac1**, AI automation squash-merged through [PR #19](https://github.com/taehyeonglim/2026-esports-landscape/pull/19).
+- Latest implementation commit: **97bdd7961c995d8f9c1d496e617faf67081eee1a**, reference partition squash-merged through [PR #21](https://github.com/taehyeonglim/2026-esports-landscape/pull/21).
 - AI automation was committed as `120030e`, pushed and merged; local main synchronized. Follow-up fixes address actual Astra rejection findings.
 
 ## Product and data
@@ -64,7 +64,10 @@ Final local `npm run verify:release` passed:
 - Second actual review of `32aa258` rejected unsupported regional anchors, a duplicate Gunsan event and conflated scope/coordinate counts. Neither review signed or dispatched deployment.
 - Follow-up `agent/astra-data-scope`: isolate 160 legacy reference anchors, retain 75 case records and all 235 archival IDs, report coordinate eligibility separately. U2/U3 automated navigation targets now use case records; human approval remains pending.
 - Full local release gate passed: **43 JS, 131 Python, 6 static, 120 public-browser, 1 administrator**, reproducible hashes. Push CI 33967703649 passed build and skipped deploy as intended; no new successful deployment yet.
-- Next: merge the partition, obtain a fresh genuine model verdict, confirm Actions deployment and live hashes. Reintroducing reference records requires explicit source/duplicate review, not an operational-status edit alone.
+- Third actual Astra review of `97bdd79` **approved all seven checks**, with no blockers; a signed dispatch was created as run 33968760867.
+- Independent push CI 33968581254 failed Linux iOS-WebKit cold-home layout: first card y=674.15625 exceeded the 664px viewport. The signed dispatch was cancelled before deployment rather than bypassing the failing build.
+- Follow-up `agent/astra-mobile-fix` shortens mobile hero/disclosure copy while preserving uncertainty and reference exclusions. Full local release verification passed again (43 JS, 131 Python, 6 static, 120 public-browser, 1 admin, reproducibility). Test thresholds were not weakened.
+- Next: merge the layout correction, obtain a fresh source-bound model approval and pass Linux CI before deployment/readback. Reintroducing reference records requires explicit source/duplicate review, not an operational-status edit alone.
 
 ## Workspace note
 
