@@ -2,6 +2,32 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Deliver genuine Astra-approved automatic Pages deployment
+
+**Outcome**
+
+- Implemented and installed the local GPT-6 Astra → signed receipt → independent Actions build/gate → Pages deployment pipeline through PRs #19–#22. All implementation branches were pushed and merged; local main synchronized.
+- Real reviews found and blocked defects. Corrected filter reset, stale typology, missing limitations, unsupported reference/duplicate aggregation and Linux iOS first-result visibility before final approval.
+- Final deployed source **828366c19dd842e9fce2aa369842afd3d18f3949**; Astra **7/7 approved**; no human approval or owner override fabricated.
+
+**Verification**
+
+- [Run 33969332429](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33969332429): build, signed gate and deployment all succeeded. Live release ID and exact home/research/data hashes matched.
+- Full local and remote release verification: 43 JS, 131 Python, six static contracts, 120 public browser and one administrator scenario, plus reproducibility checks.
+- Scheduler enabled at 15-minute intervals; public key registered, credentials/private key remain local. Existing Pages branch protection preserved.
+
+**Remaining work**
+
+- Mac must remain awake/online with valid Codex/GitHub sessions. Future rejection or verification errors stop deployment; inspect local status/review artifacts and fix the source.
+- All operating statuses remain unverified. Preserve 235 archival records, count 75 case records, and treat 160 reference anchors separately.
+- Unrelated PR #16, 22 user workspace copies and private workbench drafts are preserved. This coordination-only closeout does not change public release assets; its CI is tracked in Actions.
+
+**References**
+
+- [Deployment run](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33969332429)
+- [AI release guide](../docs/astra-release.md)
+- [Latest implementation PR #22](https://github.com/taehyeonglim/2026-esports-landscape/pull/22)
+
 ## 2026-09-05 — Codex — Fix independent Linux mobile gate after Astra approval
 
 **Outcome**
