@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["verdict", "summary", "checks", "blockers", "limitations"],
+  "properties": {
+    "verdict": {"type": "string", "enum": ["approved", "rejected"]},
+    "summary": {"type": "string"},
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "passed", "reason"],
+        "properties": {
+          "id": {"type": "string", "enum": ["data_contract", "uncertainty_disclosure", "privacy", "usability", "design", "accessibility", "release_integrity"]},
+          "passed": {"type": "boolean"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "blockers": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -392,7 +392,7 @@ PYTHONPATH=src python3 -m esports_data.review_discovery \
 | 예산 상태 | `PASS` |
 | 중지 요청 | `false` |
 
-스키마, 참조, 체크섬도 모두 유효해야 하며 측정값 누락은 실패로 처리합니다. Pages 배포에는 데이터 검증 외에도 사용성, 디자인, 브라우저 매트릭스, 자원 매핑 및 저장소 소유자의 사람 승인이 필요합니다.
+스키마, 참조, 체크섬도 모두 유효해야 하며 측정값 누락은 실패로 처리합니다. Pages 배포에는 데이터 검증 외에도 서명된 GPT-6 Astra 검수 승인이 필요합니다. 기존 사람 승인 및 명시적인 소유자 예외 경로도 별도로 유지합니다. 자세한 조건은 [AI 배포 검수](docs/astra-release.md)를 참고하세요.
 
 관련 문서:
 
@@ -448,3 +448,7 @@ PYTHONPATH=src python3 -m esports_data.review_discovery \
 5. 작업과 관련된 [`adr/`](adr/) 기록
 
 화면 설계의 최근 배경은 [`docs/superpowers/specs/2026-07-14-benchmarking-home-redesign-design.md`](docs/superpowers/specs/2026-07-14-benchmarking-home-redesign-design.md)에서 확인할 수 있습니다.
+
+## Automated release review
+
+[GPT-6 Astra release automation](docs/astra-release.md) reviews trusted main with local Codex authentication and supplies a signed, artifact-bound approval to GitHub Pages. Human study fixtures and factual review status remain distinct.

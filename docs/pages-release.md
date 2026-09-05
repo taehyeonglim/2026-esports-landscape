@@ -1,12 +1,16 @@
+# Owner-delegated AI release route
+
+Since 2026-09-05, signed GPT-6 Astra assessment may authorize release without the human-study fixtures below. See [Astra automation](astra-release.md). The historical human and explicit owner-override routes remain available; their requirements do not apply to a valid signed AI receipt. Push CI builds only; the local coordinator dispatches reviewed releases.
+
 # GitHub Pages 릴리스 운영
 
 공식 Pages 주소의 base path는 `/2026-esports-landscape/`이며, 연구 페이지의 직접 주소는 `/2026-esports-landscape/research/`이다. `pages.yml`은 선택한 ref를 다시 빌드하고 `dist/` 전체를 하나의 Pages artifact로 업로드한다. `deploy-pages`가 이 artifact를 승격하는 지점이 atomic release 경계다.
 
-권한은 작업별 최소 범위로 분리한다. `build`는 소스 조회를 위한 `contents: read`와 Pages 설정 조회를 위한 `pages: read`만 가지며, 후보 코드를 검증하는 동안 배포 권한이나 OIDC 토큰을 가질 수 없다. `pages: write`와 `id-token: write`는 사람 승인 게이트 이후의 `deploy` 작업에만 부여한다.
+권한은 작업별 최소 범위로 분리한다. `build`는 소스 조회를 위한 `contents: read`와 Pages 설정 조회를 위한 `pages: read`만 가지며, 후보 코드를 검증하는 동안 배포 권한이나 OIDC 토큰을 가질 수 없다. `pages: write`와 `id-token: write`는 서명된 AI 승인 또는 기존 사람 승인 게이트 이후의 `deploy` 작업에만 부여한다.
 
 ## 배포 전 확인
 
-워크플로의 human gate는 기본적으로 fail-closed다. `data/resource-map.v1.json`의 owner 승인과 AC01, 사용성 5명(각 4/5), 디자인 검토자 2명(R1–R5 각 5/5), repository owner, browser matrix 기록이 모두 `approved`이고 필요한 승인자·시각이 있어야 production deployment가 진행된다. 현재 승인 fixture는 `pending`이며, 이를 승인으로 간주하거나 수동으로 우회하지 않는다. GitHub의 `github-pages` environment에도 필요한 보호 규칙을 유지한다.
+서명된 AI 영수증이 없는 수동 배포의 human gate는 fail-closed다. `data/resource-map.v1.json`의 owner 승인과 AC01, 사용성 5명(각 4/5), 디자인 검토자 2명(R1–R5 각 5/5), repository owner, browser matrix 기록이 모두 `approved`이고 필요한 승인자·시각이 있어야 production deployment가 진행된다. 현재 승인 fixture는 `pending`이며, 이를 승인으로 간주하거나 수동으로 우회하지 않는다. GitHub의 `github-pages` environment에도 필요한 보호 규칙을 유지한다.
 
 승인 후 배포 결과에서 다음 smoke check를 수행한다.
 
@@ -16,4 +20,4 @@
 
 ## 롤백
 
-정상으로 확인된 최근 3개 commit SHA/ref를 보존한다. 문제가 생기면 **Run workflow**에서 그중 이전 정상 ref를 `source_ref`로 입력한다. 이 경로도 동일한 검증, human gate, 단일 artifact 승격을 거쳐 이전 소스를 재빌드·재배포하므로 artifact 일부만 교체하지 않는다.
+정상으로 확인된 최근 3개 commit SHA/ref를 보존한다. 문제가 생기면 **Run workflow**에서 그중 이전 정상 ref를 `source_ref`로 입력한다. 이 경로도 동일한 검증, 배포 승인 게이트, 단일 artifact 승격을 거쳐 이전 소스를 재빌드·재배포하므로 artifact 일부만 교체하지 않는다.

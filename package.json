@@ -11,7 +11,7 @@
     "validate": "node scripts/validate-data.mjs",
     "build": "node scripts/build.mjs",
     "test": "npm run test:unit",
-    "test:unit": "node --test tests/unit.test.mjs tests/stat-ribbon.test.mjs tests/matrix.test.mjs tests/editorial.test.mjs tests/landscape.test.mjs tests/review-overlay.test.mjs",
+    "test:unit": "node --test tests/unit.test.mjs tests/stat-ribbon.test.mjs tests/matrix.test.mjs tests/editorial.test.mjs tests/landscape.test.mjs tests/review-overlay.test.mjs tests/astra-receipt.test.mjs",
     "test:e2e": "node scripts/build.mjs && node --test tests/e2e-contract.test.mjs",
     "e2e": "npm run test:e2e",
     "test:browser": "npm run build && playwright test",

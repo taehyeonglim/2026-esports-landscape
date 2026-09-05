@@ -57,12 +57,14 @@ Final local `npm run verify:release` passed:
 
 ## Release gates
 
-- Resource map and repository-owner release approval: recorded approved.
-- AC01, usability, design, and browser-matrix human approval records: still pending.
-- No owner override was invoked. A pending human gate must be reported as deployment blocked, even if all automated checks pass.
-- Last recorded successful deployment remains the 2026-08-20 owner-authorized run [32314397324](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/32314397324); no new deployment is claimed here.
-- [Implementation run 33965821923](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33965821923) completed: build and full release verification **success**; human-gate **failure**; deploy **skipped**. Exact blocker: `Human approval gate: AC01 human approval is not approved.` The pending human approval policy blocked deployment; this is not a build regression or successful deployment.
-- This NERV-only closeout records the verified implementation destination and gate outcome; it does not change public artifacts or claim missing approvals.
+- Owner instruction on 2026-09-05 delegates release assessment to **gpt-6-astra**, high reasoning. Signed AI approval replaces the mandatory human-study gate for this route; individual fact review and protected snapshot publication remain distinct.
+- Implementation on `agent/astra-release`, based on canonical main `52acdfbff03e71f4555c5d14ef7c1c034b351ec2`; commit/merge and first AI deployment are pending at this snapshot.
+- [AI release guide](../docs/astra-release.md): local authenticated Codex runner, 15-minute macOS polling, full verification and screenshots, seven-check structured verdict, Ed25519 receipt, exact source/artifact/policy binding, independent Actions rebuild and verification, live readback.
+- Model availability was verified by an actual local `gpt-6-astra` structured-output execution. No API key or ChatGPT credential is transferred to GitHub.
+- New local gate passed: JavaScript **41**, existing Python **129**, static **6**, public-browser **110**, administrator **1**, reproducible hashes. Two additional runner failure/rejection tests and eight workflow contracts passed; malformed/tampered/expired/wrong-model/wrong-build approvals are rejected.
+- Human AC01/usability/design/browser fixtures remain pending and unchanged. No owner override is invoked by the AI coordinator.
+- Earlier human-gated run 33965821923 failed AC01 and skipped deployment. It remains historical evidence, not the outcome of this new policy.
+- Next: merge implementation, register the public verification key, install the local scheduler, obtain a genuine model verdict and confirm the resulting Pages deployment. The Mac must remain awake/online with valid local Codex and GitHub sessions.
 
 ## Workspace note
 

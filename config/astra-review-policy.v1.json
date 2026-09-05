@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "enabled": true,
+  "repository": "taehyeonglim/2026-esports-landscape",
+  "authority": "repository_owner_delegated_ai",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "transport": "codex_exec",
+  "required_checks": ["data_contract", "uncertainty_disclosure", "privacy", "usability", "design", "accessibility", "release_integrity"],
+  "max_age_seconds": 86400,
+  "clock_skew_seconds": 300,
+  "poll_seconds": 900,
+  "retry_seconds": 3600,
+  "public_key_variable": "ASTRA_REVIEW_PUBLIC_KEY"
+}

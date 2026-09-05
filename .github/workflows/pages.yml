@@ -9,6 +9,10 @@ on:
         description: Rebuild and deploy this full commit SHA (use a previously known-good commit to roll back)
         required: true
         type: string
+      ai_review_receipt:
+        description: Base64 signed GPT-6 Astra release receipt
+        required: false
+        type: string
       owner_deploy_override:
         description: Allow the repository owner to deploy after automated verification without claiming pending study approvals
         required: false
@@ -86,7 +90,8 @@ jobs:
           path: dist
           retention-days: 1
 
-  human-gate:
+  release-gate:
+    if: github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -106,7 +111,22 @@ jobs:
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           ref: ${{ steps.source.outputs.ref }}
+      - name: Check out trusted gate implementation
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: trusted-gate
+          persist-credentials: false
+      - name: Verify signed GPT-6 Astra approval
+        if: inputs.ai_review_receipt != ''
+        env:
+          ASTRA_REVIEW_RECEIPT: ${{ inputs.ai_review_receipt }}
+          ASTRA_REVIEW_PUBLIC_KEY: ${{ vars.ASTRA_REVIEW_PUBLIC_KEY }}
+          SOURCE_REF: ${{ inputs.source_ref }}
+          RELEASE_ID: ${{ needs.build.outputs.release_id }}
+        run: node trusted-gate/scripts/astra-receipt.mjs verify --policy trusted-gate/config/astra-review-policy.v1.json
       - name: Require recorded human approvals
+        if: inputs.ai_review_receipt == ''
         env:
           EVENT_NAME: ${{ github.event_name }}
           ACTOR: ${{ github.actor }}
@@ -178,7 +198,7 @@ jobs:
           NODE
 
   deploy:
-    needs: [build, human-gate]
+    needs: [build, release-gate]
     runs-on: ubuntu-latest
     permissions:
       pages: write
