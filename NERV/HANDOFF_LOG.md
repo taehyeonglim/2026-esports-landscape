@@ -2,6 +2,27 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Add owner-delegated GPT-6 Astra release gate
+
+**Outcome**
+
+- Implemented local GPT-6 Astra review and signed release dispatch, a trusted Actions verification gate, and macOS scheduler installer. Preserved human study fixtures and all factual review statuses.
+- AI review authority is explicit in policy; no fallback approval on model, test, signature, or artifact failure. Credentials and signing key stay local.
+
+**Verification**
+
+- Actual Astra CLI structured-output probe succeeded. Complete release suite passed (41 JS, 129 Python, 6 static, 110 public browser, 1 administrator); two new runner fail-closed tests and workflow checks passed, as did updated reproducibility checks.
+
+**Remaining work**
+
+- This pre-merge snapshot does not claim deployment. Merge, local scheduler installation, real model assessment and Pages readback follow.
+- Original workspace copies and unrelated discovery PR #16 are preserved.
+
+**References**
+
+- [AI release operation](../docs/astra-release.md)
+- [Release policy](../config/astra-review-policy.v1.json)
+
 ## 2026-09-05 — Codex — Deliver review workbench and preserve workspace copies
 
 **Outcome**

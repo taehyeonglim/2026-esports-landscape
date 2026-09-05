@@ -96,6 +96,7 @@ const inputPaths = [...new Set([
   ...(await sourceFiles(join(ROOT, 'assets'), 'assets')),
   ...(await sourceFiles(join(ROOT, 'adr'), 'adr')),
   ...(await sourceFiles(join(ROOT, 'admin'), 'admin')),
+  ...(await sourceFiles(join(ROOT, 'automation'), 'automation')),
   ...(await sourceFiles(join(ROOT, 'config'), 'config')),
   ...(await sourceFiles(join(ROOT, 'data/reference'), 'data/reference')),
   ...(await sourceFiles(join(ROOT, 'docs'), 'docs')),
