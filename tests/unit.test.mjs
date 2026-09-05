@@ -5,9 +5,9 @@ import { createHash } from "node:crypto";
 import { createProjection, geometryPath, projectPosition } from "../src/projection.js";
 import { RegionLoader, regionGeoUrl, validateRegionGeoJson } from "../src/region-loader.js";
 import { filterEntries, matchesQuery, parseSearchTerms } from "../src/search.js";
-import { actions, appReducer, createAppState } from "../src/state.js";
+import { actions, appReducer, createAppState, selectors } from "../src/state.js";
 import { canonicalUrl, decodeUrl, encodeUrl } from "../src/url-codec.js";
-import { validateResearchData } from "../src/research.js";
+import { validateResearchData, currentTypology } from "../src/research.js";
 
 const loadJson = async (path) => JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
 const legacyAdditions = await loadJson("../data/additions.v1.json");
@@ -30,12 +30,14 @@ test("state normalizes query and deduplicates multi-select filters", () => {
 });
 
 test("reset filters clears region, search, advanced filters, sort, and entry", () => {
-  const state = createAppState({ region: "busan", type: "other", query: "조례", category: ["지자체정책·조례"], sort: "name-asc", entry: "busan-001" });
+  const state = createAppState({ region: "busan", type: "other", query: "조례", reviewState: ["confirmed"], category: ["지자체정책·조례"], sort: "name-asc", entry: "busan-001" });
   const reset = appReducer(state, actions.resetFilters());
   assert.equal(reset.type, null);
   assert.equal(reset.region, null);
   assert.equal(reset.query, "");
   assert.deepEqual(reset.category, []);
+  assert.deepEqual(reset.reviewState, []);
+  assert.equal(selectors.activeFilterCount(createAppState({ reviewState: ["confirmed"] })), 1);
   assert.equal(reset.sort, null);
   assert.equal(reset.entry, null);
 });
@@ -257,4 +259,17 @@ test("off-map and status disclosure invariants remain explicit", () => {
       assert.ok(entry.review?.reason?.length > 0);
     }
   }
+});
+
+test("research typology counts the complete current corpus rather than baseline strings", () => {
+  const axes = currentTypology(data);
+  for (const [marker, key] of [["national category coverage", "category"], ["school_level", "school_level"]]) {
+    const values = axes.find(axis => axis.axis.includes(marker)).values;
+    const expected = new Map();
+    for (const entry of data.entries) expected.set(entry[key], (expected.get(entry[key]) ?? 0) + 1);
+    assert.deepEqual(new Set(values), new Set([...expected].map(([label, count]) => `${label} ${count}건`)));
+  }
+  const extended = structuredClone(data);
+  extended.entries.push({ ...data.entries[0], id: "test-count", category: "새 분류", school_level: "새 학교급" });
+  assert.ok(currentTypology(extended).find(axis => axis.axis.includes("school_level")).values.includes("새 학교급 1건"));
 });

@@ -11,10 +11,11 @@ try {
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   browser = await chromium.launch();
-  for (const [name, width, height, path] of [['desktop',1440,1000,'/'],['mobile',390,844,'/'],['research',1440,1000,'/research/']]) {
+  for (const [name, width, height, path] of [['desktop',1440,1000,'/'],['mobile',390,844,'/'],['research',1440,1000,'/research/'],['typology',1440,1000,'/research/'],['detail',1440,1400,'/?entry=busan-016']]) {
     const page = await browser.newPage({ viewport: { width, height } });
     await page.goto(`http://127.0.0.1:8769${path}`, { waitUntil: 'networkidle' });
-    await page.screenshot({ path: `${output}/${name}.png`, fullPage: true });
+    if (name === 'typology') await page.locator('#typology-axes').screenshot({ path: `${output}/${name}.png` });
+    else await page.screenshot({ path: `${output}/${name}.png`, fullPage: false });
     await page.close();
   }
 } finally { await browser?.close(); server.kill(); }

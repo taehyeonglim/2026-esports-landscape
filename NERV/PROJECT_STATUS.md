@@ -3,8 +3,8 @@
 - Last updated: **2026-09-05 KST**
 - Maintainer handoff: **Codex**
 - Canonical branch: **main**.
-- Latest implementation commit: **116a5e20fa17cb9ee2d220ecb2d7c89bbcf044ee**, squash-merged through [PR #17](https://github.com/taehyeonglim/2026-esports-landscape/pull/17).
-- Implementation was committed as `77bd4fc`, pushed, merged, and local main synchronized with origin/main; the merged implementation branch was deleted.
+- Latest implementation commit: **894488c58a8b4f6e008196b5d3a8af7a8a5baac1**, AI automation squash-merged through [PR #19](https://github.com/taehyeonglim/2026-esports-landscape/pull/19).
+- AI automation was committed as `120030e`, pushed and merged; local main synchronized. Follow-up fixes address actual Astra rejection findings.
 
 ## Product and data
 
@@ -46,10 +46,10 @@ Durable aggregate: [`../reports/review-rollout.v1.json`](../reports/review-rollo
 
 Final local `npm run verify:release` passed:
 
-- JavaScript: **30/30**.
-- Python: **129/129**.
+- JavaScript: **42/42**.
+- Python: **131/131**.
 - Static contracts: **6/6**, including exclusion of private administration files.
-- Public browser matrix: **110/110** across desktop Chromium/Firefox/WebKit and Android/iOS profiles.
+- Public browser matrix: **115/115** across desktop Chromium/Firefox/WebKit and Android/iOS profiles.
 - Local administrator browser scenario: **1/1**, including explicit approval, restart persistence, mobile width, unauthorized API and private-file rejection.
 - Independent extraction, immutable baseline invariants, release hash reproducibility, input-only provenance changes, and output-mutation detection passed.
 - `git diff --check` passed. Existing user files were preserved.
@@ -58,13 +58,13 @@ Final local `npm run verify:release` passed:
 ## Release gates
 
 - Owner instruction on 2026-09-05 delegates release assessment to **gpt-6-astra**, high reasoning. Signed AI approval replaces the mandatory human-study gate for this route; individual fact review and protected snapshot publication remain distinct.
-- Implementation on `agent/astra-release`, based on canonical main `52acdfbff03e71f4555c5d14ef7c1c034b351ec2`; commit/merge and first AI deployment are pending at this snapshot.
 - [AI release guide](../docs/astra-release.md): local authenticated Codex runner, 15-minute macOS polling, full verification and screenshots, seven-check structured verdict, Ed25519 receipt, exact source/artifact/policy binding, independent Actions rebuild and verification, live readback.
-- Model availability was verified by an actual local `gpt-6-astra` structured-output execution. No API key or ChatGPT credential is transferred to GitHub.
-- New local gate passed: JavaScript **41**, existing Python **129**, static **6**, public-browser **110**, administrator **1**, reproducible hashes. Two additional runner failure/rejection tests and eight workflow contracts passed; malformed/tampered/expired/wrong-model/wrong-build approvals are rejected.
+- LaunchAgent `com.taehyeong.esports-astra-review` installed and enabled. Public verification key is registered as a GitHub variable; local private directory/key permissions verified 0700/0600. No ChatGPT credential is transferred to GitHub.
+- First actual review of `894488c` **rejected** deployment: reset omitted reviewState; research typology retained baseline counts; detail omitted case-specific evidence limitations. No receipt or deploy dispatch was produced.
+- Follow-up fixes on `agent/astra-review-fixes` reset/count the review filter, derive current typology, display subtype/notes, add browser regression coverage and provide readable viewport/detail/typology images. Full local verification passed: **42 JS, 131 Python, 6 static, 115 public-browser, 1 administrator**, reproducible hashes.
+- [Push CI 33967255150](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33967255150): build success; release-gate/deploy skipped as designed for push. This is not a deployment.
 - Human AC01/usability/design/browser fixtures remain pending and unchanged. No owner override is invoked by the AI coordinator.
-- Earlier human-gated run 33965821923 failed AC01 and skipped deployment. It remains historical evidence, not the outcome of this new policy.
-- Next: merge implementation, register the public verification key, install the local scheduler, obtain a genuine model verdict and confirm the resulting Pages deployment. The Mac must remain awake/online with valid local Codex and GitHub sessions.
+- Next: merge fixes, reinstall coordinator copy, obtain a fresh genuine model verdict and confirm Pages readback. Mac must remain awake/online with valid local Codex and GitHub sessions.
 
 ## Workspace note
 

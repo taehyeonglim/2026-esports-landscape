@@ -2,6 +2,27 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-09-05 — Codex — Fix defects found by the first real Astra review
+
+**Outcome**
+
+- PR #19 merged as `894488c`; scheduler installed with local credentials and signing key, public key registered in GitHub. First actual Astra review rejected the release and correctly produced no deployment dispatch.
+- Addressed three concrete findings: review-filter reset, stale research typology counts, and missing case-level evidence limitations. Improved screenshot readability and added regressions.
+
+**Verification**
+
+- Complete local release gate passed: 42 JS, 131 Python, 6 static, 115 public-browser, 1 administrator, reproducible hashes.
+- Push CI 33967255150 passed build and skipped deployment as designed.
+
+**Remaining work**
+
+- Merge this fix, update the local coordinator, and obtain a new model verdict. No new successful deployment is claimed yet.
+
+**References**
+
+- [Automation PR #19](https://github.com/taehyeonglim/2026-esports-landscape/pull/19)
+- [AI release operation](../docs/astra-release.md)
+
 ## 2026-09-05 — Codex — Add owner-delegated GPT-6 Astra release gate
 
 **Outcome**

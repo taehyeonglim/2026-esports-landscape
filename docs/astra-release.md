@@ -5,7 +5,7 @@ The repository owner delegates **release assessment** to `gpt-6-astra`, with hig
 ## Operation
 
 1. A local macOS LaunchAgent checks trusted `origin/main` every 15 minutes in a private independent clone. The Mac must be awake, logged in, online, and have valid `codex` ChatGPT and `gh` authentication. No API credential is copied to GitHub.
-2. The runner installs locked dependencies and browser engines, runs `npm run verify:release`, and captures desktop, mobile and research screenshots.
+2. The runner installs locked dependencies and browser engines, runs `npm run verify:release`, and captures readable desktop, mobile, research, typology and case-detail screenshots.
 3. A tool-disabled, ephemeral, read-only `codex exec --ignore-user-config --model gpt-6-astra` invocation reviews bounded public code/data, test evidence and images against seven checks. It receives no signing key or private workbench database.
 4. Only an approved, complete structured result with no blockers is signed locally using Ed25519. The receipt binds source commit, release hash, policy hash, evidence hash, model, reasoning effort, execution identity and a maximum 24-hour validity window.
 5. The runner dispatches Pages for that exact main SHA. Actions rebuilds and tests it independently. A separate read-only gate verifies the signature using `ASTRA_REVIEW_PUBLIC_KEY` and gate code from the workflow SHA. Only the deploy job receives Pages write/OIDC permissions.
