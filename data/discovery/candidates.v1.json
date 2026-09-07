@@ -86,6 +86,28 @@
       "url_sha256": "05b7516b3e1847c0d8a96957d8b2863dcec4ba540a8f1c4ba343c13c2639d505"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9lMHk4MFgtYzZYUld1bF9SSllKZHpoT09EbUE3RWUtdnhqbDJIdmpLZnRUM0FiajM4YkN1N0ZCYW5KeGc?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-07ea6ac0a612410e",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "609232e25987f300aed47aaea7c92738c39fd57311a0853129f15dbfc0135263",
+      "url_sha256": "07ea6ac0a612410e7b8d23d8caf558fb3627315fe47222c7c40659a704ba1dd2"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBTamJuZk5JcmQzdWpLN3ctLVhGWDduM3M4MmRXUFpVSW5HU2FwVjFUQWxMd0hCeE1yV0QxRHpKSGNkVUE4aE5YaWdxejZCclJuMzJzR1VrZEFaZWpGeVE?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-083f06e66e0dab16",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "4bae8ca548babaa9bf591fe1930d9c5e50c3078bb0a82b84e1141d0f74103785",
+      "url_sha256": "083f06e66e0dab16a42fbbf3075d763818d9d2e162365d6037e6e9b1154b88ce"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9ucU5ad2FBSi01aWxyc0Q0NGhjSlVFNnRXRTBLcm50QnpaT2dXRE1nLTlWUkE1N3hDQ2pGNFRjREZ4U1JXbE9RRHNCZXlZd1hvZWNJWVZn?oc=5",
       "discovered_at": "2026-07-27",
       "discovered_via": "news-school-esports",
@@ -97,6 +119,17 @@
       "url_sha256": "08aa0acb84c7d69c290f7b6abd36bb53e8911fc30d3447ea8449801cc6046de5"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1Va09LdktGcGUwU0JzamFERXRJV2QzYU9aRzk3cERSejZ5VUZzV2JZMUczN2ZVanlXeVhQXzR4SFE4bXdfNVUxeEEyV01ta0ZzLU5VaWs0bmJRSjloVjlna0JJY0_SAWhBVV95cUxNUUF1cW5qQW5fbUtINldrcVJVejMxRTdzOFM5dngyUjYwWUJ3SmdFaEQwZ2hNQ2x3R21qVGpUNWV2SG8tMm9kRVc5YXdPMllCMXRnSF83Zld4aU5JM1I0ZjFxOXotOGxoUQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-0914bb255299b33a",
+      "possible_duplicate": true,
+      "status": "needs_review",
+      "title_sha256": "45dc4debd8aca6f82ceb25a00ffb92b819af84bd60dbe8eb5b125901ce97016c",
+      "url_sha256": "0914bb255299b33ae6eb9c874b5fc0eea66d68e6163bef175d9b107a00c06994"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBWcmE2YkVwOWR0LS03QUZLRDdhaXgxZkhXdDZvNHlySHBLZnZ4QmQydGd0R3dnMWliNnZxbGh3ci1yQ2pVcFMzVEl0NjRPRmszY051ZXdmWEcyeDVnajBEMDFxWXdfMnlwV2tCMGp4M2tYMTBFSkE?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
@@ -106,6 +139,17 @@
       "status": "duplicate",
       "title_sha256": "23ecffd8861dfd27aab9a2887ff0b58c8db96e1985233d73c0aa4094f2fcbc26",
       "url_sha256": "0afae83f67b5cd205ab705718be2804d41e10c0a59e95e5f5d670903b60fd302"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE13WlpZZVIxRFhUZ3R4WWZZM19OaXdBWEt1bGZ3Wlhfd2NWYlpwSHpWSTZUdlFnc196dnF4QjZDMVVhNC1rVmFzS0s3WERObkhOcDFuUExURjQzaThadnNLN29rLWstOW1KTnpCS1gwdUE?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-0b2741d2f6f78438",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "d0b9d78176268d48de4d573959c888b242695196545d50ed748d1a4ff1e5f417",
+      "url_sha256": "0b2741d2f6f784381929e08fcd666623af84073899d42c25cf22e24f1f12e490"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBaZUo0NW9aaGhOQlJqa0loQUdiM2hOeFN6ZkJ6NHM1ODhDV3VGblltaHZmQnBWdlJmdE1UWndjNWhZMzBUWF82ekRaM1dvZ1NDMTItYg?oc=5",
@@ -204,6 +248,17 @@
       "url_sha256": "11db48b3365a308a435ef9ef902e417d87e7d93f50998e226a1c75e98adb1684"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9NdldHbjFKZ1NtMzF5bTFHSnRFX0V3dEhiMnQ4cXd3UmV6cG9HeXdFaC05S1dZMkF3dG9ETzRNN1pnb1BQSEpObDB0UmswRU8xYkNCeHRqNWRLcW10VGFLR1VRUTlBMlR2YXRPcWx4Zw?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-major-esports",
+      "event_sha256": null,
+      "id": "candidate-12b9a48e60b9dffe",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "b7376c815ff84f525f03cc8cda2f99594870be47ca483591806d5f1e99dbe72c",
+      "url_sha256": "12b9a48e60b9dffeacc6846f556e7d3f2bce5cd06b36234461c6d37a91a1f01c"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5WOThoU2xsbHBGN2dOa0pfSWJVd21xUVpuN05wQnIwSzRkT2VDYlJERVpIS1l6cjBuS1ptb0FBZVo4dnBoa25HWVVUOWVyMWlleWxuLTRjY25pUXRDeEN2UFhDOC1GZw?oc=5",
       "discovered_at": "2026-08-31",
       "discovered_via": "news-club-esports",
@@ -223,6 +278,28 @@
       "status": "rejected",
       "title_sha256": "a5a8ddd72007fe1c8e253b7fea9c96b40f49c0fa6c68331afa257e44fd33b8bb",
       "url_sha256": "1425335e0e03a1eb869d97d3679624dc4fdf36608137532777ac0a717e893536"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE02UUwzbVlCQ2UtaVJyUTJXZzFON0JwbHBmbzJuRmNERDRaM3VSbGFWYUFGMGQ2NmJxMU0zaU90MTlXdUNmdTY1ZVk1RDhsVkNxdjhlN094eXprYmppS2tic01fWmvSAWhBVV95cUxQNTNsZEFkVEEwdEFZa09JamZFZENYV2JYMFVqR2pudkhJUGo5NmlPcGllelVKTkVuS0lZb0IyZWp5MkM4UXRZVE0yLWRGYk8zelc1YjRvdmJCZXlEWkkwWGxSWnlFa3RBTQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-14816192da27bac8",
+      "possible_duplicate": true,
+      "status": "needs_review",
+      "title_sha256": "795de791c76cc88526f273ee29a271a6949177cc7a20a1deb11009a5fab4e269",
+      "url_sha256": "14816192da27bac865eb8e21c6911e1437192f84cdd03d43bb9497c15c061508"
+    },
+    {
+      "canonical_url": "https://gnarena.or.kr/bbs/board.php?bo_table=club",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-gyeongnam-arena",
+      "event_sha256": null,
+      "id": "candidate-14951fe0b0f57ab4",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "f920bb772bc4f7e3ce70a0946172847ff81e315c69d043bf00865807caf2180d",
+      "url_sha256": "14951fe0b0f57ab4490c311a9b05338eb23befdc1b203478f429c89b0e00fc36"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5EZDBzdm1qb3ZTbXdoZk9EaGU2SHFLbVVhYnNEMUZtSEhaZms4aTNTUUx2cjhCb0VuRDVoQVpmcktNbGVSOHNfOUdjdjU3Y1d1LXoxR0ZxSC1BcGlIWktNdk4zamtfUVdvdkFKOQ?oc=5",
@@ -256,6 +333,17 @@
       "status": "rejected",
       "title_sha256": "23cbdb37cb2114c29229f1aed435c15a8cc0461ac58f51d4603c7453383e3fe2",
       "url_sha256": "1781b69032d2653994362c0fb48a5f3ccd86a54337fcc3c4a46cc4cb24203a10"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=1964&mode=view&srCategoryId=",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-1855cc3d6f14c27d",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "f455ed0bbe022c0f155fdc07168a66a56fefdc7530100d83203b5041e62c5227",
+      "url_sha256": "1855cc3d6f14c27dd6ca34a8e0aea6a7bc7a803160d18fccf35fcb1e0fa1a46c"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAzZ1hmQTBuTzk1WTBEa2w0UHpJUmtabXRjVm1CdFBfb0VBcFhGbWxnTlN3UEw4LUFRS0x0Z2JTcUNXczFjUGFhc0RYaDhGOWo0STRxQVV0QjjSAVtBVV95cUxORXM5Z2V4Y3R4NzFFVy0zV2hMeDBjbVVsUFZxM3YzNHBMX3VOUXlsb2Nzd3pMOEVZZnRGNS10LWJrczRhak5GUDFtOUhneGZyOFowZTN1cGo2T3E0?oc=5",
@@ -301,6 +389,17 @@
       "url_sha256": "1922a319828cc0e6ac172245cef6e7e2f82c8f26c7b713c88a6c660da4540059"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5Xc1hWdkdNbnVKU3ZNSGdGdzNmd3MyY1BWRXFUQm15ZDVJYXJQSWxUajBqQWU4aDVyZlpfTm9mYjAxN3JDbmsyYnZaS0pGYTZyQmdlQ0FDMkszSmVad284S2V1X2tvVFB2cG5ieXJB0gFyQVVfeXFMUER4MlBKOEVLX2Jfci1MU09CVkFmaG1MVmV6akxtQTNxejVLNXJtVTV2blJ4N3BzWWUyeHljQjkya0RFejY5b0U1Z0hGcmVyZkxMOF8wRjdSX2FmRUJELVF0OXRfSGdnTHgwcUM5SUNIQnZR?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-199e7f9468957631",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "3675226ddff8b90c007246a1304474151a76397d0914bca54eda69b5b1c42ce5",
+      "url_sha256": "199e7f946895763113dddfb07f5674bea00b371aaa20ed1e850dbe6929529c28"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1EelJLck9jUTlLekR1SWtVQW9rVUxuZUdVcDdWTnhxeTlVVUdsNUVkbnhlcFc1c1IxbHdhZ1hpYmpoSFM3dHhBWGlyXzJIeU1BMTVPS3lsTERuY2hZWDkxdUVQbFB6dnMwNjJWMjVxcw?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-education-esports",
@@ -310,6 +409,17 @@
       "status": "rejected",
       "title_sha256": "ecc144a8bc6de32d09abf1018566ef2acb7947d215fc3c232f4238f1864a77d0",
       "url_sha256": "19b183ac10747242466be50770c8f18bffb82c7412634a057ffb60880fa4f37e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE4xSkxwR0VmLXdLV0JRWWVEN25QS0xCY1BDVW0yRWxSTG5EaGtxYzZoNHN4ZzJBSkh2VHFlejFvNlR4QUdENWs2bkdaUjdEdHYtdmVxRUNlNElDekQ5N1dxVg?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-19cdfa18db93282d",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "070b946fa2204a0c0f52f24a70034ad77fbb89156169533bd22f70ff4d3c0dad",
+      "url_sha256": "19cdfa18db93282ddea2dde9905dcce614fca11fc7e3bb8124f0f21cd6dad367"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5pWjU3bDlFMXJ2R00xYU1GUHQ4Rzh1bXBvRE1pVDFKQTNBT05oQ1pRcTZCQWg5MXQ3V0xHRUtjd29QVlRUTlVTcTdVY3BnVl9CV3gyQVRn?oc=5",
@@ -352,6 +462,17 @@
       "status": "needs_review",
       "title_sha256": "7d16f4ec51f663fad48f85a03b49236cbd6b8f7f098ca7e31df8914cfdab040f",
       "url_sha256": "1c18335a111b147d9447369f7ddc8daf0e6ff5e704c082f7e76c01e8ea377a3a"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNaTVWSXJ0eEZNNXVXcHFKYmZVNjVmMmtLNlRLVWZjMDhQUnZpQlRfMlFSNmc5M21NejE1R1BRNVNCMmEzdkpTWXpGSzJWbGVNNXBPVXgyR0l5QUtMWUt5Si1JNTczQUhjX1EtT3owelZkWHRsSTUwZmpBQlo4REEwWGlkUGg?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-1c77ae5521f31a06",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "4b1dc4b694a0dbb39709461aea4d5da105c914bb064abdaaa08d7b92d53dff5e",
+      "url_sha256": "1c77ae5521f31a067d1b216453509d67f940d81fa10b389684fbd9d83319f4d0"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9mMFJSbDAxWUJiaHBZOWl4bDBKbjZRZ21iQl9zd1U3Y040X0J6TS16aS10bnRheGFwaTR0dndMWU1EODBDUU4wZDNiVnFSY3ZMR0hQQlNjeG45Y3M1?oc=5",
@@ -547,6 +668,17 @@
       "url_sha256": "2effb2813dcba25b9999b8c28f2c796cd965849c62555abb6dd5d7844616c87d"
     },
     {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=1962&mode=view&srCategoryId=",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-2f72837440d8183e",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "44e20b34c7c6a2fd4e83f1eac193099e4edec0e829310ed5b01e826c908fe122",
+      "url_sha256": "2f72837440d8183e0d6d980373074341056779009f4dcc6778017f01e2c89fdd"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFByd0c0REhuN3VydGlWVWVHLVV5TFRzQWozTFBWeFZ1U0YwSW5reXNmNURrUEY1NDI0ZXBLRzlfdl9pMVRHUGV5M3k1c2hXVndRQWxBMk1qMTRoNTNVVTJWSGNBakRYZGhaVlE?oc=5",
       "discovered_at": "2026-08-31",
       "discovered_via": "news-school-esports",
@@ -609,6 +741,17 @@
       "status": "duplicate",
       "title_sha256": "014c193a68823152980f63adb65163904b3634846294870c54aba2371fdeb3cb",
       "url_sha256": "330cb37481c2e905bac9bf2689d0c5eb8453290ddcf8d6cf408ac144ec859966"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1LVWd2M0NGbEt0Q1lUTUFSdnFlYTZ4VHAxX2tTblotY3JNTlROdGNqNWhKNy0tLW5Ea3BENVRuZ1RxLUl1Q0E?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-major-esports",
+      "event_sha256": null,
+      "id": "candidate-3400e590d2035cce",
+      "possible_duplicate": true,
+      "status": "needs_review",
+      "title_sha256": "9f062df52c2020ccee8d05aa278d9bc28fe28252f12dff6b0d775e7a2a4f11e1",
+      "url_sha256": "3400e590d2035cce714f4222f04f2dd8dddd5c73e44bd00967c5176f41ede2b4"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFAwTk1pWDhjZW54bXg5bHVPNF9fZHp4THdxT3ZndGlRUE9SdHpWdnNOTU9PemRmNzVEX00tV0pWbXBTQnNhYjdMbDZQZHV0UnJSZTQw?oc=5",
@@ -719,6 +862,17 @@
       "url_sha256": "3a43d8e79b84e38080c603a1978b32c9cf1ad584b4058dff984b7ade8c4ea213"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBJYXMyR1NUcG5FVmY5ZTZsX3FZRi03dERvLWMwOXp3RGp0Smt1T2xCZ2NuU0NsR3ZDa2g1VmRTVUsxOVhrQXM1Yl8wZHNGRTktYjE3Vnpn?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-3aa88dab5a802532",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "a158779e63627cbef11b49ee13602e22420108e9f682f225e52ef09acc9237cb",
+      "url_sha256": "3aa88dab5a80253213072a0d442c11f6fa6e98e0ccbfe705dddfbf280b94fbcf"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1tRmtDa016Z1VQQWh3SzBRN3JjaHN6WGhfYVhHTm8weGx2RUxVQ1lVSjM3NWZDNHEtSjdqUWZ5NzEzOGNjUEdnMUIyaHVUVktHa3J1OVpPNkFPTVRzekx3QlliNTNGdw?oc=5",
       "discovered_at": "2026-08-03",
       "discovered_via": "news-school-esports",
@@ -749,6 +903,17 @@
       "status": "duplicate",
       "title_sha256": "a2f35c5ac2eb4d1e7b5f891af206b2b8af325368aa7a9522780d691c06980e18",
       "url_sha256": "3d8019ec26d4d73ff6a3223a8adac289d6aa637fa9f25e9dfaa8b1a9ee36da95"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9CVC1tMS1LMXNmVF96TmZNTDYwQ3ZjclI0QlRjN2Z4NXIwOXdZVTlGQ280SWJyNEhsbTJEMjJLU1dQRVAyZU1vOVNJcHQwNEtyRFpIdXJ4cnlBOHlCX2ljd2Q4Z2U?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-3e2d613e4972b0e4",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "9afe6b2da624e6eb45cf6d3183333f3459a237d4c3121eb638213c3a1631a330",
+      "url_sha256": "3e2d613e4972b0e452c683ae59560934fb0f1fbb0c381e8d396e3eadcc646dd3"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBXeGZpRkV5MWZWbGwyWjVzQ1czenNPNEJmSVhPRW5YdTNJVFNjOUd5S2JIY1NEb3lpN3JuZDkwZ0NXTWJoM3U0X1lZZXBadWZlM3YtREVvV2NRVUxCLU82MUVmcV8tZkxXOVQwVWVDT1MtUkU?oc=5",
@@ -803,6 +968,17 @@
       "status": "rejected",
       "title_sha256": "3c20d06a685406e4965ebc1473630fac344a3b02b15662cd2715491556868789",
       "url_sha256": "418fb402e434ae9bb9102ce75d94242e7d8fb69e673a1d4a4f2ca326f1591f19"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5zVFVDNGZ2SUxRdGdvOFFYNnVtLW9CSWtGVjF1cnhrR01mREsxMzdhem9GeUppSll1M1JGNExFOTNIcWJHQnVwdDBSX0FENUk?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-4262312bdaec2867",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "0ea79ea4209716f1a97ca5c14e3e9fc0507f4d3bd5d710850f8e5471984889e3",
+      "url_sha256": "4262312bdaec286799dca247fc039bde702f8cbb20e0ea3b6e99bca05b7c7f22"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1OaVBiNXB1M1FxMnkwbEtJMGJXZWJBZWZ5YWJrNi0zNEdZU09Ca1dOR0JRalJkSEFLdy1zOWx6bERWOUprMFhiREY2WVRfTHZxd1MzOFdXM1lBOTQ2bEpwYXN1OFJsREk4?oc=5",
@@ -967,6 +1143,17 @@
       "url_sha256": "4c7c95d981e6a314c706ff6ddea365bb74e2a2534385d3520947e3783e53791e"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNX2JJWFNqdGl6bW9hWlJtR1RoVjk3aXJLRkxYMzVrTlBfZ0VOb21lN3U1ZlNKSnZSSExzZnQyTzF3N0JlMFp4czRyb3paWl9MZjZ6WlBsUEpyVndLX01rVWRGNGVkVjJFZkVIcVdNNk5QSUlnYkx3SWE1VVlvQk1hbQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-4c893a1b0965a3f2",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "f3ae0e23239e51c61c668eccb3da129154fa774984bdb89c0f0b0935dbcfd5ec",
+      "url_sha256": "4c893a1b0965a3f275ff424f91b599fd6e58a7d7df8abf7b6d133009095c18e8"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4zSHhxZzNXTkNzel9zZDZqUzVnaFowZEhHYXdkdE1WcVZwWTJQWHNudXVYR2V6Qk1LczR2MjVfME5DVVI2QnNXRDAxaEV5RUJGWDR0NUFHNlVRU0hNREx4ZF9OMDI5OVVzTXZ5VA?oc=5",
       "discovered_at": "2026-08-10",
       "discovered_via": "news-school-esports",
@@ -1019,6 +1206,17 @@
       "status": "duplicate",
       "title_sha256": "c76e43287b80238fd30ac47411bf7dea62f18c9a8bb8a90b60aaea342e5199f3",
       "url_sha256": "51e19dbde5354866b7c5e4231c66ff534afdadaa8c6dc5c155779b495541ce7c"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE04SHVqNTV6TkI3VDlVcWI4TmEzVFQwTlRXdXVYTGRDQjhKaHJ4UWt0dWZHV3hUWWhKTkFVRjRNMDdRSW50UFFjdEQzeF9BUzE3bWYtX1pwSXRaNGFydDdWb2d3?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-51f2252efae805d5",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "3cea7dacdd48fe72bdf44ca9560bf9adfcd13ac9f0442195c449faa4004ce956",
+      "url_sha256": "51f2252efae805d5a0154a7efa51c49eec9824cb21c7561cf72a01d7e16314de"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5aU2V1b1hZbXpOUFQxTndFWU1jNFFyYVp0cmxGMFF5RXJEUkpMNTd1bnVkTGJFZ08wTkNXYkFla24zNEt3MC1FNnZfYVNWSEZITk41anViM0ZCTzh3?oc=5",
@@ -1157,6 +1355,17 @@
       "status": "rejected",
       "title_sha256": "eb6917260fa81b8d22cdf3b98fe26f6d467499dcdcd8a14915b0e9cf12b4559e",
       "url_sha256": "5bd928611db0cbee30123ab11463a07e916b1ff03a994638ced0279198897dae"
+    },
+    {
+      "canonical_url": "https://www.youtube.com/%EB%B6%80%EC%82%B0%EC%9D%B4%EC%8A%A4%ED%8F%AC%EC%B8%A0%EA%B2%BD%EA%B8%B0%EC%9E%A5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-5c558bf9caa17bf5",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "7eaf2b3b77bfd847081a34c631d7ed48958d7c274b970c2940406e8f48d789e3",
+      "url_sha256": "5c558bf9caa17bf5725d71efbaf6ec5bc7d04fe7c35921eee9519cbe5802b09d"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1wWGxoWmF1ekVhTkl6NVR1aW9ZRHFObDVmM29TcjJ0cXJHcThEVXVyN1RXZ056cVQyR2JFTzMwQ0taNEEtUFl0T0hucU5fTERhajRNTQ?oc=5",
@@ -1562,6 +1771,17 @@
       "url_sha256": "7dff9e69a6488e0625590b65514a54446c050934a686294df390ee481474fd13"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBZc1pJdWlFaGVyRWxVVGhORk9nZC1WMkZRVWR6Y2RBRHFtVGFUa2ZRYk1wNnYwQ2hZYURFLVVuNlNjUnYtanF0bnFvSXRmT3hiQTBzMU5ka2x2QXBUZl9hRHA2elNxNEdIR3F5bm4tTnZyeFnSAXdBVV95cUxQYTVyNEw1Q003SDNFOExacFJPQzJ6Tk1Jd0w1NUlab01FeTdIU2ZyWTVYd2Y1ZVdJVnVaVTJhRUw2YUY0d3hzQnlteklPUmdJLWUxdHc5TDNWOFRFTmgtRzJfM1plTFExcUpKZGVTTktQWHpPWXdQaw?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-7e7c8d6e24e17de3",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "54ccdb1e64a23f5573c916f46c70db2294744f598448a03938b686a437a6f536",
+      "url_sha256": "7e7c8d6e24e17de3b38c2770b732fb4dd113ae4d20a15181b41e76a7e8e7d658"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9mbVNLa2hxN3I4MFpOYmxYOEo3UXdoUG14MFo5eEdnRURSN2UtY3FBRWNta0liN0Nzc0JnQ0NZaUVNZG9fbU5iTXVYMDUtdEdjSzlfRXl3UzNmeDVudHpOSlNLSG9QQS1HZm5YUkFR?oc=5",
       "discovered_at": "2026-08-03",
       "discovered_via": "news-school-esports",
@@ -1711,6 +1931,28 @@
       "url_sha256": "8f39fe2a70ef9bffa762c6068bb9389678c7eb604713ee2bf3b03eba226a8022"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5xVUF4RW9rdGR3Z0wxdWNzTElndGNNdjBueGlnUUxsVzZ2UTFYeWRmUWNOaVhwd0wwNndjbmhDV1lxR1hvV0pLMlBabnRsc1g1NzRKSGpqRnBPWURDbHg4OEZWRm1iTzjSAWtBVV95cUxOZU53WW11cVVkRHowUFlDR2NHWUlaOGVXamNkSWZOSTViUGxZS3gxcy1KYmplY19UR3FOb0taREZFbTh4X3ktS25Ka2FwbmpzNUx3MDN0MVFEMjN3LUotR0MzNkx2bkY1UzZYOA?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-918b2855488cd3a8",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "fe851ff2f79d0e0b2b614c37e794a03c2c3122af334d4d301a1f50d9888ce8fc",
+      "url_sha256": "918b2855488cd3a8c0d9c19efd1c4ba55c589136727f826028135f0258e14574"
+    },
+    {
+      "canonical_url": "https://www.facebook.com/Brena.esports",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-91c91c6df76ea618",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "7e69154bc083e44da1f97312a79075f483bcbe746525908a75506ff763edf45f",
+      "url_sha256": "91c91c6df76ea618463a3d28d2bd1458e308694896e9ed0d8a2cab620f68308f"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBCS1NOZ0doZS1QdW5PVnVQbUJhQ0xUZm5mQ1hnNTV2UktlaVZGVjVKcWNYdWE5a1JyYlN6TElvdWRzX01HZDR6SV9Vc05hNDdDUUw4UkhyS3Z4Q0JpSUp4YnRn?oc=5",
       "discovered_at": "2026-08-17",
       "discovered_via": "news-education-esports",
@@ -1731,6 +1973,17 @@
       "status": "duplicate",
       "title_sha256": "a7ae11ccb5ae1929d501e58a6c70742d1ed4cb2521ed46777cc5bda61abdafc8",
       "url_sha256": "926f28edd1faf373542af6253086e8c46449f6fcd545acdbdeaef6e425e60b91"
+    },
+    {
+      "canonical_url": "https://www.instagram.com/bespa_esports/?igsh=MWVoZnXAxdGtxaw%3D%3D",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-941ce55bbf330e2f",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "1772bed56c4ebde1ae9b602b179de4cebc8b7761cd0525d4d0c20340bdc5b6c0",
+      "url_sha256": "941ce55bbf330e2f33b1bbe3ee7f4a11489c82cd4fe8fbf36f102dad1fc3e241"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5NSG1EY0dvSERzXzltMWItaEgyTFcxMGJqeHJCM0tiZm5nQm9VUnBtTF9WZ3JzakRVNW9jYno4ZUlmT3dJZjh0X2pPRnpJTE1jdTFmSm96UWdtc0hRMUZpeEVXendvN3QwSzFV?oc=5",
@@ -1829,6 +2082,39 @@
       "url_sha256": "9b0a5c835b0f9626391162b9ab00fa15d3d34c5048b221ea26573d1c17d2f12b"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFAzYmZ2ZkkxUEpkcmQ4OVAtVURGZjZ0dFJfaFpjb0lsV011UnNubzRNNTFmQ0xldkp3a0tjX3hndk92S1p2OHRFMmNFVFdIdw?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-9d0fdbe390b13368",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "9d30958caad0c0e719ee28b1524c7a719aafd88dd2fa816e53ab023bb943b279",
+      "url_sha256": "9d0fdbe390b1336838c8bcea9b2935a249b9ddffa93ff0128ed0a5b0871e0b52"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE50c2hXVjJhTmYzQXhvWEFqSGVTRE1zX2FEVmpyMk03YTdNUTVtQTFvdGx2RWloMG83Umh3d2xXZFNNYTNQek5FbER2N09kcWhXT2p5Smc2ZEM?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-9d2ccad949a3aafb",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "cbf3f24a6f6348786e8b6b5d500b2c50025c8b8c3102afd30dea141cf2b69879",
+      "url_sha256": "9d2ccad949a3aafbe785c67886e394c42bc14137ae20b964d62913f28c3c8af2"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9OenNwcHlFd3U2OG5PLXp4c1BEdTkxbUl4a1owbnJwaEN3NUZpOXBLNTdUYUp3RjFzNG1tTlZjY01XdFFxbUo2ZmQ2cjhCaGNKR0lYVnliZm1YRE3SAWBBVV95cUxNQnE2blczajJfQUh1dzNMQ1NwWm5TN0NJZC10Z2JDNTctMU5OYkZEM1lmS21oZXFZTHk5YlNZLVlyMWpBUHFRa1RDOW83Tk5ONGJELVpmMUJtMDFidm9NbVU?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-9da8a16c5d0dffed",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "314252e78f0d0135fec34824ade745cf80201f2b55ff8a007952cbe0935468d5",
+      "url_sha256": "9da8a16c5d0dffeda592e345e9a048048c0b1b1dedaa5a96f9f2fde6eccee8f3"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9WekV5MkhKTFlrc2JJX0tUNk1ucDB3bno5cFhPMlpRcm9LMzBYbldCNXBXWlZMRU90c29FcUJDaDlTQ0xLM0NkLWo0MzRQbDVtTWlxMDFIbW9HeEk0NExTNDY4cVpLcUZOMnItcWpjWnU?oc=5",
       "discovered_at": "2026-08-03",
       "discovered_via": "news-education-esports",
@@ -1838,6 +2124,28 @@
       "status": "rejected",
       "title_sha256": "ad552b6991b2e0787eff61603063f24f473df9fb3bb29682982ff2c0c6c8c4e0",
       "url_sha256": "9e49b20e726e563f7216f6fd1a6c71cccf2176e805042cdbb12598492a8ee5e5"
+    },
+    {
+      "canonical_url": "https://www.facebook.com/Brena.esports/",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-9e7244403ac2d069",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "81a01aab6527b09263d3dee4a8507268416e1f888d06fceb0bf32e9178d18cba",
+      "url_sha256": "9e7244403ac2d069558fd70e17c7da9cd40ff43578e2a0720a26003e0dd3575e"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1Oc3FZOUNVMTF2Um85djFGbmMweHNNT1dhdWZGQVBNc0lkTkNaWmMxNTRaajgzb2tQNXJ2RDFSX0g0TXhIcnJTNVRKaUx2WWxPVFpfYnBjRTdkUU1veEQ5WUF2bGxQZw?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-9e9a5220d8b4928e",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "e88657be8b8b5f16004efb7778fd54c67b5da5fcfe12ac61ae8bb3c60f43b439",
+      "url_sha256": "9e9a5220d8b4928ea4b8dd288d745d6cab5ef44ea3716deb8df61c811d276e05"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9sd1JvN1B0MWswNHBDdzRuc0dvN2hvV3k1V0tuUXRDR0w1LTJkSFNVRkg3dnNBbndhOS1IMmZ3M2Y5b3dXcVY2VVBwSmZsUE0zZjJxdFhEMlIteEE2YTRHS2tpVVNlQQ?oc=5",
@@ -1894,6 +2202,17 @@
       "url_sha256": "a6f90782211bef557497633057911c66aefecfb90dec82bf6aac17c162ba38e8"
     },
     {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=1963&mode=view&srCategoryId=",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-a79c9c0204148299",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "d93ace449e04697798802816a839f25ba766a339499f67153b9c3f6922e03d89",
+      "url_sha256": "a79c9c0204148299fd167d126ea66ad636c07ea13d5e384d62ba89628f144b21"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Kd0xjNHIycmZDV1NhUDRxY2lQMjB3TW40ejV4bUlHWjBrczFGUk9Vd2hKdWkyNjBGX19ac0RUU1VXU0Mwejg3cEFLdWJLcE5Gb21yZ3JMekZQUVNRSmRvM3BFcVVQQmJaaVBwNmtSUGTSAXRBVV95cUxQaDR5TXJxa2VEUTJKVWx0a1czQkljT2hmeXJiUC0xY1RBTjZDYXNTbUsxRGtnRW93aV9ObTg5V0JrOGRVczNnUmJackNINzUteDlNX1ZWbkdNUWhnYlZsSHRNalNoUlhSc2JLUnRjX2JjTUJyeg?oc=5",
       "discovered_at": "2026-08-31",
       "discovered_via": "news-school-esports",
@@ -1904,6 +2223,17 @@
       "url_sha256": "a7d947885c650282d45219a030f5d290acebb0deb204c09dd57a586ed37da685"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA0NlNFSUw3LUthaVl3Z1RxcjJLeloxeFFfQUJIRDVJaFNMNUNHcmhqcXRibG9lbm1fX1RBYThfTlF3dDBxLThpOGo2TjYweWZ1eF9nT3VxdnZZbjFDNVhzMU9iMUg4eWc?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-a862280a3ba5cc6c",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "3139527c18d10ef73f3d92a0ace17862549a6e7f1f2668a5badb4aafdcd14e1b",
+      "url_sha256": "a862280a3ba5cc6c1f21c5360ddb427d97e9a1d8bd82678d40b6f72100fa6df9"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFB2S3RzWkJaWG5qdGltMllISDQ1dUpUOEhCRG9lMXhFY2dpY2ZuUl85MURkcDVnVlA3SjV2VDdHY3Y2VUszSldIaU41UlZtWHRPQ0hB?oc=5",
       "discovered_at": "2026-08-24",
       "discovered_via": "news-school-esports",
@@ -1912,6 +2242,17 @@
       "status": "needs_review",
       "title_sha256": "ad10efa4829ad5f495342923ddfcf7c9574127756b2d9ce7e64081d0f893c50a",
       "url_sha256": "a904cf89b1580f94d22cbddfe852dc8dadb3d0af7ec751d924f6d40900dcb3d6"
+    },
+    {
+      "canonical_url": "https://www.youtube.com/@brena_esports",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-aa0abef4ef62657b",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "8042e85fb5e35efac3f11801cc48cba5268c7a9ad6863f420c752824c33775f9",
+      "url_sha256": "aa0abef4ef62657b2d5c817f9f4f7d7be6b2d7e4cc572a1fe7cb35b43b5986f4"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1UQ1hEX01ZcmNKSlYtWHdTV0hxLVhvZktnOHNWc190U2dzUkZNSzZyYzkxeUpuVTZZSko1NjJ3eEdjdG1iNEc0dFYtbDlNcnducWlMdGdLOFlRV3BQWHhpV0VCOUJMbGNkV0pmU3ZB?oc=5",
@@ -1945,6 +2286,17 @@
       "status": "duplicate",
       "title_sha256": "05b8e4bf70ced25f1817c60a9336116bd54825347104ec2e131340f72513454d",
       "url_sha256": "aef7f069f351bc4c8ea86fe18af0c1f59aeae90684254ba4b550edd442e74fc6"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1XazBWdnc2MmtsMGlaZmliX05Jd2VLdFA1d2k5bmVqdmV4eXhrUFdiNXVLODBfRE1DVUlMMVBPQ1ZNTHI0elF3eDhUSmxacHo2MXd0WDFLQWxwcUJ1TElRODAwd0xqQ3ZIYlE?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-b203f4a81a15637c",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "9404443928f1508c082392ca56384eec873521348e7bafbd7521fa8607e5665b",
+      "url_sha256": "b203f4a81a15637c65ad9b7209872ac8e26ceb3ee0154b16c181fdc40de8eaa3"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE92Vl9Uc0lCSzJEUTQzbkU1RUdmY0lxRjduWmd0aG1oTlcyS2xROWRkUmdTamFVRGRTZmVuYXFBWmRHWEd5dFJWanZEMld2MDFTMzItUWgxU0tJV1U5VmtxckpvLW1hajNIWUhtbXRB?oc=5",
@@ -1990,6 +2342,28 @@
       "url_sha256": "b5fd12d4a18a89c7ef4b0e5cfd962f66747b447f1dca780d71bf5de2ff8fe704"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBMZE51MHl5QXZIR0NORm9ocVNtazd6X2RHTVJpa2RjWnM2VFR5MHpoWVJGak84ZnJ6eFZxYS1sb3JUQnhSbldpMjlpNlh6OTQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-b602c05a4462d976",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "d8e771b7cf01026e208763883bbcba6a48881ebf35e7178fc6e30a71075a2c79",
+      "url_sha256": "b602c05a4462d9761d19bb0e87fab5a09a988b2e8736e8d0bd67d5785312e660"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=2368&mode=view&srCategoryId=",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-b6b23f0f41eb6c28",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "3098756e415c079ffb723c7488ec958286d23393b0ac8ae935df73e62c849538",
+      "url_sha256": "b6b23f0f41eb6c2846732c726a70e36c7a2617537814d1cd3f56cdf0d999baee"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBfczNCY21Qbzl0V214M2w2QVlvaHFaT05peS1aYVl4cW1QZXNGaEg4cEVwS3RFY0RkSHo5aG52QmV6U3NVNTNLcXJqeUR2dlpucEt0Zll4ZTVZSHJpbmJmMXdB?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
@@ -2009,6 +2383,39 @@
       "status": "needs_review",
       "title_sha256": "6c4eebe65c206a5580c8fcfaebfafba3c00f9f01e3f78c3fd1fab4ab56bd1f64",
       "url_sha256": "b8b998e12f2ba42436521f672ce794156c9aea091372d113ee6d4ef9fcaf0f82"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5SV1ctUGNGVDFSWllvYkdjZzNrczhCbUxNdUFaV0YxY2dWTEdIMjhvS0dYSTNYQlpmU0ZCSThkNUxTMFk1b0RYdjRn?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-b8c942ad86534b58",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "364571b1ccb64b450daf6fef14d52f39ddbfa8bb6c9d7aa675b411b13a336992",
+      "url_sha256": "b8c942ad86534b583321c117a8536a09827fc6ff6cfdda74f83d2fddc9057053"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBzT2hpdVExOE81aVFBaXZlOVNJUlpQTW1tck02S1NKOTBDVENpdThDM1VvZjF6M205T0JHQUFEZHJCd3o4Sm90U1U3bWFWSVFfZ1N5cGlTZlI5c1dIWm85OGlHSXM2a0pyNFBR?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-b9b72e2039e95515",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "4170434e05cbf0366f7903343cf74aa506ce3ba492e6a9989622eb36621bed26",
+      "url_sha256": "b9b72e2039e95515db6f2d8d30a958302220692612ddac65011fa85ac6465c0a"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1fcWRwMFJrMl9IUjJJaF9Oem1oeGd4QkRTQ3ZpQTB1ZXY5X2NvekRhc0JrNWpWSjN5Skh4ckptMjdNekxSVW44YXlSai1lNHM0MHlXZ1VKT2hzLUk3?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-bb51d6df26c3351f",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "28007a0c33abe09aee2cc2d54068a868e98d0843208a4a0b56bcce304ace2e90",
+      "url_sha256": "bb51d6df26c3351f194a5f1764e33809e226f290da6c5e8fa865f52c9311a422"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5uLXcwQnFMMEpPZkpIcmVRVG9iMk92RkpmM2RYVXlpRHhRQ25yNnV3VUMybEY1SklNVFdTUTZGeVBWVmJmUjROYjVrUGRkQlhUTERmekplR285V3dwRkp1VTFwd09ZcUJCMU95Tk930gFyQVVfeXFMT2t3V2lVUlZyT0J2cXVEVnJBY0tJZm8wajhlZ3I4UVNFRGpwMEk1VDFVVXdIcE1MOTFfZVJYamlWcHV1ZVgybUdSQlE1cVFlMnFWdnM3VGQtMkZNb2hsUDhCd254Zl8zMUJmb0xHdE43cWN3?oc=5",
@@ -2032,6 +2439,17 @@
       "url_sha256": "bbf768cd49666fe2721c16a64326bb2fbff8432ecbe4e1034744649f14160792"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE92dGNrVGJTeGJhQ0FUcWh6b1phRUtYdnNLU0k5UnpHMXl3dkdCRlFlRzJMc3ZQSTZHVllEMWpraDB0R25hbS1lN3plUm1sTmJwR0F1ZWZsVHZKZzdkMXpWWUlITnJ5OFpnNGNUbg?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-major-esports",
+      "event_sha256": null,
+      "id": "candidate-bc72c0d6f19b7c9b",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "9564b9b22c58ce6f1ebed2c57bd65fa35bb4aef04e56b5ed484bc7531f84b0ff",
+      "url_sha256": "bc72c0d6f19b7c9b7f075cc0e0f74a9c04d019a002e55815f0d93b37bbdb2ac4"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1oTWZ4SEZ0bVlRRkpXRW1VdklPcjVEWXZXbWtQODk5X1pZMjNFZ2drMlgzZXpRaTFyVExPcDRaNngxREpnRW9uT0hRV0Q1UGNheWfSAVNBVV95cUxNdlk2VzB4ME5oWV9sZ2RvVXMzdTBxdDRyZFdIVlRKaFFaR1htdGxSd3p0TGJocXJ1UkN0ODY1Wmo0Yk1iV2dJN1phWFdzYlZGS2lkMA?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
@@ -2041,6 +2459,17 @@
       "status": "duplicate",
       "title_sha256": "42d44236991410b491c94e70761a2417610e05cbcb0aaebd1c0fa2ff61751c76",
       "url_sha256": "bc72dc89a51c10e07f77a262be9bc8092b8c7661cdfe4bcbbb1e97c4ff23e66a"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SaG5JTTFNUWluQlFKQTI5WjZWR04yVThrLWRQb0lZcW5UOHhuYXdxMlZ4Ym9mcWFNMXNJeURNa20tQ3NISVFaYTdrQXlrLTlya1NyT3d1WGZJZmYxeW5sY095X1BKMEdaSnZ0dHVLUQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-bcae8ebacec8cf91",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "455706cc002ce9d2b73b85e54c89f19166eb188e2b91aaff8125ef7676b9ba9d",
+      "url_sha256": "bcae8ebacec8cf914848c999f7fd7f98a031cfbb7a3b5fc2aee22eb853e8dd63"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBNVGZqNExsTGVPZXdlZUhfaGJPOW40WDdvMmliSG9EcFRNR2xsdHVjLXlwOW5KZXI2UzhDQmpYc1F6aTZhMW9wT2gwVzJuYi1McXFoYkVIZEpKWXQ0VWRabHM1ME9XeDJSaEd6clVR0gFyQVVfeXFMT2tqLTJKeUo1Z2h1TnhVRzBfdW5UelVlTDJnRlgzQWhMdFBha1FSM0VfT1RiRmJLTDZ5cGVNNG1uSEhjRGdSYV9MZldJdm4tOGpFd0lpV2Jid0l0VjcxdUJ3YnBxZWtCckM2STBpT0c0TWFB?oc=5",
@@ -2084,6 +2513,17 @@
       "status": "duplicate",
       "title_sha256": "2fc20c8724a3827348d1602e4f09686f3d2e9f6cbb3ae80ab00c72a9b091102a",
       "url_sha256": "bdd3b571d6d5cfa2de69e8683ca8ed170c51d1767a0cfc5b406a35c5570e212f"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE44NnozS2ktb0JIYk42WHpFNEp3eHBQWmpVYlhRUDFnUUpFeUdZM3haNE1zSXZ6ME5obXkxX2RZS29weVVmTXJxMUNRREVrSkVEQVMySWp5Ykdpd0Zm?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-bdffe59871952696",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "4def0601aba05518b9efcada92e38ac50a4e346d1e8d831c252b78cace6e84e9",
+      "url_sha256": "bdffe59871952696c8d9c6100c7f66f11a54683de0f1f308f36cfec7aaae5331"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTFBjVl9seUtDSWpnYkluMGl3X2xWdjVHaTl1akhMc1JmOHpYYkdYUzhibkhYZEJ4SnNOMkZKNHE1MDVvWFFaS1E?oc=5",
@@ -2172,6 +2612,28 @@
       "url_sha256": "bf85b889fdd8f54b6e1d5bc593cb32a8dab77a87d0e1a6b40397f6600e005f3e"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5zcnBGaUl4eVIxdjF4QXlZRnVUNEdVRXBBREh3RURzQkZIMkRxYzZ6ckY1dHktWFJKWDBxc3ZfLTQ2bmw4LTNram5QQ3psdUhGVkdlckdGdkZITGpLamfSAWNBVV95cUxOSUhMWE9Icm9ha2lBQ0UwNFBvRTctc1kyZFdRM01vNXhpOGR0aXNDa3pPZ0ItTWxaQ2FWVDdhbzNfWEVPNno0Uk44V1NXWUlUazR2NHdHN2lqaTN5Y0ZzcjZVWm8?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-c0166a87a90541b2",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "7932e320a1734999e17da10cd4d9d573f8f93c209b7c3e897aac721333107c9d",
+      "url_sha256": "c0166a87a90541b295422eb2921ed1d0196347e57b4c5bf637742447cf4da3a9"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do?article.offset=0&articleLimit=12&articleNo=2377&mode=view&srCategoryId=",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-c1411fee70637a27",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "769226b7c2479740cc3277aff01c9d85f606b7f16e4ec117b639fc532520764e",
+      "url_sha256": "c1411fee70637a27f292ce59933d712dacd5a68fe8845a9ca30c3c2fb37a045b"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE8zTjlWNUJ0RlBqak4zZVZtRnJIM3FTcWZabjd2SzJpNGpITU1hRUFMb2ZKVC1Ub0NYZXlLUjU2R1F6M1piZmlpUjNn?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-education-esports",
@@ -2192,6 +2654,17 @@
       "status": "rejected",
       "title_sha256": "914144cff888330c63bf634ef50997d14208e85b8809ea7249f7941d67f439bc",
       "url_sha256": "c17efb346196b32d8cbe0ed5ff881a4ddda147cfd223d6bdc7ba60463febedfc"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9mVF92QWItb043Tndoc1ZYbFN3U1Q0SVFISXZySnc3YnhHV2xlSWtja0J1Z3dhS1ZxZERlTzJrVzVDNF9xbnBzTlk1X1JXaWZrUURoQ0Njc2jSAVhBVV95cUxPZlRfdkFiLW9ON053aHNWWGxTd1NUNElRSEl2ckp3N2J4R1dsZUlrY2tCdWd3YUtWcWREZU8ya1c1QzRfcW5wc05ZNV9SV2lma1FEaENDY3No?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-c2c370384bce463d",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "369458d558788cc09dabd77f9dd3c82c9e0b6e73356c1004778faf3d8540a875",
+      "url_sha256": "c2c370384bce463da9465dda420b4c73dc78d8fb74dd7912fcc204ee53b66e97"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB4eEFHa1pyclpFZVJlTy1CYVQ2Slh1QzduMktjTWJTRHAtUHE2QV9UNGp5NjB1akZKWXFpQS1SVzAxaVFBTWk0RjM4NkFUZ3RpV2NBQWJVQTRxMi1rR21lRQ?oc=5",
@@ -2270,6 +2743,17 @@
       "url_sha256": "cb4a49c91db973cf7964ef282d79e40596702d21a55e4ef44694b64de2e7aaf6"
     },
     {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBEQjRvUUFXLWtzTV9HT1ZNOTRoald1akhGTTYwSmFuV0RPTkpWcldMZzZwRUxpaEFVWEdyaDNxVnVYYTZ5VFJVT2x6eTBBOXNJT2lhSzhmclhKV1NmVGV5SA?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-school-esports",
+      "event_sha256": null,
+      "id": "candidate-cbcb6d6caf3b441e",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "e38ccafb4b017e52892e9e9245d5149ec27ef8f91ed04065206978da03ca0875",
+      "url_sha256": "cbcb6d6caf3b441ec25125fd9ec163e582d9e0b5d6fbe7b41a12e21c350077a4"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPb2MtUmFSQUJBQk1sYzdDa3BCRThMemdvbGFSTGNSV3FZMUFDeXkyem1uaHdnaUlyRkMzN2QtZUt6RkRwWU5ZaHJSODEtb3dPM1p5NEphSEx1d1YxN1pka3NCbk1MU0dkdllHd0dEdjJObUQ2MDY0a0tuWU5kdXdKeHNRS3dhbnZEek5CVUNaOVgxZW0wM29ZQ183NkpheGJrX1dIdmFsU3dmNmdZSlFoSXhTdU1YWUpQaDdYRk4ySkF4WHRha3E0WG1KVkVNT0Z0TlRXSHRIUHdxalB1WU5adkFyeUpFYW55WWVFYWwwRFIwTXM1?oc=5",
       "discovered_at": "2026-08-24",
       "discovered_via": "news-school-esports",
@@ -2288,6 +2772,17 @@
       "status": "needs_review",
       "title_sha256": "5ba9a4a9a2c2bc1a420a219d9cd7b87f897e7044ebfff42c19759fa15721fd93",
       "url_sha256": "cd14f3302beced6460dcfe6edbd66e88aa9c0a43c1ea6b41d90180b728c1de10"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBlVTRsRjNhbzItdG5GNF9FaDg0eUhMamVoTjV2QW1kN2RkbUFFRkR6SUlSV25kQnd5Vk5nRDZrZDhuSDB4QVhlMjI4TndmTjdNbWpkOFRmRS1zZjVyQmR6UWR6VFcya1cxbHVjcG1HQQ?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-club-esports",
+      "event_sha256": null,
+      "id": "candidate-d03f8bba20914c89",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "33d5ef3c61ca336cf7876ba0b7975c7a8bfbb638104aaf5e590893788db9f331",
+      "url_sha256": "d03f8bba20914c8971df930315577a76d1acacd534fe123e264765435e3393e1"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Ocl82VHlZVWtTcFFNOWxhMzg5UlV4V3A4LVEzTjFpbmE2ZzZ2QWJlbkpPZUZDc2JQX0NZNExjSXpuTXh2VUZKN29JWWdCeVA0MWNYSWZkMEZvZXdCNnBBeQ?oc=5",
@@ -2309,6 +2804,17 @@
       "status": "needs_review",
       "title_sha256": "dd73394f56d437fdfe3ba8dd30586104d5d614680e35c6576a8fdea96bbdd11d",
       "url_sha256": "d1dc8914ee3c4a96cdd0d99b0a74f6866390784ae5df0f09d019a4643a873aa6"
+    },
+    {
+      "canonical_url": "https://twitter.com/Brena_esports",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-d1e39097b1e9e963",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "d6c29c476f07192d1ca3033b1e9a0346e448c50e244f27f354ac8cb67544be09",
+      "url_sha256": "d1e39097b1e9e96321933bff326a01c1daf03b9c130c704c3864c931024dfb71"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1HM3I4MVFDNFJadUlJMGlWaXg3Qi1iVC1oaW5taGRGMXFLalFCWUVhMmprekpxQUMyLXo1aUs4WUFpLXFTT0hNRkJIVWNaTk0?oc=5",
@@ -2592,6 +3098,17 @@
       "url_sha256": "edbfe4675d79fabc3e0716c3fd0bc39ef103e67d43af56aaee9a70b88547dfb3"
     },
     {
+      "canonical_url": "https://www.instagram.com/brena_esports/",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-edcb744a901bbd39",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "8000955fdc5d9be29cbd463df45e5a458202a6c6f5d1e5cdc8858b6530d9d4b9",
+      "url_sha256": "edcb744a901bbd39310b6938baf1db63073fb0d2a7df9c53919b70742ccf7539"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5FbUt4SGh4b09fOExnOEhBZXlkQjJNMkUyR1Q5S3FpbDRzV3lPN0Y3LWhvNmFUQWJOb205R21FMVhmNnA0UE1SaGhTNnNlaWc?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-education-esports",
@@ -2601,6 +3118,28 @@
       "status": "rejected",
       "title_sha256": "f4aefada7f705b2cf601e3cc9e29ffe73a35628c698df07337dc4dbd28dc0126",
       "url_sha256": "edecabfddf00d93b7250f1b082395a4d441444533e60e3d5cb8d3be3017d3590"
+    },
+    {
+      "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1VejRENXJ3QThIZDFUQjFkUmM4SFROcGFsM1cxVXV6SFdNaU9FRV9od1l2dWR0OVhwc3pWSEJuUFJvV2dCdUx3MWJyS2NfNS1zT2NMT3RsVEhqbUhX?oc=5",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "news-education-esports",
+      "event_sha256": null,
+      "id": "candidate-eedaaaa2b0a7c39a",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "d00f03b2c42e1378c283d46f1903da3f5fedaa4309c91ba52f754022b4beab5a",
+      "url_sha256": "eedaaaa2b0a7c39a8bc970a0be4e80dcddfe01ee045f55b2c328092f4868f528"
+    },
+    {
+      "canonical_url": "https://twitter.com/Brena_esports/",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-eee15e8fba1d5740",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "4fb9c846a0d58f93e67d4ada2f30daae1ab0009ef860c48803694df607fbbf89",
+      "url_sha256": "eee15e8fba1d57408ef5223479bdcd7180d2357ff19af40c384062c5260e637f"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1LbXRFeVdscE02Y0JDUjFRRlRYSFNCQjVQTnpzTDdDaTZGR0cycmpsVmYyY3dZcGtSRTRyZDFFTnQxMGI5Y1RpUmdfS1Iwa0p3RWU3OV9UaW1aNzhlcWxmTURQYW1JZHo2cGZXQjFUYkFfWWp2emhB0gF3QVVfeXFMTUttdEV5V2xwTTZjQkNSMVFGVFhIU0JCNVBOenNMN0NpNkZHRzJyamxWZjJjd1lwa1JFNHJkMUVOdDEwYjljVGlSZ19LUjBrSndFZTc5X1RpbVo3OGVxbGZNRFBhbUlkejZwZldCMVRiQV9ZanZ6aEE?oc=5",
@@ -2707,6 +3246,17 @@
       "status": "rejected",
       "title_sha256": "570b9d37146bc15ff64a45102a7a3613de1570c718b7473e21343fd96d5d7201",
       "url_sha256": "fa33c06f3a3b75ececb7a09f407f5d1ec71cb3ca64aefc016efd7d1581dab956"
+    },
+    {
+      "canonical_url": "https://brena.or.kr/brena/sub05_03.do",
+      "discovered_at": "2026-09-07",
+      "discovered_via": "pilot-busan-arena",
+      "event_sha256": null,
+      "id": "candidate-faa57a785d9d8857",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": "0a12ae53b3cae4c7c70a8c9345ea085cdc82c4a92f6df100c98a10f6994728b6",
+      "url_sha256": "faa57a785d9d8857d54331055aba14c750cc8d2a2af983e6bfa11249bc9b81d7"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE90Q3FiYjh6azVHcXlXQWlhUUZCRGZfb2lWU2lNS2Z0VFU1T0dEQjVtVGo0eEFmMDB0UWhKU2FRV1JtVVdKQ1pWRXI2Z2I5WEkwXzRuUjVfZFp5M1gybjdnTklld2ZOaW5FbHVCN3dB?oc=5",
