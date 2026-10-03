@@ -50,7 +50,12 @@ export function renderDetail(container, entry, sources = []) {
   notes.textContent = entry.public_note;
   const reviewFacts = document.createElement("dl");
   reviewFacts.className = "detail-facts";
-  [["세부 유형", entry.subtype], ["유형 설명", entry.subtype_note], ["사례별 근거·한계", entry.notes], ["근거 검토", REVIEW_LABELS[reviewState(entry)]], ["최근 검토 시도", entry.operational_review?.checked_at], ["다음 검토일", entry.operational_review?.next_review_at], ["판정 이유", entry.review?.reason]].forEach(([label, item]) => reviewFacts.append(field(label,item)));
+  [["사례별 근거·한계", entry.notes]].forEach(([label, item]) => reviewFacts.append(field(label,item)));
+  const limits = document.createElement("details");
+  limits.className = "detail-limits";
+  const limitsSummary = document.createElement("summary");
+  limitsSummary.textContent = "사례별 근거·한계 확인";
+  limits.append(limitsSummary, reviewFacts);
   const sourceHeading = document.createElement("h3");
   sourceHeading.textContent = "원문 출처";
   const list = document.createElement("ul");
@@ -64,7 +69,7 @@ export function renderDetail(container, entry, sources = []) {
       const item = document.createElement("li");
       const article = document.createElement("article");
       const identity = document.createElement("h4");
-      identity.textContent = `${SOURCE_LABELS[source.kind]} · ${source.id}`;
+      identity.textContent = SOURCE_LABELS[source.kind];
       const metadata = document.createElement("p");
       metadata.textContent = `검증 상태: ${SOURCE_VERIFICATION_LABELS[source.verification_status]} · 최근 확인일: ${source.checked_at || "미확인"}`;
       const raw = document.createElement("p");
@@ -88,7 +93,7 @@ export function renderDetail(container, entry, sources = []) {
           links.append(linkItem);
         }
       }
-      article.append(identity, metadata, raw, links);
+      article.append(identity, links, raw, metadata);
       item.append(article);
       list.append(item);
     }
@@ -97,11 +102,14 @@ export function renderDetail(container, entry, sources = []) {
   const metadataDetails = document.createElement("details");
   metadataDetails.className = "detail-metadata";
   const metadataSummary = document.createElement("summary");
-  metadataSummary.textContent = "전체 메타데이터 보기";
+  metadataSummary.textContent = "추가 검토 정보·전체 메타데이터";
   const facts = document.createElement("dl");
   facts.className = "detail-facts";
   const checked = entry.status_checked_at || "최근 확인일 미확인";
   [
+    ["세부 유형", entry.subtype], ["유형 설명", entry.subtype_note], ["근거 검토", REVIEW_LABELS[reviewState(entry)]],
+    ["최근 검토 시도", entry.operational_review?.checked_at], ["다음 검토일", entry.operational_review?.next_review_at],
+    ["출처 ID", sources.map(source => source.id)],
     ["지역", entry.region_name], ["유형", TYPE_LABELS[entry.resource_type]], ["분류", entry.category], ["범위", SCOPE_LABELS[entry.scope]],
     ["운영 기관", entry.operator], ["학교급", entry.school_level], ["행정구역", entry.district],
     ["주소", entry.address], ["연도", entry.year], ["종목", entry.games], ["신뢰도", entry.confidence == null ? "미확인" : CONFIDENCE_LABELS[entry.confidence]],
@@ -109,6 +117,6 @@ export function renderDetail(container, entry, sources = []) {
     ["상태 근거", entry.status_provenance || "독립 검증 근거 미확인"], ["상태 검토 사유", entry.review?.reason],
   ].forEach(([label, item]) => facts.append(field(label, item)));
   metadataDetails.append(metadataSummary, facts);
-  container.replaceChildren(heading, summary, status, notes, reviewFacts, sourceHeading, list, metadataDetails);
+  container.replaceChildren(heading, summary, status, notes, limits, sourceHeading, list, metadataDetails);
   return heading;
 }

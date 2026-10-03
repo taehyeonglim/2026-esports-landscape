@@ -4,6 +4,9 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { landscapeModel } from "../src/landscape.js";
+import { initialPane } from "../src/explorer-view.js";
+import { createAppState } from "../src/state.js";
+import { filterEntries } from "../src/search.js";
 
 const site = caseSite(JSON.parse(await readFile(new URL("../data/site.v3.json", import.meta.url), "utf8")));
 const nationalMap = JSON.parse(await readFile(new URL("../data/national-map.v1.json", import.meta.url), "utf8"));
@@ -35,4 +38,25 @@ test("national map is a compact exact 17-region runtime asset", () => {
 test("landscape model fails closed when entries escape the region partition", () => {
   assert.throws(() => landscapeModel(null, site.regions), /array/);
   assert.throws(() => landscapeModel([{ ...site.entries[0], region_id: "ghost" }], site.regions), /exactly once/);
+});
+
+test("map scale stays fixed while filtered counts partition results including empty regions", () => {
+  const all = landscapeModel(site.entries, site.regions);
+  for (const category of ["학교동아리·팀", "교육청대회·사업", "no-matches"]) {
+    const conditions = { category: [category] };
+    const map = landscapeModel(filterEntries(site.entries, conditions), site.regions, { maximum: all.maximum });
+    assert.equal(map.step, all.step);
+    for (const region of map.regions) {
+      assert.equal(region.total, filterEntries(site.entries, { ...conditions, region: region.id }).length);
+      assert.equal(region.density === 0, region.total === 0);
+    }
+  }
+});
+
+test("cold visits start on map while every existing deep-link filter opens results", () => {
+  assert.equal(initialPane(createAppState()), "map");
+  for (const key of ["entry", "region", "type", "query", "sort", "category", "schoolLevel", "theme", "scope", "status", "reviewState"]) {
+    const value = key === "sort" ? "year-desc" : "example";
+    assert.equal(initialPane(createAppState({ [key]: value })), "list", key);
+  }
 });

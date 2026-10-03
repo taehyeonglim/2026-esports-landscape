@@ -1,8 +1,8 @@
 # Project status
 
-- Last updated: **2026-09-05 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**. Latest deployed implementation: **828366c19dd842e9fce2aa369842afd3d18f3949**, merged through [PR #22](https://github.com/taehyeonglim/2026-esports-landscape/pull/22).
-- This coordination-only closeout records the delivered implementation and does not change public release assets. Refer to Git for its containing main commit.
+- Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
+- Canonical branch: **main**, base **6171b6774392674d615505521e2b6838d0514e3a**. Map-first implementation is on **feat/map-first-explorer** pending delivery; refer to Git for its containing commit.
+- Last verified deployed source before this change: **6171b67**, [signed run 33970476758](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33970476758). The map-first candidate is not yet claimed as deployed.
 
 ## Product and data
 
@@ -11,7 +11,9 @@
 - Public case search/comparison/map summaries: **75 cases**. All **160 legacy regional display references** are excluded from case aggregates and explicitly separated in the research appendix. Their IDs and source lineage remain archived; the Gunsan auxiliary event is not counted twice.
 - Geographic typology separates **28 regional cases**, **23 coordinate-eligible cases**, and **five regional cases without coordinates**. Current map summaries are regional document counts, not activity rankings or venue pins.
 - Every archival operational status remains `needs_review`. Case partitioning and AI release approval are not factual operating-status approvals.
-- Review-filter reset, current typology, case-specific evidence limitations, and compact iOS first-result visibility were corrected after real model/CI findings.
+- Map-first explorer: desktop map/list split; compact map/list switching below 1024px; filtered regional counts with fixed scale and zero state; retained map during desktop detail; list position/focus restoration.
+- Source links precede additional review metadata. Case-specific limitations remain available in an explicitly labeled disclosure before the sources. Existing uncertainty and source links are preserved.
+- UI/URL behavior and exclusions: [map explorer contract](../docs/map-explorer.md). No data, factual approval, pipeline, URL schema or deployment-policy changes.
 - [Approved review overlay](../data/approved-reviews.v1.json) remains empty; existing source ownership, PII, prior-hash and official-evidence safeguards remain active.
 
 ## Automatic release operation
@@ -24,15 +26,12 @@
 - Human study approval records remain pending. U2/U3 automation targets were replaced with case records; no human study or fact approval was invented. The scheduler never invokes the separate owner override.
 - Guide: [Astra automation](../docs/astra-release.md). Local operational state: `~/.local/share/esports-astra-review/status.json`; private review evidence is under its `reviews/` directory, not NERV.
 
-## Verified release
+## Verification and delivery
 
-- Final genuine Astra review: **approved, 7/7 checks**, no blockers, exact source **828366c**.
-- [Signed deployment run 33969332429](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33969332429): independent build **success**, signed release gate **success**, Pages deploy **success**.
-- Release ID: `b30a2c8b3631fd7961b0ec6e6bbfdf3e2af359bfed094c71ec18599bc4be1e54`.
-- The coordinator confirmed the live release ID and public routes. Independent readback also verified exact hashes for home HTML, research HTML and public data JSON.
-- Full verification passed: **43 JavaScript, 131 Python, six static contracts, 120 public-browser, one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Earlier reviews rejected genuine defects; the first approved candidate then failed Linux iOS layout CI and its dispatch was cancelled. Those were blocked attempts, not successful deployments; the newest handoff entries preserve their evidence.
-- Changes were intentionally committed, pushed and merged in PRs #19–#22. Local main was synchronized; unrelated user files were preserved. This NERV closeout is delivered through its own main PR.
+- Map-first candidate verified: **45 JavaScript, 131 Python, six static contracts, 150 public-browser, one administrator scenario**, plus deterministic extraction and reproducible release hashes. Desktop/compact visual inspection covered map, list, detail/source links and empty results.
+- Candidate release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`. WebKit label hit areas, browser-history test synchronization, source visibility and debounced-query clearing were checked across the five-browser matrix. No human study approval is claimed.
+- Previous deployed release ID: `b30a2c8b3631fd7961b0ec6e6bbfdf3e2af359bfed094c71ec18599bc4be1e54`; the new candidate still requires exact-main Astra assessment, signed gate, independent Actions verification and live readback.
+- Next: commit/push/merge, run the installed signed release coordinator, and replace this candidate status with actual delivery evidence. Do not describe build success or merge as deployment success.
 
 ## Private review workbench and next priorities
 

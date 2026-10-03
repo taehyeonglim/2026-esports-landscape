@@ -9,7 +9,7 @@ function recentFirst(left, right) {
   return String(right.year || "").localeCompare(String(left.year || ""), "ko") || left.name.localeCompare(right.name, "ko");
 }
 
-export function landscapeModel(entries, regions) {
+export function landscapeModel(entries, regions, { maximum: scaleMaximum } = {}) {
   requireArray(entries, "entries");
   requireArray(regions, "regions");
   const models = regions.map((region) => {
@@ -28,8 +28,9 @@ export function landscapeModel(entries, regions) {
       featured: regionEntries.slice(0, 3),
     };
   });
-  const maximum = Math.max(...models.map((region) => region.total), 1);
-  for (const region of models) region.density = Math.max(1, Math.ceil((region.total / maximum) * DENSITY_LEVELS));
+  const maximum = scaleMaximum ?? Math.max(...models.map((region) => region.total), 1);
+  const step = Math.max(1, Math.ceil(maximum / DENSITY_LEVELS));
+  for (const region of models) region.density = region.total === 0 ? 0 : Math.min(DENSITY_LEVELS, Math.ceil(region.total / step));
   const byId = new Map(models.map((region) => [region.id, region]));
   const total = models.reduce((sum, region) => sum + region.total, 0);
   if (total !== entries.length) throw new RangeError("Landscape regions must cover every entry exactly once.");
@@ -38,11 +39,21 @@ export function landscapeModel(entries, regions) {
   const nationalCategoryTotals = [...nationalCategories].map(([category, count]) => ({ category, count }))
     .sort((left, right) => right.count - left.count || left.category.localeCompare(right.category, "ko"));
   const topRegions = [...models].sort((left, right) => right.total - left.total || left.name.localeCompare(right.name, "ko")).slice(0, 3);
-  return { regions: models, byId, total, maximum, nationalCategoryTotals, topRegions };
+  return { regions: models, byId, total, maximum, step, nationalCategoryTotals, topRegions };
 }
 
 function svgElement(name) {
   return document.createElementNS("http://www.w3.org/2000/svg", name);
+}
+
+function pathBounds(path) {
+  // The v1 asset contains polygon M/L/Z paths. Computing bounds from its vertices
+  // also works when a direct link initially hides the map on a compact screen.
+  if (/[^MLZ\d.,\s-]/i.test(path)) throw new TypeError("Unsupported map polygon path.");
+  const values = path.match(/-?\d+(?:\.\d+)?/g).map(Number);
+  const xs = values.filter((_, i) => i % 2 === 0);
+  const ys = values.filter((_, i) => i % 2 === 1);
+  return { left: Math.min(...xs), right: Math.max(...xs), top: Math.min(...ys), bottom: Math.max(...ys) };
 }
 
 export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {}) {
@@ -74,30 +85,97 @@ export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {
     group.append(path);
   }
   svg.replaceChildren(group);
+  // Layout anchors for metro labels, not venue coordinates. Leader lines connect
+  // the text to the existing administrative shape; all regions have button alternatives.
+  const anchors = { seoul: [155, 230], incheon: [100, 300], sejong: [130, 365], daejeon: [160, 415], gwangju: [120, 535], daegu: [580, 435], ulsan: [630, 515], busan: [575, 590] };
+  const bounds = new Map(asset.regions.map(shape => [shape.id, pathBounds(shape.path)]));
+  const boxes = [...bounds.values()];
+  const left = Math.min(...boxes.map(box => box.left)) - 35;
+  const top = Math.min(...boxes.map(box => box.top)) - 35;
+  svg.setAttribute("viewBox", `${left} ${top} ${Math.max(...boxes.map(box => box.right)) - left + 35} ${Math.max(...boxes.map(box => box.bottom)) - top + 35}`);
+  const labels = svgElement("g");
+  labels.setAttribute("aria-hidden", "true");
+  labels.classList.add("map-labels");
+  for (const path of group.children) {
+    const region = model.byId.get(path.dataset.region);
+    const box = bounds.get(region.id);
+    const center = [(box.left + box.right) / 2, (box.top + box.bottom) / 2];
+    const [x, y] = anchors[region.id] || (region.id === "gyeonggi" ? [center[0] + 35, center[1] + 35] : center);
+    if (anchors[region.id]) {
+      const line = svgElement("line");
+      ["x1", "y1", "x2", "y2"].forEach((key, i) => line.setAttribute(key, [...center, x, y][i]));
+      labels.append(line);
+    }
+    const label = svgElement("text");
+    label.setAttribute("x", x);
+    label.setAttribute("y", y);
+    label.dataset.regionLabel = region.id;
+    label.textContent = `${region.shortName} ${region.total}`;
+    const target = svgElement("g");
+    target.dataset.regionLabelTarget = region.id;
+    target.classList.add("map-label-target");
+    const hit = svgElement("rect");
+    hit.setAttribute("x", x - 65);
+    hit.setAttribute("y", y - 25);
+    hit.setAttribute("width", 130);
+    hit.setAttribute("height", 50);
+    target.append(hit, label);
+    target.addEventListener("click", () => onSelect?.(region.id));
+    labels.append(target);
+  }
+  svg.append(labels);
 }
 
-export function updateNationalMap(svg, selectedRegion) {
+export function updateNationalMap(svg, selectedRegion, model) {
   svg.querySelectorAll("[data-region]").forEach((path) => {
     const selected = path.dataset.region === selectedRegion;
     path.classList.toggle("is-selected", selected);
     path.setAttribute("aria-pressed", String(selected));
+    const region = model?.byId.get(path.dataset.region);
+    if (region) {
+      path.dataset.density = String(region.density);
+      path.setAttribute("aria-label", `${region.name}, 현재 조건의 공개자료 ${region.total}건`);
+    }
   });
+  if (model) svg.querySelectorAll("[data-region-label]").forEach(label => {
+    const region = model.byId.get(label.dataset.regionLabel);
+    label.textContent = `${region.shortName} ${region.total}`;
+  });
+}
+
+export function renderMapLegend(container, model) {
+  container.replaceChildren(...Array.from({ length: DENSITY_LEVELS + 1 }, (_, level) => {
+    const item = document.createElement("span");
+    const swatch = document.createElement("i");
+    swatch.dataset.density = String(level);
+    swatch.setAttribute("aria-hidden", "true");
+    item.append(swatch, level === 0 ? "0건" : `${(level - 1) * model.step + 1}–${level * model.step}건`);
+    return item;
+  }));
 }
 
 export function renderMapReadout(container, region) {
   container.replaceChildren();
   const eyebrow = document.createElement("span");
-  eyebrow.textContent = region ? "SELECTED REGION" : "EXPLORE 17 REGIONS";
+  eyebrow.textContent = region ? "지역 자료" : "전국 자료";
   const title = document.createElement("strong");
   title.textContent = region ? region.name : "지역을 선택해 공개자료 건수를 확인하세요";
   const note = document.createElement("p");
   note.textContent = region
-    ? `${region.total}건 · ${region.categoryTotals.slice(0, 2).map(({ category, count }) => `${category} ${count}`).join(" · ")}`
-    : "색이 밝을수록 공개자료에서 확인된 사례가 많습니다. 실제 활동 규모나 순위는 아닙니다.";
+    ? (region.total ? `${region.total}건 · ${region.categoryTotals.slice(0, 2).map(({ category, count }) => `${category} ${count}`).join(" · ")}` : "현재 조건에 맞는 공개자료 없음")
+    : "지역을 누르면 해당 조건의 사례 목록을 볼 수 있습니다.";
   container.append(eyebrow, title, note);
 }
 
 export function renderRegionShortcuts(container, model, selectedRegion, onSelect) {
+  if (container.children.length === model.regions.length) {
+    for (const button of container.children) {
+      const region = model.byId.get(button.dataset.regionShortcut);
+      button.textContent = `${region.shortName} ${region.total}`;
+      button.setAttribute("aria-pressed", String(region.id === selectedRegion));
+    }
+    return;
+  }
   container.replaceChildren(...model.regions.map((region) => {
     const button = document.createElement("button");
     button.type = "button";

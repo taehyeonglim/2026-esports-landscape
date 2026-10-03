@@ -48,3 +48,22 @@
   :root { --speed-fast: 0ms; --speed-slow: 0ms; }
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* Explorer surfaces and map scale. */
+:root {
+  --night: #06111f;
+  --night-2: #0b2035;
+  --night-3: #12344d;
+  --paper: #f2eee5;
+  --paper-bright: #faf8f3;
+  --tool-ink: #10243a;
+  --tool-muted: #5f6d79;
+  --tool-line: #d5d0c5;
+  --cyan: #53c7dc;
+  --coral: #ef745f;
+}
+:root {
+  --map-empty: #0a1825; --map-1: #14344d; --map-2: #18516a; --map-3: #1c6d83; --map-4: #258ea0; --map-5: #54c8d8;
+  --space-1: .5rem; --space-2: 1rem; --space-3: 1.5rem;
+  --explorer-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+}
