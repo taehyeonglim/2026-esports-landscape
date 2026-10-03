@@ -2,6 +2,31 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver the map-first explorer to Pages
+
+**Outcome**
+
+- Committed as **b637103**, pushed and merged [PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24) as **373d541**. Synchronized local main and removed the merged task branch.
+- Genuine Astra review approved all seven checks with no blockers. Signed Pages delivery and live verification completed; no human approval or factual-status changes were invented.
+- Original workspace's 22 untracked copies, private workbench data and unrelated discovery PR #16 were preserved.
+
+**Verification**
+
+- Full gate passed: 45 JS, 131 Python, six static contracts, 150 public browser, one administrator, deterministic extraction and reproducible release hashes.
+- [Signed run 37161681814](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161681814): build, release gate and deployment succeeded. [Push CI](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161432558) also passed its build.
+- Live release `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`; exact hashes matched home, research, data, app JS and main CSS. Live map selection returned the expected Seoul cases.
+
+**Remaining work**
+
+- No implementation delivery blocker. Existing operating-status review, 109 data gaps and 45 unknown scopes remain separate priorities.
+- This NERV/README closeout records the completed release without changing its public assets. Keep the existing signed gate and preserve the workspace copies.
+
+**References**
+
+- [Implementation PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24)
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+- [Map explorer contract](../docs/map-explorer.md)
+
 ## 2026-10-04 — Codex — Implement and verify the map-first explorer
 
 **Outcome**

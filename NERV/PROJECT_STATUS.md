@@ -1,8 +1,8 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**, base **6171b6774392674d615505521e2b6838d0514e3a**. Map-first implementation is on **feat/map-first-explorer** pending delivery; refer to Git for its containing commit.
-- Last verified deployed source before this change: **6171b67**, [signed run 33970476758](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/33970476758). The map-first candidate is not yet claimed as deployed.
+- Canonical branch: **main**. Latest deployed implementation: **373d541ba5db5dcfc32c69be8144587846f1779f**, merged through [PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24).
+- This coordination closeout records actual delivery and changes no public release assets. Refer to Git for its containing main commit.
 
 ## Product and data
 
@@ -26,12 +26,15 @@
 - Human study approval records remain pending. U2/U3 automation targets were replaced with case records; no human study or fact approval was invented. The scheduler never invokes the separate owner override.
 - Guide: [Astra automation](../docs/astra-release.md). Local operational state: `~/.local/share/esports-astra-review/status.json`; private review evidence is under its `reviews/` directory, not NERV.
 
-## Verification and delivery
+## Verified release and delivery
 
-- Map-first candidate verified: **45 JavaScript, 131 Python, six static contracts, 150 public-browser, one administrator scenario**, plus deterministic extraction and reproducible release hashes. Desktop/compact visual inspection covered map, list, detail/source links and empty results.
-- Candidate release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`. WebKit label hit areas, browser-history test synchronization, source visibility and debounced-query clearing were checked across the five-browser matrix. No human study approval is claimed.
-- Previous deployed release ID: `b30a2c8b3631fd7961b0ec6e6bbfdf3e2af359bfed094c71ec18599bc4be1e54`; the new candidate still requires exact-main Astra assessment, signed gate, independent Actions verification and live readback.
-- Next: commit/push/merge, run the installed signed release coordinator, and replace this candidate status with actual delivery evidence. Do not describe build success or merge as deployment success.
+- Map-first implementation committed as **b637103**, pushed and squash-merged as **373d541** through PR #24. Local main was synchronized with origin/main and the merged implementation branch was removed.
+- Complete verification passed locally, in the independent review checkout and in Actions: **45 JavaScript, 131 Python, six static contracts, 150 public-browser, one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **373d541**. This is release assessment, not human usability or factual operating-status approval.
+- [Push CI 37161432558](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161432558): build succeeded; deployment skipped as designed. [Signed run 37161681814](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161681814): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
+- Live release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb` (60 assets). Independent readback matched exact SHA-256 hashes for home, research, data, app JavaScript and main CSS. Live browser selection of Seoul returned its four cases.
+- Desktop/compact inspection covered map, list, detail/source links and empty results. Browser regressions cover fixed filtered counts, WebKit label hit areas, URL history, list focus/scroll, data recovery and pending-search cancellation. Earlier transient test/interaction defects were repaired before approval.
+- No delivery blocker remains for this implementation. The following data-review backlog is unchanged. NERV/README-only closeout does not alter the reviewed public artifact.
 
 ## Private review workbench and next priorities
 
