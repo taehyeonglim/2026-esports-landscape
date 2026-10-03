@@ -35,11 +35,11 @@ test("built release has base-aware app, data, GeoJSON, and research surfaces", a
   assert.match(research, /new URL\("\.\.\/data\/site\.v3\.json", import\.meta\.url\)/);
 });
 
-test("public DOM exposes the search-first workspace before one national map and responsive detail panel", async () => {
+test("public DOM exposes the map-first workspace with one national map and responsive detail panel", async () => {
   const [html, app] = await Promise.all([read("index.html"), read("src/app.js")]);
   const cardsAt = html.indexOf('id="result-list"');
   const mapAt = html.indexOf('id="national-map"');
-  assert.ok(cardsAt >= 0 && mapAt > cardsAt, "entry cards must precede the map in DOM order");
+  assert.ok(mapAt >= 0 && cardsAt > mapAt, "national map must precede the case results in DOM order");
   for (const selector of ["workspace", "browse-tab", "compare-tab", "browse-view", "compare-view", "region-select", "entry-search", "filter-panel", "active-filters", "detail-panel", "detail-back", "live-status"]) assert.match(html, new RegExp(`id="${selector}"`));
   assert.match(html, /id="compare-matrix"/);
   assert.match(html, /role="tablist"/);

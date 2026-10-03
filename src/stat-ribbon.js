@@ -20,7 +20,7 @@ export function renderStatRibbon(container, site) {
     number.textContent = String(value);
     const name = document.createElement("span");
     name.className = "stat-label";
-    name.textContent = label;
+    name.textContent = { ENTRIES: "사례", REGIONS: "시·도", SOURCES: "출처" }[label];
     item.append(number, name);
     return item;
   }));

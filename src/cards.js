@@ -33,12 +33,24 @@ export function createEntryCard(entry, { selected = false } = {}) {
   return card;
 }
 
-export function renderCards(container, entries, selectedId) {
+export function renderCards(container, entries, selectedId, state = {}) {
   container.replaceChildren();
   if (entries.length === 0) {
-    const empty = document.createElement("p");
+    const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.textContent = "조건에 맞는 항목이 없습니다. 검색어나 필터를 조정해 보세요.";
+    const message = document.createElement("p");
+    message.textContent = "현재 조건에 맞는 공개자료가 없습니다. 검색어나 필터를 조정해 보세요.";
+    const actions = document.createElement("div");
+    actions.className = "empty-actions";
+    for (const [key, label, show] of [["query", "검색어 제거", state.query], ["region", "지역 해제", state.region], ["all", "전체 초기화", true]]) {
+      if (!show) continue;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.dataset.emptyClear = key;
+      button.textContent = label;
+      actions.append(button);
+    }
+    empty.append(message, actions);
     container.append(empty);
     return;
   }

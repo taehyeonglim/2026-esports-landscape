@@ -2,6 +2,31 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Implement and verify the map-first explorer
+
+**Outcome**
+
+- Rebuilt home around a desktop map/results split and compact map/list switching below 1024px. Filtered map counts retain a fixed scale and a separate zero state; region labels and 17 accessible buttons select results.
+- Details retain the desktop map, expose sources before extra metadata, preserve full case limitations in a disclosure and restore list scroll/focus. Added empty-result recovery, data retry and pending-search cancellation.
+- Preserved existing URLs, 75-case/160-reference partition, all factual statuses, public data and release authorization. Original workspace's 22 untracked copies remain untouched.
+
+**Verification**
+
+- `npm run verify:release`: 45 JS, 131 Python, six static, 150 public-browser and one administrator scenario passed; deterministic extraction and reproducible release hashes passed.
+- Desktop and compact visual inspection covered map, results, details/source links and empty states. WebKit/iOS label hit targets and debounced-query reset have regression coverage; no human study approval is claimed.
+- Candidate release: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`.
+
+**Remaining work**
+
+- This is the pre-merge verification record. Push/merge the task branch, run exact-main Astra assessment and signed deployment, then record actual CI/live readback.
+- Existing factual-review backlog, private drafts and unrelated discovery PR #16 remain unchanged.
+
+**References**
+
+- [Map explorer contract](../docs/map-explorer.md)
+- [Browser scenarios](../tests/browser.e2e.mjs)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-09-05 — Codex — Deliver genuine Astra-approved automatic Pages deployment
 
 **Outcome**

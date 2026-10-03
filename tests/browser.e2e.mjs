@@ -41,6 +41,10 @@ async function openFilterPanelWhenCompact(page) {
   if (await trigger.isVisible()) await trigger.click();
 }
 
+async function showList(page) {
+  if (await page.locator("#show-list").isVisible()) await page.locator("#show-list").click();
+}
+
 async function openAdvancedFilters(page) {
   const advanced = page.locator(".advanced-filters");
   if (await advanced.getAttribute("open") === null) await advanced.locator("summary").click();
@@ -60,21 +64,25 @@ test.describe("AC01 search-first activation contract", () => {
       await expect(firstSource).toHaveAttribute("href", task.expected_source_url);
       expect(createHash("sha256").update(await firstSource.getAttribute("href")).digest("hex"))
         .toBe(task.expected_source_url_sha256);
-      await expect(page.locator("#detail-content h4").first()).toContainText("source-");
+      expect((await firstSource.boundingBox()).y).toBeLessThan(page.viewportSize().height);
+      await expect(page.locator("#detail-content h4").first()).toContainText("공개 자료");
+      await expect(page.locator("#detail-content dt").filter({ hasText: "출처 ID" }).locator("+ dd")).toContainText("source-");
       await expect(page.locator("#detail-content dt").filter({ hasText: "상태 검토 사유" }).locator("+ dd")).not.toBeEmpty();
       expect(Date.now() - started).toBeLessThan(30_000);
     });
   }
 });
 
-test("콜드 홈은 첫 화면에서 검색과 첫 결과를 제공하고 비교 차트는 지연 렌더링한다", async ({ page }) => {
+test("콜드 홈은 검색과 지도를 우선 제공하고 목록 전환과 비교 지연 렌더링을 유지한다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
   await expect(page.locator("#result-visible")).toHaveText("12개 표시");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
   await expect(page.locator("#national-map .national-region")).toHaveCount(17);
-  await expect(page.locator("#load-more")).toBeVisible();
+  await expect(page.locator("#map-context")).toBeVisible();
   await expect(page.locator("#compare-matrix")).toBeEmpty();
+  await showList(page);
+  await expect(page.locator("#load-more")).toBeVisible();
   const viewport = page.viewportSize();
   const [search, card] = await Promise.all([page.locator("#entry-search").boundingBox(), page.locator(".entry-card").first().boundingBox()]);
   expect(search.y).toBeLessThan(viewport.height);
@@ -166,7 +174,7 @@ test("전국 지도는 지역 필터를 갱신하고 지도 실패 시 17개 지
 test("상세 패널은 목록 맥락, URL, 닫기와 브라우저 뒤로가기 포커스를 보존한다", async ({ page }) => {
   const task = fixture.tasks[0];
   const card = await openTask(page, task);
-  const isMobile = await page.evaluate(() => innerWidth <= 767);
+  const isMobile = await page.evaluate(() => innerWidth <= 1023);
   expect(await page.locator("#detail-panel").evaluate((dialog) => dialog.matches(":modal"))).toBe(isMobile);
   await page.locator("#detail-back").click();
   await expect(page.locator("#detail-panel")).toBeHidden();
@@ -190,6 +198,7 @@ test("직접 상세 URL은 탐색 보기로 열리고 닫을 때 공유 가능�
 
 test("결과 카드는 핵심 정보만 표시하고 상세에서 원문과 전체 메타데이터를 계층화한다", async ({ page }) => {
   await page.goto("/index.html");
+  await showList(page);
   const card = page.locator(".entry-card").first();
   await expect(card).toContainText("상태");
   await expect(card).toContainText("상세·원문 보기");
@@ -205,6 +214,7 @@ test("결과 카드는 핵심 정보만 표시하고 상세에서 원문과 전�
 test("점진 노출로 초기 길이를 제한하면서 집계 대상 사례 전부 도달할 수 있다", async ({ page }) => {
   await page.goto("/index.html");
   await expect(page.locator("#result-list .entry-card")).toHaveCount(12);
+  await showList(page);
   let guard = 0;
   while (await page.locator("#load-more").isVisible()) {
     await page.locator("#load-more").click();
@@ -254,33 +264,30 @@ test("current status without complete verification metadata fails closed", async
   await expect(page.locator("#result-list .entry-card")).toHaveCount(0);
 });
 
-test("desktop and narrow layouts preserve DOM order, first-view utility, touch targets, and horizontal containment", async ({ page }) => {
-  for (const viewport of [{ width: 1440, height: 900 }, { width: 720, height: 844 }, { width: 390, height: 844 }, { width: 320, height: 844 }]) {
+test("desktop and compact layouts expose usable maps, result lists and 44px alternatives without overflow", async ({ page }) => {
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }, { width: 1023, height: 768 }, { width: 720, height: 844 }, { width: 390, height: 664 }, { width: 320, height: 664 }]) {
     await page.setViewportSize(viewport);
     await page.goto("/index.html");
-    await expect(page.locator(".entry-card").first()).toBeVisible();
+    await expect(page.locator(".national-region")).toHaveCount(17);
+    await expect(page.locator("#map-context")).toBeVisible();
     const layout = await page.evaluate(async () => {
       await document.fonts.ready;
-      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      const search = document.querySelector("#entry-search").getBoundingClientRect();
-      const card = document.querySelector(".entry-card").getBoundingClientRect();
-      const cards = document.querySelector("#result-list");
-      const map = document.querySelector("#national-map");
-      const controls = [...document.querySelectorAll("button,input,select,summary")]
-        .filter((element) => element.getClientRects().length > 0 && !element.hidden);
+      const map = document.querySelector("#national-map").getBoundingClientRect();
+      const stage = document.querySelector(".national-map-stage").getBoundingClientRect();
+      const controls = [...document.querySelectorAll("button,input,select,summary")].filter(e => e.getClientRects().length);
       return {
         overflow: document.documentElement.scrollWidth - innerWidth,
-        searchInView: search.top < innerHeight,
-        cardInView: card.top < innerHeight,
-        minControl: Math.min(...controls.map((element) => element.getBoundingClientRect().height)),
-        resultBeforeMap: Boolean(cards.compareDocumentPosition(map) & Node.DOCUMENT_POSITION_FOLLOWING),
+        mapInView: map.top < innerHeight - 120,
+        mapContained: map.bottom <= stage.bottom + 1,
+        searchInView: document.querySelector("#entry-search").getBoundingClientRect().bottom < innerHeight,
+        minControl: Math.min(...controls.map(e => e.getBoundingClientRect().height)),
       };
     });
-    expect(layout.overflow).toBeLessThanOrEqual(0);
-    expect(layout.searchInView).toBe(true);
-    expect(layout.cardInView).toBe(true);
+    expect(layout).toMatchObject({ overflow: 0, mapInView: true, mapContained: true, searchInView: true });
     expect(layout.minControl).toBeGreaterThanOrEqual(44);
-    expect(layout.resultBeforeMap).toBe(true);
+    await showList(page);
+    await expect(page.locator(".entry-card").first()).toBeVisible();
+    expect((await page.locator(".entry-card").first().boundingBox()).y).toBeLessThan(viewport.height);
   }
 });
 
@@ -324,6 +331,7 @@ test("home, comparison, responsive detail, filter dialog, and research have no s
   results = await new AxeBuilder({ page }).include("#filter-panel").analyze();
   expect(seriousOrCritical(results.violations)).toEqual([]);
   await page.keyboard.press("Escape");
+  await showList(page);
   await page.locator(".entry-card").first().click();
   results = await new AxeBuilder({ page }).include("#detail-panel").analyze();
   expect(seriousOrCritical(results.violations)).toEqual([]);
@@ -379,6 +387,7 @@ test("근거 검토 필터 초기화와 사례별 한계 및 현재 연구 집�
   await expect.poll(() => page.evaluate(() => location.search)).toBe("");
   await page.goto("/index.html?entry=busan-016");
   const entry = published.entries.find(item => item.id === "busan-016");
+  await page.locator(".detail-limits summary").click();
   await expect(page.locator("#detail-content dt").filter({ hasText: "사례별 근거·한계" }).locator("+ dd")).toHaveText(entry.notes);
   await page.goto("/research/");
   const categories = page.locator("#typology-axes .axis").filter({ has: page.locator("h3", { hasText: "national category coverage" }) });
@@ -395,4 +404,116 @@ test("지역 보조 참고 자료는 사례 검색과 집계에서 제외하고 
   await expect(page.locator("#reference-records")).toContainText("동일 행사 사례: national-audit-jeonbuk-gunsan-amateur-esports-2026");
   await expect(page.locator("#typology-axes")).toContainText(`지도 적격 ${cases.entries.filter(entry => !entry.off_map).length}건`);
   await expect(page.locator("#typology-axes")).toContainText(`좌표 미확인 ${cases.entries.filter(entry => entry.scope === "regional" && entry.off_map).length}건`);
+});
+
+test("map filters use every condition except region and preserve the scale and selected region", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/index.html?region=busan");
+  const legend = await page.locator("#map-legend").textContent();
+  await page.locator('[data-category-chip="교육청대회·사업"]').click();
+  for (const region of cases.regions) {
+    const count = cases.entries.filter(e => e.region_id === region.id && e.category === "교육청대회·사업").length;
+    await expect(page.locator(`#national-map [data-region="${region.id}"]`)).toHaveAttribute("aria-label", `${region.name}, 현재 조건의 공개자료 ${count}건`);
+    await expect(page.locator(`[data-region-shortcut="${region.id}"]`)).toContainText(String(count));
+    if (count === 0) await expect(page.locator(`#national-map [data-region="${region.id}"]`)).toHaveAttribute("data-density", "0");
+  }
+  await expect(page.locator("#map-legend")).toHaveText(legend);
+  await expect(page.locator('#national-map [data-region="busan"]')).toHaveAttribute("aria-pressed", "true");
+  const expected = cases.entries.filter(e => e.region_id === "busan" && e.category === "교육청대회·사업").length;
+  await expect(page.locator("#result-count")).toHaveText(`${expected}건`);
+  await page.locator("#entry-search").fill("unmatched-query");
+  await expect(page.locator('#national-map [data-region="busan"]')).toHaveAttribute("data-density", "0");
+  await expect(page.locator("#map-readout")).toContainText("현재 조건에 맞는 공개자료 없음");
+  await page.locator('[data-empty-clear="query"]').click();
+  await expect(page.locator("#result-count")).toHaveText(`${expected}건`);
+  await page.locator('[data-category-chip="교육청대회·사업"]').click();
+  await expect(page.locator("#result-count")).toHaveText("27건");
+});
+
+test("compact map to list to detail takes two activations before the original source link", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 664 });
+  await page.goto("/index.html");
+  await page.locator('#national-map [data-region-label-target="busan"]').click();
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-pane", "list");
+  await expect(page.locator("#results-heading")).toBeFocused();
+  await page.locator(".entry-card").first().click();
+  await expect(page.locator(".source-links a").first()).toHaveAttribute("href", fixture.tasks[0].expected_source_url);
+  await page.locator("#detail-back").click();
+  await expect(page.locator(".entry-card").first()).toBeFocused();
+  await page.locator("#show-map").click();
+  await expect(page.locator('#national-map [data-region="busan"]')).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#national-map-heading")).toBeFocused();
+  await page.reload();
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-pane", "list");
+  await page.locator("#show-map").click();
+  await expect(page.locator("[data-region-label]")).toHaveCount(17);
+  await page.goto("/index.html");
+  await page.locator('#national-map [data-region="seoul"]').click();
+  await expect(page).toHaveURL(/region=seoul/);
+  await page.goBack();
+  await expect(page).not.toHaveURL(/region=/);
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-pane", "map");
+  await page.goForward();
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-pane", "list");
+});
+
+test("desktop details retain map and restore a later result's scroll and focus", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/index.html?region=busan");
+  await page.locator("#load-more").click();
+  const card = page.locator("#result-list .entry-card").nth(16);
+  await card.focus();
+  const before = await page.locator("#browse-panel").evaluate(el => el.scrollTop);
+  await card.click();
+  await expect(page.locator("#map-context")).toBeVisible();
+  await expect(page.locator("#browse-panel")).toBeHidden();
+  await page.locator("#detail-back").click();
+  await expect(card).toBeFocused();
+  await expect.poll(() => page.locator("#browse-panel").evaluate(el => el.scrollTop)).toBe(before);
+  await card.click();
+  await page.goBack();
+  await expect(card).toBeFocused();
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(24);
+});
+
+test("map and public-data failures offer usable recovery in compact view", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 664 });
+  await page.route("**/data/national-map.v1.json", route => route.abort());
+  await page.goto("/index.html");
+  await expect(page.locator("#map-error")).toBeVisible();
+  await page.locator('[data-region-shortcut="jeju"]').click();
+  await expect(page.locator("#results-heading")).toHaveText("제주특별자치도 사례");
+  await page.route(dataUrl, route => route.abort());
+  await page.reload();
+  await expect(page.locator(".data-error")).toBeVisible();
+  await expect(page.getByRole("button", { name: "다시 불러오기" })).toBeVisible();
+  await page.unroute(dataUrl);
+  await page.getByRole("button", { name: "다시 불러오기" }).click();
+  await expect(page.locator("#result-count")).toHaveText("3건");
+});
+
+test("keyboard map selection and rapid search plus region selection preserve both filters", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/index.html");
+  const seoul = page.locator('#national-map [data-region="seoul"]');
+  await seoul.focus();
+  await page.keyboard.press("Enter");
+  await expect(seoul).toHaveAttribute("aria-pressed", "true");
+  await page.locator("#entry-search").fill("부산");
+  await page.locator("#region-select").selectOption("busan");
+  await expect(page.locator("#entry-search")).toHaveValue("부산");
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).get("q"))).toBe("부산");
+});
+
+test("clearing a query cancels a pending search rather than reviving it", async ({ page }) => {
+  await page.goto("/index.html?q=부산");
+  await expect(page.locator('[data-clear-filter="query"]')).toBeVisible();
+  await page.clock.install();
+  await page.clock.pauseAt(new Date(Date.now() + 1000));
+  await page.locator("#entry-search").fill("서울");
+  await page.locator('[data-clear-filter="query"]').click();
+  await page.clock.runFor(300);
+  await expect(page.locator("#entry-search")).toHaveValue("");
+  await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
+  await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).has("q"))).toBe(false);
 });

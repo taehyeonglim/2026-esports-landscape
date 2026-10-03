@@ -8,7 +8,8 @@ import { renderDetail } from "./detail.js";
 import { renderStatRibbon } from "./stat-ribbon.js";
 import { matrixModel, renderMatrix } from "./matrix.js";
 import { editorialModel, renderEditorial } from "./editorial.js";
-import { landscapeModel, renderMapReadout, renderNationalMap, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
+import { landscapeModel, renderMapLegend, renderMapReadout, renderNationalMap, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
+import { initialPane } from "./explorer-view.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
@@ -52,11 +53,17 @@ const elements = Object.freeze({
   editorialInsights: byId("editorial-insights"),
   featuredStories: byId("featured-stories"),
   dataUpdatedAt: byId("data-updated-at"),
+  explorer: byId("explorer-layout"),
+  browsePanel: byId("browse-panel"),
+  showMap: byId("show-map"),
+  showList: byId("show-list"),
+  paneCount: byId("pane-count"),
+  clearResults: byId("clear-results-filters"),
+  mapLegend: byId("map-legend"),
 });
 
 const PAGE_SIZE = 12;
-const mobileQuery = matchMedia("(max-width: 767px)");
-const compactQuery = matchMedia("(max-width: 1023px)");
+const mobileQuery = matchMedia("(max-width: 1023px)");
 let state = createAppState();
 let data;
 let entries = [];
@@ -70,6 +77,10 @@ let sourcesByEntry = new Map();
 let searchTimer = null;
 let visibleCount = PAGE_SIZE;
 let lastEntryTriggerId = null;
+let mobilePane = "map";
+let mapMaximum = 1;
+let resultPosition = null;
+let renderedDetailId = null;
 
 function populateStaticSelects() {
   populateSelect(elements.typeFilter, Object.entries(TYPE_LABELS).map(([value, label]) => ({ value, label })));
@@ -214,6 +225,17 @@ function reportStartError(error) {
   message.className = "empty-state data-error";
   message.textContent = messageByType[error?.name] || "화면을 표시하는 중 오류가 발생했습니다.";
   elements.cards.replaceChildren(message);
+  const retry = document.createElement("button");
+  retry.type = "button";
+  retry.textContent = "다시 불러오기";
+  retry.addEventListener("click", () => location.reload());
+  elements.cards.append(retry);
+  mobilePane = "list";
+  renderPane();
+  elements.mapContext.hidden = true;
+  document.querySelector(".mobile-pane-switch").hidden = true;
+  elements.loadMore.hidden = true;
+  elements.mapReadout.textContent = "공개 데이터를 불러오지 못했습니다.";
   elements.count.textContent = "데이터를 표시할 수 없습니다.";
   elements.visible.textContent = "";
   elements.live.textContent = message.textContent;
@@ -256,8 +278,15 @@ function updateUrl(mode = "push") {
 }
 
 function dispatch(action, historyMode = "push") {
-  if (action.type !== "SET_ENTRY") visibleCount = PAGE_SIZE;
+  if (searchTimer) {
+    clearTimeout(searchTimer);
+    searchTimer = null;
+    if (!["SET_QUERY", "HYDRATE", "RESET_FILTERS"].includes(action.type)) state = appReducer(state, actions.setQuery(elements.search.value));
+  }
+  if (action.type !== "SET_ENTRY" && !(action.type === "HYDRATE" && action.state.entry)) visibleCount = PAGE_SIZE;
   state = appReducer(state, action);
+  if (!["SET_ENTRY", "HYDRATE"].includes(action.type)) state = { ...state, entry: null };
+  mobilePane = "list";
   updateUrl(historyMode);
   render();
 }
@@ -296,6 +325,23 @@ function renderActiveFilters() {
     button.textContent = label;
     return button;
   }));
+  elements.clearResults.hidden = activeFilterDescriptors().length === 0;
+}
+
+function renderPane() {
+  elements.explorer.dataset.pane = mobilePane;
+  elements.showMap.setAttribute("aria-pressed", String(mobilePane === "map"));
+  elements.showList.setAttribute("aria-pressed", String(mobilePane === "list"));
+}
+
+function selectPane(pane) {
+  mobilePane = pane;
+  renderPane();
+  requestAnimationFrame(() => {
+    const heading = byId(pane === "map" ? "national-map-heading" : "results-heading");
+    heading.focus({ preventScroll: true });
+    elements.explorer.scrollIntoView({ block: "start", behavior: "auto" });
+  });
 }
 
 function renderWorkspaceView() {
@@ -313,15 +359,14 @@ function renderWorkspaceView() {
 }
 
 function syncDetailSurface(entry) {
+  elements.browsePanel.hidden = Boolean(entry) && !mobileQuery.matches;
   if (!entry) {
     if (elements.detail.open) elements.detail.close();
     detailModalActive = false;
-    elements.mapContext.hidden = false;
     return;
   }
 
   if (mobileQuery.matches) {
-    elements.mapContext.hidden = false;
     if (!detailModalActive) {
       if (elements.detail.open) elements.detail.close();
       elements.detail.showModal();
@@ -333,7 +378,6 @@ function syncDetailSurface(entry) {
   if (detailModalActive && elements.detail.open) elements.detail.close();
   detailModalActive = false;
   if (!elements.detail.open) elements.detail.setAttribute("open", "");
-  elements.mapContext.hidden = true;
 }
 
 function render() {
@@ -352,7 +396,8 @@ function render() {
 
   const selectedIndex = state.entry ? filtered.findIndex((entry) => entry.id === state.entry) : -1;
   const limit = Math.min(filtered.length, Math.max(visibleCount, selectedIndex + 1));
-  renderCards(elements.cards, filtered.slice(0, limit), state.entry);
+  renderCards(elements.cards, filtered.slice(0, limit), state.entry, state);
+  byId("results-heading").textContent = state.region ? `${data.regions.find(region => region.id === state.region)?.name || "지역"} 사례` : "전국 사례";
   elements.count.textContent = `${filtered.length}건`;
   elements.visible.textContent = `${limit}개 표시`;
   elements.live.textContent = `검색 결과 ${filtered.length}건 중 ${limit}개 표시`;
@@ -360,15 +405,22 @@ function render() {
   if (!elements.loadMore.hidden) elements.loadMore.textContent = `사례 ${Math.min(PAGE_SIZE, filtered.length - limit)}개 더 보기`;
   elements.filterCount.textContent = String(sheetFilterCount());
   elements.filterResult.textContent = `${filtered.length}건 결과 보기`;
+  elements.paneCount.textContent = `${filtered.length}건`;
   renderActiveFilters();
   renderWorkspaceView();
+  renderPane();
 
   const entry = entryById.get(state.entry);
-  if (entry) renderDetail(elements.detailContent, entry, sourcesByEntry.get(entry.id) || []);
+  if (entry && renderedDetailId !== entry.id) {
+    renderDetail(elements.detailContent, entry, sourcesByEntry.get(entry.id) || []);
+    elements.detail.scrollTop = 0;
+  }
+  renderedDetailId = entry?.id || null;
   syncDetailSurface(entry);
 
   if (landscape) {
-    updateNationalMap(elements.nationalMap, state.region);
+    landscape = landscapeModel(filterEntries(entries, { ...state, region: null }), data.regions, { maximum: mapMaximum });
+    updateNationalMap(elements.nationalMap, state.region, landscape);
     renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
   }
@@ -380,7 +432,15 @@ function resultsHeading({ scroll = true } = {}) {
   heading?.focus({ preventScroll: true });
 }
 
+function focusDetail() {
+  requestAnimationFrame(() => {
+    if (!mobileQuery.matches) elements.explorer.scrollIntoView({ block: "start", behavior: "instant" });
+    byId("detail-heading")?.focus({ preventScroll: true });
+  });
+}
+
 function openEntry(id) {
+  resultPosition = { top: elements.browsePanel.scrollTop, page: window.scrollY, count: visibleCount };
   lastEntryTriggerId = id;
   clearTimeout(searchTimer);
   searchTimer = null;
@@ -388,12 +448,16 @@ function openEntry(id) {
   if (state.entry !== id || state.query !== pendingQuery) {
     dispatch(actions.hydrate({ ...state, view: "browse", query: pendingQuery, entry: id }));
   }
-  requestAnimationFrame(() => byId("detail-heading")?.focus({ preventScroll: !mobileQuery.matches }));
+  focusDetail();
 }
 
 function restoreEntryFocus(entryId) {
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    const card = entryId ? document.querySelector(`[data-entry-id="${CSS.escape(entryId)}"]`) : null;
+    if (resultPosition) {
+      elements.browsePanel.scrollTop = resultPosition.top;
+      window.scrollTo({ top: resultPosition.page, behavior: "instant" });
+    }
+    const card = entryId ? elements.cards.querySelector(`[data-entry-id="${CSS.escape(entryId)}"]`) : null;
     (card || byId("results-heading"))?.focus({ preventScroll: true });
   }));
 }
@@ -411,21 +475,15 @@ function moveToResults({ regionId = null, category = null } = {}) {
 }
 
 function selectLandscapeRegion(regionId) {
-  const nextState = state.view === "browse"
-    ? appReducer(state, actions.setRegion(regionId))
-    : createAppState({ ...state, view: "browse", region: regionId, entry: null });
-  state = nextState;
-  visibleCount = PAGE_SIZE;
-  updateUrl();
-  render();
-  resultsHeading();
+  dispatch(actions.setRegion(regionId));
+  resultsHeading({ scroll: mobileQuery.matches });
 }
 
 function openFeaturedEntry(id) {
+  resultPosition = null;
   lastEntryTriggerId = id;
   dispatch(actions.hydrate({ ...state, view: "browse", entry: id }));
-  byId("workspace")?.scrollIntoView({ behavior: "auto", block: "start" });
-  requestAnimationFrame(() => byId("detail-heading")?.focus({ preventScroll: !mobileQuery.matches }));
+  focusDetail();
 }
 
 function selectView(view) {
@@ -460,7 +518,7 @@ function syncResponsiveUi() {
     if (!elements.filterPanel.open) elements.filterPanel.setAttribute("open", "");
   }
 
-  elements.mapContext.open = !compactQuery.matches;
+  renderPane();
   syncDetailSurface(entryById.get(state.entry));
 }
 
@@ -481,7 +539,11 @@ function clearActiveFilter(key) {
 }
 
 function bindEvents() {
-  elements.region.addEventListener("change", (event) => dispatch(actions.setRegion(event.target.value || null)));
+  elements.region.addEventListener("change", (event) => selectLandscapeRegion(event.target.value || null));
+  elements.showMap.addEventListener("click", () => selectPane("map"));
+  elements.showList.addEventListener("click", () => selectPane("list"));
+  byId("map-reset-region").addEventListener("click", () => selectLandscapeRegion(null));
+  elements.clearResults.addEventListener("click", () => dispatch(actions.resetFilters(), "replace"));
   elements.search.addEventListener("input", (event) => {
     const query = event.target.value;
     clearTimeout(searchTimer);
@@ -516,6 +578,13 @@ function bindEvents() {
     render();
   });
   elements.cards.addEventListener("click", (event) => {
+    const clear = event.target.closest("[data-empty-clear]");
+    if (clear) {
+      if (clear.dataset.emptyClear === "all") dispatch(actions.resetFilters(), "replace");
+      else clearActiveFilter(clear.dataset.emptyClear);
+      resultsHeading();
+      return;
+    }
     const card = event.target.closest("[data-entry-id]");
     if (card) openEntry(card.dataset.entryId);
   });
@@ -546,7 +615,10 @@ function bindEvents() {
   });
   elements.filterTrigger.addEventListener("click", openFilterPanel);
   elements.filterClose.addEventListener("click", () => closeFilterPanel());
-  elements.filterResult.addEventListener("click", () => closeFilterPanel());
+  elements.filterResult.addEventListener("click", () => {
+    closeFilterPanel({ restoreFocus: false });
+    selectPane("list");
+  });
   elements.filterPanel.addEventListener("cancel", (event) => {
     event.preventDefault();
     closeFilterPanel();
@@ -555,16 +627,16 @@ function bindEvents() {
     if (event.target === elements.filterPanel && filterModalActive) closeFilterPanel();
   });
   mobileQuery.addEventListener("change", syncResponsiveUi);
-  compactQuery.addEventListener("change", syncResponsiveUi);
   addEventListener("popstate", () => {
     const previousEntry = state.entry;
     clearTimeout(searchTimer);
     searchTimer = null;
     state = decodeUrl(location.search, { allowed: allowed(), entries });
-    visibleCount = PAGE_SIZE;
+    mobilePane = initialPane(state);
+    visibleCount = previousEntry && !state.entry && resultPosition ? resultPosition.count : PAGE_SIZE;
     render();
     if (state.entry && state.entry !== previousEntry) {
-      requestAnimationFrame(() => byId("detail-heading")?.focus());
+      focusDetail();
     } else if (previousEntry && !state.entry) {
       restoreEntryFocus(previousEntry);
     }
@@ -582,13 +654,15 @@ async function initializeNationalMap() {
     elements.nationalMap.addEventListener("focusout", (event) => {
       if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     });
-    updateNationalMap(elements.nationalMap, state.region);
+    updateNationalMap(elements.nationalMap, state.region, landscape);
     renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
   } catch (error) {
     console.error("National landscape map unavailable:", error);
     elements.nationalMap.hidden = true;
     elements.mapContext.classList.add("map-unavailable");
+    byId("map-error").hidden = false;
+    elements.mapLegend.hidden = true;
     renderMapReadout(elements.mapReadout, null);
   }
 }
@@ -606,6 +680,8 @@ async function start() {
     entryById = new Map(entries.map((entry) => [entry.id, entry]));
     sourcesByEntry = new Map(entries.map((entry) => [entry.id, entry.source_ids.map((id) => sourceIndex.get(id))]));
     landscape = landscapeModel(entries, data.regions);
+    mapMaximum = landscape.maximum;
+    renderMapLegend(elements.mapLegend, landscape);
     comparisonModel = matrixModel(data.entries, data.regions);
 
     renderStatRibbon(elements.statRibbon, data);
@@ -624,12 +700,13 @@ async function start() {
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
 
     state = decodeUrl(location.search, { allowed: allowed(), entries });
+    mobilePane = initialPane(state);
     if (encodeUrl(state, { allowed: allowed(), entries }) !== location.search) updateUrl("replace");
     bindEvents();
     syncResponsiveUi();
     render();
     void initializeNationalMap();
-    if (state.entry) requestAnimationFrame(() => byId("detail-heading")?.focus());
+    if (state.entry) focusDetail();
   } catch (error) {
     reportStartError(error);
   }
