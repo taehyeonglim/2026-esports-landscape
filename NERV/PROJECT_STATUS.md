@@ -1,8 +1,8 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**, task base **5a7b20617ff9b4f84b18e7d5e9dc7d9a9c193c8e**. October refresh is verified on `data/october-2026-refresh`; merge and signed deployment are pending in this pre-merge record.
-- Latest verified deployed implementation remains **373d541ba5db5dcfc32c69be8144587846f1779f**, [PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24), until a fresh exact-main release passes.
+- Canonical branch: **main**. Latest deployed data implementation: **be4806c7e1f019efa7749546f04a790672a4c330**, merged through [PR #26](https://github.com/taehyeonglim/2026-esports-landscape/pull/26).
+- This coordination closeout records actual delivery and changes no public release assets. Refer to Git for its containing main commit.
 
 ## Product and data
 
@@ -15,14 +15,15 @@
 - Added two exact-host [site evidence publishers](../config/site-evidence-publishers.v1.json); the protected snapshot registry remains at 18 education authorities. Human confirmation, PII screening, source ownership and prior-hash controls remain active.
 - Workbench default/review dates now use `Asia/Seoul`; valid Korean review dates are no longer rejected as future dates near the UTC boundary. Extraction and validation logs report the full approved projection.
 
-## Verification and delivery
+## Verified release and delivery
 
-- `npm run verify:release` passed: **45 JavaScript, 135 Python, six static contracts, 150 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Actual desktop/mobile inspection confirmed the newly admitted case, official link, separate event/publication dates and uncertainty disclosure. Original 233 unaffected records and all 160 references are unchanged; the two amended notes retain their original text.
-- The first browser run exposed an obsolete fixed three-case expectation for Jeju; the test now derives the expected six cases from the public partition and the complete rerun passed.
-- Candidate release ID: `eff4117b2ad726ad5efa2a10d2f97383f074f152e7f8293db72fe6eb2e5c13b3` (60 assets).
-- Task branch push/PR/merge and genuine exact-main Astra review are the next delivery steps. No deployment success is claimed for this batch yet.
-- Previous signed deployment [37161681814](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161681814) succeeded for source 373d541. Old live release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`.
+- October refresh committed as **29e6428**, pushed and squash-merged as **be4806c** through PR #26. Local main was synchronized with origin/main; the merged task branch was removed locally and remotely.
+- Full verification passed locally, in the independent review checkout and in Actions: **45 JavaScript, 135 Python, six static contracts, 150 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **be4806c**. This is release assessment, not operating-status certification or a human usability study.
+- [Push CI 37163694221](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37163694221): build succeeded, deployment skipped as designed. [Signed run 37163915208](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37163915208): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
+- Live release ID: `eff4117b2ad726ad5efa2a10d2f97383f074f152e7f8293db72fe6eb2e5c13b3` (60 assets). Independent readback matched exact SHA-256 hashes for home, research, public data, app JavaScript and main CSS: **83 cases / 243 records / 246 sources / cutoff 2026-10-04**.
+- Desktop/mobile inspection and live browser checks confirmed the new case, official source link, date and uncertainty disclosures. The 233 unaffected records and all 160 references are unchanged; the two amended notes preserve their original text.
+- No delivery blocker remains. NERV/README-only closeout does not alter the reviewed public artifact; the remaining data-review priorities below are separate.
 
 ## Automatic release operation
 
@@ -37,6 +38,7 @@
 - KeSPA's official school-program homepage is now a discovery surface. Discovery still does not auto-publish facts. Unrelated discovery **PR #16** remains open and untouched.
 - Loopback workbench: `PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer`.
 - Original **235 unapproved link-check drafts** remain private: 153 records had a fetched source; 82 need alternate retrieval; 115 unique URLs attempted, 87 fetched. These drafts were not substituted for the ten explicit batch approvals.
+- Normalize equivalent school-level labels (`고`/`고등학교`, `중`/`중학교`) in future filter/analysis work; Astra recorded this as a nonblocking limitation. The approved batch retains its reviewed values.
 - Review current operating status for the 83 cases and resolve the five pending candidates. The 109 data gaps and 45 unknown scopes remain unresolved. Reference reintroduction needs specific regional evidence, duplicate checks and an explicit partition revision.
 - Protected subject/claim snapshot publication remains a separate authorization path; workbench exports and AI Pages receipts are not snapshot publication receipts.
 
@@ -46,4 +48,4 @@ Preserve all **22 untracked numbered copies** in the original workspace, includi
 
 Do not run in-place extraction in the original workspace: cleanup can remove extra GeoJSON files. This task uses an isolated worktree; the installed coordinator uses its own clone outside the synchronized Documents folder.
 
-Private workbench state is intentionally not published. Back it up before deleting artifacts; unapproved drafts are not reconstructed from public JSON alone. The October batch uses its own SQLite database and does not modify the original private drafts.
+Private workbench state is intentionally not published. Back it up before deleting artifacts; unapproved drafts are not reconstructed from public JSON alone. The October batch used its own SQLite database and did not modify the original private drafts. Its approval database, UI evidence and verification/live-readback reports are backed up privately under `artifacts/october-2026-refresh/` in the original workspace.

@@ -2,6 +2,31 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver the October data refresh to Pages
+
+**Outcome**
+
+- Committed **29e6428**, pushed and merged [PR #26](https://github.com/taehyeonglim/2026-esports-landscape/pull/26) as **be4806c**. Synchronized local main and removed the merged task branch locally/remotely.
+- Genuine Astra review approved all seven checks. Signed Pages delivery now serves **83 cases**, **243 archival records**, **246 sources** and cutoff **2026-10-04**. Every operational status remains `needs_review`; five candidates remain pending.
+- Preserved the original 22 untracked copies byte-for-byte, the 235 private drafts and unrelated PR #16. Backed up the task's approval database and verification evidence privately before worktree cleanup.
+
+**Verification**
+
+- Full release gate passed locally, independently and in Actions: 45 JS, 135 Python, six static, 150 public-browser and one administrator scenario; deterministic extraction and reproducible release hashes.
+- [Signed run 37163915208](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37163915208): build, signature gate and deployment succeeded. [Push CI 37163694221](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37163694221) passed its build.
+- Live release `eff4117b2ad726ad5efa2a10d2f97383f074f152e7f8293db72fe6eb2e5c13b3`; exact home/research/data/app/CSS hashes matched. Live browser confirmed the new case, count, date and source link.
+
+**Remaining work**
+
+- No delivery blocker. Resolve five deferred candidates and review actual operating status; 109 data gaps and 45 unknown scopes remain.
+- Astra's nonblocking school-level label normalization finding is recorded in status. This documentation-only closeout does not change the reviewed release assets.
+
+**References**
+
+- [Approved October batch](../reports/2026-10-04-refresh.v1.json)
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Apply owner-approved October data refresh
 
 **Outcome**
