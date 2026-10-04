@@ -43,17 +43,17 @@ function renderFacts(data, target) {
   const resourceCounts = Object.fromEntries([...RESOURCE_TYPE_VALUES].map((type) => [type, data.entries.filter((entry) => entry.resource_type === type).length]));
   const values = [
     ["스키마", `v${data.schema_version}`],
-    ["사례 집계", `${data.meta.entry_count}건`],
+    ["사례 집계", `${data.meta.entry_count}건`, "fact-metric"],
     ["보존 원본", `${data.archival_count}개 레코드 · 보조 참고 ${data.reference_count}개는 사례 집계 제외`],
-    ["대상 지역", `${data.meta.region_count}개 시·도`],
-    ["원문 참조", `${data.sources.length}개 source ref`],
+    ["대상 지역", `${data.meta.region_count}개 시·도`, "fact-metric"],
+    ["원문 참조", `${data.sources.length}개 source ref`, "fact-metric"],
     ["자료 반영일", data.meta.data_updated_at],
     ["상태 기준일", data.meta.validation_as_of ?? "승인된 기준일 없음"],
     ["상태 분포", `확인 필요 ${statusCounts.needs_review}건 · 운영 중 ${statusCounts.current}건 · 종료 ${statusCounts.ended}건`],
     ["자원 유형", `학교 ${resourceCounts.school}건 · 대회 ${resourceCounts.event}건 · 시설 ${resourceCounts.facility}건 · 기타 ${resourceCounts.other}건`],
   ];
-  for (const [label, value] of values) {
-    const item = element("div");
+  for (const [label, value, className] of values) {
+    const item = element("div", null, className);
     appendText(item, "dt", label);
     appendText(item, "dd", value);
     target.append(item);

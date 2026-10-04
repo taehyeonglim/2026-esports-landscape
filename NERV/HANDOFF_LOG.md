@@ -2,6 +2,31 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Implement and verify the esports broadcast design
+
+**Outcome**
+
+- Replaced the public site's light workspace with shared black/navy panels, cyan navigation, lime selections and amber review status. Restyled the compact title/stat band, tactical map, case cards, comparison, summary/featured cards and research page using existing fonts/logo and CSS/SVG decoration.
+- Preserved URL/data contracts, 83-case/160-reference partition, factual uncertainty and release policy. Map selection retains density colors, including zero cases. Fixed immediate detail positioning after the taller title exposed a delayed-frame source-visibility regression.
+- Preserved the original 22 untracked workspace copies, private workbench drafts and unrelated PR #16. Work was isolated outside the synchronized Documents folder.
+
+**Verification**
+
+- Full `npm run verify:release`: 45 JS, 135 Python, six static, 150 public-browser and one administrator scenario; deterministic extraction and reproducible hashes passed. U4 passed three targeted repetitions after the fix.
+- Desktop/mobile visual review and six responsive widths covered map, search, details/source links, filter sheet, comparison, empty results and research. Accessibility and reduced-motion checks passed in five browser projects.
+- Candidate release: `dc321c1d6f13c9e664caf6fa985d6c8338c3c16d580356f759161bb8cb2a6553` (60 assets). No data, dependencies or media assets changed.
+
+**Remaining work**
+
+- Pre-merge record: push/merge the task branch, obtain a genuine exact-main Astra review and signed Pages delivery, then verify live assets and update this handoff. No deployment success is claimed here.
+- Existing data-review backlog remains separate.
+
+**References**
+
+- [Public UI contract](../docs/map-explorer.md)
+- [Shared design tokens](../styles/tokens.css)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Deliver the October data refresh to Pages
 
 **Outcome**

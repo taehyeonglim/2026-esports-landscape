@@ -1,4 +1,4 @@
-/* Design tokens — league broadcast night theme. main.css/research.css 공용. */
+/* Shared broadcast design system. Local fonts; no external runtime assets. */
 @font-face {
   font-family: "Pretendard Std Variable";
   src: url("fonts/PretendardStdVariable.woff2") format("woff2-variations");
@@ -21,49 +21,54 @@
   font-display: swap;
 }
 :root {
-  --bg-0: #0a1220;
-  --bg-1: #0e1a2e;
-  --bg-2: #14243c;
-  --bg-3: #1c3050;
-  --line: #26415f;
-  --line-strong: #3a5c85;
-  --ink: #e8eef7;
-  --muted: #9fb2c8;
-  --gold: #e3b341;
-  --gold-soft: #f2cf7e;
-  --blue: #4da3ff;
-  --focus: #6cb8ff;
-  --status-current: #35d6a7;
-  --status-needs-review: #f0a35e;
-  --status-ended: #9fb2c8;
-  --danger: #ff9d8f;
+  color-scheme: dark;
+  --bg-0: #070b12;
+  --bg-1: #101a28;
+  --bg-2: #17263a;
+  --bg-3: #1e3449;
+  --line: #2a4054;
+  --line-strong: #58768b;
+  --ink: #f2f6fc;
+  --muted: #adbed0;
+  --cyan: #42d9f3;
+  --lime: #d5ff45;
+  --focus: #42d9f3;
+  --accent-ink: #070b12;
+  --accent-surface: #152e38;
+  --status-current: #64dfb4;
+  --status-needs-review: #ffc181;
+  --status-ended: #adbed0;
+  --warning-bg: #2a211a;
+  --warning-line: #8a6240;
+  --danger: #ffad9f;
+  --danger-bg: #321c22;
+  --danger-line: #bd665e;
+  --map-empty: #0a121c;
+  --map-1: #17354b;
+  --map-2: #1b526a;
+  --map-3: #216e85;
+  --map-4: #3194a7;
+  --map-5: #68cada;
+  --category-1: #d5ff45;
+  --category-2: #42d9f3;
+  --category-3: #ffad9f;
+  --category-4: #64dfb4;
+  --category-5: #baa7f5;
+  --category-6: #efaaca;
+  --category-7: #87b9f5;
+  --category-8: #adbed0;
   --font-body: "Pretendard Std Variable", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-display: "Rajdhani", "Pretendard Std Variable", system-ui, sans-serif;
-  --cut: 12px;
-  --speed-fast: 150ms;
-  --speed-slow: 240ms;
-  --stripe: repeating-linear-gradient(-55deg, transparent 0 22px, rgba(77, 163, 255, 0.05) 22px 24px, transparent 24px 60px, rgba(227, 179, 65, 0.05) 60px 62px);
+  --page-width: 1240px;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --speed-fast: 160ms;
+  --speed-slow: 200ms;
+  --explorer-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  --grid: linear-gradient(rgba(66, 217, 243, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(66, 217, 243, .045) 1px, transparent 1px);
 }
 @media (prefers-reduced-motion: reduce) {
   :root { --speed-fast: 0ms; --speed-slow: 0ms; }
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-}
-
-/* Explorer surfaces and map scale. */
-:root {
-  --night: #06111f;
-  --night-2: #0b2035;
-  --night-3: #12344d;
-  --paper: #f2eee5;
-  --paper-bright: #faf8f3;
-  --tool-ink: #10243a;
-  --tool-muted: #5f6d79;
-  --tool-line: #d5d0c5;
-  --cyan: #53c7dc;
-  --coral: #ef745f;
-}
-:root {
-  --map-empty: #0a1825; --map-1: #14344d; --map-2: #18516a; --map-3: #1c6d83; --map-4: #258ea0; --map-5: #54c8d8;
-  --space-1: .5rem; --space-2: 1rem; --space-3: 1.5rem;
-  --explorer-columns: minmax(0, 1.1fr) minmax(0, .9fr);
 }
