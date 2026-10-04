@@ -2,6 +2,30 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver the esports broadcast design to Pages
+
+**Outcome**
+
+- Committed **8b1f935**, pushed and merged [PR #28](https://github.com/taehyeonglim/2026-esports-landscape/pull/28) as **7a7cb18**. Synchronized local main and removed the merged implementation branch locally/remotely.
+- Home and research now share the black/navy broadcast design with cyan/lime accents. Genuine Astra review approved all seven checks; signed Pages delivery and live confirmation completed.
+- Preserved all public data, 83-case/160-reference partition, URL and uncertainty contracts, dependency/release policy, original 22 untracked files, private drafts and unrelated PR #16. QA evidence is backed up privately in the original workspace.
+
+**Verification**
+
+- Full local, independent-review and Actions gates passed: 45 JS, 135 Python, six static, 150 public-browser and one administrator scenario; deterministic extraction and reproducible hashes.
+- [Push CI 37165954495](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37165954495) passed its build. [Signed run 37166166213](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37166166213): build, signature gate and deployment succeeded.
+- Live release `dc321c1d6f13c9e664caf6fa985d6c8338c3c16d580356f759161bb8cb2a6553`; 11 exact asset hashes matched. Live desktop/mobile checks confirmed the design, count, selection, detail/source link and research page.
+
+**Remaining work**
+
+- No delivery blocker. This NERV-only closeout changes no reviewed public assets. Existing operating-status and school-level normalization work remains separate.
+
+**References**
+
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+- [Public UI contract](../docs/map-explorer.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Implement and verify the esports broadcast design
 
 **Outcome**
