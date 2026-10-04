@@ -2,6 +2,29 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Create and verify the social share thumbnail
+
+**Outcome**
+
+- Generated one navy/cyan/lime **1730×909** PNG cover with large Korean title/year and a stylized illuminated Korean map. Saved as `assets/social-preview-2026.png`; [generation prompt and asset notes](../docs/social-preview.md) explain the decorative map treatment.
+- Added server-rendered Open Graph and large-image card metadata to the homepage and research page. Each retains its own title, description and canonical URL; both share the new public image with true dimensions and alternative text.
+- Public case data, interactive map geometry, styles, dependencies and release policy are unchanged. Original 22 copies, private workbench state and unrelated PR #16 are preserved.
+
+**Verification**
+
+- Complete local gate passed: **48 JS, 135 Python, six static, 170 browser and one administrator test**, deterministic extraction and reproducible release hashes.
+- Both built HTML heads and published PNG were checked independently; all metadata, dimensions, asset hash and build inclusion match. Manual 600×315 and 320×168 previews remain legible and unclipped.
+- Candidate release `8c720f770470a4d01513c7662fa0bfae03e5e4ed3c88fdbfe16255765d968359` (**63 assets**). Private evidence: original workspace `artifacts/social-thumbnail/`.
+
+**Remaining work**
+
+- Pre-merge record: commit/push/merge, exact-main Astra review and signed Pages deployment, live readback and final NERV closeout. Current live release is still `315722acb895598dd26debff04c89c8bcea78218d3b35a345c857b741e63400e`.
+
+**References**
+
+- [Social preview asset and generation prompt](../docs/social-preview.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Deliver refined map typography and the release-blocking filter fix
 
 **Outcome**
