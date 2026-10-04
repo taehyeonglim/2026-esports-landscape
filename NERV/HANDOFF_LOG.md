@@ -2,6 +2,30 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Correct the school-level omission blocking typography delivery
+
+**Outcome**
+
+- Typography commit **ab57226** was pushed and merged as **140facd** through [PR #32](https://github.com/taehyeonglim/2026-esports-landscape/pull/32). Main was synchronized and the task branch removed locally/remotely.
+- Its actual Astra assessment passed design but rejected usability: the existing `고` filter returned 7 cases and omitted 6 equivalent `고등학교` cases. The signed deploy was not dispatched; no review, receipt or policy was bypassed.
+- A shared read-time alias mapping now unifies choices, matching, state, short/full shared URLs and research totals. All 13 high-school cases are included. Mixed/audience/unknown values and exact archival source records remain intact; font styling is unchanged.
+
+**Verification**
+
+- Combined release gate passed: **48 JS, 135 Python, six static, 170 public-browser and one administrator test**, deterministic extraction/release hashes. New regression passes in all five browsers and includes the formerly omitted case.
+- Candidate release `315722acb895598dd26debff04c89c8bcea78218d3b35a345c857b741e63400e` (62 assets). Actual rejection and both verification generations are preserved privately in `artifacts/map-typography/`.
+- [Typography push CI 37168866877](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37168866877) succeeded. Prior live artifact remains release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150`; new design is not yet deployed.
+
+**Remaining work**
+
+- Commit/push/merge this correction, run exact-main Astra reassessment and signed deployment, verify live assets and close out NERV. Original 22 untracked copies and unrelated PR #16 remain preserved.
+
+**References**
+
+- [School-level normalizer](../src/school-level.js)
+- [Map explorer contract](../docs/map-explorer.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Refine map label typography
 
 **Outcome**

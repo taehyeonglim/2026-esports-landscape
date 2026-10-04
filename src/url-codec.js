@@ -1,4 +1,5 @@
 import { createAppState, normalizeMulti, normalizeQuery, SORT_MODES, VIEW_MODES } from "./state.js";
+import { normalizeSchoolLevel } from "./school-level.js";
 
 export const URL_KEYS = Object.freeze(["view", "region", "type", "q", "category", "schoolLevel", "theme", "scope", "status", "reviewState", "sort", "entry"]);
 const MULTI_KEYS = new Set(["category", "schoolLevel", "theme", "scope", "status", "reviewState"]);
@@ -17,7 +18,7 @@ function isAllowed(value, options, key) {
   const builtIn = key === "view" ? VIEW_MODES : key === "type" ? TYPE_VALUES : key === "sort" ? SORT_MODES : null;
   if (builtIn && !builtIn.includes(value)) return false;
   const allowed = options.allowed[key];
-  return builtIn != null && allowed == null || Array.isArray(allowed) && allowed.map(String).includes(value);
+  return builtIn != null && allowed == null || Array.isArray(allowed) && allowed.map(key === "schoolLevel" ? normalizeSchoolLevel : String).includes(value);
 }
 
 function lastValid(values, options, key) {
@@ -29,9 +30,9 @@ function lastValid(values, options, key) {
 }
 
 function orderedMulti(values, options, key) {
-  const allowed = Array.isArray(options.allowed[key]) ? options.allowed[key].map(String) : [];
+  const allowed = Array.isArray(options.allowed[key]) ? options.allowed[key].map(key === "schoolLevel" ? normalizeSchoolLevel : String) : [];
   const rank = new Map(allowed.map((value, index) => [value, index]));
-  return normalizeMulti(values)
+  return normalizeMulti(values, key)
     .filter((value) => isAllowed(value, options, key))
     .sort((left, right) => rank.get(left) - rank.get(right));
 }

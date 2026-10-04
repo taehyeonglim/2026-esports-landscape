@@ -457,6 +457,31 @@ test("map filters use every condition except region and preserve the scale and s
   await expect(page.locator('[data-region-label="busan"]')).toHaveText("부산 27");
 });
 
+test("school-level aliases share one filter, all 13 high-school cases, URLs and research totals", async ({ page }) => {
+  await page.goto("/index.html");
+  await openFilterPanel(page);
+  await openAdvancedFilters(page);
+  const options = page.locator("#school-level-filter option");
+  await expect(options.filter({ hasText: /^고$/ })).toHaveCount(1);
+  await expect(options.filter({ hasText: /^고등학교$/ })).toHaveCount(0);
+  await page.locator("#school-level-filter").selectOption("고");
+  await expect(page.locator("#filter-panel-result")).toContainText("13");
+  await page.locator("#filter-panel-result").click();
+  await expect(page.locator("#result-count")).toHaveText("13건");
+  await page.locator("#load-more").click();
+  await expect(page.locator("#result-list .entry-card")).toHaveCount(13);
+  await expect(page.locator('[data-entry-id="update-gyeongbuk-gyeongbuk-hitech-school-esports-2026"]')).toBeAttached();
+  await page.goto(`/index.html?schoolLevel=${encodeURIComponent("고등학교")}`);
+  await expect(page.locator("#result-count")).toHaveText("13건");
+  await expect(page).toHaveURL(new RegExp(`schoolLevel=${encodeURIComponent("고")}$`));
+  await openFilterPanel(page);
+  await openAdvancedFilters(page);
+  await expect(page.locator("#school-level-filter")).toHaveValue("고");
+  await page.goto("/research/");
+  await expect(page.locator("#typology-axes")).toContainText("고 13건");
+  await expect(page.locator("#typology-axes")).not.toContainText("고등학교 6건");
+});
+
 test("compact map to list to detail takes two activations before the original source link", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 664 });
   await page.goto("/index.html");

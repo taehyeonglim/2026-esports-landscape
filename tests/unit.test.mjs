@@ -70,6 +70,39 @@ test("search supports quoted AND terms across entry fields", () => {
   assert.throws(() => matchesQuery({ id: "unresolved", name: "자료" }, "자료"), /unresolved source references/);
 });
 
+test("school-level aliases include every equivalent case without changing source records", () => {
+  const before = JSON.stringify(data);
+  for (const [short, full] of [["초", "초등학교"], ["중", "중학교"], ["고", "고등학교"], ["대", "대학교"], ["대", "대학"]]) {
+    const entries = [
+      { id: "short", school_level: short }, { id: "full", school_level: full },
+      { id: "mixed", school_level: "중·고" }, { id: "other", school_level: "새 학교급" },
+    ];
+    for (const selected of [short, full]) assert.deepEqual(filterEntries(entries, { schoolLevel: [selected] }).map(e => e.id), ["short", "full"]);
+    assert.deepEqual(filterEntries(entries, { schoolLevel: ["중·고"] }).map(e => e.id), ["mixed"]);
+    assert.deepEqual(filterEntries(entries, { schoolLevel: ["새 학교급"] }).map(e => e.id), ["other"]);
+  }
+  const highSchools = filterEntries(caseSite(data).entries, { schoolLevel: ["고등학교"] });
+  assert.equal(highSchools.length, 13);
+  assert.equal(highSchools.filter(e => e.school_level === "고").length, 7);
+  assert.equal(highSchools.filter(e => e.school_level === "고등학교").length, 6);
+  assert.ok(highSchools.some(e => e.id === "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026"));
+  assert.equal(JSON.stringify(data), before);
+});
+
+test("school-level aliases deduplicate state and preserve short and full shared URLs", () => {
+  const options = { allowed: { schoolLevel: ["초", "중", "고", "대", "중·고"] }, entries: [] };
+  const initial = createAppState({ schoolLevel: ["고", " 고등학교 "] });
+  assert.deepEqual(initial.schoolLevel, ["고"]);
+  assert.deepEqual(appReducer(initial, actions.setFilter("schoolLevel", ["중", "중학교"])).schoolLevel, ["중"]);
+  for (const query of ["?schoolLevel=고", "?schoolLevel=고등학교", "?schoolLevel=고등학교&schoolLevel=고&schoolLevel=invalid"]) {
+    const decoded = decodeUrl(query, options);
+    assert.deepEqual(decoded.schoolLevel, ["고"]);
+    assert.equal(encodeUrl(decoded, options), `?schoolLevel=${encodeURIComponent("고")}`);
+  }
+  assert.deepEqual(decodeUrl("?schoolLevel=고", { ...options, allowed: { schoolLevel: ["고등학교"] } }).schoolLevel, ["고"]);
+  assert.deepEqual(decodeUrl("?schoolLevel=중·고", options).schoolLevel, ["중·고"]);
+});
+
 test("projection retains geometry within padded canvas and rejects invalid positions", () => {
   const geometry = { type: "Polygon", coordinates: [[[0, 0], [10, 0], [10, 5], [0, 5], [0, 0]]] };
   const projection = createProjection(geometry, { width: 100, height: 80, padding: 10 });
@@ -264,12 +297,16 @@ test("off-map and status disclosure invariants remain explicit", () => {
 
 test("research typology counts the complete current corpus rather than baseline strings", () => {
   const axes = currentTypology(data);
-  for (const [marker, key] of [["national category coverage", "category"], ["school_level", "school_level"]]) {
+  for (const [marker, key] of [["national category coverage", "category"]]) {
     const values = axes.find(axis => axis.axis.includes(marker)).values;
     const expected = new Map();
     for (const entry of caseSite(data).entries) expected.set(entry[key], (expected.get(entry[key]) ?? 0) + 1);
     assert.deepEqual(new Set(values), new Set([...expected].map(([label, count]) => `${label} ${count}건`)));
   }
+  const schoolLevels = axes.find(axis => axis.axis.includes("school_level")).values;
+  assert.ok(schoolLevels.includes("고 13건"));
+  assert.ok(schoolLevels.every(value => !value.startsWith("고등학교 ") && !value.startsWith("중학교 ")));
+  assert.equal(schoolLevels.reduce((total, value) => total + Number(value.match(/ (\d+)건$/)[1]), 0), caseSite(data).entries.length);
   const extended = structuredClone(data);
   extended.entries.push({ ...data.entries[0], id: "test-count", category: "새 분류", school_level: "새 학교급" });
   assert.ok(currentTypology(extended).find(axis => axis.axis.includes("school_level")).values.includes("새 학교급 1건"));

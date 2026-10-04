@@ -1,4 +1,5 @@
 import { caseSite, isReferenceRecord } from "./record-scope.js";
+import { normalizeSchoolLevel } from "./school-level.js";
 const dataUrl = new URL("../data/site.v3.json", import.meta.url);
 
 const EXPECTED_SCHEMA_VERSION = 3;
@@ -65,7 +66,7 @@ export function currentTypology(data) {
   const count = (entries, key) => {
     const counts = new Map();
     for (const entry of entries) {
-      const label = entry[key] || "미기록";
+      const label = (key === "school_level" ? normalizeSchoolLevel(entry[key]) : entry[key]) || "미기록";
       counts.set(label, (counts.get(label) ?? 0) + 1);
     }
     return [...counts].sort(([a], [b]) => a.localeCompare(b, "ko"))

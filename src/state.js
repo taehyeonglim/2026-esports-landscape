@@ -1,3 +1,5 @@
+import { normalizeSchoolLevel } from "./school-level.js";
+
 export const RESOURCE_TYPES = Object.freeze(["school", "event", "facility", "other"]);
 export const SORT_MODES = Object.freeze(["name-asc", "name-desc", "year-asc", "year-desc"]);
 export const VIEW_MODES = Object.freeze(["browse", "compare"]);
@@ -41,9 +43,10 @@ export function normalizeQuery(value) {
   return String(value ?? "").normalize("NFKC").trim().replace(/\s+/gu, " ");
 }
 
-export function normalizeMulti(values) {
+export function normalizeMulti(values, field) {
   const input = Array.isArray(values) ? values : values == null ? [] : [values];
-  return [...new Set(input.map((value) => String(value).normalize("NFKC").trim()).filter(Boolean))]
+  const normalized = input.map((value) => String(value).normalize("NFKC").trim());
+  return [...new Set((field === "schoolLevel" ? normalized.map(normalizeSchoolLevel) : normalized).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right, "ko"));
 }
 function normalizeSort(value) {
@@ -65,7 +68,7 @@ export function createAppState(overrides = {}) {
     view: entry ? "browse" : normalizeView(state.view),
     entry,
     query: normalizeQuery(state.query),
-    ...Object.fromEntries([...MULTI_FIELDS].map((field) => [field, normalizeMulti(state[field])])),
+    ...Object.fromEntries([...MULTI_FIELDS].map((field) => [field, normalizeMulti(state[field], field)])),
     sort: normalizeSort(state.sort),
     mapLoadState: normalizeMapLoadState(state.mapLoadState),
   };
@@ -111,7 +114,7 @@ export function appReducer(state = DEFAULT_APP_STATE, action = {}) {
       return { ...state, query: normalizeQuery(action.query) };
     case ActionTypes.SET_FILTER:
       if (!FILTER_FIELDS.has(action.field)) return state;
-      return { ...state, [action.field]: normalizeMulti(action.values) };
+      return { ...state, [action.field]: normalizeMulti(action.values, action.field) };
     case ActionTypes.SET_SORT:
       return { ...state, sort: normalizeSort(action.sort) };
     case ActionTypes.SET_ENTRY:
