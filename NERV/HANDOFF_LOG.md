@@ -2,6 +2,31 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver refined map typography and the release-blocking filter fix
+
+**Outcome**
+
+- Typography **ab57226 → 140facd** ([PR #32](https://github.com/taehyeonglim/2026-esports-landscape/pull/32)) and school-level correction **ca3dd13 → e2db70f** ([PR #33](https://github.com/taehyeonglim/2026-esports-landscape/pull/33)) were committed, pushed and merged. Main synchronized; both implementation branches removed locally/remotely.
+- Map labels now use Korean Pretendard Medium, a thin halo and lighter spaced tabular counts. The first release assessment blocked the existing school-level alias omission; the correction unifies filtering/URLs/research totals without changing archival values or merging mixed labels.
+- Exact-source reassessment genuinely approved all seven checks. Signed Pages deployment and live readback completed; no release protection was bypassed.
+
+**Verification**
+
+- Local, independent-review and Actions gates passed: **48 JS, 135 Python, six static, 170 public-browser and one administrator test**, deterministic extraction and reproducible hashes.
+- [Push CI 37169626916](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37169626916) succeeded. [Signed run 37169830327](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37169830327): build, release gate and deploy all succeeded; coordinator recorded deployed.
+- Live release `315722acb895598dd26debff04c89c8bcea78218d3b35a345c857b741e63400e` (62 assets); **18 exact live file hashes matched**. Live desktop/mobile typography and high-school filtering, plus research `고 13건`, confirmed. Original 22 untracked copies retain baseline hashes.
+- Evidence, including the actual rejection and subsequent approval, is backed up privately in `artifacts/map-typography/`. Archival data, geometry, dependencies, release policy, private drafts and unrelated PR #16 remain intact.
+
+**Remaining work**
+
+- No implementation delivery blocker. This NERV-only closeout changes no public artifact; subsequent documentation CI is separate. Operating-status and data-review backlog remains unchanged.
+
+**References**
+
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+- [Map explorer and school-level contract](../docs/map-explorer.md)
+- [Font source and checksum](../styles/fonts/SOURCES.txt)
+
 ## 2026-10-04 — Codex — Correct the school-level omission blocking typography delivery
 
 **Outcome**
