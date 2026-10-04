@@ -1,13 +1,13 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**. Latest deployed public UI implementation: **7a7cb186f4d313d10d3ac9dc3ad5a1469a86dfba**, merged through [PR #28](https://github.com/taehyeonglim/2026-esports-landscape/pull/28). Data remains the owner-approved October refresh from PR #26.
-- Current verified candidate: `feat/fullscreen-map`, based on **8132fc9**. Viewport map implementation is locally verified; push, merge, exact-main Astra assessment and live deployment verification remain pending. Refer to Git for this candidate commit.
+- Canonical branch: **main**. Latest deployed public UI implementation: **79d4c84839ef3dfbad0c81db58f4655600c0888d**, merged through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30). Data remains the owner-approved October refresh from PR #26.
+- This NERV coordination closeout records completed delivery and changes no public release assets. Refer to Git for its containing main commit.
 
 ## Product and data
 
 - Static HTML/CSS/ES modules and GitHub Pages remain the public architecture; [map explorer contract](../docs/map-explorer.md).
-- Verified candidate fills the first viewport with a map workspace. Desktop results open in a 400px right panel; compact results use an expandable nonmodal bottom sheet with short-screen fallback. Summary/featured sections remain below. Filters preview a draft and apply/cancel transactionally. Shared broadcast colors, local fonts/logo, URLs, data and research remain intact; no new runtime dependencies or media assets.
+- Public home fills the first viewport with a map workspace. Desktop results open in a 400px right panel; compact results use an expandable nonmodal bottom sheet with short-screen fallback. Summary/featured sections remain below. Filters preview a draft and apply/cancel transactionally. Shared broadcast colors, local fonts/logo, URLs, data and research remain intact; no new runtime dependencies or media assets.
 - Selected map regions retain density fill, including zero matches, with dashed outlines and lime labels. SVG fitting includes labels/leader lines. Panel close, detail return and viewport changes preserve filters, list position, expansion and focus; direct URLs open the intended panel.
 - Archival graph: **243 records / 17 regions / 246 sources**, data cutoff **2026-10-04**. Immutable 230-record baseline and five legacy additions remain intact.
 - Public case search/comparison/map summaries: **83 cases / 86 case sources**. All **160 legacy regional display references** remain excluded and separated in the research appendix; no reference is reintroduced or duplicated.
@@ -19,11 +19,14 @@
 
 ## Verified release and delivery
 
-- Candidate verification completed on 2026-10-04 KST: **46 JavaScript, 135 Python, six static contracts, 165 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes all passed via `CI=1 npm run verify:release`.
-- Browser coverage includes 320, 390, 720, 1023, 1024 and 1440px, short landscape, label/geometry containment, 400px drawer, half-height sheet/expansion, draft cancellation, shared URLs, keyboard/focus restoration, independent scrolling, accessibility and reduced motion. Manual desktop/mobile inspection confirmed the map, lists, filter dialog and comparison.
-- Candidate release: `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150` (60 assets). Public data/GeoJSON, research assets, dependency manifests and release policy are unchanged.
-- Delivery is pending: commit/push/merge this candidate, run genuine exact-main Astra assessment and signed Pages deployment, verify live hashes, then update this section. No candidate deployment success is claimed.
-- Previous deployed broadcast implementation: **7a7cb18**, [PR #28](https://github.com/taehyeonglim/2026-esports-landscape/pull/28), [signed run 37166166213](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37166166213), release `dc321c1d6f13c9e664caf6fa985d6c8338c3c16d580356f759161bb8cb2a6553`. Documentation closeout **8132fc9** passed push CI; its automatic signed review is independent of this candidate.
+- Fullscreen map committed as **eed4fc5**, pushed and squash-merged as **79d4c84** through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30). Local main was synchronized with origin/main; the merged implementation branch was removed locally and remotely.
+- Full verification passed locally, in the independent review checkout and in Actions: **46 JavaScript, 135 Python, six static contracts, 165 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Browser coverage includes 320, 390, 720, 1023, 1024 and 1440px, short landscape, label/geometry containment, 400px drawer, half-height sheet/expansion, filter draft cancellation, shared URLs, keyboard/focus restoration, independent scrolling, accessibility and reduced motion.
+- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **79d4c84**. This is release assessment, not factual certification or a human usability study.
+- [Push CI 37167550642](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167550642): build succeeded, deployment skipped as designed. [Signed run 37167922215](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167922215): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
+- Live release: `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150` (60 assets). Independent readback matched exact hashes for **11 assets**, including all changed public files, research assets, public data and national map geometry. Data, research implementation, dependencies and release policy are unchanged.
+- Live desktop/mobile inspection confirmed the full map, region selection and count, right drawer, bottom sheet/expansion, original source link and detail return. Original 22 untracked files retain exact baseline hashes.
+- No delivery blocker remains. This NERV-only followup does not alter the reviewed public artifact; its subsequent CI is separate from the completed implementation release above.
 
 ## Automatic release operation
 
@@ -52,4 +55,4 @@ Private workbench state is intentionally not published. Back it up before deleti
 
 Broadcast-design QA screenshots, verification logs and 11-asset live readback are backed up privately under `artifacts/esports-broadcast-design/` in the original workspace. All 22 original untracked copies still match their recorded hashes.
 
-Fullscreen-map work is isolated at `~/.local/share/esports-fullscreen-map`; QA logs/screenshots are under its ignored `artifacts/fullscreen-map/`. Original 22 untracked files still match their preserved baseline hashes. Copy task QA to the original workspace artifacts before removing the task worktree.
+Fullscreen-map screenshots, verification logs, Astra assessment and 11-asset live readback are backed up privately under `artifacts/fullscreen-map/` in the original workspace. The original 22 untracked files retain their recorded hashes. No private workbench state was modified.

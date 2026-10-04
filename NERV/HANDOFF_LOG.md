@@ -2,6 +2,30 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver the fullscreen map workspace to Pages
+
+**Outcome**
+
+- Committed **eed4fc5**, pushed and merged [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30) as **79d4c84**. Synchronized local main and removed the merged implementation branch locally/remotely.
+- First viewport now presents the full map with an on-demand desktop drawer or expandable mobile bottom sheet. Transactional filters, direct URLs, map density, detail/source access and scroll/focus restoration are verified.
+- Genuine Astra approval passed all seven checks. Signed Pages deployment and independent live verification completed. Public data, research assets, dependencies, release policy, original 22 untracked copies and unrelated PR #16 remain intact.
+
+**Verification**
+
+- Full local, independent-review and Actions gates passed: 46 JS, 135 Python, six static, 165 public-browser and one administrator test; deterministic extraction and reproducible hashes.
+- [Push CI 37167550642](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167550642) succeeded. [Signed run 37167922215](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167922215): build, signature gate and deployment succeeded.
+- Live release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150`; 11 exact asset hashes matched. Live desktop/mobile inspection verified region selection, panel behavior/expansion, source link and detail return. QA is backed up privately in original workspace `artifacts/fullscreen-map/`.
+
+**Remaining work**
+
+- No implementation delivery blocker. This NERV-only closeout changes no reviewed public assets; subsequent documentation CI is separate. Existing operating-status and data-review work remains unchanged.
+
+**References**
+
+- [Production site](https://taehyeonglim.github.io/2026-esports-landscape/)
+- [Map explorer contract](../docs/map-explorer.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Implement and verify the fullscreen map workspace
 
 **Outcome**
