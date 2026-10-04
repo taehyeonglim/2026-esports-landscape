@@ -1,8 +1,8 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**. Latest deployed data implementation: **be4806c7e1f019efa7749546f04a790672a4c330**, merged through [PR #26](https://github.com/taehyeonglim/2026-esports-landscape/pull/26).
-- Broadcast redesign candidate: **codex/esports-broadcast-design**, based on **f03a9c3**. Implementation and local verification are complete; push/merge, exact-main Astra assessment and signed Pages delivery are pending. Refer to Git for this candidate commit.
+- Canonical branch: **main**. Latest deployed public UI implementation: **7a7cb186f4d313d10d3ac9dc3ad5a1469a86dfba**, merged through [PR #28](https://github.com/taehyeonglim/2026-esports-landscape/pull/28). Data remains the owner-approved October refresh from PR #26.
+- This coordination closeout records actual delivery and changes no public release assets. Refer to Git for its containing main commit.
 
 ## Product and data
 
@@ -19,12 +19,14 @@
 
 ## Verified release and delivery
 
-- Broadcast redesign full local `npm run verify:release` passed: **45 JavaScript, 135 Python, six static contracts, 150 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Existing U4 source-visibility check found a delayed-frame detail scroll; corrected the actual positioning and passed three targeted repetitions plus the full suite. Added selected-density/zero-state assertions without relaxing existing acceptance checks.
-- Browser inspection covered desktop/mobile home, selected/empty results, source links, filter sheet, comparison, summary cards and research. Automated layouts cover **320, 390, 720, 1023, 1024 and 1440px**; all five browser projects passed accessibility and reduced-motion checks. This is not a human usability study.
-- Candidate release ID: `dc321c1d6f13c9e664caf6fa985d6c8338c3c16d580356f759161bb8cb2a6553` (60 assets). Public data, geographic files, dependency manifests and release policy are unchanged.
-- **Pending delivery:** commit/push/merge candidate, assess exact main with the existing Astra coordinator, verify signed deployment and live hashes. No new-design deployment is claimed yet.
-- Previous production: October data refresh implementation **be4806c**, subsequently coordinated at **f03a9c3**, release `eff4117b2ad726ad5efa2a10d2f97383f074f152e7f8293db72fe6eb2e5c13b3`. Latest coordinator readback before this redesign was [signed run 37165283181](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37165283181).
+- Broadcast redesign committed as **8b1f935**, pushed and squash-merged as **7a7cb18** through PR #28. Local main was synchronized with origin/main; the merged implementation branch was removed locally and remotely.
+- Full verification passed locally, in the independent review checkout and in Actions: **45 JavaScript, 135 Python, six static contracts, 150 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Existing U4 source-visibility check found a delayed-frame detail scroll; corrected the actual positioning and passed three targeted repetitions plus the full suite. Added selected-density/zero-state assertions without relaxing acceptance checks.
+- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **7a7cb18**. This is release assessment, not factual certification or a human usability study.
+- [Push CI 37165954495](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37165954495): build succeeded, deployment skipped as designed. [Signed run 37166166213](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37166166213): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
+- Live release ID: `dc321c1d6f13c9e664caf6fa985d6c8338c3c16d580356f759161bb8cb2a6553` (60 assets). Independent readback matched exact hashes for **11 assets**, covering both HTML pages, all four stylesheets, four changed scripts and public data. No data, geographic files, dependency manifests, media assets or release policy changed.
+- Desktop/mobile live inspection confirmed the new design, 83-case count, region selection, retained desktop map, original source link, mobile list and research page. Automated layouts cover **320, 390, 720, 1023, 1024 and 1440px**; all five browser projects passed accessibility and reduced-motion checks.
+- No delivery blocker remains. NERV-only closeout does not alter the reviewed public artifact; remaining data-review priorities below are separate.
 
 ## Automatic release operation
 
@@ -50,3 +52,5 @@ Preserve all **22 untracked numbered copies** in the original workspace, includi
 Do not run in-place extraction in the original workspace: cleanup can remove extra GeoJSON files. This task uses an isolated worktree; the installed coordinator uses its own clone outside the synchronized Documents folder.
 
 Private workbench state is intentionally not published. Back it up before deleting artifacts; unapproved drafts are not reconstructed from public JSON alone. The October batch used its own SQLite database and did not modify the original private drafts. Its approval database, UI evidence and verification/live-readback reports are backed up privately under `artifacts/october-2026-refresh/` in the original workspace.
+
+Broadcast-design QA screenshots, verification logs and 11-asset live readback are backed up privately under `artifacts/esports-broadcast-design/` in the original workspace. All 22 original untracked copies still match their recorded hashes.
