@@ -1,5 +1,12 @@
 /* Shared broadcast design system. Local fonts; no external runtime assets. */
 @font-face {
+  font-family: "Pretendard";
+  src: url("fonts/Pretendard-Medium.subset.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Pretendard Std Variable";
   src: url("fonts/PretendardStdVariable.woff2") format("woff2-variations");
   font-weight: 45 920;
@@ -58,6 +65,7 @@
   --category-7: #87b9f5;
   --category-8: #adbed0;
   --font-body: "Pretendard Std Variable", system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-map: "Pretendard", var(--font-body);
   --font-display: "Rajdhani", "Pretendard Std Variable", system-ui, sans-serif;
   --page-width: 1240px;
   --space-1: .5rem;

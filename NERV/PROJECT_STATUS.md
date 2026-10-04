@@ -1,13 +1,14 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**. Latest deployed public UI implementation: **79d4c84839ef3dfbad0c81db58f4655600c0888d**, merged through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30). Data remains the owner-approved October refresh from PR #26.
-- This NERV coordination closeout records completed delivery and changes no public release assets. Refer to Git for its containing main commit.
+- Canonical branch: **main**, baseline **37ecf80a42b8042262814b4fed6555cda9183b0f**. Verified map-typography candidate is on **feat/map-typography**; see Git for its containing commit. Data remains the owner-approved October refresh from PR #26.
+- Delivery is in progress: task commit/push/merge, exact-main Astra review, signed Pages deployment and live readback remain required.
 
 ## Product and data
 
 - Static HTML/CSS/ES modules and GitHub Pages remain the public architecture; [map explorer contract](../docs/map-explorer.md).
-- Public home fills the first viewport with a map workspace. Desktop results open in a 400px right panel; compact results use an expandable nonmodal bottom sheet with short-screen fallback. Summary/featured sections remain below. Filters preview a draft and apply/cancel transactionally. Shared broadcast colors, local fonts/logo, URLs, data and research remain intact; no new runtime dependencies or media assets.
+- Public home fills the first viewport with a map workspace. Desktop results open in a 400px right panel; compact results use an expandable nonmodal bottom sheet with short-screen fallback. Summary/featured sections remain below. Filters preview a draft and apply/cancel transactionally. Shared broadcast colors/logo, URLs, data and research remain intact; no new runtime dependencies.
+- Map labels use self-hosted Korean **Pretendard Medium (500)** with a thin 2px halo, tighter spacing and separately styled regular/tabular counts. The prior Pretendard Std font has no Hangul glyphs; the new unmodified upstream subset covers all 17 region names. Other page typography is unchanged; [font source, checksum and license](../styles/fonts/SOURCES.txt).
 - Selected map regions retain density fill, including zero matches, with dashed outlines and lime labels. SVG fitting includes labels/leader lines. Panel close, detail return and viewport changes preserve filters, list position, expansion and focus; direct URLs open the intended panel.
 - Archival graph: **243 records / 17 regions / 246 sources**, data cutoff **2026-10-04**. Immutable 230-record baseline and five legacy additions remain intact.
 - Public case search/comparison/map summaries: **83 cases / 86 case sources**. All **160 legacy regional display references** remain excluded and separated in the research appendix; no reference is reintroduced or duplicated.
@@ -19,14 +20,12 @@
 
 ## Verified release and delivery
 
-- Fullscreen map committed as **eed4fc5**, pushed and squash-merged as **79d4c84** through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30). Local main was synchronized with origin/main; the merged implementation branch was removed locally and remotely.
-- Full verification passed locally, in the independent review checkout and in Actions: **46 JavaScript, 135 Python, six static contracts, 165 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Browser coverage includes 320, 390, 720, 1023, 1024 and 1440px, short landscape, label/geometry containment, 400px drawer, half-height sheet/expansion, filter draft cancellation, shared URLs, keyboard/focus restoration, independent scrolling, accessibility and reduced motion.
-- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **79d4c84**. This is release assessment, not factual certification or a human usability study.
-- [Push CI 37167550642](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167550642): build succeeded, deployment skipped as designed. [Signed run 37167922215](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37167922215): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
-- Live release: `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150` (60 assets). Independent readback matched exact hashes for **11 assets**, including all changed public files, research assets, public data and national map geometry. Data, research implementation, dependencies and release policy are unchanged.
-- Live desktop/mobile inspection confirmed the full map, region selection and count, right drawer, bottom sheet/expansion, original source link and detail return. Original 22 untracked files retain exact baseline hashes.
-- No delivery blocker remains. This NERV-only followup does not alter the reviewed public artifact; its subsequent CI is separate from the completed implementation release above.
+- Map typography candidate passed complete `CI=1 npm run verify:release` locally: **46 JavaScript, 135 Python, six static contracts, 165 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Existing filter scenarios now assert visible map counts through filtering, zero matches and reset. Five browser projects retain geometry containment, selected density, keyboard/focus, source/detail access, accessibility and responsive-panel checks.
+- Manual desktop **1440×900** and mobile **390×844** inspection confirmed full-map/drawer/sheet typography, selected name/count highlighting and all 17 zero-result labels. Font glyph/weight/checksum checks passed.
+- Candidate release: `0bc62020d1be1f67f10dfc0193dd201e4d88489ae1289c0ac3b2991c1e4e7c33` (**61 assets**). One local 268,324-byte font is added; font license and exact upstream provenance are included. Data, national geometry, dependencies and release policy are unchanged.
+- Latest independently verified production artifact remains fullscreen-map release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150`, delivered through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30), with NERV closeout [PR #31](https://github.com/taehyeonglim/2026-esports-landscape/pull/31). New typography deployment is **pending**, not yet claimed successful.
+- Next delivery steps: commit/push/merge, obtain a genuine exact-main seven-check Astra approval, observe signed build/gate/deploy, check live assets, synchronize main and record final delivery.
 
 ## Automatic release operation
 
@@ -56,3 +55,5 @@ Private workbench state is intentionally not published. Back it up before deleti
 Broadcast-design QA screenshots, verification logs and 11-asset live readback are backed up privately under `artifacts/esports-broadcast-design/` in the original workspace. All 22 original untracked copies still match their recorded hashes.
 
 Fullscreen-map screenshots, verification logs, Astra assessment and 11-asset live readback are backed up privately under `artifacts/fullscreen-map/` in the original workspace. The original 22 untracked files retain their recorded hashes. No private workbench state was modified.
+
+Map-typography QA, font coverage, verification logs and subsequent release readback are backed up privately under `artifacts/map-typography/` in the original workspace. Work uses an isolated checkout; the original 22 untracked copies and private workbench state remain intact.
