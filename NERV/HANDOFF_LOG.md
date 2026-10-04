@@ -2,6 +2,30 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Implement and verify the fullscreen map workspace
+
+**Outcome**
+
+- Rebuilt the first viewport around the map. Desktop uses a closed-by-default 400px results drawer; compact screens keep a map above an expandable half-height sheet, with full-height results on short screens. Summary/featured sections remain below.
+- Filters now preview a draft and apply/cancel atomically. Preserved shareable URLs, selected density, source links, list scroll/focus and sheet expansion. SVG bounds include labels and leader lines.
+- Preserved all public data/research assets, dependency and release policy, original 22 untracked files and unrelated discovery PR #16. Implementation uses an isolated worktree.
+
+**Verification**
+
+- Complete `CI=1 npm run verify:release`: 46 JS, 135 Python, six static, 165 public-browser and one administrator test passed; deterministic extraction/release hashes passed.
+- Manual desktop/mobile inspection and automated six-width/landscape checks cover canvas size, map containment, drawers/sheets, filters, detail/source access, URL navigation, focus restoration, independent scrolling, errors, accessibility and reduced motion.
+- Candidate release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150` (60 assets); original untracked hashes unchanged.
+
+**Remaining work**
+
+- Pre-merge record: commit/push/merge the task branch, obtain exact-main Astra approval and signed Pages deployment, verify live assets and complete NERV delivery closeout.
+- Existing operating-status and data-review backlog remains separate.
+
+**References**
+
+- [Map explorer contract](../docs/map-explorer.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Deliver the esports broadcast design to Pages
 
 **Outcome**

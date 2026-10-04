@@ -33,29 +33,16 @@
   </header>
 
   <main>
-    <section class="tool-hero" aria-labelledby="page-title">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="season-tag">2026</span> SCHOLASTIC ESPORTS / KOREA</p>
-          <h1 id="page-title"><span>지도로 찾는</span> <em>학교 e스포츠 사례</em></h1>
-          <p class="hero-lede">17개 시·도의 공개자료를 살펴보고, 사례의 원문 근거를 확인하세요.</p>
-        </div>
-        <div class="hero-context">
-          <p class="stat-ribbon" id="stat-ribbon" hidden></p>
-          <time id="data-updated-at" datetime="">자료 반영일 확인 중</time>
-          <p class="trust-note">현재 운영은 미확인입니다. <a href="research/">연구 방법과 데이터 한계 ↗</a></p>
-        </div>
-      </div>
-    </section>
-
     <section class="workspace-section" id="workspace" aria-labelledby="workspace-title">
       <div class="workspace-shell">
         <header class="workspace-header">
-          <div>
-            <h2 id="workspace-title" tabindex="-1"><span class="section-index" aria-hidden="true">01</span> 지역에서 사례 찾기</h2>
+          <div class="workspace-identity">
+            <p class="eyebrow"><span class="season-tag">2026</span> SCHOLASTIC ESPORTS / KOREA</p>
+            <h1 id="page-title">지도로 찾는 <em>학교 e스포츠 사례</em></h1>
+            <h2 id="workspace-title" class="sr-only" tabindex="-1">지역에서 사례 찾기</h2>
           </div>
           <div class="workspace-tabs" role="tablist" aria-label="데이터 보기 방식">
-            <button id="browse-tab" type="button" role="tab" aria-selected="true" aria-controls="browse-view" data-view="browse">지도·사례 탐색</button>
+            <button id="browse-tab" type="button" role="tab" aria-selected="true" aria-controls="browse-view" data-view="browse">지도 탐색</button>
             <button id="compare-tab" type="button" role="tab" aria-selected="false" aria-controls="compare-view" data-view="compare" tabindex="-1">지역 비교</button>
           </div>
         </header>
@@ -71,9 +58,10 @@
               <select id="region-select"><option value="">전체 지역</option></select>
             </label>
             <button id="mobile-filter-trigger" class="mobile-filter-trigger" type="button" aria-haspopup="dialog" aria-controls="filter-panel" aria-expanded="false">필터 <span id="mobile-filter-count">0</span></button>
+
           </div>
 
-          <dialog id="filter-panel" class="filter-panel" aria-labelledby="filter-panel-title" open>
+          <dialog id="filter-panel" class="filter-panel" aria-labelledby="filter-panel-title">
             <div class="filter-panel-heading">
               <div><p class="filter-kicker">REFINE RESULTS</p><h3 id="filter-panel-title">필터</h3></div>
               <button id="filter-panel-close" class="filter-panel-close" type="button" aria-label="필터 닫기">×</button>
@@ -95,6 +83,7 @@
               </div>
             </details>
             <div class="filter-panel-footer">
+              <button id="filter-panel-cancel" type="button">취소</button>
               <button id="filter-panel-result" type="button">결과 보기</button>
             </div>
           </dialog>
@@ -102,27 +91,29 @@
 
           <p id="live-status" class="sr-only" aria-live="polite"></p>
 
-          <div class="mobile-pane-switch" role="group" aria-label="지도와 목록 전환">
-            <button id="show-map" type="button" aria-pressed="true" aria-controls="map-context">지도 보기</button>
-            <button id="show-list" type="button" aria-pressed="false" aria-controls="results-surface">목록 보기 <span id="pane-count"></span></button>
-          </div>
-          <div class="explorer-layout" id="explorer-layout" data-pane="map">
+          <div class="explorer-layout" id="explorer-layout" data-pane="map" data-panel="closed">
             <section id="map-context" class="map-context" aria-labelledby="national-map-heading">
               <header class="map-frame-heading">
                 <div><span>REGION MAP / 17개 시·도</span><h2 id="national-map-heading" tabindex="-1">지역을 선택하세요</h2></div>
-                <button id="map-reset-region" type="button">전국 보기</button>
+                <div class="map-frame-actions"><button id="show-list" class="show-list" type="button" aria-expanded="false" aria-controls="results-surface">전체 사례 보기 <span id="pane-count"></span></button><button id="map-reset-region" type="button">전국 보기</button></div>
               </header>
               <div class="national-map-stage">
                 <svg id="national-map" role="group" aria-label="17개 시·도별 공개자료 확인 사례 지도"></svg>
               </div>
-              <div id="map-legend" class="map-legend" aria-label="공개자료 건수 범례"></div>
               <div class="map-readout" id="map-readout" aria-live="polite"><strong>지도 데이터를 불러오는 중입니다</strong></div>
               <p id="map-error" class="map-error" role="status" hidden>지도를 불러오지 못했습니다. 아래 지역 버튼으로 사례를 찾아보세요.</p>
-              <div class="region-shortcuts" id="region-shortcuts" aria-label="지역 바로 선택"></div>
-              <p class="map-note">검색·필터에 맞는 공개자료를 등록 지역별로 집계합니다. 보조 참고 자료는 제외하며, 실제 활동 규모·순위나 정확한 개최 위치를 뜻하지 않습니다.</p>
+              <details class="region-picker" id="region-picker">
+                <summary>17개 지역 목록</summary>
+                <div class="region-shortcuts" id="region-shortcuts" aria-label="지역 바로 선택"></div>
+              </details>
             </section>
 
-            <div id="results-surface" class="results-surface">
+            <div id="results-surface" class="results-surface" hidden>
+              <div class="panel-toolbar">
+                <span>CASE EXPLORER</span>
+                <button id="expand-results" type="button" aria-expanded="false" aria-controls="browse-panel">목록 확대</button>
+                <button id="show-map" type="button" aria-label="사례 패널 닫고 지도 보기" aria-controls="map-context">지도 보기 <span aria-hidden="true">×</span></button>
+              </div>
               <section class="browse-panel" id="browse-panel" aria-labelledby="results-heading">
                 <div class="results-heading">
                   <div><p class="results-kicker">공개자료 사례</p><h2 id="results-heading" tabindex="-1">전국 사례</h2></div>
@@ -140,6 +131,11 @@
                 <div id="detail-content"></div>
               </dialog>
             </div>
+          </div>
+          <div class="map-footer">
+            <div id="map-legend" class="map-legend" aria-label="공개자료 건수 범례"></div>
+            <p class="map-note">공개자료 확인 건수 · 현재 운영 미확인. 활동 규모·순위 및 개최 위치가 아닙니다. <a href="research/">해석 안내 ↗</a></p>
+            <div class="map-footer-links"><time id="data-updated-at" datetime="">자료 반영일 확인 중</time><a href="#snapshot">요약 보기 ↓</a></div>
           </div>
         </div>
 
@@ -160,6 +156,8 @@
         <div><p class="section-number">02 / DATA SNAPSHOT</p><h2 id="snapshot-heading">공개자료 유형별 현황</h2></div>
         <div class="snapshot-meta"><p id="last-reviewed-at">운영 상태 검토일 미확인</p><p>유형별 분류 건수이며 현재 운영 규모를 뜻하지 않습니다.</p></div>
       </div>
+      <p class="stat-ribbon" id="stat-ribbon" hidden></p>
+      <p class="snapshot-trust">현재 운영은 미확인입니다. <a href="research/">연구 방법과 데이터 한계 ↗</a></p>
       <div class="signal-grid" id="editorial-insights" aria-live="polite"></div>
     </section>
 

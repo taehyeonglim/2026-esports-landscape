@@ -36,7 +36,7 @@ async function openTask(page, task) {
   return card;
 }
 
-async function openFilterPanelWhenCompact(page) {
+async function openFilterPanel(page) {
   const trigger = page.locator("#mobile-filter-trigger");
   if (await trigger.isVisible()) await trigger.click();
 }
@@ -105,10 +105,11 @@ test("공유 브랜드 셸과 제작자 링크가 실제 자산으로 노출된�
 test("빠른 필터, 활성 조건 칩, 고급 필터와 전체 초기화가 URL과 결과를 동기화한다", async ({ page }) => {
   await page.goto("/index.html");
   await page.locator("#region-select").selectOption("busan");
-  await openFilterPanelWhenCompact(page);
+  await openFilterPanel(page);
   await page.locator('[data-category-chip="교육청대회·사업"]').click();
   await openAdvancedFilters(page);
   await page.locator("#scope-filter").selectOption("regional");
+  await page.locator("#filter-panel-result").click();
   await expect(page.locator("#active-filters .active-filter")).toHaveCount(3);
   await expect.poll(() => page.evaluate(() => Object.fromEntries(new URLSearchParams(location.search)))).toEqual({
     region: "busan",
@@ -116,13 +117,15 @@ test("빠른 필터, 활성 조건 칩, 고급 필터와 전체 초기화가 URL
     scope: "regional",
   });
   await expect(page.locator("#mobile-filter-count")).toHaveText("2");
+  await openFilterPanel(page);
   await page.locator("#reset-filters").click();
+  await page.locator("#filter-panel-result").click();
   await expect(page.locator("#active-filters")).toBeEmpty();
   await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
   await expect.poll(() => page.evaluate(() => location.search)).toBe("");
 });
 
-test("모바일 필터는 모달 시트로 열리고 현재 결과 수와 포커스를 보존한다", async ({ page }) => {
+test("필터 시트는 미리보기 후 적용하며 취소하면 기존 결과와 포커스를 보존한다", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/index.html");
   await page.locator("#mobile-filter-trigger").click();
@@ -133,7 +136,15 @@ test("모바일 필터는 모달 시트로 열리고 현재 결과 수와 포커
   await page.keyboard.press("Escape");
   await expect(page.locator("#filter-panel")).toBeHidden();
   await expect(page.locator("#mobile-filter-trigger")).toBeFocused();
+  await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
+  await expect(page.locator("#results-surface")).toBeHidden();
+  expect(new URL(page.url()).search).toBe("");
+  await openFilterPanel(page);
+  await expect(page.locator('[data-category-chip="지자체정책·조례"]')).toHaveAttribute("aria-pressed", "false");
+  await page.locator('[data-category-chip="지자체정책·조례"]').click();
+  await page.locator("#filter-panel-result").click();
   await expect(page.locator("#result-count")).toHaveText(`${cases.entries.filter(entry => entry.category === "지자체정책·조례").length}건`);
+  await expect(page.locator("#results-heading")).toBeFocused();
 });
 
 test("지역 비교 탭은 공식 시도 순서를 사용하고 선택을 필터된 목록으로 연결한다", async ({ page }) => {
@@ -377,11 +388,12 @@ test("malformed research data fails closed without partial rendering", async ({ 
 
 test("근거 검토 필터 초기화와 사례별 한계 및 현재 연구 집계가 일치한다", async ({ page }) => {
   await page.goto("/index.html?reviewState=confirmed");
-  await openFilterPanelWhenCompact(page);
+  await openFilterPanel(page);
   await openAdvancedFilters(page);
   await page.locator("#review-state-filter").selectOption("confirmed");
   await expect(page.locator("#result-count")).toHaveText("0건");
   await page.locator("#reset-filters").click();
+  await page.locator("#filter-panel-result").click();
   await expect(page.locator("#review-state-filter")).toHaveValue("");
   await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
   await expect.poll(() => page.evaluate(() => location.search)).toBe("");
@@ -410,7 +422,9 @@ test("map filters use every condition except region and preserve the scale and s
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/index.html?region=busan");
   const legend = await page.locator("#map-legend").textContent();
+  await openFilterPanel(page);
   await page.locator('[data-category-chip="교육청대회·사업"]').click();
+  await page.locator("#filter-panel-result").click();
   for (const region of cases.regions) {
     const count = cases.entries.filter(e => e.region_id === region.id && e.category === "교육청대회·사업").length;
     await expect(page.locator(`#national-map [data-region="${region.id}"]`)).toHaveAttribute("aria-label", `${region.name}, 현재 조건의 공개자료 ${count}건`);
@@ -434,7 +448,9 @@ test("map filters use every condition except region and preserve the scale and s
   await expect(page.locator("#map-readout")).toContainText("현재 조건에 맞는 공개자료 없음");
   await page.locator('[data-empty-clear="query"]').click();
   await expect(page.locator("#result-count")).toHaveText(`${expected}건`);
+  await openFilterPanel(page);
   await page.locator('[data-category-chip="교육청대회·사업"]').click();
+  await page.locator("#filter-panel-result").click();
   await expect(page.locator("#result-count")).toHaveText("27건");
 });
 
@@ -524,4 +540,102 @@ test("clearing a query cancels a pending search rather than reviving it", async 
   await expect(page.locator("#entry-search")).toHaveValue("");
   await expect(page.locator("#result-count")).toHaveText(`${publicCount}건`);
   await expect.poll(() => page.evaluate(() => new URLSearchParams(location.search).has("q"))).toBe(false);
+});
+
+
+test("fullscreen canvas fits all map geometry and labels before and after the desktop drawer opens", async ({ page }, testInfo) => {
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 1024, height: 768 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/index.html");
+    await expect(page.locator(".national-region")).toHaveCount(17);
+    await expect(page.locator("#results-surface")).toBeHidden();
+    const originalWidth = (await page.locator(".national-map-stage").boundingBox()).width;
+    for (const open of [false, true]) {
+      if (open) await page.locator('[data-region-label-target="busan"]').click();
+      const geometry = await page.evaluate(async () => {
+        await document.fonts.ready;
+        const workspace = document.querySelector("#workspace").getBoundingClientRect();
+        const header = document.querySelector(".site-shell-header").getBoundingClientRect();
+        const map = document.querySelector("#national-map");
+        const stage = map.getBoundingClientRect();
+        const labelsAndRegions = [...map.querySelectorAll("path,text,line,rect")].map(el => el.getBoundingClientRect());
+        return {
+          fillsViewport: Math.abs(workspace.bottom - innerHeight) <= 2 && Math.abs(workspace.top - header.bottom) <= 2,
+          allContained: labelsAndRegions.every(rect => rect.left >= stage.left - 1 && rect.right <= stage.right + 1 && rect.top >= stage.top - 1 && rect.bottom <= stage.bottom + 1),
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+      expect(geometry).toEqual({ fillsViewport: true, allContained: true, overflow: 0 });
+    }
+    expect((await page.locator(".national-map-stage").boundingBox()).width).toBeLessThan(originalWidth - 390);
+    expect((await page.locator("#results-surface").boundingBox()).width).toBe(400);
+    await page.screenshot({ path: testInfo.outputPath(`desktop-drawer-${viewport.width}.png`) });
+    await page.locator("#show-map").click();
+    await expect(page.locator("#results-surface")).toBeHidden();
+    await expect(page).toHaveURL(/region=busan/);
+    await expect(page.locator("#region-select")).toHaveValue("busan");
+    await expect(page.locator("#national-map-heading")).toBeFocused();
+    await page.reload();
+    await expect(page.locator("#results-surface")).toBeVisible();
+  }
+});
+
+test("mobile sheet keeps the map interactive, expands, restores detail position and survives rotation", async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 664 });
+  await page.goto("/index.html");
+  await expect(page.locator(".national-region")).toHaveCount(17);
+  await page.screenshot({ path: testInfo.outputPath("mobile-map.png") });
+  await page.locator('[data-region-label-target="busan"]').click();
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-panel", "list");
+  await expect(page.locator("#map-context")).toBeVisible();
+  const panel = await page.locator("#results-surface").boundingBox();
+  expect(panel.height).toBeGreaterThan(290);
+  expect(panel.y + panel.height).toBeLessThanOrEqual(664);
+  expect((await page.locator(".entry-card").first().boundingBox()).y).toBeLessThan(panel.y + panel.height - 60);
+  await page.screenshot({ path: testInfo.outputPath("mobile-sheet.png") });
+  await page.locator('[data-region-label-target="seoul"]').click();
+  await expect(page.locator("#region-select")).toHaveValue("seoul");
+  await page.locator("#expand-results").click();
+  await expect(page.locator("#map-context")).toBeHidden();
+  await expect(page.locator("#expand-results")).toHaveAttribute("aria-expanded", "true");
+  const card = page.locator(".entry-card").first();
+  await card.click();
+  await page.locator("#detail-back").click();
+  await expect(card).toBeFocused();
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-panel", "expanded");
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(page.locator("#map-context")).toBeVisible();
+  await expect(page.locator("#region-select")).toHaveValue("seoul");
+  await page.setViewportSize({ width: 390, height: 664 });
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-panel", "expanded");
+  await page.locator("#expand-results").click();
+  await expect(page.locator("#map-context")).toBeVisible();
+  await page.setViewportSize({ width: 720, height: 390 });
+  await expect(page.locator("#explorer-layout")).toHaveAttribute("data-panel", "expanded");
+  await page.locator("#expand-results").click();
+  await expect(page.locator("#map-context")).toBeVisible();
+  await expect(page.locator("#results-surface")).toBeHidden();
+});
+
+test("desktop filters are transactional and page summaries stay reachable outside the scrollable drawer", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/index.html?region=busan");
+  await openFilterPanel(page);
+  await page.locator("#reset-filters").click();
+  await page.locator("#filter-panel-cancel").click();
+  await expect(page.locator("#region-select")).toHaveValue("busan");
+  await expect(page).toHaveURL(/region=busan/);
+  await page.locator("#load-more").click();
+  const pageBefore = await page.evaluate(() => scrollY);
+  await page.locator(".entry-card").nth(20).focus();
+  expect(await page.evaluate(() => scrollY)).toBe(pageBefore);
+  expect(await page.locator("#browse-panel").evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  await page.locator('.map-footer a[href="#snapshot"]').click();
+  await expect(page.locator("#snapshot-heading")).toBeInViewport();
+  await page.locator("[data-feature-entry]").first().click();
+  await expect(page.locator("#detail-panel")).toBeInViewport();
+  await expect(page.locator("#detail-heading")).toBeFocused();
+  await page.locator("#show-map").click();
+  await expect(page.locator("#results-surface")).toBeHidden();
+  await expect(page).not.toHaveURL(/entry=/);
 });

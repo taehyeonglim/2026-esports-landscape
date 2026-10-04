@@ -65,7 +65,6 @@
   --space-3: 1.5rem;
   --speed-fast: 160ms;
   --speed-slow: 200ms;
-  --explorer-columns: minmax(0, 1.1fr) minmax(0, .9fr);
   --grid: linear-gradient(rgba(66, 217, 243, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(66, 217, 243, .045) 1px, transparent 1px);
 }
 @media (prefers-reduced-motion: reduce) {
