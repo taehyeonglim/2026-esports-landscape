@@ -22,14 +22,20 @@ export function createEntryCard(entry, { selected = false } = {}) {
   title.textContent = text(entry.name);
   const meta = document.createElement("span");
   meta.className = "card-line";
-  meta.textContent = [entry.region_name, entry.category, entry.year].filter(Boolean).join(" · ");
+  [entry.region_name, entry.category, entry.year].filter(Boolean).forEach((value, index) => {
+    if (index) meta.append(" · ");
+    const item = document.createElement("span");
+    item.className = index === 0 ? "card-region" : "card-meta";
+    item.textContent = String(value);
+    meta.append(item);
+  });
   const status = document.createElement("span");
   status.className = "card-status";
   status.textContent = `상태 ${OPERATIONAL_STATUS_LABELS[entry.operational_status]}`;
   const link = document.createElement("span");
   link.className = "card-link";
   link.textContent = "상세·원문 보기 →";
-  card.append(title, meta, status, link);
+  card.append(meta, title, status, link);
   return card;
 }
 

@@ -54,14 +54,14 @@ export function matrixModel(entries, regions) {
 }
 
 const CATEGORY_COLORS = Object.freeze([
-  "#f4c64f",
-  "#52c7dc",
-  "#f07c67",
-  "#78c79b",
-  "#a995e8",
-  "#ef9abb",
-  "#79a7db",
-  "#b4c1cb",
+  "var(--category-1)",
+  "var(--category-2)",
+  "var(--category-3)",
+  "var(--category-4)",
+  "var(--category-5)",
+  "var(--category-6)",
+  "var(--category-7)",
+  "var(--category-8)",
 ]);
 
 function renderExactTable(model, onSelect) {

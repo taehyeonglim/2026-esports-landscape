@@ -433,10 +433,10 @@ function resultsHeading({ scroll = true } = {}) {
 }
 
 function focusDetail() {
-  requestAnimationFrame(() => {
-    if (!mobileQuery.matches) elements.explorer.scrollIntoView({ block: "start", behavior: "instant" });
-    byId("detail-heading")?.focus({ preventScroll: true });
-  });
+  // render() has already opened the detail. Position it before the next paint
+  // so a taller broadcast header cannot leave the source links below the fold.
+  if (!mobileQuery.matches) elements.explorer.scrollIntoView({ block: "start", behavior: "instant" });
+  byId("detail-heading")?.focus({ preventScroll: true });
 }
 
 function openEntry(id) {
