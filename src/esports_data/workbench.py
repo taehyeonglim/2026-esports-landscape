@@ -9,8 +9,9 @@ import json
 import sqlite3
 import subprocess
 import tempfile
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from .review_safety import require_safe
 from .weekly_discovery import canonicalize_url, title_digest, _atomic_json
@@ -25,7 +26,8 @@ def digest(value):
 
 
 def today():
-    return datetime.now(timezone.utc).date().isoformat()
+    # The public dataset and owner review calendar use Korea Standard Time.
+    return datetime.now(ZoneInfo('Asia/Seoul')).date().isoformat()
 
 
 class Workbench:

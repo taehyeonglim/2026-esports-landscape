@@ -180,7 +180,7 @@ test("v3 public-data contract preserves the baseline and has exact published cov
   assert.equal(sourceIds.size, data.sources.length, "source IDs must be unique");
   assert.ok(data.sources.every((source) => entryIds.includes(source.entry_id)), "each source must reference one entry");
   const coverageById = new Map(coverage.entries.map((item) => [item.id, item]));
-  assert.equal(coverageById.size, 235, "coverage IDs must be unique");
+  assert.equal(coverageById.size, publishedCount, "coverage IDs must be unique");
   for (const entry of data.entries) {
     const covered = coverageById.get(entry.id);
     assert.deepEqual(
@@ -197,7 +197,7 @@ test("v3 public-data contract preserves the baseline and has exact published cov
   assert.doesNotThrow(() => validateResearchData(data));
 });
 
-test("resource and source contracts cover 235 entries while migration preserves 230 baseline rows", () => {
+test("resource and source contracts cover approved entries while migration preserves 230 baseline rows", () => {
   const entryIds = new Set(data.entries.map((entry) => entry.id));
   assert.ok(["mechanically_derived_pending_owner_approval", "approved"].includes(resourceMap.status));
   if (resourceMap.status === "approved") {
@@ -278,14 +278,22 @@ test("research typology counts the complete current corpus rather than baseline 
 test("reference partition preserves archival records and counts the Gunsan event only once", () => {
   const before = JSON.stringify(data);
   const cases = caseSite(data);
-  assert.equal(data.entries.length, 235);
-  assert.equal(cases.entries.length, 75);
+  assert.equal(legacyCount, 235);
+  assert.equal(data.entries.length, publishedCount);
+  assert.equal(cases.entries.filter(entry => legacyIds.has(entry.id)).length, 75);
+  assert.equal(cases.entries.length, publishedCount - 160);
   assert.equal(cases.reference_count, 160);
   assert.ok(cases.entries.every(entry => !entry.id.startsWith("visible-regional-")));
   assert.ok(cases.entries.some(entry => entry.id === "national-audit-jeonbuk-gunsan-amateur-esports-2026"));
-  assert.equal(cases.sources.length, 75);
+  assert.equal(cases.sources.filter(source => source.id.startsWith('source-')).length, 75);
+  assert.equal(cases.sources.length, 75 + approvedReviews.reviews
+    .filter(review => !review.entry_id.startsWith('visible-regional-'))
+    .reduce((count, review) => count + review.evidence.length, 0));
   assert.equal(JSON.stringify(data), before);
   const scope = currentTypology(data).find(axis => axis.axis.includes("geographic scope"));
-  assert.ok(scope.values.includes("지도 적격 23건"));
-  assert.ok(scope.values.includes("지역 범위 28건 중 좌표 미확인 5건"));
+  const regional = cases.entries.filter(entry => entry.scope === 'regional');
+  const eligible = regional.filter(entry => Number.isFinite(entry.lat) && Number.isFinite(entry.lng));
+  assert.equal(eligible.filter(entry => legacyIds.has(entry.id)).length, 23);
+  assert.ok(scope.values.includes(`지도 적격 ${eligible.length}건`));
+  assert.ok(scope.values.includes(`지역 범위 ${regional.length}건 중 좌표 미확인 ${regional.length - eligible.length}건`));
 });

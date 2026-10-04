@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "total_entries": 235,
-  "covered_entries": 235,
+  "total_entries": 243,
+  "covered_entries": 243,
   "entries": [
     {
       "id": "busan-001",
@@ -1176,6 +1176,46 @@
     {
       "id": "update-gangwon-hongcheon-esports-festival-2026",
       "category": "지자체정책·조례",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-jeju-namnyeong-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-jeju-jejuseo-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-jeju-hamdeok-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gyeonggi-munsansueok-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-seoul-semyung-computer-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-gyeonggi-hwaseong-donghwa-school-esports-2026",
+      "category": "협회사업",
+      "resource_type": "event"
+    },
+    {
+      "id": "update-daejeon-kyeryong-digitech-school-esports-2026",
+      "category": "협회사업",
       "resource_type": "event"
     }
   ]

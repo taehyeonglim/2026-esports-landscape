@@ -729,6 +729,20 @@
       "url_sha256": "51685ea91f7d6e0610ece8acd5b404ca92e420d0595487b0393a6acd48312fcf"
     },
     {
+      "canonical_url": "https://www.inu.ac.kr/bbs/inu/2611/430031/artclView.do",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "manual-inu-public",
+      "entry_id": "national-completion-gwangju-gicon-esports",
+      "event_sha256": null,
+      "id": "candidate-51a72ef3e4eee6de",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "51a72ef3e4eee6de1c04accadadba1a5a788bb8d8f750a927c87118be1dbc20a"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA4OU4wNGIzZjdVQ3M5cUJuckM5ZHZZdVE1MVF5cWtSc2dTcUhtSlhJMjcwOXZkTWFfd3drNjNELXdURXozSGc0QWltWTZHNnVaT0JZMDVyZTdETUNTOE84VkZLZ1NqNjBwdDFKcEtrMS0?oc=5",
       "discovered_at": "2026-07-27",
       "discovered_via": "news-school-esports",
@@ -760,6 +774,17 @@
       "status": "duplicate",
       "title_sha256": "a9ea08a3967960203a1ee5e6d6246d8751b541eae71d76cae384d98920caae41",
       "url_sha256": "53a7e45c99ca2b2dae320833d64363723b1c8e02704e5988cadc76025a7adc83"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1090",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "event_sha256": null,
+      "id": "candidate-53b32382ca7aa668",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": null,
+      "url_sha256": "53b32382ca7aa66809433a7022bade8dfd5a9b10c22a59187413b9a9232cc172"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ZQ2dyTjV5c0RIeFlickl5djlWQjY4UHVzQ1B0MzRtVEwyZWZTVHBtUktZX1VDS3dqM1FLN0RXT0F1TnRCc19JN0hrOUNjNjBzbnlYQUVDYTA0OWc?oc=5",
@@ -947,6 +972,20 @@
       "status": "rejected",
       "title_sha256": "a59946896de1f774286d5d98d49505fd42e28e1606ed6d9e2dfc2e24b6181292",
       "url_sha256": "6838d621afbac0408547733739688f90820c77a9a95a400b40e1f2f13f3cfbb4"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1123",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-68ea650ceb7db32d",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "68ea650ceb7db32df5ec21468a8ff3d4497417d11d5df64a045b05fecafff6d8"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9EeUZfNjYxYzJ3cFNibU5ncEtlREU2TUtId3p3bEVpXzVpa2pHcW5pbG9TUHVQc2JSWllLQVd1NklvZ0V6cEZzNTZ3UmVBTDVqNnRVMWVRdmFIdkdIX2hv?oc=5",
@@ -1147,6 +1186,20 @@
       "url_sha256": "851904c8870bcff846fde485c672c87005008bbe886cb3f9b93344092866b483"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1082",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "busan-012",
+      "event_sha256": null,
+      "id": "candidate-8573e21a89605a6a",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "8573e21a89605a6a45209b357faab3b9fa5c9e7357e0247b68ae2645610a0c1c"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBhTF9FUUpfSnM3NF9YeThBZWJpN0N5X2dlZVFhbEdKbUphbElQa1hRYld5T0Rvbnp6X1puRWw2VjRGY1h0cVhOQjR1SGxQdnEyeDlQVHdwbnk3eE91U21TSG9OczVfdU9XY3c?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
@@ -1167,6 +1220,17 @@
       "status": "rejected",
       "title_sha256": "91af3fc1e62f4cbc9673d84a6d820b76e4b9ab900bd3ac639b7ea81cd8b23411",
       "url_sha256": "883ddd403735342985dbe398f2ddcb59308eb0963bc58c3b67c5721efaed7278"
+    },
+    {
+      "canonical_url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&boardSeq=107145&lev=0&m=020402&opType=N&page=1&s=moe&searchType=null&statusYN=W",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "moe",
+      "event_sha256": null,
+      "id": "candidate-89e51e26be40c1e6",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": null,
+      "url_sha256": "89e51e26be40c1e6aa2d33861461aec52d37fa36c9fe9e369ee5b80afb7ea3aa"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBvbzFxc3pfMmxkeWFlVXVKa0hmZEFIZU43RVpCUFl3VGl2Z3A0aEpJSE9TaXhNbnBaWjVpaElOSUhjbE5VZktPMQ?oc=5",
@@ -1257,6 +1321,31 @@
       "url_sha256": "97587121475318fe8e66658adeb989566689f93a6d46f543a16cfd6a336942a4"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1088",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-gyeonggi-hwaseong-donghwa-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-978d8787900fdcbf",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "978d8787900fdcbf57d382ea624f53ba910f23cca7469be07494c527303366d7"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1083",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "event_sha256": null,
+      "id": "candidate-9896298e3a0faddb",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": null,
+      "url_sha256": "9896298e3a0faddb625e02ff678395e9decac5b1ca65e69ed9089b468f5a41d0"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1jQWFjZ1J3NzJzV3BmaU11N3FjLVJHVVhZRlQzQWJTWFFFRWRLb0xneUozTXZuOVFIenpkS0pIckpzRS1teTFEMkl4bWYwbFJITEc2cEt1ZWMxM0Ix?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-education-esports",
@@ -1277,6 +1366,20 @@
       "status": "duplicate",
       "title_sha256": "1a0208a326288f9059143d9aa228ccc34d0cf124b692630bfb39de2fef8c57d3",
       "url_sha256": "9a884f0a5f67bf855442fdd5fb76a83180af7fe496ad61f6dbf521a202189003"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1089",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-seoul-semyung-computer-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-9be1309eee492e19",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "9be1309eee492e19c16c92e35e697308c55f5ac4d96e084abce6da23d66c0212"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9WekV5MkhKTFlrc2JJX0tUNk1ucDB3bno5cFhPMlpRcm9LMzBYbldCNXBXWlZMRU90c29FcUJDaDlTQ0xLM0NkLWo0MzRQbDVtTWlxMDFIbW9HeEk0NExTNDY4cVpLcUZOMnItcWpjWnU?oc=5",
@@ -1477,6 +1580,20 @@
       "url_sha256": "be575d9d66db57bb178d9eb455ecb9bfc690434079015798e1e853cb6bb31fa9"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1091",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-gyeonggi-munsansueok-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-be7a54be9e71af58",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "be7a54be9e71af5833234a6b827ddf5959d97d3af6ea55815881f387346ec686"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9qLXZEM2h5WUNsTkl1Y3JfV2w0anZMTG9UTGh2RzhSVVIyR3hVMnZRRjRlMmtUc25KdUozWHkzY0I0aTQza21hbUpQZzNFVGpLa1cyTnBPYWhreDRlb2Fqamw0M3RPUVBNR1ZpUmlCWDQ?oc=5",
       "discovered_at": "2026-07-19",
       "discovered_via": "news-school-esports",
@@ -1598,6 +1715,17 @@
       "url_sha256": "c9f20c5474932b3746c08aaa01cb074ee8d42f86b23a7fec1d7b1ea8d8fbcd2a"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1085",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "event_sha256": null,
+      "id": "candidate-c9f74512973567e8",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": null,
+      "url_sha256": "c9f74512973567e87a78a43ecad37652c2f89e85b73825509bdef9388eb85598"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBSb1RNVTl5ZTZ6R0RkMmR2TnpZMlVCY3BDZmJQdnVoVVhMWUxSOGZJU2RlWHFsczVoSTZJN2lCeW5jLXVEaUFrbTZXVkhQYkZjWlNR?oc=5",
       "discovered_at": "2026-08-17",
       "discovered_via": "news-school-esports",
@@ -1618,6 +1746,20 @@
       "status": "duplicate",
       "title_sha256": "99dc668431677fde595789497a5a71ba4420298523521864b26a8dc6f4d4e893",
       "url_sha256": "cb4a49c91db973cf7964ef282d79e40596702d21a55e4ef44694b64de2e7aaf6"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1094",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-jeju-namnyeong-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-cf7df9156009977a",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "cf7df9156009977ae166f4eaf50d027f6fc5141151acd8b39ca50c27825b399b"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Ocl82VHlZVWtTcFFNOWxhMzg5UlV4V3A4LVEzTjFpbmE2ZzZ2QWJlbkpPZUZDc2JQX0NZNExjSXpuTXh2VUZKN29JWWdCeVA0MWNYSWZkMEZvZXdCNnBBeQ?oc=5",
@@ -1642,6 +1784,17 @@
       "url_sha256": "d267156238c80d27cab44e12db63045cbc961ab982506805cc7e02c923053944"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1122",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "event_sha256": null,
+      "id": "candidate-d2a3db4922bf7d12",
+      "possible_duplicate": false,
+      "status": "needs_review",
+      "title_sha256": null,
+      "url_sha256": "d2a3db4922bf7d12148c79f489356b227d4aa88aca385655863d6309f40db158"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA2V0hDcnVDSVgzaXdBR1JmWTZHX084N0wxX2xFTWdZTjlTd1BTSE1Pb1NZZ3dmakxnVW5zTVQ1Y2d4UFl1RlQ0X01HSnk4VXpDbjd3bkZmTjhHbkpQZWoxY1V1TFFCVy1qa0o0?oc=5",
       "discovered_at": "2026-08-10",
       "discovered_via": "news-club-esports",
@@ -1664,6 +1817,20 @@
       "url_sha256": "d733f66de26fb4537113853d7b50964b228d06fa17e465cee53984b1a148f0c9"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1093",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-jeju-jejuseo-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-d80de68d65f6e412",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "d80de68d65f6e412501584b38a098807dfa230145c20243bd0d574d8f103b7eb"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9BYjl2TzdMY0I1bmpZM2pJZDUtSHBoV1JNbG04SC1YamNWUkhacmxXbUZpTlJxY1dsZ0p4YVNTVlBnNnNFcV9lbklveEJHbENRV2wyOXV3?oc=5",
       "discovered_at": "2026-08-17",
       "discovered_via": "news-club-esports",
@@ -1673,6 +1840,20 @@
       "status": "duplicate",
       "title_sha256": "150129feef0c92c766f7e90044c471fa3647e482ec67d5e03e4d18a3c3edacd1",
       "url_sha256": "dac39c8993ca03606bb3d6f05603a549da9e7131499c5d79eff9275ec411c3b9"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1087",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-daejeon-kyeryong-digitech-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-db19645c394f99fe",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "db19645c394f99fe3e809903ffeb69f5d47c85b0aa8922cbac20d903b2945c79"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE15dHk1Y3FlLXIxOEs2YjBYQ01oUzg0NmFTMUJpWGlUaGo1N05uSzBZTzlENHdsY2o5T1BzYkxHUVdhN3lPTUVUckstaGpub2tPdHVERTZoQmFsMTE2eDFjMFdsRTdnN0xyTzdMc0RB?oc=5",
@@ -1840,6 +2021,20 @@
       "url_sha256": "e9e2fa32655c83d6fe52e7a94d1bf084513e24b259e1f4da18a6e8497e0bf8dc"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1116",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "busan-012",
+      "event_sha256": null,
+      "id": "candidate-eb1f69a4230eca1a",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "eb1f69a4230eca1ac33fe54c115b15ae0bb3a32f1d5bae0d2ff436f931421e22"
+    },
+    {
       "canonical_url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1tekVSY1hDcmpmbjZkSU1GT0huSFJFcEJobWIwZGVGbjFLcnUwUHRtX2V2ZllvdnVlMFdlVlFHa2pFa3h1RUYzaXFzZTJkSU52UXJ5MHdwTlFjU0hMSm5jTjVyQQ?oc=5",
       "discovered_at": "2026-08-03",
       "discovered_via": "news-school-esports",
@@ -1893,6 +2088,20 @@
       "status": "duplicate",
       "title_sha256": "1ee4995b9127ef3e6499c002ba7fb860f0df353ea83bc813579a222361f57599",
       "url_sha256": "f2865e301571811517540abc85cdfa52e7bbe511594841d29fb043d97caee240"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1092",
+      "discovered_at": "2026-10-04",
+      "discovered_via": "kespa-school-notices",
+      "entry_id": "update-jeju-hamdeok-school-esports-2026",
+      "event_sha256": null,
+      "id": "candidate-f3cf81520a405f99",
+      "possible_duplicate": false,
+      "reason_code": "OFFICIAL_EVIDENCE",
+      "reviewed_at": "2026-10-04",
+      "status": "accepted",
+      "title_sha256": null,
+      "url_sha256": "f3cf81520a405f991a30b0aaf007e0238db18345b6979aa91ee3c412c19e0ae5"
     },
     {
       "canonical_url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE56SVFiMTNUWHlGQjA4NDVTMjctSGttNDU0b0E1X3liQmpNN01rb2NzMHZ2SmhKWUxYcGhiYmhyNHkzVFp4eDhwUk9ZRVhCSmd2OTQ0VDFsbXB5eDJlcy14OE5LNG5HR1BUdVF4eTE0cw?oc=5",

@@ -489,7 +489,7 @@ test("map and public-data failures offer usable recovery in compact view", async
   await expect(page.getByRole("button", { name: "다시 불러오기" })).toBeVisible();
   await page.unroute(dataUrl);
   await page.getByRole("button", { name: "다시 불러오기" }).click();
-  await expect(page.locator("#result-count")).toHaveText("3건");
+  await expect(page.locator("#result-count")).toHaveText(`${cases.entries.filter(entry => entry.region_id === "jeju").length}건`);
 });
 
 test("keyboard map selection and rapid search plus region selection preserve both filters", async ({ page }) => {

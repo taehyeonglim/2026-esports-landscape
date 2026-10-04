@@ -109,7 +109,8 @@ try {
   const schema = JSON.parse(schemaText);
   const totalEntries = 230 + additions.entries.length;
   const validateSchema = new Ajv2020({ allErrors: true, strict: true, strictRequired: false }).compile(schema);
-  if (!validateSchema(await readJson(join(ROOT, 'data/site.v3.json')))) fail('Reviewed projection fails schema');
+  const published = await readJson(join(ROOT, 'data/site.v3.json'));
+  if (!validateSchema(published)) fail('Reviewed projection fails schema');
   if (!validateSchema(v3)) fail(`Published v3 fails JSON Schema: ${JSON.stringify(validateSchema.errors)}`);
   if (v3.schema_version !== 3 || v2.entries.length !== 230 || v3.entries.length !== totalEntries || v2.regions.length !== 17 || v3.regions.length !== 17) fail('Expected schema v3 to preserve the 230-entry baseline, publish all additions, and retain 17 regions.');
   for (const key of originalTopLevel) if (!(key in v3) || stableJson(v2[key]) !== stableJson(v3[key])) fail(`Original top-level collection changed: ${key}.`);
@@ -174,7 +175,7 @@ try {
     const geo = await readJson(join(ROOT, 'geo/regions', `${id}.geojson`));
     if (geo.type !== 'FeatureCollection' || stableJson(geo) !== stableJson(geoV2[id])) fail(`GeoJSON baseline mismatch for ${id}.`);
   }
-  console.log(`Data validation passed: deterministic ${totalEntries}-entry, 17-region graph with a preserved 230-entry baseline and additions layer.`);
+  console.log(`Data validation passed: deterministic ${published.entries.length}-entry, ${published.sources.length}-source, 17-region graph with a preserved 230-entry baseline, additions and approved reviews.`);
 } finally {
   await Promise.all([rm(first, { recursive: true, force: true }), rm(second, { recursive: true, force: true }), rm(baseOnly, { recursive: true, force: true })]);
 }
