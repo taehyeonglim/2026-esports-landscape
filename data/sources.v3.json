@@ -2629,6 +2629,149 @@
       "kind": "raw_source",
       "verification_status": "needs_review",
       "checked_at": null
+    },
+    {
+      "id": "review-20261004-gyeongbuk-hitech-e0",
+      "entry_id": "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026",
+      "raw": "경북하이텍고등학교의 2026-09-10 교내 이스포츠 대회 개최를 협회가 2026-10-01 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1123"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "7a2f972613f3045458a33e377088fcbd9c5cab8713722e12c94be3f247e7a549",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-namnyeong-e0",
+      "entry_id": "update-jeju-namnyeong-school-esports-2026",
+      "raw": "남녕고등학교의 2026-07-16 교내 이스포츠 대회 개최를 협회가 2026-09-14 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1094"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "f93742f8047de6c55f8ef773cc9cef240e82f193cbbe4b28c3ab5b3c0d06fec4",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-jejuseo-e0",
+      "entry_id": "update-jeju-jejuseo-school-esports-2026",
+      "raw": "제주서중학교의 2026-07-14 교내 이스포츠 대회 개최를 협회가 2026-09-10 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1093"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "db2b36ae4d5b57d316df2cef3795eb64f3a5fd057b3787b26a74aa914ecb49c9",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-hamdeok-e0",
+      "entry_id": "update-jeju-hamdeok-school-esports-2026",
+      "raw": "함덕고등학교의 2026-07-14 교내 이스포츠 대회 개최를 협회가 2026-09-07 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1092"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "ea68358fceb51672933628360356f229651d7149030dd389213933a6a62c6c4c",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-munsansueok-e0",
+      "entry_id": "update-gyeonggi-munsansueok-school-esports-2026",
+      "raw": "문산수억고등학교의 2026-07-09 교내 이스포츠 대회 개최를 협회가 2026-09-03 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1091"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "a754ecdba62274c0893ff254f529408c87a05b6059a17c88a2ac271fe09027c8",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-semyung-computer-e0",
+      "entry_id": "update-seoul-semyung-computer-school-esports-2026",
+      "raw": "세명컴퓨터고등학교의 2026-07-07 교내 이스포츠 대회 개최를 협회가 2026-08-27 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1089"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "50906afd804d8cb995e5a419fb9d6918eebc95aa0bb79724c377cbda5a941203",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-hwaseong-donghwa-e0",
+      "entry_id": "update-gyeonggi-hwaseong-donghwa-school-esports-2026",
+      "raw": "화성동화중학교의 2026-06-29 교내 이스포츠 대회 개최를 협회가 2026-08-24 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1088"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "243aabda16bb2b821517125a05f3ad7611ebc993c3d2b0b254f4ab493e3f1eac",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-kyeryong-digitech-e0",
+      "entry_id": "update-daejeon-kyeryong-digitech-school-esports-2026",
+      "raw": "계룡디지텍고등학교의 2026-06-05 교내 이스포츠 대회 개최를 협회가 2026-08-20 공개했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1087"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "8946020fe9aba5cfab1cc812633e8d93ab472b0df34d9a0e8ce6c89c0d3dfa37",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-kespa-followup-e0",
+      "entry_id": "busan-012",
+      "raw": "협회는 2026 스쿨리그 정규시즌을 9월 2일~11월 18일, 전국 결선을 12월 12~13일로 안내했다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1116"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "acac0746717e9abce0a42dc4eb6c1fe89215dd576de1278188bafc37586bbcdf",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-kespa-followup-e1",
+      "entry_id": "busan-012",
+      "raw": "협회는 찾아가는 교내 이스포츠 대회의 2학기 참가학교 26개교 선발 계획을 8월 4일 공지했다. 실제 선정 학교 명단이나 운영 완료의 근거는 아니다.",
+      "urls": [
+        "https://school.e-sports.or.kr/notice/view/1082"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "fe8cc36b7ce607864d7976f9e3db7ab982d60d131714fbcd2f824418bbc7f316",
+      "publisher_id": "kespa-school"
+    },
+    {
+      "id": "review-20261004-gwangju-gesu-followup-e0",
+      "entry_id": "national-completion-gwangju-gicon-esports",
+      "raw": "대학 학생지원과가 전국 대학생 대상 GES-U의 9월 19일 예선 및 9월 20일 광주 본선 계획과 광주정보문화산업진흥원 주관을 안내했다.",
+      "urls": [
+        "https://www.inu.ac.kr/bbs/inu/2611/430031/artclView.do"
+      ],
+      "kind": "raw_source",
+      "verification_status": "verified",
+      "checked_at": "2026-10-04",
+      "evidence_sha256": "20d16ee3d6c859bd18627cb4533c3a5460d5d4f87a3404e59f5a0187917993dd",
+      "publisher_id": "inu"
     }
   ]
 }

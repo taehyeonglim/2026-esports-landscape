@@ -2761,6 +2761,148 @@
       "url_sha256": "4ae1f260c2dc20f6f5ce7b43bb72c392b2d565e855e083779b6248f3f8339f8e"
     },
     {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1082",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-012"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "8573e21a89605a6a45209b357faab3b9fa5c9e7357e0247b68ae2645610a0c1c"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1083",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "9896298e3a0faddb625e02ff678395e9decac5b1ca65e69ed9089b468f5a41d0"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1085",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "c9f74512973567e87a78a43ecad37652c2f89e85b73825509bdef9388eb85598"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1087",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-daejeon-kyeryong-digitech-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "db19645c394f99fe3e809903ffeb69f5d47c85b0aa8922cbac20d903b2945c79"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1088",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-gyeonggi-hwaseong-donghwa-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "978d8787900fdcbf57d382ea624f53ba910f23cca7469be07494c527303366d7"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1089",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-seoul-semyung-computer-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "9be1309eee492e19c16c92e35e697308c55f5ac4d96e084abce6da23d66c0212"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1090",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "53b32382ca7aa66809433a7022bade8dfd5a9b10c22a59187413b9a9232cc172"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1091",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-gyeonggi-munsansueok-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "be7a54be9e71af5833234a6b827ddf5959d97d3af6ea55815881f387346ec686"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1092",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-jeju-hamdeok-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "f3cf81520a405f991a30b0aaf007e0238db18345b6979aa91ee3c412c19e0ae5"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1093",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-jeju-jejuseo-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "d80de68d65f6e412501584b38a098807dfa230145c20243bd0d574d8f103b7eb"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1094",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-jeju-namnyeong-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "cf7df9156009977ae166f4eaf50d027f6fc5141151acd8b39ca50c27825b399b"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1116",
+      "decision": "accepted",
+      "entry_ids": [
+        "busan-012"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "eb1f69a4230eca1ac33fe54c115b15ae0bb3a32f1d5bae0d2ff436f931421e22"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1122",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "d2a3db4922bf7d12148c79f489356b227d4aa88aca385655863d6309f40db158"
+    },
+    {
+      "canonical_url": "https://school.e-sports.or.kr/notice/view/1123",
+      "decision": "accepted",
+      "entry_ids": [
+        "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "68ea650ceb7db32df5ec21468a8ff3d4497417d11d5df64a045b05fecafff6d8"
+    },
+    {
       "canonical_url": "https://school.use.go.kr/ue-h/MABAJCA/",
       "decision": "accepted",
       "entry_ids": [
@@ -3211,6 +3353,17 @@
       "url_sha256": "1987537415004c26ecbc22ead727365883152d383caa0a911371ba6c9b43f15a"
     },
     {
+      "canonical_url": "https://www.inu.ac.kr/bbs/inu/2611/430031/artclView.do",
+      "decision": "accepted",
+      "entry_ids": [
+        "national-completion-gwangju-gicon-esports"
+      ],
+      "first_seen_at": "2026-10-04",
+      "reviewed_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "51a72ef3e4eee6de1c04accadadba1a5a788bb8d8f750a927c87118be1dbc20a"
+    },
+    {
       "canonical_url": "https://www.inven.co.kr/webzine/news/?news=315738",
       "decision": "accepted",
       "entry_ids": [
@@ -3329,6 +3482,14 @@
         "2db62c177c3c520fa8ecb0b4433c7780e67fbafb4b1adcf5fbee6b60c67314ec"
       ],
       "url_sha256": "29c6caee91b0a6b1e146c8dc746ca27fa0371ed54f9c11b680a90e776f8ce402"
+    },
+    {
+      "canonical_url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&boardSeq=107145&lev=0&m=020402&opType=N&page=1&s=moe&searchType=null&statusYN=W",
+      "decision": "needs_review",
+      "entry_ids": [],
+      "first_seen_at": "2026-10-04",
+      "title_sha256": [],
+      "url_sha256": "89e51e26be40c1e6aa2d33861461aec52d37fa36c9fe9e369ee5b80afb7ea3aa"
     },
     {
       "canonical_url": "https://www.newsis.com/view/NISX20240730_0002831284",

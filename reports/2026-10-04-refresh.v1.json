@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "batch_id": "2026-10-04-official-catchup",
+  "prepared_at": "2026-10-04",
+  "prepared_by": "codex",
+  "status": "approved_for_publication",
+  "scope": "2026-07-30~2026-10-04에 게시된 공식 자료의 표적 보강. 전국 전수조사나 기존 75건의 운영 상태 전수검증이 아니다.",
+  "public_before": {
+    "case_count": 75,
+    "archival_count": 235,
+    "reference_count": 160,
+    "data_updated_at": "2026-07-29"
+  },
+  "proposed_after": {
+    "case_count": 83,
+    "archival_count": 243,
+    "reference_count": 160,
+    "data_updated_at": "2026-10-04"
+  },
+  "new_cases": 8,
+  "existing_updates": 2,
+  "human_approval": {
+    "approved_by": "owner-reviewer",
+    "approved_at": "2026-10-04",
+    "scope": "이 배치의 신규 8건과 기존 2건의 공개 반영 승인. 현재 운영 상태 확인을 의미하지 않는다.",
+    "proposal_sha256": "fba90f92f897455f0df9527d4f94613d4a9583f2e1a72bca8ba5b34090482f4e"
+  },
+  "proposals": [
+    {
+      "kind": "new_case",
+      "event_date": "2026-09-10",
+      "source_published_at": "2026-10-01",
+      "region_evidence_url": "https://www.hifive.go.kr/search/schoolMain.do?sch_seq=390",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-gyeongbuk-hitech",
+        "entry_id": "update-gyeongbuk-gyeongbuk-hitech-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 경북하이텍고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "gyeongbuk",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "안동시",
+          "notes": "경북하이텍고등학교에서 2026-09-10 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-10-01이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1123",
+            "summary": "경북하이텍고등학교의 2026-09-10 교내 이스포츠 대회 개최를 협회가 2026-10-01 공개했다.",
+            "sha256": "7a2f972613f3045458a33e377088fcbd9c5cab8713722e12c94be3f247e7a549",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-07-16",
+      "source_published_at": "2026-09-14",
+      "region_evidence_url": "https://school.jje.go.kr/namnyeong/cm/cntnts/cntntsView.do?cntntsId=113180&mi=113180",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-namnyeong",
+        "entry_id": "update-jeju-namnyeong-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 남녕고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "jeju",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "제주시",
+          "notes": "남녕고등학교에서 2026-07-16 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-09-14이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1094",
+            "summary": "남녕고등학교의 2026-07-16 교내 이스포츠 대회 개최를 협회가 2026-09-14 공개했다.",
+            "sha256": "f93742f8047de6c55f8ef773cc9cef240e82f193cbbe4b28c3ab5b3c0d06fec4",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-07-14",
+      "source_published_at": "2026-09-10",
+      "region_evidence_url": "https://school.jje.go.kr/jejuseo/cm/cntnts/cntntsView.do?cntntsId=109732&mi=109732",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-jejuseo",
+        "entry_id": "update-jeju-jejuseo-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 제주서중학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "jeju",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "중학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "제주시",
+          "notes": "제주서중학교에서 2026-07-14 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-09-10이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1093",
+            "summary": "제주서중학교의 2026-07-14 교내 이스포츠 대회 개최를 협회가 2026-09-10 공개했다.",
+            "sha256": "db2b36ae4d5b57d316df2cef3795eb64f3a5fd057b3787b26a74aa914ecb49c9",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-07-14",
+      "source_published_at": "2026-09-07",
+      "region_evidence_url": "https://www.jje.go.kr/index.jje?menuCd=DOM_000001802004000000&schoolCode=S170000150",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-hamdeok",
+        "entry_id": "update-jeju-hamdeok-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 함덕고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "jeju",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "제주시",
+          "notes": "함덕고등학교에서 2026-07-14 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-09-07이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1092",
+            "summary": "함덕고등학교의 2026-07-14 교내 이스포츠 대회 개최를 협회가 2026-09-07 공개했다.",
+            "sha256": "ea68358fceb51672933628360356f229651d7149030dd389213933a6a62c6c4c",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-07-09",
+      "source_published_at": "2026-09-03",
+      "region_evidence_url": "https://www.goepj.kr/munsansueok-h/main.do",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-munsansueok",
+        "entry_id": "update-gyeonggi-munsansueok-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 문산수억고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "gyeonggi",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "파주시",
+          "notes": "문산수억고등학교에서 2026-07-09 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-09-03이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1091",
+            "summary": "문산수억고등학교의 2026-07-09 교내 이스포츠 대회 개최를 협회가 2026-09-03 공개했다.",
+            "sha256": "a754ecdba62274c0893ff254f529408c87a05b6059a17c88a2ac271fe09027c8",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-07-07",
+      "source_published_at": "2026-08-27",
+      "region_evidence_url": "https://www.hifive.go.kr/search/schoolMain.do?sch_seq=361",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-semyung-computer",
+        "entry_id": "update-seoul-semyung-computer-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 세명컴퓨터고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "seoul",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "은평구",
+          "notes": "세명컴퓨터고등학교에서 2026-07-07 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-08-27이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1089",
+            "summary": "세명컴퓨터고등학교의 2026-07-07 교내 이스포츠 대회 개최를 협회가 2026-08-27 공개했다.",
+            "sha256": "50906afd804d8cb995e5a419fb9d6918eebc95aa0bb79724c377cbda5a941203",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-06-29",
+      "source_published_at": "2026-08-24",
+      "region_evidence_url": "https://hsdonghwa-m.goehs.kr/",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-hwaseong-donghwa",
+        "entry_id": "update-gyeonggi-hwaseong-donghwa-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 화성동화중학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "gyeonggi",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "중학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "화성시",
+          "notes": "화성동화중학교에서 2026-06-29 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-08-24이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1088",
+            "summary": "화성동화중학교의 2026-06-29 교내 이스포츠 대회 개최를 협회가 2026-08-24 공개했다.",
+            "sha256": "243aabda16bb2b821517125a05f3ad7611ebc993c3d2b0b254f4ab493e3f1eac",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "new_case",
+      "event_date": "2026-06-05",
+      "source_published_at": "2026-08-20",
+      "region_evidence_url": "https://krdhs.djsch.kr/sub/info.do?m=010404&s=krths",
+      "duplicate_assessment": "기존 공개 사례 75건과 보조 참고 160건에서 동일 학교·연도·회차를 찾지 못했다. 전국 사업 자체의 중복 신규 등록은 하지 않는다.",
+      "draft": {
+        "id": "review-20261004-kyeryong-digitech",
+        "entry_id": "update-daejeon-kyeryong-digitech-school-esports-2026",
+        "prior_sha256": null,
+        "new_entry": {
+          "name": "2026 계룡디지텍고등학교 찾아가는 교내 이스포츠 대회",
+          "region_id": "daejeon",
+          "category": "협회사업",
+          "resource_type": "event",
+          "operator": "문화체육관광부 주최·한국e스포츠협회 주관",
+          "year": 2026,
+          "school_level": "고등학교",
+          "scope": "regional"
+        },
+        "changes": {
+          "district": "동구",
+          "notes": "계룡디지텍고등학교에서 2026-06-05 진행된 찾아가는 교내 이스포츠 대회의 개최 기록이다. 한국e스포츠협회 게시일은 2026-08-20이며 행사일과 다르다. 해당 학교의 한 회차만 기록하며 상설 동아리·학과 또는 현재의 지속 운영을 뜻하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "공식 주관 기관의 학교별 개최 기록과 학교 소재지를 대조한 신규 사례 제안. 현재 반복 운영 여부는 별도 재검토 대상이다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1087",
+            "summary": "계룡디지텍고등학교의 2026-06-05 교내 이스포츠 대회 개최를 협회가 2026-08-20 공개했다.",
+            "sha256": "8946020fe9aba5cfab1cc812633e8d93ab472b0df34d9a0e8ce6c89c0d3dfa37",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "existing_case_update",
+      "source_published_at": "2026-09-02",
+      "duplicate_assessment": "busan-012가 이미 전국 KeSPA 학교사업을 통합 기록하므로 전국 사업 신규 사례를 만들지 않고 후속 근거만 추가한다.",
+      "draft": {
+        "id": "review-20261004-kespa-followup",
+        "entry_id": "busan-012",
+        "prior_sha256": "2007836bf227906721ef2366e506e3ccc0ba847c2c85b6bc9127927cd28623dd",
+        "changes": {
+          "notes": "[병합: D2 umbrella + D2 찾아가는 대회 + D5 NULL — 단일 KeSPA 학교사업 우산으로 통합] 강사 파견(동아리 운영 지원) + 스쿨리그·오픈서킷·전국중고교대회·찾아가는 교내 대회(학교 단위 신청형, 1주차 기획·운영·방송·중계 사전 교육→학생 주도 온라인 예선, 2주차 오프라인 본선). 2025.9.29 전국 20개 중·고교에 지도자 21명 파견 본운영, 2026 2차년도 모집 마감 5/1·총 20시수(전문트랙/생활트랙). '교사 전문성 부재'를 외부 강사 파견으로 보완[5] + 학생 주도 동아리/클럽 수용[3] 동시 관통. ⚠ 정직한 NULL(규칙 d): 다수 1차 보도 fetch했으나 공개 명단(유일 명시=서울 노원 미래산업과학고)에서 부산 소재 학교 미확인. 선발 우선순위가 '교내 e스포츠 전용시설 보유'라 시설 보유 부산 대양고/부컴과고가 잠재 후보이나 확정 불가. 전국 사업이라 부산 한정 아님. T11 재확인: KeSPA 공식 School Esports 사이트의 스쿨리그 참가팀에 부산대양고 Wave가 공개되어 기존 부산 참여교 NULL 표기를 해소. 2026-10-04 후속 원문 대조: 협회는 정규 스쿨리그 일정을 9월 2일~11월 18일, 전국 결선을 12월 12~13일로 공지했다. 8월 4일 공지는 찾아가는 교내 대회 2학기 26개교 선발 계획이다. 두 공지는 전국 사업의 후속 안내이며 부산대양고의 2026 참가나 특정 지역의 선정 실적을 추가로 확정하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "기존 전국 사업에 2026년 2학기 공식 공지를 추가한다. 기존 지역 참여 주장은 그대로 보존하되 후속 공지의 증명 범위를 분리한다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1116",
+            "summary": "협회는 2026 스쿨리그 정규시즌을 9월 2일~11월 18일, 전국 결선을 12월 12~13일로 안내했다.",
+            "sha256": "acac0746717e9abce0a42dc4eb6c1fe89215dd576de1278188bafc37586bbcdf",
+            "publisher_id": "kespa-school",
+            "official": true
+          },
+          {
+            "url": "https://school.e-sports.or.kr/notice/view/1082",
+            "summary": "협회는 찾아가는 교내 이스포츠 대회의 2학기 참가학교 26개교 선발 계획을 8월 4일 공지했다. 실제 선정 학교 명단이나 운영 완료의 근거는 아니다.",
+            "sha256": "fe8cc36b7ce607864d7976f9e3db7ab982d60d131714fbcd2f824418bbc7f316",
+            "publisher_id": "kespa-school",
+            "official": true
+          }
+        ]
+      }
+    },
+    {
+      "kind": "existing_case_update",
+      "source_published_at": "2026-09-04",
+      "duplicate_assessment": "광주 대회 운영 사업의 기존 레코드에 세부 행사 안내를 보강하며 같은 사업을 새 사례로 중복 집계하지 않는다.",
+      "draft": {
+        "id": "review-20261004-gwangju-gesu-followup",
+        "entry_id": "national-completion-gwangju-gicon-esports",
+        "prior_sha256": "63c766cac092c4a7cee4beca85007eb45cf7b42f358b1af9a24516c6cc5f0529",
+        "changes": {
+          "notes": "T5-T16 national completion positive. 광주정보문화산업진흥원 공고 목록에 2026 광주 이스포츠 대회 운영 및 홍보 제안 요청이 게시되어 있다. 2026-10-04 후속 원문 대조: 인천대학교 학생지원과의 2026-09-04 공식 안내는 광주정보문화산업진흥원이 주관하는 GES-U 대학생 대회의 참가 대상을 전국 대학생으로, 종목을 리그 오브 레전드로 안내한다. 온라인 예선은 9월 19일, 광주이스포츠경기장 본선·결승은 9월 20일 예정으로 공지했다. 인천 소재 개최나 인천대 학생의 실제 참가를 뜻하지 않으며 대회 개최 완료는 이 사전 공지만으로 확정하지 않는다.",
+          "operational_status": "needs_review"
+        },
+        "reason": "기존 광주 사업에 대학 공식 공지의 행사 계획을 추가한다. 모집·개최 예정 공지와 실제 운영 여부를 구분한다.",
+        "checked_at": "2026-10-04",
+        "next_review_at": "2027-01-02",
+        "status_supported": false,
+        "evidence": [
+          {
+            "url": "https://www.inu.ac.kr/bbs/inu/2611/430031/artclView.do",
+            "summary": "대학 학생지원과가 전국 대학생 대상 GES-U의 9월 19일 예선 및 9월 20일 광주 본선 계획과 광주정보문화산업진흥원 주관을 안내했다.",
+            "sha256": "20d16ee3d6c859bd18627cb4533c3a5460d5d4f87a3404e59f5a0187917993dd",
+            "publisher_id": "inu",
+            "official": true
+          }
+        ]
+      }
+    }
+  ],
+  "deferred": [
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1122",
+      "reason_code": "SCHOOL_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1090",
+      "reason_code": "SCHOOL_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1085",
+      "reason_code": "SCHOOL_IDENTITY_AMBIGUOUS"
+    },
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1083",
+      "reason_code": "SCHOOL_NAME_INCONSISTENT"
+    },
+    {
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&boardSeq=107145&lev=0&m=020402&opType=N&page=1&s=moe&searchType=null&statusYN=W",
+      "reason_code": "ATTACHMENT_FACT_REVIEW_REQUIRED"
+    }
+  ],
+  "excluded_from_new_counts": [
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1116",
+      "entry_id": "busan-012",
+      "reason_code": "EXISTING_PROGRAM_FOLLOWUP"
+    },
+    {
+      "url": "https://school.e-sports.or.kr/notice/view/1082",
+      "entry_id": "busan-012",
+      "reason_code": "EXISTING_PROGRAM_FOLLOWUP"
+    },
+    {
+      "url": "https://www.inu.ac.kr/bbs/inu/2611/430031/artclView.do",
+      "entry_id": "national-completion-gwangju-gicon-esports",
+      "reason_code": "EXISTING_PROGRAM_FOLLOWUP"
+    }
+  ],
+  "limitations": [
+    "학교별 자료의 게시일과 행사일을 구분했다.",
+    "개인 이름·사진·연락처·개별 참가 기록을 저장하지 않았다.",
+    "좌표는 추가하지 않았으며 모든 운영 상태를 needs_review로 유지한다.",
+    "공개 반영은 소유자가 승인했다. 운영 사이트 배포에는 별도 검증과 서명된 Pages 배포가 필요하다."
+  ]
+}

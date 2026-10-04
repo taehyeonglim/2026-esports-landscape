@@ -2,6 +2,30 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Apply owner-approved October data refresh
+
+**Outcome**
+
+- Applied the explicitly approved eight new school event cases and two existing-program updates: **75→83 cases**, **235→243 archival records**, **246 sources**, cutoff **2026-10-04**. Preserved the 160 excluded references, original notes and every `needs_review` operational status.
+- Added exact-host site evidence authorities without extending the protected 18-publisher registry, added an official KeSPA discovery surface, and fixed KST review dates. Candidate ledger is 195 URLs: 13 accepted, 97 duplicate, 80 rejected and five pending.
+- Preserved the original workspace's 22 untracked copies, private 235-draft workbench and unrelated discovery PR #16.
+
+**Verification**
+
+- Full release gate: 45 JS, 135 Python, six static, 150 public browser and one administrator scenario; deterministic extraction and reproducible hashes passed.
+- Desktop/mobile inspection verified a newly added case's source link, dates and uncertainty. Exact proposal/approval comparison passed; 233 existing records and all 160 reference records are unchanged. Updated an obsolete Jeju-count regression before the complete passing rerun.
+
+**Remaining work**
+
+- Pre-merge record: push/merge the branch, obtain a genuine exact-main Astra assessment and signed Pages deployment, then record actual run/live hashes. This entry does not claim the new batch is deployed.
+- Five deferred candidates, operating-status checks, 109 data gaps and 45 unknown scopes remain.
+
+**References**
+
+- [October batch and deferred reasons](../reports/2026-10-04-refresh.v1.json)
+- [Approved reviews](../data/approved-reviews.v1.json)
+- [Review workbench](../docs/review-workbench.md)
+
 ## 2026-10-04 — Codex — Deliver the map-first explorer to Pages
 
 **Outcome**

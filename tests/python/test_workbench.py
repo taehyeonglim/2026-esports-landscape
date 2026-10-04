@@ -2,6 +2,7 @@ import copy
 import json
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 from esports_data.workbench import Workbench
@@ -10,9 +11,17 @@ from esports_data.recheck import run_checks
 ROOT=Path(__file__).resolve().parents[2]
 
 class WorkbenchTests(unittest.TestCase):
+    def test_review_calendar_uses_korea_date_at_utc_boundary(self):
+        from esports_data.workbench import today
+        instant=datetime(2026,10,3,23,53,tzinfo=timezone.utc)
+        with patch('esports_data.workbench.datetime') as clock:
+            clock.now.side_effect=lambda zone:instant.astimezone(zone)
+            self.assertEqual(today(),'2026-10-04')
+
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory()
         self.b=Workbench(ROOT,Path(self.tmp.name)/'review.db','test-reviewer')
+        self.initial_reviews=self.b.ledger()['reviews']
         self.entry=self.b.state()['entries'][0]
     def tearDown(self):self.b.db.close();self.tmp.cleanup()
     def draft(self):
@@ -33,7 +42,7 @@ class WorkbenchTests(unittest.TestCase):
         entry=next(e for e in self.b.project()['site']['entries'] if e['id']==self.entry['id'])
         self.assertEqual(entry['operational_review']['checked_at'],'2026-09-05')
         self.assertIsNone(entry['status_checked_at'])
-        self.assertEqual(len(self.b.ledger()['reviews']),1)
+        self.assertEqual(len(self.b.ledger()['reviews']),len(self.initial_reviews)+1)
     def test_stale_draft_and_changed_replay_rejected(self):
         request,_=self.save();request['draft']['reason']='다른 이유'
         with self.assertRaises(ValueError):self.b.command(request)
@@ -42,7 +51,7 @@ class WorkbenchTests(unittest.TestCase):
     def test_status_without_evidence_rejected(self):
         d=self.draft();d['changes']['operational_status']='current';_,r=self.save(d)
         with self.assertRaises(ValueError):self.b.command({'action':'approve','command_id':'approve-command-001','draft_id':r['id'],'version':0,'human_confirmed':True})
-        self.assertEqual(self.b.ledger()['reviews'],[])
+        self.assertEqual(self.b.ledger()['reviews'],self.initial_reviews)
     def test_pii_draft_rejected(self):
         d=self.draft();d['reason']='contact person@example.com'
         with self.assertRaises(ValueError):self.save(d)

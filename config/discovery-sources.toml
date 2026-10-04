@@ -2,6 +2,12 @@
 # never act as publication authority. Core education-office homepages are loaded
 # separately from config/sources.toml.
 
+# Direct official school-program announcements; RSS remains supplementary.
+[[source]]
+id = "kespa-school-notices"
+kind = "homepage"
+endpoint = "https://school.e-sports.or.kr/"
+
 [[source]]
 id = "news-school-esports"
 kind = "rss"

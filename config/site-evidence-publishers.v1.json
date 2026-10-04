@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "purpose": "Official evidence for individually approved site reviews; does not authorize protected snapshot publication.",
+  "publishers": [
+    {
+      "id": "kespa-school",
+      "name": "한국e스포츠협회 학교 이스포츠",
+      "hosts": ["school.e-sports.or.kr"],
+      "active": true,
+      "basis_url": "https://school.e-sports.or.kr/",
+      "authority": "협회가 주관하는 학교 이스포츠 사업과 개최 기록"
+    },
+    {
+      "id": "inu",
+      "name": "인천대학교",
+      "hosts": ["www.inu.ac.kr"],
+      "active": true,
+      "basis_url": "https://www.inu.ac.kr/",
+      "authority": "대학 학생지원 부서의 공식 대회 안내; 개최 완료나 개별 학생 참가를 증명하지 않음"
+    }
+  ]
+}

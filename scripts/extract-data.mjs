@@ -166,7 +166,7 @@ async function generate(output) {
     writeFile(join(output, 'reports/source-normalization.json'), stableJson(normalization)),
     ...siteV2.regions.map(region => writeFile(join(output, 'geo/regions', `${region.id}.geojson`), stableJson(regionGeoV2[region.id]))),
   ]);
-  return { entries: entries.length, regions: regionIds.length, sources: sources.length };
+  return { entries: published.entries.length, regions: regionIds.length, sources: published.sources.length };
 }
 
 async function replaceGenerated(stage) {

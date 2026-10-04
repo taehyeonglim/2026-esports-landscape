@@ -1,53 +1,49 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**. Latest deployed implementation: **373d541ba5db5dcfc32c69be8144587846f1779f**, merged through [PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24).
-- This coordination closeout records actual delivery and changes no public release assets. Refer to Git for its containing main commit.
+- Canonical branch: **main**, task base **5a7b20617ff9b4f84b18e7d5e9dc7d9a9c193c8e**. October refresh is verified on `data/october-2026-refresh`; merge and signed deployment are pending in this pre-merge record.
+- Latest verified deployed implementation remains **373d541ba5db5dcfc32c69be8144587846f1779f**, [PR #24](https://github.com/taehyeonglim/2026-esports-landscape/pull/24), until a fresh exact-main release passes.
 
 ## Product and data
 
-- Static HTML/CSS/ES modules and GitHub Pages remain the public architecture.
-- Archival graph: **235 records / 17 regions / 235 sources**, cutoff **2026-07-29**. Immutable 230-record baseline and five legacy additions remain intact.
-- Public case search/comparison/map summaries: **75 cases**. All **160 legacy regional display references** are excluded from case aggregates and explicitly separated in the research appendix. Their IDs and source lineage remain archived; the Gunsan auxiliary event is not counted twice.
-- Geographic typology separates **28 regional cases**, **23 coordinate-eligible cases**, and **five regional cases without coordinates**. Current map summaries are regional document counts, not activity rankings or venue pins.
-- Every archival operational status remains `needs_review`. Case partitioning and AI release approval are not factual operating-status approvals.
-- Map-first explorer: desktop map/list split; compact map/list switching below 1024px; filtered regional counts with fixed scale and zero state; retained map during desktop detail; list position/focus restoration.
-- Source links precede additional review metadata. Case-specific limitations remain available in an explicitly labeled disclosure before the sources. Existing uncertainty and source links are preserved.
-- UI/URL behavior and exclusions: [map explorer contract](../docs/map-explorer.md). No data, factual approval, pipeline, URL schema or deployment-policy changes.
-- [Approved review overlay](../data/approved-reviews.v1.json) remains empty; existing source ownership, PII, prior-hash and official-evidence safeguards remain active.
+- Static HTML/CSS/ES modules and GitHub Pages remain the public architecture; [map explorer contract](../docs/map-explorer.md).
+- Archival graph: **243 records / 17 regions / 246 sources**, data cutoff **2026-10-04**. Immutable 230-record baseline and five legacy additions remain intact.
+- Public case search/comparison/map summaries: **83 cases / 86 case sources**. All **160 legacy regional display references** remain excluded and separated in the research appendix; no reference is reintroduced or duplicated.
+- Geographic typology: **36 regional cases**, **23 coordinate-eligible cases**, **13 regional cases without coordinates**, two nationwide/adjacent and 45 unknown scopes. Map summaries count documents, not activity rankings or venue pins.
+- Owner explicitly approved the [October batch](../reports/2026-10-04-refresh.v1.json): **eight new school event cases and two existing-program evidence updates**. [Approved overlay](../data/approved-reviews.v1.json) now holds ten approvals and eleven additional sources. Existing notes are preserved; event dates and publication dates are distinct; planned events are not claimed completed.
+- Every archival operational status remains `needs_review`. Approval covers the stated evidence changes, not ongoing operation. This is targeted official-source catch-up, not a nationwide census or complete re-verification of the prior 75 cases.
+- Added two exact-host [site evidence publishers](../config/site-evidence-publishers.v1.json); the protected snapshot registry remains at 18 education authorities. Human confirmation, PII screening, source ownership and prior-hash controls remain active.
+- Workbench default/review dates now use `Asia/Seoul`; valid Korean review dates are no longer rejected as future dates near the UTC boundary. Extraction and validation logs report the full approved projection.
+
+## Verification and delivery
+
+- `npm run verify:release` passed: **45 JavaScript, 135 Python, six static contracts, 150 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
+- Actual desktop/mobile inspection confirmed the newly admitted case, official link, separate event/publication dates and uncertainty disclosure. Original 233 unaffected records and all 160 references are unchanged; the two amended notes retain their original text.
+- The first browser run exposed an obsolete fixed three-case expectation for Jeju; the test now derives the expected six cases from the public partition and the complete rerun passed.
+- Candidate release ID: `eff4117b2ad726ad5efa2a10d2f97383f074f152e7f8293db72fe6eb2e5c13b3` (60 assets).
+- Task branch push/PR/merge and genuine exact-main Astra review are the next delivery steps. No deployment success is claimed for this batch yet.
+- Previous signed deployment [37161681814](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161681814) succeeded for source 373d541. Old live release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb`.
 
 ## Automatic release operation
 
-- Owner delegates release assessment to **gpt-6-astra**, high reasoning, under the [AI policy](../config/astra-review-policy.v1.json).
-- Installed LaunchAgent: `com.taehyeong.esports-astra-review`, polling every **15 minutes** in an independent private clone. Mac must be awake, logged in, online, with valid local Codex and GitHub sessions.
-- Local full verification and five screenshots precede a tool-disabled structured model review. A complete seven-check approval is signed with Ed25519 and bound to source, artifact, policy, evidence and a maximum 24-hour validity window.
-- Public verification key is registered in GitHub. Private directory/key permissions verified **0700/0600**; ChatGPT credentials and private signing key stay on the Mac.
-- Actions independently rebuilds and checks the signature using trusted workflow-source gate code. Only the deploy job receives Pages write/OIDC authority. Existing Pages branch protection remains active.
-- Human study approval records remain pending. U2/U3 automation targets were replaced with case records; no human study or fact approval was invented. The scheduler never invokes the separate owner override.
-- Guide: [Astra automation](../docs/astra-release.md). Local operational state: `~/.local/share/esports-astra-review/status.json`; private review evidence is under its `reviews/` directory, not NERV.
+- Owner delegates release assessment to **gpt-6-astra**, high reasoning, under the [AI policy](../config/astra-review-policy.v1.json). Genuine seven-check approval, signed Ed25519 receipt and independent Actions build/gate are required.
+- Installed LaunchAgent `com.taehyeong.esports-astra-review` polls every **15 minutes** in an independent private clone. Mac must be awake, logged in, online, with valid local Codex/GitHub sessions.
+- Private credentials/key remain on the Mac. Only the Pages deploy job receives write/OIDC authority. Human study fixtures remain pending; no owner override or human study approval is invented.
+- Guide: [Astra automation](../docs/astra-release.md). Private operational state: `~/.local/share/esports-astra-review/status.json`; review evidence is under its `reviews/` directory, not NERV.
 
-## Verified release and delivery
+## Review backlog and next priorities
 
-- Map-first implementation committed as **b637103**, pushed and squash-merged as **373d541** through PR #24. Local main was synchronized with origin/main and the merged implementation branch was removed.
-- Complete verification passed locally, in the independent review checkout and in Actions: **45 JavaScript, 131 Python, six static contracts, 150 public-browser, one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Genuine Astra assessment: **approved, 7/7 checks, no blockers**, exact source **373d541**. This is release assessment, not human usability or factual operating-status approval.
-- [Push CI 37161432558](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161432558): build succeeded; deployment skipped as designed. [Signed run 37161681814](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37161681814): independent build, signature gate and Pages deployment all **succeeded** on 2026-10-04 KST.
-- Live release ID: `3ed0917ed68d48f7b2663af1bab66a21480285558c903e9e4300ebdb7db520eb` (60 assets). Independent readback matched exact SHA-256 hashes for home, research, data, app JavaScript and main CSS. Live browser selection of Seoul returned its four cases.
-- Desktop/compact inspection covered map, list, detail/source links and empty results. Browser regressions cover fixed filtered counts, WebKit label hit areas, URL history, list focus/scroll, data recovery and pending-search cancellation. Earlier transient test/interaction defects were repaired before approval.
-- No delivery blocker remains for this implementation. The following data-review backlog is unchanged. NERV/README-only closeout does not alter the reviewed public artifact.
-
-## Private review workbench and next priorities
-
-- Loopback workbench: `PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer`; private SQLite state remains under `artifacts/workbench/`.
-- **235 unapproved drafts** from archival link checks remain local: 153 records had a fetched source; 82 need alternate retrieval; 115 unique URLs attempted, 87 fetched. Reachability does not establish relevance or current operation. No fact reviews were approved.
-- Candidate ledger: 179 records, two accepted / 97 duplicate / 80 rejected / zero pending on main. Unrelated discovery **PR #16** remains open and untouched.
-- Review actual official evidence for the 75 case records; assess reference reintroduction only with specific regional evidence, duplicate checks and explicit partition changes. Operational-status edits alone do not admit a reference.
-- The 109 data gaps and 45 unknown scopes remain unresolved. Protected subject/claim snapshot publication remains a separate authorization path; workbench exports and AI Pages receipts are not snapshot publication receipts.
+- Candidate ledger: **195 records — 13 accepted / 97 duplicate / 80 rejected / five pending**. This refresh adds 16 targeted URLs, accepts 11 after owner approval, and defers four ambiguous/inconsistent school identities plus one attachment-dependent source. Follow the batch report for exact URLs/reasons.
+- KeSPA's official school-program homepage is now a discovery surface. Discovery still does not auto-publish facts. Unrelated discovery **PR #16** remains open and untouched.
+- Loopback workbench: `PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer`.
+- Original **235 unapproved link-check drafts** remain private: 153 records had a fetched source; 82 need alternate retrieval; 115 unique URLs attempted, 87 fetched. These drafts were not substituted for the ten explicit batch approvals.
+- Review current operating status for the 83 cases and resolve the five pending candidates. The 109 data gaps and 45 unknown scopes remain unresolved. Reference reintroduction needs specific regional evidence, duplicate checks and an explicit partition revision.
+- Protected subject/claim snapshot publication remains a separate authorization path; workbench exports and AI Pages receipts are not snapshot publication receipts.
 
 ## Workspace note
 
-Preserve all **22 untracked numbered copies** in the original workspace, including `data/site.v3 2.json`, `migrations/v2-to-v3 2.json`, 13 extra GeoJSON files and other data/migration/report copies. Their producer is unverified. None were deleted or committed.
+Preserve all **22 untracked numbered copies** in the original workspace, including `data/site.v3 2.json`, `migrations/v2-to-v3 2.json`, 13 extra GeoJSON files and other copies. Their producer is unverified. None were deleted or committed.
 
-Do not run in-place extraction in that workspace: existing cleanup can remove extra GeoJSON files. Use a clean checkout for validation. The installed coordinator uses its own clone outside the synchronized Documents folder.
+Do not run in-place extraction in the original workspace: cleanup can remove extra GeoJSON files. This task uses an isolated worktree; the installed coordinator uses its own clone outside the synchronized Documents folder.
 
-Private workbench state is intentionally not published. Back it up privately before deleting artifacts; unapproved drafts are not reconstructed from public JSON alone.
+Private workbench state is intentionally not published. Back it up before deleting artifacts; unapproved drafts are not reconstructed from public JSON alone. The October batch uses its own SQLite database and does not modify the original private drafts.

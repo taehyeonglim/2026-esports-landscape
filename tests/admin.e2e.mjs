@@ -1,5 +1,8 @@
 import {test,expect} from '@playwright/test';
 import {spawn} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+const publicCount=JSON.parse(readFileSync('data/site.v3.json')).entries.length;
+const initialReviews=JSON.parse(readFileSync('data/approved-reviews.v1.json')).reviews.length;
 let child,token;
 test.beforeAll(async()=>{child=spawn('python3',['tests/admin-server.py'],{env:{...process.env,PYTHONPATH:'src'},stdio:['ignore','pipe','pipe']});token=await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('Admin startup timeout')),20000);child.stdout.once('data',d=>{clearTimeout(timer);resolve(d.toString().trim());});child.once('exit',code=>reject(Error(`Admin exited ${code}`)));});});
 test.afterAll(()=>child?.kill());
@@ -7,11 +10,13 @@ test('local review, new admission form, explicit approval and security boundarie
   expect((await request.get('http://127.0.0.1:4199/api/state')).status()).toBe(403);
   expect((await request.get('http://127.0.0.1:4199/artifacts/workbench/reviews.sqlite3')).status()).toBe(404);
   expect((await request.post('http://127.0.0.1:4199/api/export',{headers:{'X-Review-Token':token,Origin:'https://example.org'},data:{}})).status()).toBe(403);
+  await page.clock.setFixedTime(new Date('2026-10-03T23:53:00Z'));
   await page.goto(`http://127.0.0.1:4199/#token=${token}`);
-  await expect(page.locator('#metrics')).toContainText('공개 사례 235');
+  await expect(page.locator('#metrics')).toContainText(`공개 사례 ${publicCount}`);
   await expect(page).toHaveURL('http://127.0.0.1:4199/');
   const entryLabel=await page.locator('#entries button').first().textContent();
   await page.locator('#entries button').first().click();
+  await expect(page.locator('[name=checked]')).toHaveValue('2026-10-04');
   await expect(page.locator('#new-fields')).toBeHidden();
   await page.locator('[name=reason]').fill('공식 운영 근거 추가 확인 필요');
   await page.getByRole('button',{name:'변경안 저장',exact:true}).click();
@@ -21,8 +26,8 @@ test('local review, new admission form, explicit approval and security boundarie
   await expect(page.locator('#message')).toContainText('확인란');
   await page.locator('#drafts input[type=checkbox]').check();
   await page.getByRole('button',{name:'승인',exact:true}).click();
-  await expect(page.locator('#metrics')).toContainText('승인 이력 1');
-  await page.reload();await expect(page.locator('#metrics')).toContainText('승인 이력 1');await page.getByRole('button',{name:entryLabel,exact:true}).click();await expect(page.locator('#drafts')).toContainText('approved');
+  await expect(page.locator('#metrics')).toContainText(`승인 이력 ${initialReviews+1}`);
+  await page.reload();await expect(page.locator('#metrics')).toContainText(`승인 이력 ${initialReviews+1}`);await page.getByRole('button',{name:entryLabel,exact:true}).click();await expect(page.locator('#drafts')).toContainText('approved');
   await page.getByRole('button',{name:'신규 사례 작성'}).click();
   await expect(page.locator('[name=newEntry]')).toBeVisible();
   await page.setViewportSize({width:390,height:844});
