@@ -1,4 +1,5 @@
 import { reviewState } from "./review-status.js";
+import { normalizeSchoolLevel } from "./school-level.js";
 import { normalizeQuery, SORT_MODES } from "./state.js";
 
 export function normalizeSearchText(value) {
@@ -70,8 +71,9 @@ function entryValues(entry, field) {
 function matchesGroup(entry, field, wanted) {
   if (wanted == null || wanted === "" || (Array.isArray(wanted) && wanted.length === 0)) return true;
   const selected = Array.isArray(wanted) ? wanted : [wanted];
-  const values = new Set(entryValues(entry, field));
-  return selected.some((value) => values.has(String(value)));
+  const normalize = field === "schoolLevel" ? normalizeSchoolLevel : String;
+  const values = new Set(entryValues(entry, field).map(normalize));
+  return selected.some((value) => values.has(normalize(value)));
 }
 
 function compareText(left, right) {

@@ -1,6 +1,6 @@
 import { caseSite } from "./record-scope.js";
 import { REVIEW_LABELS } from "./review-status.js";
-import { actions, appReducer, createAppState } from "./state.js";
+import { actions, appReducer, createAppState, normalizeMulti } from "./state.js";
 import { decodeUrl, encodeUrl } from "./url-codec.js";
 import { filterEntries } from "./search.js";
 import { CONFIDENCE_LABELS, OPERATIONAL_STATUS_LABELS, SCOPE_LABELS, SORT_LABELS, SOURCE_LABELS, TYPE_LABELS, renderCards } from "./cards.js";
@@ -266,6 +266,7 @@ function populateSelect(select, values) {
 
 function optionValues(key) {
   const aliases = { category: "category", schoolLevel: "school_level", scope: "scope", status: "operational_status" };
+  if (key === "schoolLevel") return normalizeMulti(entries.map(entry => entry.school_level).filter(Boolean), key);
   return [...new Set(entries.map((entry) => entry[aliases[key]]).filter(Boolean).map(String))].sort((a, b) => a.localeCompare(b, "ko"));
 }
 

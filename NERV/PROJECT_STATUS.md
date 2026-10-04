@@ -1,8 +1,8 @@
 # Project status
 
 - Last updated: **2026-10-04 KST**; maintainer handoff: **Codex**.
-- Canonical branch: **main**, baseline **37ecf80a42b8042262814b4fed6555cda9183b0f**. Verified map-typography candidate is on **feat/map-typography**; see Git for its containing commit. Data remains the owner-approved October refresh from PR #26.
-- Delivery is in progress: task commit/push/merge, exact-main Astra review, signed Pages deployment and live readback remain required.
+- Canonical branch: **main**, **140facdf902e0ddaa928202f499d298f2afc9871**, typography implementation merged through [PR #32](https://github.com/taehyeonglim/2026-esports-landscape/pull/32), task commit **ab57226**. Verified release-blocker correction is on **fix/school-level-filter-aliases**; see Git for its containing commit.
+- Typography-only release assessment rejected a pre-existing school-level filter omission. The correction is verified locally; exact-main reassessment and signed deployment remain required. No blocked release was deployed.
 
 ## Product and data
 
@@ -20,12 +20,14 @@
 
 ## Verified release and delivery
 
-- Map typography candidate passed complete `CI=1 npm run verify:release` locally: **46 JavaScript, 135 Python, six static contracts, 165 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes.
-- Existing filter scenarios now assert visible map counts through filtering, zero matches and reset. Five browser projects retain geometry containment, selected density, keyboard/focus, source/detail access, accessibility and responsive-panel checks.
-- Manual desktop **1440×900** and mobile **390×844** inspection confirmed full-map/drawer/sheet typography, selected name/count highlighting and all 17 zero-result labels. Font glyph/weight/checksum checks passed.
-- Candidate release: `0bc62020d1be1f67f10dfc0193dd201e4d88489ae1289c0ac3b2991c1e4e7c33` (**61 assets**). One local 268,324-byte font is added; font license and exact upstream provenance are included. Data, national geometry, dependencies and release policy are unchanged.
-- Latest independently verified production artifact remains fullscreen-map release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150`, delivered through [PR #30](https://github.com/taehyeonglim/2026-esports-landscape/pull/30), with NERV closeout [PR #31](https://github.com/taehyeonglim/2026-esports-landscape/pull/31). New typography deployment is **pending**, not yet claimed successful.
-- Next delivery steps: commit/push/merge, obtain a genuine exact-main seven-check Astra approval, observe signed build/gate/deploy, check live assets, synchronize main and record final delivery.
+- Font implementation **ab57226** was pushed and merged as **140facd** through [PR #32](https://github.com/taehyeonglim/2026-esports-landscape/pull/32). Local main matches origin/main; the merged implementation branch was removed locally/remotely.
+- [Push CI 37168866877](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37168866877) passed. Actual Astra assessment of **140facd** passed design and five other checks but **rejected usability**: `고` omitted six `고등학교` cases. Signed deployment was not dispatched; the protection was preserved.
+- Corrected choices, filter comparisons, state/shared URLs and research typology using [one school-level alias mapping](../src/school-level.js). Both high-school spellings now select **13 cases (7 original + 6 newer)**. Mixed/audience/unknown labels remain distinct; archival source values and source ownership remain exact.
+- Combined typography and alias-fix candidate passed complete `CI=1 npm run verify:release`: **48 JavaScript, 135 Python, six static contracts, 170 public-browser and one administrator scenario**, deterministic extraction and reproducible release hashes. The new five-project regression checks 13 cards, the previously omitted case, canonical shared links, unique choices and research totals.
+- Manual desktop **1440×900** and mobile **390×844** checks confirmed map typography, selected name/count highlighting and zero-result labels. Manual filter selection returns 13 cases. All 17 region names have font glyph coverage.
+- Candidate release: `315722acb895598dd26debff04c89c8bcea78218d3b35a345c857b741e63400e` (**62 assets**). Added font is an unmodified local 268,324-byte upstream subset with license/provenance; no runtime dependency or release-policy change. Public data and national geometry remain unchanged.
+- Last deployed artifact remains fullscreen-map release `34920dc148c612c49456bf0bb68efdd1a8d34f18cb78cb736f54270715898150`, successfully deployed from documentation main **37ecf80** by [signed run 37168666706](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37168666706). Typography/alias deployment is **pending**.
+- Next delivery steps: push/merge this verified correction, obtain genuine exact-main Astra approval, observe signed build/gate/deploy, check live assets and record final NERV closeout.
 
 ## Automatic release operation
 
@@ -40,7 +42,7 @@
 - KeSPA's official school-program homepage is now a discovery surface. Discovery still does not auto-publish facts. Unrelated discovery **PR #16** remains open and untouched.
 - Loopback workbench: `PYTHONPATH=src python3 -m esports_data.cli admin --reviewer owner-reviewer`.
 - Original **235 unapproved link-check drafts** remain private: 153 records had a fetched source; 82 need alternate retrieval; 115 unique URLs attempted, 87 fetched. These drafts were not substituted for the ten explicit batch approvals.
-- Normalize equivalent school-level labels (`고`/`고등학교`, `중`/`중학교`) in future filter/analysis work; Astra recorded this as a nonblocking limitation. The approved batch retains its reviewed values.
+- School-level alias omission is corrected in the verified candidate; complete its signed release delivery above. The approved archival records retain their reviewed raw values.
 - Review current operating status for the 83 cases and resolve the five pending candidates. The 109 data gaps and 45 unknown scopes remain unresolved. Reference reintroduction needs specific regional evidence, duplicate checks and an explicit partition revision.
 - Protected subject/claim snapshot publication remains a separate authorization path; workbench exports and AI Pages receipts are not snapshot publication receipts.
 
