@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { landscapeModel } from "../src/landscape.js";
-import { initialPane } from "../src/explorer-view.js";
+import { initialPane, panelMode } from "../src/explorer-view.js";
 import { createAppState } from "../src/state.js";
 import { filterEntries } from "../src/search.js";
 
@@ -59,4 +59,14 @@ test("cold visits start on map while every existing deep-link filter opens resul
     const value = key === "sort" ? "year-desc" : "example";
     assert.equal(initialPane(createAppState({ [key]: value })), "list", key);
   }
+});
+
+
+test("result panel presentation preserves full-map, half-sheet and short-screen states without URL fields", () => {
+  assert.equal(panelMode("map", { compact: true, expanded: true }), "closed");
+  assert.equal(panelMode("list"), "list");
+  assert.equal(panelMode("list", { compact: true }), "list");
+  assert.equal(panelMode("list", { compact: true, expanded: true }), "expanded");
+  assert.equal(panelMode("list", { compact: true, shortViewport: true }), "expanded");
+  assert.equal(panelMode("list", { expanded: true }), "list");
 });

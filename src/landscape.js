@@ -90,9 +90,6 @@ export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {
   const anchors = { seoul: [155, 230], incheon: [100, 300], sejong: [130, 365], daejeon: [160, 415], gwangju: [120, 535], daegu: [580, 435], ulsan: [630, 515], busan: [575, 590] };
   const bounds = new Map(asset.regions.map(shape => [shape.id, pathBounds(shape.path)]));
   const boxes = [...bounds.values()];
-  const left = Math.min(...boxes.map(box => box.left)) - 35;
-  const top = Math.min(...boxes.map(box => box.top)) - 35;
-  svg.setAttribute("viewBox", `${left} ${top} ${Math.max(...boxes.map(box => box.right)) - left + 35} ${Math.max(...boxes.map(box => box.bottom)) - top + 35}`);
   const labels = svgElement("g");
   labels.setAttribute("aria-hidden", "true");
   labels.classList.add("map-labels");
@@ -106,6 +103,7 @@ export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {
       ["x1", "y1", "x2", "y2"].forEach((key, i) => line.setAttribute(key, [...center, x, y][i]));
       labels.append(line);
     }
+    boxes.push({ left: x - 75, right: x + 75, top: y - 30, bottom: y + 30 });
     const label = svgElement("text");
     label.setAttribute("x", x);
     label.setAttribute("y", y);
@@ -124,6 +122,12 @@ export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {
     labels.append(target);
   }
   svg.append(labels);
+  // Include label hit areas and leader endpoints, even when the map is hidden.
+  // SVG aspect fitting then responds naturally to every panel/viewport resize.
+  const left = Math.min(...boxes.map(box => box.left)) - 20;
+  const top = Math.min(...boxes.map(box => box.top)) - 20;
+  svg.setAttribute("viewBox", `${left} ${top} ${Math.max(...boxes.map(box => box.right)) - left + 20} ${Math.max(...boxes.map(box => box.bottom)) - top + 20}`);
+
 }
 
 export function updateNationalMap(svg, selectedRegion, model) {
@@ -140,6 +144,7 @@ export function updateNationalMap(svg, selectedRegion, model) {
   if (model) svg.querySelectorAll("[data-region-label]").forEach(label => {
     const region = model.byId.get(label.dataset.regionLabel);
     label.textContent = `${region.shortName} ${region.total}`;
+    label.classList.toggle("is-selected", region.id === selectedRegion);
   });
 }
 

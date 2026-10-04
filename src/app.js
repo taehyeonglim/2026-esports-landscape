@@ -9,7 +9,7 @@ import { renderStatRibbon } from "./stat-ribbon.js";
 import { matrixModel, renderMatrix } from "./matrix.js";
 import { editorialModel, renderEditorial } from "./editorial.js";
 import { landscapeModel, renderMapLegend, renderMapReadout, renderNationalMap, renderRegionShortcuts, updateNationalMap } from "./landscape.js";
-import { initialPane } from "./explorer-view.js";
+import { initialPane, panelMode } from "./explorer-view.js";
 
 const baseUrl = new URL("./", document.baseURI).href;
 const byId = (id) => document.getElementById(id);
@@ -60,10 +60,15 @@ const elements = Object.freeze({
   paneCount: byId("pane-count"),
   clearResults: byId("clear-results-filters"),
   mapLegend: byId("map-legend"),
+  resultsSurface: byId("results-surface"),
+  expandResults: byId("expand-results"),
+  regionPicker: byId("region-picker"),
+  workspace: byId("workspace"),
 });
 
 const PAGE_SIZE = 12;
 const mobileQuery = matchMedia("(max-width: 1023px)");
+const shortQuery = matchMedia("(max-height: 540px)");
 let state = createAppState();
 let data;
 let entries = [];
@@ -77,7 +82,9 @@ let sourcesByEntry = new Map();
 let searchTimer = null;
 let visibleCount = PAGE_SIZE;
 let lastEntryTriggerId = null;
-let mobilePane = "map";
+let pane = "map";
+let expanded = false;
+let filterDraft = null;
 let mapMaximum = 1;
 let resultPosition = null;
 let renderedDetailId = null;
@@ -230,10 +237,16 @@ function reportStartError(error) {
   retry.textContent = "다시 불러오기";
   retry.addEventListener("click", () => location.reload());
   elements.cards.append(retry);
-  mobilePane = "list";
+  pane = "list";
+  expanded = true;
   renderPane();
+  elements.explorer.classList.add("data-unavailable");
   elements.mapContext.hidden = true;
-  document.querySelector(".mobile-pane-switch").hidden = true;
+  elements.showMap.hidden = true;
+  elements.showList.hidden = true;
+  elements.expandResults.hidden = true;
+  elements.filterTrigger.disabled = true;
+  elements.compareTab.disabled = true;
   elements.loadMore.hidden = true;
   elements.mapReadout.textContent = "공개 데이터를 불러오지 못했습니다.";
   elements.count.textContent = "데이터를 표시할 수 없습니다.";
@@ -286,19 +299,19 @@ function dispatch(action, historyMode = "push") {
   if (action.type !== "SET_ENTRY" && !(action.type === "HYDRATE" && action.state.entry)) visibleCount = PAGE_SIZE;
   state = appReducer(state, action);
   if (!["SET_ENTRY", "HYDRATE"].includes(action.type)) state = { ...state, entry: null };
-  mobilePane = "list";
+  if (action.type !== "SET_VIEW") pane = "list";
   updateUrl(historyMode);
   render();
 }
 
-function sheetFilterCount() {
-  return state.category.length
-    + state.schoolLevel.length
-    + state.status.length
-    + state.reviewState.length
-    + state.scope.length
-    + Number(Boolean(state.type))
-    + Number(Boolean(state.sort));
+function sheetFilterCount(filters = state) {
+  return filters.category.length
+    + filters.schoolLevel.length
+    + filters.status.length
+    + filters.reviewState.length
+    + filters.scope.length
+    + Number(Boolean(filters.type))
+    + Number(Boolean(filters.sort));
 }
 
 function activeFilterDescriptors() {
@@ -329,19 +342,30 @@ function renderActiveFilters() {
 }
 
 function renderPane() {
-  elements.explorer.dataset.pane = mobilePane;
-  elements.showMap.setAttribute("aria-pressed", String(mobilePane === "map"));
-  elements.showList.setAttribute("aria-pressed", String(mobilePane === "list"));
+  const mode = panelMode(pane, { compact: mobileQuery.matches, expanded, shortViewport: shortQuery.matches });
+  elements.explorer.dataset.pane = pane;
+  elements.explorer.dataset.panel = mode;
+  elements.resultsSurface.hidden = mode === "closed";
+  elements.showList.setAttribute("aria-expanded", String(mode !== "closed"));
+  elements.expandResults.setAttribute("aria-expanded", String(mode === "expanded"));
+  elements.expandResults.textContent = mode === "expanded" ? "지도 함께 보기" : "목록 확대";
 }
 
-function selectPane(pane) {
-  mobilePane = pane;
+function positionWorkspace() {
+  // Scroll the page, not an inner heading: sheet/list scroll stays independent.
+  elements.workspace.scrollIntoView({ block: "start", behavior: "instant" });
+}
+
+function selectPane(nextPane) {
+  if (nextPane === "map" && state.entry) {
+    state = appReducer(state, actions.setEntry(null));
+    updateUrl("replace");
+    render();
+  }
+  pane = nextPane;
   renderPane();
-  requestAnimationFrame(() => {
-    const heading = byId(pane === "map" ? "national-map-heading" : "results-heading");
-    heading.focus({ preventScroll: true });
-    elements.explorer.scrollIntoView({ block: "start", behavior: "auto" });
-  });
+  positionWorkspace();
+  byId(nextPane === "map" ? "national-map-heading" : "results-heading").focus({ preventScroll: true });
 }
 
 function renderWorkspaceView() {
@@ -380,19 +404,32 @@ function syncDetailSurface(entry) {
   if (!elements.detail.open) elements.detail.setAttribute("open", "");
 }
 
+function renderFilterControls() {
+  const filters = filterDraft || state;
+  elements.typeFilter.value = filters.type || "";
+  elements.schoolLevel.value = filters.schoolLevel[0] || "";
+  elements.reviewState.value = filters.reviewState[0] || "";
+  elements.status.value = filters.status[0] || "";
+  elements.scope.value = filters.scope[0] || "";
+  elements.sort.value = filters.sort || "";
+  elements.categoryActions.querySelectorAll("[data-category-chip]").forEach((chip) => {
+    chip.setAttribute("aria-pressed", String(chip.dataset.categoryChip === (filters.category[0] || "")));
+  });
+
+  elements.filterResult.textContent = `${filterEntries(entries, filters).length}건 결과 보기`;
+}
+
+function changeDraft(action) {
+  if (!filterDraft) return;
+  filterDraft = appReducer(filterDraft, action);
+  renderFilterControls();
+}
+
 function render() {
   const filtered = filterEntries(entries, state);
   elements.region.value = state.region || "";
   elements.search.value = state.query;
-  elements.typeFilter.value = state.type || "";
-  elements.schoolLevel.value = state.schoolLevel[0] || "";
-  elements.reviewState.value = state.reviewState[0] || "";
-  elements.status.value = state.status[0] || "";
-  elements.scope.value = state.scope[0] || "";
-  elements.sort.value = state.sort || "";
-  elements.categoryActions.querySelectorAll("[data-category-chip]").forEach((chip) => {
-    chip.setAttribute("aria-pressed", String(chip.dataset.categoryChip === (state.category[0] || "")));
-  });
+  renderFilterControls();
 
   const selectedIndex = state.entry ? filtered.findIndex((entry) => entry.id === state.entry) : -1;
   const limit = Math.min(filtered.length, Math.max(visibleCount, selectedIndex + 1));
@@ -404,8 +441,8 @@ function render() {
   elements.loadMore.hidden = limit >= filtered.length;
   if (!elements.loadMore.hidden) elements.loadMore.textContent = `사례 ${Math.min(PAGE_SIZE, filtered.length - limit)}개 더 보기`;
   elements.filterCount.textContent = String(sheetFilterCount());
-  elements.filterResult.textContent = `${filtered.length}건 결과 보기`;
   elements.paneCount.textContent = `${filtered.length}건`;
+  elements.showList.firstChild.textContent = activeFilterDescriptors().length ? "결과 보기 " : "전체 사례 보기 ";
   renderActiveFilters();
   renderWorkspaceView();
   renderPane();
@@ -421,6 +458,8 @@ function render() {
   if (landscape) {
     landscape = landscapeModel(filterEntries(entries, { ...state, region: null }), data.regions, { maximum: mapMaximum });
     updateNationalMap(elements.nationalMap, state.region, landscape);
+    const selected = landscape.byId.get(state.region);
+    byId("national-map-heading").textContent = selected ? `${selected.name} · ${selected.total}건` : "지역을 선택하세요";
     renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
   }
@@ -428,19 +467,18 @@ function render() {
 
 function resultsHeading({ scroll = true } = {}) {
   const heading = byId("results-heading");
-  if (scroll) heading?.scrollIntoView({ behavior: "auto", block: "start" });
+  if (scroll) positionWorkspace();
+  elements.browsePanel.scrollTop = 0;
   heading?.focus({ preventScroll: true });
 }
 
 function focusDetail() {
-  // render() has already opened the detail. Position it before the next paint
-  // so a taller broadcast header cannot leave the source links below the fold.
-  if (!mobileQuery.matches) elements.explorer.scrollIntoView({ block: "start", behavior: "instant" });
+  if (!mobileQuery.matches) positionWorkspace();
   byId("detail-heading")?.focus({ preventScroll: true });
 }
 
 function openEntry(id) {
-  resultPosition = { top: elements.browsePanel.scrollTop, page: window.scrollY, count: visibleCount };
+  resultPosition = { top: elements.browsePanel.scrollTop, page: window.scrollY, count: visibleCount, expanded };
   lastEntryTriggerId = id;
   clearTimeout(searchTimer);
   searchTimer = null;
@@ -463,6 +501,10 @@ function restoreEntryFocus(entryId) {
 }
 
 function closeDetail() {
+  if (resultPosition) {
+    visibleCount = resultPosition.count;
+    expanded = resultPosition.expanded;
+  }
   const closingEntryId = state.entry || lastEntryTriggerId;
   dispatch(actions.setEntry(null), "replace");
   restoreEntryFocus(closingEntryId);
@@ -475,8 +517,9 @@ function moveToResults({ regionId = null, category = null } = {}) {
 }
 
 function selectLandscapeRegion(regionId) {
+  elements.regionPicker.open = elements.mapContext.classList.contains("map-unavailable");
   dispatch(actions.setRegion(regionId));
-  resultsHeading({ scroll: mobileQuery.matches });
+  resultsHeading();
 }
 
 function openFeaturedEntry(id) {
@@ -493,33 +536,38 @@ function selectView(view) {
 }
 
 function openFilterPanel() {
-  if (!mobileQuery.matches || filterModalActive) return;
-  if (elements.filterPanel.open) elements.filterPanel.close();
+  if (filterModalActive) return;
+  if (searchTimer) {
+    clearTimeout(searchTimer);
+    searchTimer = null;
+    dispatch(actions.setQuery(elements.search.value), "replace");
+  }
+  filterDraft = createAppState(state);
+  renderFilterControls();
   elements.advancedFilters.open = true;
   elements.filterPanel.showModal();
   filterModalActive = true;
   elements.filterTrigger.setAttribute("aria-expanded", "true");
-  requestAnimationFrame(() => elements.filterClose.focus());
+  elements.filterClose.focus();
 }
 
 function closeFilterPanel({ restoreFocus = true } = {}) {
   if (!filterModalActive) return;
   elements.filterPanel.close();
   filterModalActive = false;
+  filterDraft = null;
   elements.filterTrigger.setAttribute("aria-expanded", "false");
-  if (restoreFocus) requestAnimationFrame(() => elements.filterTrigger.focus());
+  renderFilterControls();
+  if (restoreFocus) elements.filterTrigger.focus({ preventScroll: true });
 }
 
 function syncResponsiveUi() {
-  if (mobileQuery.matches) {
-    if (elements.filterPanel.open && !filterModalActive) elements.filterPanel.close();
-  } else {
-    if (filterModalActive) closeFilterPanel({ restoreFocus: false });
-    if (!elements.filterPanel.open) elements.filterPanel.setAttribute("open", "");
-  }
-
+  const detailFocused = elements.detail.contains(document.activeElement);
+  const mapFocused = elements.mapContext.contains(document.activeElement);
   renderPane();
   syncDetailSurface(entryById.get(state.entry));
+  if (state.entry && detailFocused) byId("detail-heading")?.focus({ preventScroll: true });
+  else if (mapFocused && elements.explorer.dataset.panel === "expanded") byId("results-heading").focus({ preventScroll: true });
 }
 
 function clearActiveFilter(key) {
@@ -542,6 +590,18 @@ function bindEvents() {
   elements.region.addEventListener("change", (event) => selectLandscapeRegion(event.target.value || null));
   elements.showMap.addEventListener("click", () => selectPane("map"));
   elements.showList.addEventListener("click", () => selectPane("list"));
+  elements.expandResults.addEventListener("click", () => {
+    // On short screens returning to the map is more useful than a tiny split.
+    if (shortQuery.matches) { selectPane("map"); return; }
+    expanded = !expanded;
+    renderPane();
+  });
+  elements.resultsSurface.addEventListener("keydown", event => {
+    if (event.key !== "Escape" || filterModalActive || detailModalActive) return;
+    event.preventDefault();
+    if (state.entry) closeDetail();
+    else selectPane("map");
+  });
   byId("map-reset-region").addEventListener("click", () => selectLandscapeRegion(null));
   elements.clearResults.addEventListener("click", () => dispatch(actions.resetFilters(), "replace"));
   elements.search.addEventListener("input", (event) => {
@@ -552,23 +612,19 @@ function bindEvents() {
       dispatch(actions.setQuery(query), "replace");
     }, 150);
   });
-  elements.typeFilter.addEventListener("change", (event) => dispatch(actions.setType(event.target.value || null), "replace"));
+  elements.typeFilter.addEventListener("change", (event) => changeDraft(actions.setType(event.target.value || null)));
   elements.categoryActions.addEventListener("click", (event) => {
     const chip = event.target.closest("[data-category-chip]");
     if (!chip) return;
     const value = chip.dataset.categoryChip;
-    dispatch(actions.setFilter("category", state.category[0] === value ? [] : [value]));
+    changeDraft(actions.setFilter("category", filterDraft.category[0] === value ? [] : [value]));
   });
-  elements.schoolLevel.addEventListener("change", (event) => dispatch(actions.setFilter("schoolLevel", event.target.value ? [event.target.value] : []), "replace"));
-  elements.reviewState.addEventListener("change", event => dispatch(actions.setFilter("reviewState", event.target.value ? [event.target.value] : []), "replace"));
-  elements.status.addEventListener("change", (event) => dispatch(actions.setFilter("status", event.target.value ? [event.target.value] : []), "replace"));
-  elements.scope.addEventListener("change", (event) => dispatch(actions.setFilter("scope", event.target.value ? [event.target.value] : []), "replace"));
-  elements.sort.addEventListener("change", (event) => dispatch(actions.setSort(event.target.value || null), "replace"));
-  elements.reset.addEventListener("click", () => {
-    clearTimeout(searchTimer);
-    searchTimer = null;
-    dispatch(actions.resetFilters(), "replace");
-  });
+  elements.schoolLevel.addEventListener("change", (event) => changeDraft(actions.setFilter("schoolLevel", event.target.value ? [event.target.value] : [])));
+  elements.reviewState.addEventListener("change", event => changeDraft(actions.setFilter("reviewState", event.target.value ? [event.target.value] : [])));
+  elements.status.addEventListener("change", (event) => changeDraft(actions.setFilter("status", event.target.value ? [event.target.value] : [])));
+  elements.scope.addEventListener("change", (event) => changeDraft(actions.setFilter("scope", event.target.value ? [event.target.value] : [])));
+  elements.sort.addEventListener("change", (event) => changeDraft(actions.setSort(event.target.value || null)));
+  elements.reset.addEventListener("click", () => changeDraft(actions.resetFilters()));
   elements.activeFilters.addEventListener("click", (event) => {
     const button = event.target.closest("[data-clear-filter]");
     if (button) clearActiveFilter(button.dataset.clearFilter);
@@ -615,24 +671,31 @@ function bindEvents() {
   });
   elements.filterTrigger.addEventListener("click", openFilterPanel);
   elements.filterClose.addEventListener("click", () => closeFilterPanel());
+  byId("filter-panel-cancel").addEventListener("click", () => closeFilterPanel());
   elements.filterResult.addEventListener("click", () => {
+    const applied = { ...filterDraft, entry: null };
     closeFilterPanel({ restoreFocus: false });
-    selectPane("list");
+    dispatch(actions.hydrate(applied));
+    resultsHeading();
   });
   elements.filterPanel.addEventListener("cancel", (event) => {
     event.preventDefault();
     closeFilterPanel();
   });
   elements.filterPanel.addEventListener("click", (event) => {
-    if (event.target === elements.filterPanel && filterModalActive) closeFilterPanel();
+    const rect = elements.filterPanel.getBoundingClientRect();
+    if (event.target === elements.filterPanel && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) closeFilterPanel();
   });
   mobileQuery.addEventListener("change", syncResponsiveUi);
+  shortQuery.addEventListener("change", syncResponsiveUi);
   addEventListener("popstate", () => {
+    closeFilterPanel({ restoreFocus: false });
     const previousEntry = state.entry;
     clearTimeout(searchTimer);
     searchTimer = null;
     state = decodeUrl(location.search, { allowed: allowed(), entries });
-    mobilePane = initialPane(state);
+    pane = initialPane(state);
+    if (previousEntry && !state.entry && resultPosition) expanded = resultPosition.expanded;
     visibleCount = previousEntry && !state.entry && resultPosition ? resultPosition.count : PAGE_SIZE;
     render();
     if (state.entry && state.entry !== previousEntry) {
@@ -655,6 +718,8 @@ async function initializeNationalMap() {
       if (!elements.nationalMap.contains(event.relatedTarget)) renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     });
     updateNationalMap(elements.nationalMap, state.region, landscape);
+    const selected = landscape.byId.get(state.region);
+    byId("national-map-heading").textContent = selected ? `${selected.name} · ${selected.total}건` : "지역을 선택하세요";
     renderMapReadout(elements.mapReadout, state.region ? landscape.byId.get(state.region) : null);
     renderRegionShortcuts(elements.regionShortcuts, landscape, state.region, selectLandscapeRegion);
   } catch (error) {
@@ -662,6 +727,7 @@ async function initializeNationalMap() {
     elements.nationalMap.hidden = true;
     elements.mapContext.classList.add("map-unavailable");
     byId("map-error").hidden = false;
+    elements.regionPicker.open = true;
     elements.mapLegend.hidden = true;
     renderMapReadout(elements.mapReadout, null);
   }
@@ -700,7 +766,7 @@ async function start() {
     populateSelect(elements.status, optionValues("status").map((value) => ({ value, label: OPERATIONAL_STATUS_LABELS[value] })));
 
     state = decodeUrl(location.search, { allowed: allowed(), entries });
-    mobilePane = initialPane(state);
+    pane = initialPane(state);
     if (encodeUrl(state, { allowed: allowed(), entries }) !== location.search) updateUrl("replace");
     bindEvents();
     syncResponsiveUi();
