@@ -171,9 +171,10 @@ input:hover, select:hover { border-color: var(--cyan); }
 .national-region.is-selected { stroke: var(--lime); stroke-width: 3.5; stroke-dasharray: 6 2; }
 .map-labels { pointer-events: none; }
 .map-label-target rect { pointer-events: all; cursor: pointer; fill: transparent; }
-.map-labels text { fill: var(--ink); font: 700 27px var(--font-body); text-anchor: middle; dominant-baseline: central; stroke: var(--bg-0); stroke-width: 5px; paint-order: stroke; stroke-linejoin: round; }
+.map-labels text { fill: var(--ink); font: 500 27px var(--font-map); letter-spacing: -.025em; text-anchor: middle; dominant-baseline: central; stroke: var(--bg-0); stroke-width: 2px; paint-order: stroke; stroke-linejoin: round; }
+.map-label-count { fill: var(--muted); font: 400 24px var(--font-body); font-variant-numeric: tabular-nums; letter-spacing: 0; }
 .map-labels line { stroke: var(--muted); stroke-width: 1.5; }
-.map-labels text.is-selected { fill: var(--lime); }
+.map-labels text.is-selected, .map-labels text.is-selected .map-label-count { fill: var(--lime); }
 .map-readout { display: flex; align-items: baseline; flex-wrap: wrap; gap: .25rem .6rem; min-height: 45px; padding: .65rem 1rem; background: #070b12bb; border-top: 1px solid var(--line); }
 .map-readout > span { color: var(--lime); font-size: .65rem; }
 .map-readout strong { font-size: .85rem; }

@@ -2,6 +2,28 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Refine map label typography
+
+**Outcome**
+
+- Replaced Korean system-font fallback on map labels with self-hosted Pretendard Medium; reduced bold weight/outline and gave document counts separate lighter/tabular styling and spacing. Selection still highlights both region and count.
+- Added the unmodified official Korean font subset with upstream commit/checksum and existing OFL license. Data, geometry, other-page typography, dependencies and release policy are unchanged.
+
+**Verification**
+
+- Complete local release gate passed: 46 JS, 135 Python, six static, 165 public-browser and one administrator scenario; deterministic extraction and reproducible hashes.
+- All 17 region names have native glyph coverage. Desktop/mobile manual checks and filter/zero/reset count assertions passed.
+- Candidate release `0bc62020d1be1f67f10dfc0193dd201e4d88489ae1289c0ac3b2991c1e4e7c33` (61 assets). Evidence is backed up privately under original workspace `artifacts/map-typography/`; all 22 unrelated copies are preserved.
+
+**Remaining work**
+
+- Pre-merge record: commit/push/merge, exact-main Astra assessment and signed Pages deployment, live asset readback, main synchronization and NERV delivery closeout.
+
+**References**
+
+- [Font source and checksum](../styles/fonts/SOURCES.txt)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Deliver the fullscreen map workspace to Pages
 
 **Outcome**

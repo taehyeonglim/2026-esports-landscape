@@ -108,7 +108,11 @@ export function renderNationalMap(svg, asset, model, { onSelect, onPreview } = {
     label.setAttribute("x", x);
     label.setAttribute("y", y);
     label.dataset.regionLabel = region.id;
-    label.textContent = `${region.shortName} ${region.total}`;
+    const count = svgElement("tspan");
+    count.classList.add("map-label-count");
+    count.setAttribute("dx", "4");
+    count.textContent = region.total;
+    label.append(`${region.shortName} `, count);
     const target = svgElement("g");
     target.dataset.regionLabelTarget = region.id;
     target.classList.add("map-label-target");
@@ -143,7 +147,7 @@ export function updateNationalMap(svg, selectedRegion, model) {
   });
   if (model) svg.querySelectorAll("[data-region-label]").forEach(label => {
     const region = model.byId.get(label.dataset.regionLabel);
-    label.textContent = `${region.shortName} ${region.total}`;
+    label.querySelector(".map-label-count").textContent = region.total;
     label.classList.toggle("is-selected", region.id === selectedRegion);
   });
 }

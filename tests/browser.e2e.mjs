@@ -442,8 +442,10 @@ test("map filters use every condition except region and preserve the scale and s
   await expect.poll(selectedPaintMatchesLegend).toBe(true);
   const expected = cases.entries.filter(e => e.region_id === "busan" && e.category === "교육청대회·사업").length;
   await expect(page.locator("#result-count")).toHaveText(`${expected}건`);
+  await expect(page.locator('[data-region-label="busan"]')).toHaveText(`부산 ${expected}`);
   await page.locator("#entry-search").fill("unmatched-query");
   await expect(page.locator('#national-map [data-region="busan"]')).toHaveAttribute("data-density", "0");
+  await expect(page.locator('[data-region-label="busan"]')).toHaveText("부산 0");
   await expect.poll(selectedPaintMatchesLegend).toBe(true);
   await expect(page.locator("#map-readout")).toContainText("현재 조건에 맞는 공개자료 없음");
   await page.locator('[data-empty-clear="query"]').click();
@@ -452,6 +454,7 @@ test("map filters use every condition except region and preserve the scale and s
   await page.locator('[data-category-chip="교육청대회·사업"]').click();
   await page.locator("#filter-panel-result").click();
   await expect(page.locator("#result-count")).toHaveText("27건");
+  await expect(page.locator('[data-region-label="busan"]')).toHaveText("부산 27");
 });
 
 test("compact map to list to detail takes two activations before the original source link", async ({ page }) => {
