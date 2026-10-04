@@ -2,6 +2,32 @@
 
 Newest entries go first. Keep entries concise and link to durable artifacts.
 
+## 2026-10-04 — Codex — Deliver the esports social thumbnail to Pages
+
+**Outcome**
+
+- Committed **1608d71**, pushed and merged [PR #35](https://github.com/taehyeonglim/2026-esports-landscape/pull/35) as **f3f44a9**. Main synchronized; merged implementation branch removed locally/remotely.
+- The generated **1730×909 PNG** now serves as the shared social cover for homepage and research links, with page-specific static metadata and correct dimensions/alternative text. [Asset and exact prompt](../docs/social-preview.md).
+- Exact-source Astra review genuinely approved all seven checks. Signed Pages deployment and independent crawler-style live readback succeeded; no release protection was bypassed.
+
+**Verification**
+
+- Local, independent-review and Actions gates passed: **48 JS, 135 Python, six static, 170 public-browser and one administrator test**, deterministic extraction and reproducible hashes.
+- [Push CI 37172060781](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37172060781) succeeded. [Signed run 37172209392](https://github.com/taehyeonglim/2026-esports-landscape/actions/runs/37172209392): build, release gate and deploy succeeded; coordinator recorded deployed.
+- Live release `8c720f770470a4d01513c7662fa0bfae03e5e4ed3c88fdbfe16255765d968359` (**63 assets**); **five exact live file hashes matched**. Both HTML heads expose the intended sharing metadata without JavaScript, and the public PNG returns the correct MIME/dimensions.
+- Manual 600×315 and 320×168 previews confirm title/year legibility and safe composition. Public-asset comparison changes only the PNG and two HTML files. Original 22 untracked copies, private drafts, dependencies, data/geometry and unrelated PR #16 remain preserved. Private evidence: `artifacts/social-thumbnail/`.
+
+**Remaining work**
+
+- No implementation delivery blocker. This NERV-only closeout changes no public artifact; its subsequent CI is separate from the completed deployment. Platform-specific preview caching/cropping is not independently certified.
+- Existing operating-status and data-review backlog remains unchanged.
+
+**References**
+
+- [Production thumbnail](https://taehyeonglim.github.io/2026-esports-landscape/assets/social-preview-2026.png)
+- [Asset notes and generation prompt](../docs/social-preview.md)
+- [Signed release process](../docs/astra-release.md)
+
 ## 2026-10-04 — Codex — Create and verify the social share thumbnail
 
 **Outcome**
